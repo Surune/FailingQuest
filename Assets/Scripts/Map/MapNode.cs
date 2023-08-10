@@ -18,9 +18,14 @@ namespace Map
 {
     public class MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler
     {
+        public SpriteRenderer spriteRenderer;
+        public Image image;
 
         public Node node { get; private set; }
         public NodeInfo nodeInfo { get; private set; }
+
+        private float scale;
+        private float hoverScaleFactor = 1.5f;
 
         private float mouseDownTime;
         private const float maxClickDuration = 0.5f;
@@ -30,6 +35,9 @@ namespace Map
             this.node = node;
             this.nodeInfo = nodeInfo;
 
+            spriteRenderer.sprite = nodeInfo.sprite;
+            image.sprite = nodeInfo.sprite;
+
             SetState(NodeState.Locked);
         }
 
@@ -37,23 +45,60 @@ namespace Map
         {
             switch (nodeState)
             {
-                
+                case NodeState.Locked:
+                    spriteRenderer.DOKill();
+                    spriteRenderer.color = MapRenderer.GetInstance().lockedColor;
+
+                    image.DOKill();
+                    image.color = MapRenderer.GetInstance().lockedColor;
+
+                    break;
+                case NodeState.Visited:
+                    spriteRenderer.DOKill();
+                    spriteRenderer.color = MapRenderer.GetInstance().visitedColor;
+
+                    image.DOKill();
+                    image.color = MapRenderer.GetInstance().visitedColor;
+
+                    break;
+                case NodeState.Accessible:
+                    spriteRenderer.color = MapRenderer.GetInstance().lockedColor;
+                    spriteRenderer.DOKill();
+                    spriteRenderer.DOColor(MapRenderer.GetInstance().visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
+
+                    image.color = MapRenderer.GetInstance().lockedColor;
+                    image.DOKill();
+                    image.DOColor(MapRenderer.GetInstance().visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
+
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(nodeState), nodeState, null);
             }
         }
 
         public void OnPointerEnter(PointerEventData pointerEventData)
         {
+            spriteRenderer.transform.DOKill();
+            spriteRenderer.transform.DOScale(scale * hoverScaleFactor, 0.5f);
+
+            image.transform.DOKill();
+            image.transform.DOScale(scale * hoverScaleFactor, 0.5f);
         }
 
         public void OnPointerExit(PointerEventData pointerEventData)
         {
+            spriteRenderer.transform.DOKill();
+            spriteRenderer.transform.DOScale(scale, 0.5f);
+
+            image.transform.DOKill();
+            image.transform.DOScale(scale, 0.5f);
         }
 
         public void OnPointerUp(PointerEventData pointerEventData)
         {
             if (Time.time - mouseDownTime < maxClickDuration)
             {
-	            
+                MapUserInteraction.GetInstance().SelectNode(this);
             }
         }
 
@@ -61,6 +106,5 @@ namespace Map
         {
             mouseDownTime = Time.time;
         }
-        
     }
 }

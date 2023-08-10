@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace Map
@@ -25,7 +24,7 @@ namespace Map
 
             for (int i = 0; i < mapConfig.mapNodeLayers.Count; ++i)
             {
-                PlaceLayer(i);
+                InstallLayer(i);
             }
 
             GeneratePaths();
@@ -56,7 +55,12 @@ namespace Map
             return layerIntervals.Take(layerIndex + 1).Sum();
         }
 
-        private void PlaceLayer(int layerIndex)
+        private NodeType GetRandomNode()
+        {
+            return randomNodes[Random.Range(0, randomNodes.Count)];
+        }
+
+        private void InstallLayer(int layerIndex)
         {
             var mapNodeLayer = mapConfig.mapNodeLayers[layerIndex];
             var layerNodes = new List<Node>();
@@ -105,6 +109,15 @@ namespace Map
             }
         }
 
+        private Node GetNode(Point point)
+        {
+            // If no nodes exist at this point.
+            if (point.x >= nodeLayers.Count) return null;
+            if (point.y >= nodeLayers[point.x].Count) return null;
+
+            return nodeLayers[point.x][point.y];
+        }
+
         private void GenerateEdges()
         {
             foreach (var path in paths)
@@ -143,7 +156,7 @@ namespace Map
                      * After generating edges, each node can have at most one outgoing link and one incoming link
                      * This operation maintains connections between nodeLayers
                      */
-                    nodeLeftDown.LinkOutgoingNode(nodeLeftUp.point);
+                    nodeLeftDown.LinkOutgoingNode(nodeLeftUp.point );
                     nodeLeftUp.LinkIncomingNode(nodeLeftDown.point);
                     nodeRightDown.LinkOutgoingNode(nodeRightUp.point);
                     nodeRightUp.LinkIncomingNode(nodeRightDown.point);
@@ -169,15 +182,6 @@ namespace Map
                     }
                 }
             }
-        }
-
-        private Node GetNode(Point point)
-        {   
-            // There does not exist a node;
-            if (point.x >= nodeLayers.Count) return null;
-            if (point.y >= nodeLayers[point.x].Count) return null;
-
-            return nodeLayers[point.x][point.y];
         }
 
         private Point GetBossPoint()
@@ -256,10 +260,11 @@ namespace Map
                 candidateY.Add(i);
             }
 
-            //shuffle
+            candidateY.Shuffle();
             var startingY = candidateY.Take(numOfStartingNodes);
             var startingPoints = (from y in startingY select new Point(0, y)).ToList();
 
+            candidateY.Shuffle();
             var preBossY = candidateY.Take(numOfPreBossNodes);
             var preBossPoints = (from y in preBossY select new Point(0, y)).ToList();
 
@@ -276,11 +281,6 @@ namespace Map
 
                 paths.Add(path);
             }
-        }
-
-        private NodeType GetRandomNode()
-        {
-            return randomNodes[Random.Range(0, randomNodes.Count)];
         }
     }
 }

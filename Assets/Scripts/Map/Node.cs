@@ -2,34 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-// Enum representing different types of nodes in the map.
-namespace Map
-{
-    public enum NodeType
-    {
-        Normal,
-        Elite,
-        Boss,
-
-        Treasure,
-        Merchant,
-        Camp,
-
-        Mystery
-    }
-}
-
-// Each node has a 2D graphic and a type.
-namespace Map
-{
-    [CreateAssetMenu]
-    public class NodeInfo : ScriptableObject
-    {
-        public Sprite sprite;
-        public NodeType nodeType;
-    }
-}
-
 /*
  * Node Property
  * 
@@ -38,11 +10,6 @@ namespace Map
  * - position: The actual coordinates in the map.
  * - incomingNodes: A list of nodes that have connections to the current node.
  * - outgoingNodes: A list of nodes that are connected to the current nodes.
- * 
- * Functions
- * - 
- *
- *
  */
 namespace Map
 {

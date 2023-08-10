@@ -5,8 +5,8 @@ namespace Map
 {
     public class Point : IEquatable<Point>
     {
-        public int x;
-        public int y;
+        public int x { get; private set; }
+        public int y { get; private set; }
 
         public Point(int x, int y)
         {

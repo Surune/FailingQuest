@@ -21,7 +21,37 @@ namespace Map
 
         public void SelectNode(MapNode mapNode)
         {
+            
+        }
 
+        public void EnterNode(MapNode mapNode)
+        {
+            switch (mapNode.node.nodeType)
+            {
+                case NodeType.Normal:
+
+                  break;
+                case NodeType.Elite:
+
+                  break;
+                case NodeType.Boss:
+
+                  break;
+                case NodeType.Treasure:
+
+                  break;
+                case NodeType.Merchant:
+
+                  break;
+                case NodeType.Camp:
+
+                  break;
+                case NodeType.Mystery:
+
+                  break;
+                default:
+                  throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

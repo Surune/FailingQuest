@@ -16,10 +16,7 @@ namespace Map
             this.path = path;
         }
 
-        public Node GetNode(Point point)
-        {
-          return nodes.First(node => node.point.Equals(point));
-        }
+        
   
 
     }

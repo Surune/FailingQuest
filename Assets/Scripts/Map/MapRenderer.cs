@@ -40,7 +40,7 @@ namespace Map
             edges.Clear();
         }
 
-        public void ShowMap()
+        public void RenderMap(Map map)
         {
             ClearMap();
 

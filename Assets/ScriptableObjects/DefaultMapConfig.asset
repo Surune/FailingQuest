@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c7fd2811aed4d7448c8f7b51ad6ef9a, type: 3}
+  m_Name: DefaultMapConfig
+  m_EditorClassIdentifier: 
+  nodeInfos:
+  - {fileID: 11400000, guid: 156315baa01a91b43b66371abe2ab706, type: 2}
+  - {fileID: 11400000, guid: 5d723e99f9fd58249af0800a3ae9335c, type: 2}
+  - {fileID: 11400000, guid: 3a94df4af1171e24c8c7f3ad550c3218, type: 2}
+  - {fileID: 11400000, guid: d3de587cc19009846bd9f7b2d5d31667, type: 2}
+  - {fileID: 11400000, guid: c95cc3887336e794b848547c614c007f, type: 2}
+  - {fileID: 11400000, guid: 6ea388b54eec3cc44a0fb661b7240037, type: 2}
+  - {fileID: 11400000, guid: 8f48dee3bbb2cab47ad592e3e3234525, type: 2}
+  numOfStartingNodes:
+    min: 3
+    max: 4
+  numOfPreBossNodes:
+    min: 3
+    max: 5
+  extraPaths: 0
+  mapNodeLayers: []

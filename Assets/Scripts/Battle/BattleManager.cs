@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FightManager : MonoBehaviour //전투의 진행을 담당
+public class BattleManager : MonoBehaviour //전투의 진행을 담당
 {
     private int _time = 0;
-    
+
+    [SerializeField] public List<Vector2> speeds;
     //TODO location
     //TODO mySkillList
     //TODO enemySkillList

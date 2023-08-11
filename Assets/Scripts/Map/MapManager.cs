@@ -16,7 +16,6 @@ namespace Map
         {
             if (PlayerPrefs.HasKey("Map"))
             {
-                
                 mapRenderer.RenderMap(map);
             }
             else

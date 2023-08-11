@@ -10,7 +10,7 @@ namespace Map
         public NodeType nodeType;
         public float distanceBetweenNodes;
         public RandomFloat distanceFromPreviousLayer;
-        
+
         [Range(0f, 1f)] public float nodeDiversity;
         [Range(0f, 1f)] public float nodeDisorder;
     }

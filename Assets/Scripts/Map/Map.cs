@@ -8,16 +8,17 @@ namespace Map
     public class Map
     {
         public List<Node> nodes;
-        public List<Point> path;
+        public List<Point> userPath;
 
-        public Map(List<Node> nodes, List<Point> path)
+        public Map(List<Node> nodes, List<Point> userPath)
         {
             this.nodes = nodes;
-            this.path = path;
+            this.userPath = userPath;
         }
 
-        
-  
-
+        public Node GetNode(Point point)
+        {
+            return nodes.FirstOrDefault(node => node.point.Equals(point));
+        }
     }
 }

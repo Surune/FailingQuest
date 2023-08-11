@@ -25,7 +25,7 @@ namespace Map
     [CreateAssetMenu]
     public class NodeInfo : ScriptableObject
     {
-        public Sprite sprite { get; private set; }
-        public NodeType nodeType { get; private set; }
+        public Sprite sprite;
+        public NodeType nodeType;
     }
 }

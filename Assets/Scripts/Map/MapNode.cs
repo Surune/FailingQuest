@@ -25,7 +25,8 @@ namespace Map
         public NodeInfo nodeInfo { get; private set; }
 
         private float scale;
-        private float hoverScaleFactor = 1.5f;
+        private const float hoverScaleFactor = 1.5f;
+        private const float bossScaleFactor = 3f;
 
         private float mouseDownTime;
         private const float maxClickDuration = 0.5f;
@@ -37,6 +38,10 @@ namespace Map
 
             spriteRenderer.sprite = nodeInfo.sprite;
             image.sprite = nodeInfo.sprite;
+
+            if (node.nodeType == NodeType.Boss) transform.localScale *= bossScaleFactor;
+            scale = spriteRenderer.transform.localScale.x;
+            scale = image.transform.localScale.x;
 
             SetState(NodeState.Locked);
         }
@@ -98,7 +103,7 @@ namespace Map
         {
             if (Time.time - mouseDownTime < maxClickDuration)
             {
-                MapUserInteraction.GetInstance().SelectNode(this);
+                MapUserInteraction.instance.SelectNode(this);
             }
         }
 

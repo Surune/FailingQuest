@@ -15,9 +15,9 @@ namespace Map
 {
     public class Node
     {
-        public readonly NodeType nodeType;
+        public NodeType nodeType { get; private set; }
 
-        public readonly Point point;
+        public Point point { get; private set; }
         public Vector2 position;
 
         public readonly List<Point> incomingNodes = new List<Point>();

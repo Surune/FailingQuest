@@ -7,24 +7,57 @@ namespace Map
 {
     public class MapUserInteraction : MonoBehaviour
     {
-        private static MapUserInteraction instance;
+        public static MapUserInteraction instance;
+
+        public MapManager mapManager;
+
+        public float enterNodeDelay = 1f;
 
         private void Awake()
         {
             instance = this;
         }
 
-        public static MapUserInteraction GetInstance()
-        {
-            return instance;
-        }
-
         public void SelectNode(MapNode mapNode)
         {
-            
+            if (mapManager.map.userPath.Count == 0)
+            {
+                if (mapNode.node.point.x == 0)
+                {
+                    MoveNode(mapNode);
+                }
+                else
+                {
+                    WarnInaaccessibleNode();
+                }
+            }
+            else
+            {
+                var currentPoint = mapManager.map.userPath[mapManager.map.userPath.Count - 1];
+                var currentNode = mapManager.map.GetNode(currentPoint);
+
+                if (currentNode.outgoingNodes.Any(point => point.Equals(mapNode.node.point)))
+                {
+                    MoveNode(mapNode);
+                }
+                else
+                {
+                    WarnInaaccessibleNode();
+                }
+            }
         }
 
-        public void EnterNode(MapNode mapNode)
+        private void MoveNode(MapNode mapNode)
+        {
+            mapManager.map.userPath.Add(mapNode.node.point);
+            mapManager.SaveMap();
+            mapManager.mapRenderer.SetAccessibleNodes();
+            mapManager.mapRenderer.SetEdgeColors();
+
+            DOTween.Sequence().AppendInterval(enterNodeDelay).OnComplete(() => EnterNode(mapNode));
+        }
+
+        private void EnterNode(MapNode mapNode)
         {
             switch (mapNode.node.nodeType)
             {
@@ -52,6 +85,11 @@ namespace Map
                 default:
                   throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private void WarnInaaccessibleNode()
+        {
+            Debug.Log("The selected node cannot be accessed");
         }
     }
 }

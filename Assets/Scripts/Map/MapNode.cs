@@ -18,8 +18,8 @@ namespace Map
 {
     public class MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler
     {
-        private SpriteRenderer spriteRenderer;
-        private Image image;
+        public SpriteRenderer spriteRenderer;
+        public Image image;
 
         public Node node { get; private set; }
         public NodeInfo nodeInfo { get; private set; }

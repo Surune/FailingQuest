@@ -9,7 +9,7 @@ namespace Map
         private MapConfig mapConfig;
 
         private readonly List<NodeType> randomNodes = new List<NodeType>
-        {NodeType.Normal, NodeType.Treasure, NodeType.Merchant, NodeType.Camp, NodeType.Mystery};
+        {NodeType.Normal, NodeType.Elite, NodeType.Treasure, NodeType.Merchant, NodeType.Camp, NodeType.Mystery};
         private readonly List<List<Node> > nodeLayers = new List<List<Node> >();
 
         private List<float> layerIntervals;

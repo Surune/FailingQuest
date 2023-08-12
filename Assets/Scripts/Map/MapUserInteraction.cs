@@ -9,8 +9,6 @@ namespace Map
     {
         public static MapUserInteraction instance;
 
-        public MapManager mapManager;
-
         public float enterNodeDelay = 1f;
 
         private void Awake()
@@ -20,7 +18,7 @@ namespace Map
 
         public void SelectNode(MapNode mapNode)
         {
-            if (mapManager.map.userPath.Count == 0)
+            if (MapManager.instance.map.userPath.Count == 0)
             {
                 if (mapNode.node.point.x == 0)
                 {
@@ -33,8 +31,8 @@ namespace Map
             }
             else
             {
-                var currentPoint = mapManager.map.userPath[mapManager.map.userPath.Count - 1];
-                var currentNode = mapManager.map.GetNode(currentPoint);
+                var currentPoint = MapManager.instance.map.userPath[MapManager.instance.map.userPath.Count - 1];
+                var currentNode = MapManager.instance.map.GetNode(currentPoint);
 
                 if (currentNode.outgoingNodes.Any(point => point.Equals(mapNode.node.point)))
                 {
@@ -49,10 +47,10 @@ namespace Map
 
         private void MoveNode(MapNode mapNode)
         {
-            mapManager.map.userPath.Add(mapNode.node.point);
-            mapManager.SaveMap();
-            mapManager.mapRenderer.SetAccessibleNodes();
-            mapManager.mapRenderer.SetEdgeColors();
+            MapManager.instance.map.userPath.Add(mapNode.node.point);
+            MapManager.instance.SaveMap();
+            MapRenderer.instance.SetAccessibleNodes();
+            MapRenderer.instance.SetEdgeColors();
 
             DOTween.Sequence().AppendInterval(enterNodeDelay).OnComplete(() => EnterNode(mapNode));
         }

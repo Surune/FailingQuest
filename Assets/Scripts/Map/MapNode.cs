@@ -52,28 +52,28 @@ namespace Map
             {
                 case NodeState.Locked:
                     spriteRenderer.DOKill();
-                    spriteRenderer.color = MapRenderer.GetInstance().lockedColor;
+                    spriteRenderer.color = MapRenderer.instance.lockedColor;
 
                     image.DOKill();
-                    image.color = MapRenderer.GetInstance().lockedColor;
+                    image.color = MapRenderer.instance.lockedColor;
 
                     break;
                 case NodeState.Visited:
                     spriteRenderer.DOKill();
-                    spriteRenderer.color = MapRenderer.GetInstance().visitedColor;
+                    spriteRenderer.color = MapRenderer.instance.visitedColor;
 
                     image.DOKill();
-                    image.color = MapRenderer.GetInstance().visitedColor;
+                    image.color = MapRenderer.instance.visitedColor;
 
                     break;
                 case NodeState.Accessible:
-                    spriteRenderer.color = MapRenderer.GetInstance().lockedColor;
+                    spriteRenderer.color = MapRenderer.instance.lockedColor;
                     spriteRenderer.DOKill();
-                    spriteRenderer.DOColor(MapRenderer.GetInstance().visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
+                    spriteRenderer.DOColor(MapRenderer.instance.visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
 
-                    image.color = MapRenderer.GetInstance().lockedColor;
+                    image.color = MapRenderer.instance.lockedColor;
                     image.DOKill();
-                    image.DOColor(MapRenderer.GetInstance().visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
+                    image.DOColor(MapRenderer.instance.visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
 
                     break;
                 default:

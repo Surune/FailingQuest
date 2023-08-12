@@ -26,5 +26,110 @@ MonoBehaviour:
   numOfPreBossNodes:
     min: 3
     max: 5
-  extraPaths: 0
-  mapNodeLayers: []
+  extraPaths: 1
+  mapNodeLayers:
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 0
+      max: 0
+    nodeDiversity: 0
+    nodeDisorder: 0
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 2
+      max: 4
+    nodeDiversity: 0.5
+    nodeDisorder: 0.7
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 2
+      max: 4
+    nodeDiversity: 0.55
+    nodeDisorder: 0
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 2
+      max: 4
+    nodeDiversity: 0.17
+    nodeDisorder: 0.73
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 2
+      max: 4
+    nodeDiversity: 0.65
+    nodeDisorder: 0.8
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 2
+      max: 4
+    nodeDiversity: 0.8
+    nodeDisorder: 0.8
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 2
+      max: 4
+    nodeDiversity: 0.8
+    nodeDisorder: 0.8
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 2
+      max: 4
+    nodeDiversity: 0.8
+    nodeDisorder: 0.8
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 2
+      max: 4
+    nodeDiversity: 0.8
+    nodeDisorder: 0.8
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 2
+      max: 4
+    nodeDiversity: 0.8
+    nodeDisorder: 0.8
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 2
+      max: 4
+    nodeDiversity: 0.8
+    nodeDisorder: 0.8
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 2
+      max: 4
+    nodeDiversity: 0.8
+    nodeDisorder: 0.8
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 2
+      max: 4
+    nodeDiversity: 0.8
+    nodeDisorder: 0.8
+  - nodeType: 0
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 2
+      max: 4
+    nodeDiversity: 0.8
+    nodeDisorder: 0.8
+  - nodeType: 2
+    distanceBetweenNodes: 2
+    distanceFromPreviousLayer:
+      min: 5
+      max: 7
+    nodeDiversity: 0
+    nodeDisorder: 0.4

@@ -6,17 +6,23 @@ namespace Map
 {
     public class MapManager : MonoBehaviour
     {
+        public static MapManager instance;
+
         public MapGenerator mapGenerator;
         public MapConfig mapConfig;
-        public MapRenderer mapRenderer;
 
         public Map map { get; private set; }
+
+        private void Awake()
+        {
+            instance = this;
+        }
 
         private void Start()
         {
             if (PlayerPrefs.HasKey("Map"))
             {
-                mapRenderer.RenderMap(map);
+                MapRenderer.instance.RenderMap(map);
             }
             else
             {
@@ -27,7 +33,7 @@ namespace Map
         public void GenerateMap()
         {
             map = mapGenerator.GetMap(mapConfig);
-            mapRenderer.RenderMap(map);
+            MapRenderer.instance.RenderMap(map);
         }
 
         public void SaveMap()

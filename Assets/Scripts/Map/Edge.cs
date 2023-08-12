@@ -7,8 +7,8 @@ namespace Map
     {
         public LineRenderer lineRenderer;
 
-        private MapNode source;
-        private MapNode target;
+        public MapNode source;
+        public MapNode target;
 
         public Edge(LineRenderer lineRenderer,  MapNode source, MapNode target)
         {
@@ -29,21 +29,6 @@ namespace Map
 
             colorGradient.colorKeys = colorKeys;
             lineRenderer.colorGradient = colorGradient;
-        }
-        
-        public LineRenderer GetLineRenderer()
-        {
-            return this.lineRenderer;
-        }
-
-        public MapNode GetSource()
-        {
-            return this.source;
-        }
-
-        public MapNode GetTarget()
-        {
-            return this.target;
         }
     }
 }

@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapConfigs:
   - {fileID: 11400000, guid: 358b4ea29c145074f956fce0a60246d5, type: 2}
-  nodePrefab: {fileID: 0}
+  nodePrefab: {fileID: 4365635818764302815, guid: cdf16c12dd2ba8446862e33689d9089e, type: 3}
   edgePrefab: {fileID: 0}
   background: {fileID: 0}
   lockedColor:
@@ -137,6 +137,8 @@ MonoBehaviour:
   assecibleColor:
     serializedVersion: 2
     rgba: 4294967295
+  ySize: 0
+  xOffset: 0
 --- !u!1 &7046720256924048632
 GameObject:
   m_ObjectHideFlags: 0

@@ -1759,7 +1759,7 @@ PrefabInstance:
     - target: {fileID: 6158763092985508262, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 4922361, guid: f88efd0ab78e34b4c9391d64e3ea7927, type: 3}
+      objectReference: {fileID: -861902236, guid: ef21757c06d254185a9a0c7bf589c471, type: 3}
     - target: {fileID: 6387711714741736045, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_Name
       value: Enemy (1)

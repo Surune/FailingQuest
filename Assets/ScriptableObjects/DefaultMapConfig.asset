@@ -26,7 +26,7 @@ MonoBehaviour:
   numOfPreBossNodes:
     min: 3
     max: 5
-  extraPaths: 1
+  extraPaths: 0
   mapNodeLayers:
   - nodeType: 0
     distanceBetweenNodes: 2

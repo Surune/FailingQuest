@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ce2a95a083d0c4c9e84cd529c7f46c, type: 3}
   m_Name: Elite
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: e1ff8a35a31294abc8e335e69be51294, type: 3}
   nodeType: 1

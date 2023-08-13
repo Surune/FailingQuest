@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ce2a95a083d0c4c9e84cd529c7f46c, type: 3}
   m_Name: Merchant
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: df1b9d1ea33cf42e4a44a7063ca1fabd, type: 3}
   nodeType: 4

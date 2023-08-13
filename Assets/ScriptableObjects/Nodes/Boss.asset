@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ce2a95a083d0c4c9e84cd529c7f46c, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 274cc01cf1901481eb0709c542783b5b, type: 3}
   nodeType: 2

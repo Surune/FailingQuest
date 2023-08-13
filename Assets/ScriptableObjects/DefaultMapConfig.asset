@@ -18,7 +18,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3a94df4af1171e24c8c7f3ad550c3218, type: 2}
   - {fileID: 11400000, guid: d3de587cc19009846bd9f7b2d5d31667, type: 2}
   - {fileID: 11400000, guid: c95cc3887336e794b848547c614c007f, type: 2}
-  - {fileID: 11400000, guid: 6ea388b54eec3cc44a0fb661b7240037, type: 2}
+  - {fileID: 11400000, guid: 92bb550fbac31644598dbc45a724ac58, type: 2}
+  - {fileID: 11400000, guid: da0243c4a39b8af41bc12738cbfaeef2, type: 2}
   - {fileID: 11400000, guid: 8f48dee3bbb2cab47ad592e3e3234525, type: 2}
   numOfStartingNodes:
     min: 3

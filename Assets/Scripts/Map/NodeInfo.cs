@@ -13,8 +13,9 @@ namespace Map
 
         Treasure,
         Merchant,
-        Camp,
+        Forge,
 
+        Quest,
         Mystery
     }
 }

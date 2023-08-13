@@ -4,20 +4,19 @@ using UnityEngine;
 
 namespace Map
 {
-    public class MapGenerator
+    public class MapGenerator : MonoBehaviour
     {
-        private MapConfig mapConfig;
+        public MapConfig mapConfig;
 
-        private readonly List<NodeType> randomNodes = new List<NodeType>
-        {NodeType.Normal, NodeType.Elite, NodeType.Treasure, NodeType.Merchant, NodeType.Camp, NodeType.Mystery};
-        private readonly List<List<Node> > nodeLayers = new List<List<Node> >();
+        private readonly List<NodeType> randomNodes = new()
+        {NodeType.Normal, NodeType.Elite, NodeType.Treasure, NodeType.Merchant, NodeType.Forge, NodeType.Quest, NodeType.Mystery};
+        private readonly List<List<Node> > nodeLayers = new();
 
         private List<float> layerIntervals;
         private List<List<Point> > paths;
 
-        public Map GetMap(MapConfig mapConfig)
+        public Map GetMap()
         {
-            this.mapConfig = mapConfig;
             nodeLayers.Clear();
 
             GenerateLayerIntervals();
@@ -36,7 +35,8 @@ namespace Map
             RemoveCrossingEdges();
 
             // All the nodes with edges
-            var validNodes = nodeLayers.SelectMany(n => n).Where(n => n.incomingNodes.Count > 0 || n.outgoingNodes.Count > 0).ToList();
+            var validNodes = nodeLayers.SelectMany(node => node).
+                             Where(node => node.incomingNodes.Count > 0 || node.outgoingNodes.Count > 0).ToList();
 
             return new Map(validNodes, new List<Point>());
         }
@@ -220,20 +220,20 @@ namespace Map
 
                 // Right Point
                 verticalDistance = Mathf.Abs(target.y - (previousNodeY - 1));
-                if (previousNodeY - 1 >= 0 && horizontalDistance <= verticalDistance)
+                if (previousNodeY - 1 >= 0 && horizontalDistance >= verticalDistance)
                 {
-                    candidateY.Add(previousNodeY);
+                    candidateY.Add(previousNodeY - 1);
                 }
 
                 // Left Point
                 verticalDistance = Mathf.Abs(target.y - (previousNodeY + 1));
-                if (previousNodeY + 1 < mapConfig.height && horizontalDistance <= verticalDistance)
+                if (previousNodeY + 1 < mapConfig.height && horizontalDistance >= verticalDistance)
                 {
-                    candidateY.Add(previousNodeY);
+                    candidateY.Add(previousNodeY + 1);
                 }
 
                 int randomCandidate = Random.Range(0, candidateY.Count);
-                var nextNodeY = candidateY[randomCandidate];
+                int nextNodeY = candidateY[randomCandidate];
                 var nextPoint = new Point(x, nextNodeY);
 
                 path.Add(nextPoint);
@@ -266,7 +266,7 @@ namespace Map
 
             candidateY.Shuffle();
             var preBossY = candidateY.Take(numOfPreBossNodes);
-            var preBossPoints = (from y in preBossY select new Point(0, y)).ToList();
+            var preBossPoints = (from y in preBossY select new Point(bossPoint.x - 1, y)).ToList();
 
             int numOfPaths = Mathf.Max(numOfStartingNodes, numOfPreBossNodes) + Mathf.Max(0, mapConfig.extraPaths);
 

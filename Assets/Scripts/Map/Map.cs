@@ -18,7 +18,20 @@ namespace Map
 
         public Node GetNode(Point point)
         {
-            return nodes.FirstOrDefault(node => node.point.Equals(point));
+            return nodes.First(node => node.point.Equals(point));
+        }
+
+        public Node GetBossNode()
+        {
+            return nodes.First(node => node.nodeType == NodeType.Boss);
+        }
+
+        public float PathLength()
+        {
+            var bossNode = GetBossNode();
+            var startingNode = nodes.First(node => node.point.x == 0);
+
+            return bossNode.position.x - startingNode.position.x;
         }
     }
 }

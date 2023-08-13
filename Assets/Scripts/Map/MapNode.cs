@@ -37,11 +37,9 @@ namespace Map
             this.nodeInfo = nodeInfo;
 
             spriteRenderer.sprite = nodeInfo.sprite;
-            image.sprite = nodeInfo.sprite;
 
             if (node.nodeType == NodeType.Boss) transform.localScale *= bossScaleFactor;
             scale = spriteRenderer.transform.localScale.x;
-            scale = image.transform.localScale.x;
 
             SetState(NodeState.Locked);
         }
@@ -54,26 +52,16 @@ namespace Map
                     spriteRenderer.DOKill();
                     spriteRenderer.color = MapRenderer.instance.lockedColor;
 
-                    image.DOKill();
-                    image.color = MapRenderer.instance.lockedColor;
-
                     break;
                 case NodeState.Visited:
                     spriteRenderer.DOKill();
                     spriteRenderer.color = MapRenderer.instance.visitedColor;
-
-                    image.DOKill();
-                    image.color = MapRenderer.instance.visitedColor;
 
                     break;
                 case NodeState.Accessible:
                     spriteRenderer.color = MapRenderer.instance.lockedColor;
                     spriteRenderer.DOKill();
                     spriteRenderer.DOColor(MapRenderer.instance.visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
-
-                    image.color = MapRenderer.instance.lockedColor;
-                    image.DOKill();
-                    image.DOColor(MapRenderer.instance.visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
 
                     break;
                 default:
@@ -85,18 +73,12 @@ namespace Map
         {
             spriteRenderer.transform.DOKill();
             spriteRenderer.transform.DOScale(scale * hoverScaleFactor, 0.5f);
-
-            image.transform.DOKill();
-            image.transform.DOScale(scale * hoverScaleFactor, 0.5f);
         }
 
         public void OnPointerExit(PointerEventData pointerEventData)
         {
             spriteRenderer.transform.DOKill();
             spriteRenderer.transform.DOScale(scale, 0.5f);
-
-            image.transform.DOKill();
-            image.transform.DOScale(scale, 0.5f);
         }
 
         public void OnPointerUp(PointerEventData pointerEventData)

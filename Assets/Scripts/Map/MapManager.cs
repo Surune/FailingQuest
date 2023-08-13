@@ -9,9 +9,8 @@ namespace Map
         public static MapManager instance;
 
         public MapGenerator mapGenerator;
-        public MapConfig mapConfig;
 
-        public Map map { get; private set; }
+        public Map map;
 
         private void Awake()
         {
@@ -32,7 +31,7 @@ namespace Map
 
         public void GenerateMap()
         {
-            map = mapGenerator.GetMap(mapConfig);
+            map = mapGenerator.GetMap();
             MapRenderer.instance.RenderMap(map);
         }
 

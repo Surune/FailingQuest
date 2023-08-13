@@ -49,8 +49,8 @@ namespace Map
         {
             MapManager.instance.map.userPath.Add(mapNode.node.point);
             MapManager.instance.SaveMap();
-            MapRenderer.instance.SetAccessibleNodes();
-            MapRenderer.instance.SetEdgeColors();
+            MapRenderer.instance.UpdateNodeState();
+            MapRenderer.instance.UpdateEdgeState();
 
             DOTween.Sequence().AppendInterval(enterNodeDelay).OnComplete(() => EnterNode(mapNode));
         }
@@ -61,27 +61,30 @@ namespace Map
             {
                 case NodeType.Normal:
 
-                  break;
+                    break;
                 case NodeType.Elite:
 
-                  break;
+                    break;
                 case NodeType.Boss:
 
-                  break;
+                    break;
                 case NodeType.Treasure:
 
-                  break;
+                    break;
                 case NodeType.Merchant:
 
-                  break;
-                case NodeType.Camp:
+                    break;
+                case NodeType.Forge:
 
-                  break;
+                    break;
+                case NodeType.Quest:
+
+                    break;
                 case NodeType.Mystery:
 
-                  break;
+                    break;
                 default:
-                  throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException();
             }
         }
 

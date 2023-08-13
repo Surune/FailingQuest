@@ -7,13 +7,19 @@ namespace Map
         private LineRenderer lineRenderer;
         private Renderer renderer;
 
-        void Start()
+        private void Start()
         {
-
+            SetMaterial();
+            enabled = false;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void SetMaterial()
+        {
+            lineRenderer = GetComponent<LineRenderer>();
+            renderer = GetComponent<Renderer>();
+        }
+
+        private void Update()
         {
 
         }

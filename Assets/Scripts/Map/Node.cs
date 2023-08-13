@@ -10,6 +10,13 @@ using UnityEngine;
  * - position: The actual coordinates in the map.
  * - incomingNodes: A list of nodes that have connections to the current node.
  * - outgoingNodes: A list of nodes that are connected to the current nodes.
+ * 
+ * Functions
+ * - LinkIncomingNode: Adds a node to incomingNodes, excluding duplicates.
+ * - LinkOutgoingNode: Adds a node to outgoingNodes, excluding duplicates.
+ * - UnlinkIncomingNode: Removes all nodes corresponding to the point from incomingNodes.
+ * - UnlinkOutgoingNode: Removes all nodes corresponding to the point from outgoingNodes.
+ * - HasNoEdges: Checks if there are any edges connected to this node.
  */
 namespace Map
 {

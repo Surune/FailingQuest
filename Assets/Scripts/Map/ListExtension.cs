@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Map
 {
@@ -8,6 +6,7 @@ namespace Map
     {
         private static System.Random random = new System.Random();
         
+        // Suffling a list
         public static void Shuffle<T>(this IList<T> values)
         {
             for (int i = values.Count - 1; i >= 0; --i)

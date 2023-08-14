@@ -8,9 +8,10 @@ namespace Map
     {
         public MapConfig mapConfig;
 
-        private readonly List<NodeType> randomNodes = new()
+        private List<NodeType> randomNodes = new()
         {NodeType.Normal, NodeType.Elite, NodeType.Treasure, NodeType.Merchant, NodeType.Forge, NodeType.Quest, NodeType.Mystery};
-        private readonly List<List<Node> > nodeLayers = new();
+
+        private List<List<Node>> nodeLayers = new();
 
         private List<float> layerIntervals;
         private List<List<Point> > paths;

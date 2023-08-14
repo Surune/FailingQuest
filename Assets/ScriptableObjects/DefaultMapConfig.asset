@@ -37,100 +37,100 @@ MonoBehaviour:
     nodeDiversity: 0
     nodeDisorder: 0
   - nodeType: 0
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0.5
-    nodeDisorder: 0.7
+    nodeDisorder: 0
   - nodeType: 0
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0.55
     nodeDisorder: 0
   - nodeType: 0
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0.17
-    nodeDisorder: 0.73
+    nodeDisorder: 0
   - nodeType: 0
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0.65
-    nodeDisorder: 0.8
+    nodeDisorder: 0
   - nodeType: 0
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0.8
-    nodeDisorder: 0.8
+    nodeDisorder: 0
   - nodeType: 0
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0.8
-    nodeDisorder: 0.8
+    nodeDisorder: 0
   - nodeType: 0
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0.8
-    nodeDisorder: 0.8
+    nodeDisorder: 0
   - nodeType: 0
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0.8
-    nodeDisorder: 0.8
+    nodeDisorder: 0
   - nodeType: 0
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0.8
-    nodeDisorder: 0.8
+    nodeDisorder: 0
   - nodeType: 0
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0.8
-    nodeDisorder: 0.8
+    nodeDisorder: 0
   - nodeType: 0
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0.8
-    nodeDisorder: 0.8
+    nodeDisorder: 0
   - nodeType: 0
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0.8
-    nodeDisorder: 0.8
+    nodeDisorder: 0
   - nodeType: 0
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0.8
-    nodeDisorder: 0.8
+    nodeDisorder: 0
   - nodeType: 2
-    distanceBetweenNodes: 10
+    distanceBetweenNodes: 0.5
     distanceFromPreviousLayer:
-      min: 200
-      max: 200
+      min: 2
+      max: 2
     nodeDiversity: 0
-    nodeDisorder: 0.4
+    nodeDisorder: 0

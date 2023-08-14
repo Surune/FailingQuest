@@ -105,7 +105,7 @@ namespace Map
                         : distanceToNextLayer * randomX / 2f;
                     var y = randomY * mapNodeLayer.distanceBetweenNodes / 2f;
 
-                    node.position = new Vector2(x, y) * mapNodeLayer.nodeDisorder;
+                    node.position += new Vector2(x, y) * mapNodeLayer.nodeDisorder;
                 }
             }
         }

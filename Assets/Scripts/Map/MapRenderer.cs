@@ -20,8 +20,8 @@ namespace Map
 
         public float ySize;
         public float xOffset;
-        public const float nodeEdgeGap = 0.5f;
-        
+        public const float nodeEdgeGap = 0.1f;
+
         private Camera camera;
 
         public Map map { get; private set; }
@@ -186,6 +186,12 @@ namespace Map
             // Local Space
             edgeObject.transform.position = sourcePoint;
             edgeRenderer.useWorldSpace = false;
+
+            edgeRenderer.positionCount = 2;
+            for (var i = 0; i < 2; i++)
+            {
+                edgeRenderer.SetPosition(i, Vector3.Lerp(Vector3.zero, targetPoint - sourcePoint, (float)i));
+            }
 
             edges.Add(new Edge(edgeRenderer, source, target));
         }

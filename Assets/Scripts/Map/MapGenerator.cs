@@ -141,9 +141,9 @@ namespace Map
                 for (int y = 0; y < mapConfig.height - 1; ++y)
                 {
                     var nodeLeftDown = GetNode(new Point(x, y));
-                    var nodeLeftUp = GetNode(new Point(x, y));
-                    var nodeRightDown = GetNode(new Point(x, y));
-                    var nodeRightUp = GetNode(new Point(x, y));
+                    var nodeLeftUp = GetNode(new Point(x + 1, y));
+                    var nodeRightDown = GetNode(new Point(x, y + 1));
+                    var nodeRightUp = GetNode(new Point(x + 1, y + 1));
 
                     if (nodeLeftDown == null || nodeLeftDown.HasNoEdges()) continue;
                     if (nodeLeftUp == null || nodeLeftUp.HasNoEdges()) continue;

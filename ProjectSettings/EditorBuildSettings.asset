@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/StartScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/01_Scenes/BattleScene.unity
+    guid: a6d778644164842e49cd77ab70a8fa0c
+  - enabled: 1
+    path: Assets/01_Scenes/CharacterSelectScene.unity
+    guid: eb5413159f2254730981196e5777ab3b
+  - enabled: 1
+    path: Assets/01_Scenes/EventScene.unity
+    guid: 100564b558b9340da82fce4732c94d36
+  - enabled: 1
+    path: Assets/01_Scenes/MapScene.unity
+    guid: fce4039aacf9740828276df421ed17ac
   m_configObjects: {}

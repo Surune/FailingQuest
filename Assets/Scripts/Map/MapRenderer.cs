@@ -1,7 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Map
 {
@@ -18,11 +19,14 @@ namespace Map
         public Color32 visitedColor = Color.black;
         public Color32 asseccibleColor = Color.white;
 
-        public float ySize;
         public float xOffset;
+        public float ySize;
         public const float nodeEdgeGap = 0.1f;
 
-        private Camera camera;
+        public float leftScrollBoundary;
+        public float rightScrollBoundary;
+
+        private Camera mainCam;
 
         public Map map { get; private set; }
         private readonly List<MapNode> mapNodes = new();
@@ -33,7 +37,7 @@ namespace Map
         private void Awake()
         {
             instance = this;
-            camera = Camera.main;
+            mainCam = Camera.main;
         }
 
         private void ClearMap()
@@ -59,30 +63,49 @@ namespace Map
             UpdateEdgeState();
 
             GenerateMapBackground(map);
+
+            SetUI();
         }
         
+        private void SetUI()
+        {
+            var startingMapNode = mapNodes.First(node => node.node.point.x == 0);
+            var bossMapNode = mapNodes.First(node => node.node.nodeType == NodeType.Boss);
+            var width = map.PathLength();
+
+            // Set the main camera.
+            mainCam.transform.localPosition = new Vector3(startingMapNode.transform.localPosition.x, bossMapNode.transform.localPosition.y, -10f);
+
+            // Set scroll boundaries.
+            leftScrollBoundary = startingMapNode.transform.localPosition.x;
+            rightScrollBoundary = bossMapNode.transform.localPosition.x;
+
+            var boxCollider = mapCompositionObject.AddComponent<BoxCollider>();
+            boxCollider.center = new Vector3(width / 2f, bossMapNode.transform.localPosition.y, 0f);
+            boxCollider.size = new Vector3(width + 100, 100, 5);
+
+            var mapScroller = mapCompositionObject.AddComponent<MapScroller>();
+        }
+
+        private void GenerateMapObject()
+        {
+            mapCompositionObject = new("MapCompositionObject");
+        }
+
         private void GenerateMapBackground(Map map)
         {
             var background = new GameObject("Background");
             background.transform.SetParent(mapCompositionObject.transform);
 
             var bossMapNode = mapNodes.First(node => node.node.nodeType == NodeType.Boss);
+
             var width = map.PathLength();
             background.transform.localPosition = new Vector3(width / 2f, bossMapNode.transform.localPosition.y, 0f);
-            camera.transform.localPosition = new Vector3(7f, bossMapNode.transform.localPosition.y, -10f);
 
             var spriteRenderer = background.AddComponent<SpriteRenderer>();
             spriteRenderer.drawMode = SpriteDrawMode.Sliced;
             spriteRenderer.sprite = backgroundSprite;
-            spriteRenderer.size = new Vector2(width + xOffset * 2f, ySize);
-        }
-
-        private void GenerateMapObject()
-        {
-            mapCompositionObject = new GameObject("MapCompositionObject");
-
-            var boxCollider = mapCompositionObject.AddComponent<BoxCollider>();
-            boxCollider.size = new Vector3(100, 100, 5);
+            spriteRenderer.size = new Vector2(width + xOffset * 6f, ySize);
         }
 
         private MapNode GenerateMapNode(Node node)

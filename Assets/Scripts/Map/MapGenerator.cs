@@ -141,8 +141,8 @@ namespace Map
                 for (int y = 0; y < mapConfig.height - 1; ++y)
                 {
                     var nodeLeftDown = GetNode(new Point(x, y));
-                    var nodeLeftUp = GetNode(new Point(x + 1, y));
-                    var nodeRightDown = GetNode(new Point(x, y + 1));
+                    var nodeLeftUp = GetNode(new Point(x, y + 1));
+                    var nodeRightDown = GetNode(new Point(x + 1, y));
                     var nodeRightUp = GetNode(new Point(x + 1, y + 1));
 
                     if (nodeLeftDown == null || nodeLeftDown.HasNoEdges()) continue;
@@ -157,10 +157,10 @@ namespace Map
                      * After generating edges, each node can have at most one outgoing link and one incoming link
                      * This operation maintains connections between nodeLayers
                      */
-                    nodeLeftDown.LinkOutgoingNode(nodeLeftUp.point );
-                    nodeLeftUp.LinkIncomingNode(nodeLeftDown.point);
-                    nodeRightDown.LinkOutgoingNode(nodeRightUp.point);
-                    nodeRightUp.LinkIncomingNode(nodeRightDown.point);
+                    nodeLeftDown.LinkOutgoingNode(nodeRightDown.point);
+                    nodeLeftUp.LinkOutgoingNode(nodeRightUp.point);
+                    nodeRightDown.LinkIncomingNode(nodeLeftDown.point);
+                    nodeRightUp.LinkIncomingNode(nodeLeftUp.point);
 
                     var stochasticValue = Random.Range(0f, 1f);
                     if (stochasticValue < 0.2f)
@@ -214,7 +214,7 @@ namespace Map
 
                 // Forward Point
                 verticalDistance = Mathf.Abs(target.y - previousNodeY);
-                if (horizontalDistance <= verticalDistance)
+                if (horizontalDistance >= verticalDistance)
                 {
                     candidateY.Add(previousNodeY);
                 }

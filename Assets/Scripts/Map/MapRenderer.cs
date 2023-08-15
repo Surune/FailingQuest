@@ -17,8 +17,8 @@ namespace Map
         public Color32 visitedColor = Color.black;
         public Color32 asseccibleColor = Color.white;
 
-        public float xOffset;
-        public float ySize;
+        public float xPadding;
+        public float height;
         public const float nodeEdgeGap = 0.1f;
 
         public float leftScrollBoundary;
@@ -80,7 +80,7 @@ namespace Map
 
             var boxCollider = mapCompositionObject.AddComponent<BoxCollider>();
             boxCollider.center = new Vector3(width / 2f, bossMapNode.transform.localPosition.y, 0f);
-            boxCollider.size = new Vector3(width + 100, 100, 5);
+            boxCollider.size = new Vector3(width + 100, 100, 1);
 
             var mapScroller = mapCompositionObject.AddComponent<MapScroller>();
         }
@@ -103,7 +103,7 @@ namespace Map
             var spriteRenderer = background.AddComponent<SpriteRenderer>();
             spriteRenderer.drawMode = SpriteDrawMode.Sliced;
             spriteRenderer.sprite = backgroundSprite;
-            spriteRenderer.size = new Vector2(width + xOffset * 6f, ySize);
+            spriteRenderer.size = new Vector2(width + xPadding * 6f, height);
         }
 
         private MapNode GenerateMapNode(Node node)
@@ -155,12 +155,18 @@ namespace Map
                 foreach (var point in currentNode.outgoingNodes)
                 {
                     var mapNode = GetMapNode(point);
-                    mapNode.SetState(NodeState.Accessible);
+                    if (mapNode != null)
+                    {
+                        mapNode.SetState(NodeState.Accessible);
+                    }
                 }
 
                 // Updates nodes the user already visited.
-                var currentMapNode = GetMapNode(currentPoint);
-                currentMapNode.SetState(NodeState.Visited);
+                foreach (var point in MapManager.instance.map.userPath)
+                {
+                    var mapNode = GetMapNode(point);
+                    mapNode.SetState(NodeState.Visited);
+                }
             }
         }
 
@@ -191,11 +197,15 @@ namespace Map
             if (MapManager.instance.map.userPath.Count < 2) return;
 
             // Updates edges the user already visited.
-            var lastPoint =MapManager.instance.map.userPath[^2];
-            var lastEdge = edges.First(edge =>
-            edge.source.node == currentNode && edge.target.node.point.Equals(lastPoint));
+            for (var i = 0; i < MapManager.instance.map.userPath.Count - 1; ++i)
+            {
+                var sourcePoint = MapManager.instance.map.userPath[i];
+                var targetPoint = MapManager.instance.map.userPath[i + 1];
+                var edge = edges.First(edge =>
+                    edge.source.node.point.Equals(sourcePoint) && edge.target.node.point.Equals(targetPoint));
 
-            lastEdge.SetColor(visitedColor);
+                edge.SetColor(visitedColor);
+            }
         }
 
         private void RenderEdge(MapNode source, MapNode target)

@@ -49,6 +49,7 @@ namespace Map
         {
             MapManager.instance.map.userPath.Add(mapNode.node.point);
             MapManager.instance.SaveMap();
+
             MapRenderer.instance.UpdateNodeState();
             MapRenderer.instance.UpdateEdgeState();
 

@@ -12,7 +12,7 @@ namespace Map
         public GameObject nodePrefab;
         public GameObject edgePrefab;
 
-        public Sprite background;
+        public Sprite backgroundSprite;
 
         public Color32 lockedColor = Color.gray;
         public Color32 visitedColor = Color.black;
@@ -60,7 +60,7 @@ namespace Map
 
             GenerateMapBackground(map);
         }
-
+        
         private void GenerateMapBackground(Map map)
         {
             var background = new GameObject("Background");
@@ -69,8 +69,11 @@ namespace Map
             var bossMapNode = mapNodes.First(node => node.node.nodeType == NodeType.Boss);
             var width = map.PathLength();
             background.transform.localPosition = new Vector3(width / 2f, bossMapNode.transform.localPosition.y, 0f);
+            camera.transform.localPosition = new Vector3(7f, bossMapNode.transform.localPosition.y, -10f);
 
             var spriteRenderer = background.AddComponent<SpriteRenderer>();
+            spriteRenderer.drawMode = SpriteDrawMode.Sliced;
+            spriteRenderer.sprite = backgroundSprite;
             spriteRenderer.size = new Vector2(width + xOffset * 2f, ySize);
         }
 
@@ -79,7 +82,7 @@ namespace Map
             mapCompositionObject = new GameObject("MapCompositionObject");
 
             var boxCollider = mapCompositionObject.AddComponent<BoxCollider>();
-            boxCollider.size = new Vector3(100, 100, 1);
+            boxCollider.size = new Vector3(100, 100, 5);
         }
 
         private MapNode GenerateMapNode(Node node)

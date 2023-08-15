@@ -25,7 +25,7 @@ namespace Map
         public NodeInfo nodeInfo { get; private set; }
 
         private float scale;
-        private const float hoverScaleFactor = 1.5f;
+        private const float hoverScaleFactor = 1.4f;
         private const float bossScaleFactor = 3f;
 
         private float mouseDownTime;
@@ -61,7 +61,7 @@ namespace Map
                 case NodeState.Accessible:
                     spriteRenderer.color = MapRenderer.instance.lockedColor;
                     spriteRenderer.DOKill();
-                    spriteRenderer.DOColor(MapRenderer.instance.visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
+                    spriteRenderer.DOColor(MapRenderer.instance.asseccibleColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
 
                     break;
                 default:
@@ -72,13 +72,13 @@ namespace Map
         public void OnPointerEnter(PointerEventData pointerEventData)
         {
             spriteRenderer.transform.DOKill();
-            spriteRenderer.transform.DOScale(scale * hoverScaleFactor, 0.5f);
+            spriteRenderer.transform.DOScale(scale * hoverScaleFactor, 0.3f);
         }
 
         public void OnPointerExit(PointerEventData pointerEventData)
         {
             spriteRenderer.transform.DOKill();
-            spriteRenderer.transform.DOScale(scale, 0.5f);
+            spriteRenderer.transform.DOScale(scale, 0.3f);
         }
 
         public void OnPointerUp(PointerEventData pointerEventData)

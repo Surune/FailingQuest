@@ -128,7 +128,7 @@ MonoBehaviour:
     nodeDiversity: 0.8
     nodeDisorder: 0.7
   - nodeType: 2
-    distanceBetweenNodes: 1.5
+    distanceBetweenNodes: 0
     distanceFromPreviousLayer:
       min: 5
       max: 7

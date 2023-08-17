@@ -8,8 +8,8 @@ public class Character
     [SerializeField] private int position = -1;
 
     [SerializeField] private int HP = 100;
-    private List<BufSkill> bufList = new List<BufSkill>();
-    private List<DebufSkill> DeBufList = new List<DebufSkill>();
+    private List<Skill> bufList = new List<Skill>();
+    private List<Skill> DeBufList = new List<Skill>();
 
     public int remainCoolTime = 0;
 
@@ -34,12 +34,12 @@ public class Character
         this.position = position;
     }
 
-    public void addBuf(BufSkill buf)
+    public void addBuf(Skill buf)
     {
         bufList.Add(buf);
     }
 
-    public void addDebuf(DebufSkill debuf)
+    public void addDebuf(Skill debuf)
     {
         DeBufList.Add(debuf);
     }

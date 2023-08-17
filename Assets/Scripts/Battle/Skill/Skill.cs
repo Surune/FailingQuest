@@ -1,55 +1,39 @@
 using System;
 using UnityEngine;
 
-public abstract class Skill
+public class Skill : MonoBehaviour
 {
     [SerializeField] protected int coolTime = -1;
     [SerializeField] protected SkillType skillType = SkillType._UNDEFINED;
     public string description = "Description";
+    [SerializeField] private int damage = 0; // attack skill
 
-    public Skill()
+    private void Start()
     {
         if (coolTime == -1 || skillType == SkillType._UNDEFINED)
         {
             throw new Exception("Skill Not Implemented");
         }
     }
-}
 
-public class AttackSkill : Skill
-{
-    [SerializeField] private int damage = 0;
-
-    public int Use(Character target)
-    {
-        target.getDamage(damage);
-        return coolTime;
-    }
-}
-
-public class MoveSkill : Skill
-{
     public int Use(Character target, int pos)
     {
-        target.move(pos);
-        return coolTime;
-    }
-}
-
-public class BufSkill : Skill
-{
-    public int Use(Character target)
-    {
-        target.addBuf(this);
-        return coolTime;
-    }
-}
-
-public class DebufSkill : Skill
-{
-    public int Use(Character target)
-    {
-        target.addDebuf(this);
-        return coolTime;
+        switch (skillType)
+        {
+            case SkillType.Attack:
+                target.getDamage(damage);
+                return coolTime;
+            case SkillType.Move:
+                target.move(pos);
+                return coolTime;
+            case SkillType.Buf:
+                target.addBuf(this);
+                return coolTime;
+            case SkillType.DeBuf:
+                target.addDebuf(this);
+                return coolTime;
+            default:
+                throw new Exception("Skill use error");
+        }
     }
 }

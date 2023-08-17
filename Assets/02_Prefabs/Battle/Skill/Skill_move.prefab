@@ -173,3 +173,5 @@ MonoBehaviour:
   skillType: 1
   description: Description
   damage: 0
+  battleManager: {fileID: 0}
+  button: {fileID: 8613823362005550204}

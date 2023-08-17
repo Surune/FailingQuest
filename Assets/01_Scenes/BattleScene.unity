@@ -156,9 +156,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4286597804663326456, guid: 3be973dd18ef2254ea2c30096a55fb2b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 4286597804663326456, guid: 3be973dd18ef2254ea2c30096a55fb2b, type: 3}
+      propertyPath: m_Size.y
+      value: 0.453125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4286597804663326456, guid: 3be973dd18ef2254ea2c30096a55fb2b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -762183360, guid: 0d0d11f01a4904f68b9cf39dcc242c15, type: 3}
+      objectReference: {fileID: 1416009670, guid: f2c715ee32c074a10b4f7b302aca265f, type: 3}
+    - target: {fileID: 4286597804663326456, guid: 3be973dd18ef2254ea2c30096a55fb2b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9121579935501776508, guid: 3be973dd18ef2254ea2c30096a55fb2b, type: 3}
       propertyPath: m_Name
       value: Turn (1)
@@ -470,7 +482,11 @@ PrefabInstance:
     - target: {fileID: 1346912402005484071, guid: d670198e775dd69479f4561acc99ac52, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 906900340, guid: 0d0d11f01a4904f68b9cf39dcc242c15, type: 3}
+      objectReference: {fileID: 1559414230, guid: f2c715ee32c074a10b4f7b302aca265f, type: 3}
+    - target: {fileID: 1346912402005484071, guid: d670198e775dd69479f4561acc99ac52, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2323820639243459673, guid: d670198e775dd69479f4561acc99ac52, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -1536,9 +1552,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 886696736}
     m_Modifications:
     - target: {fileID: 1346912402005484071, guid: d670198e775dd69479f4561acc99ac52, type: 3}
+      propertyPath: m_Size.x
+      value: 0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346912402005484071, guid: d670198e775dd69479f4561acc99ac52, type: 3}
+      propertyPath: m_Size.y
+      value: 0.453125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346912402005484071, guid: d670198e775dd69479f4561acc99ac52, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -762183360, guid: 0d0d11f01a4904f68b9cf39dcc242c15, type: 3}
+      objectReference: {fileID: 1416009670, guid: f2c715ee32c074a10b4f7b302aca265f, type: 3}
+    - target: {fileID: 1346912402005484071, guid: d670198e775dd69479f4561acc99ac52, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1436541408928403187, guid: d670198e775dd69479f4561acc99ac52, type: 3}
       propertyPath: m_Controller
       value: 
@@ -1876,7 +1904,7 @@ PrefabInstance:
     - target: {fileID: 1346912402005484071, guid: d670198e775dd69479f4561acc99ac52, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 906900340, guid: 0d0d11f01a4904f68b9cf39dcc242c15, type: 3}
+      objectReference: {fileID: 1559414230, guid: f2c715ee32c074a10b4f7b302aca265f, type: 3}
     - target: {fileID: 3986015714718671152, guid: d670198e775dd69479f4561acc99ac52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2029,9 +2057,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4286597804663326456, guid: 3be973dd18ef2254ea2c30096a55fb2b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.390625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4286597804663326456, guid: 3be973dd18ef2254ea2c30096a55fb2b, type: 3}
+      propertyPath: m_Size.y
+      value: 0.546875
+      objectReference: {fileID: 0}
+    - target: {fileID: 4286597804663326456, guid: 3be973dd18ef2254ea2c30096a55fb2b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 906900340, guid: 0d0d11f01a4904f68b9cf39dcc242c15, type: 3}
+      objectReference: {fileID: 1559414230, guid: f2c715ee32c074a10b4f7b302aca265f, type: 3}
+    - target: {fileID: 4286597804663326456, guid: 3be973dd18ef2254ea2c30096a55fb2b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9121579935501776508, guid: 3be973dd18ef2254ea2c30096a55fb2b, type: 3}
       propertyPath: m_Name
       value: Turn

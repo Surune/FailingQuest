@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,11 +17,14 @@ namespace Map
         public Color32 visitedColor = Color.black;
         public Color32 asseccibleColor = Color.white;
 
-        public float ySize;
-        public float xOffset;
+        public float xPadding;
+        public float height;
         public const float nodeEdgeGap = 0.1f;
 
-        private Camera camera;
+        public float leftScrollBoundary;
+        public float rightScrollBoundary;
+
+        private Camera mainCam;
 
         public Map map { get; private set; }
         private readonly List<MapNode> mapNodes = new();
@@ -33,7 +35,7 @@ namespace Map
         private void Awake()
         {
             instance = this;
-            camera = Camera.main;
+            mainCam = Camera.main;
         }
 
         private void ClearMap()
@@ -59,30 +61,49 @@ namespace Map
             UpdateEdgeState();
 
             GenerateMapBackground(map);
+
+            SetUI();
         }
         
+        private void SetUI()
+        {
+            var startingMapNode = mapNodes.First(node => node.node.point.x == 0);
+            var bossMapNode = mapNodes.First(node => node.node.nodeType == NodeType.Boss);
+            var width = map.PathLength();
+
+            // Set the main camera.
+            mainCam.transform.localPosition = new Vector3(startingMapNode.transform.localPosition.x, bossMapNode.transform.localPosition.y, -10f);
+
+            // Set scroll boundaries.
+            leftScrollBoundary = startingMapNode.transform.localPosition.x;
+            rightScrollBoundary = bossMapNode.transform.localPosition.x;
+
+            var boxCollider = mapCompositionObject.AddComponent<BoxCollider>();
+            boxCollider.center = new Vector3(width / 2f, bossMapNode.transform.localPosition.y, 0f);
+            boxCollider.size = new Vector3(width + 100, 100, 1);
+
+            var mapScroller = mapCompositionObject.AddComponent<MapScroller>();
+        }
+
+        private void GenerateMapObject()
+        {
+            mapCompositionObject = new("MapCompositionObject");
+        }
+
         private void GenerateMapBackground(Map map)
         {
             var background = new GameObject("Background");
             background.transform.SetParent(mapCompositionObject.transform);
 
             var bossMapNode = mapNodes.First(node => node.node.nodeType == NodeType.Boss);
+
             var width = map.PathLength();
             background.transform.localPosition = new Vector3(width / 2f, bossMapNode.transform.localPosition.y, 0f);
-            camera.transform.localPosition = new Vector3(7f, bossMapNode.transform.localPosition.y, -10f);
 
             var spriteRenderer = background.AddComponent<SpriteRenderer>();
             spriteRenderer.drawMode = SpriteDrawMode.Sliced;
             spriteRenderer.sprite = backgroundSprite;
-            spriteRenderer.size = new Vector2(width + xOffset * 2f, ySize);
-        }
-
-        private void GenerateMapObject()
-        {
-            mapCompositionObject = new GameObject("MapCompositionObject");
-
-            var boxCollider = mapCompositionObject.AddComponent<BoxCollider>();
-            boxCollider.size = new Vector3(100, 100, 5);
+            spriteRenderer.size = new Vector2(width + xPadding * 6f, height);
         }
 
         private MapNode GenerateMapNode(Node node)
@@ -134,12 +155,18 @@ namespace Map
                 foreach (var point in currentNode.outgoingNodes)
                 {
                     var mapNode = GetMapNode(point);
-                    mapNode.SetState(NodeState.Accessible);
+                    if (mapNode != null)
+                    {
+                        mapNode.SetState(NodeState.Accessible);
+                    }
                 }
 
                 // Updates nodes the user already visited.
-                var currentMapNode = GetMapNode(currentPoint);
-                currentMapNode.SetState(NodeState.Visited);
+                foreach (var point in MapManager.instance.map.userPath)
+                {
+                    var mapNode = GetMapNode(point);
+                    mapNode.SetState(NodeState.Visited);
+                }
             }
         }
 
@@ -170,11 +197,15 @@ namespace Map
             if (MapManager.instance.map.userPath.Count < 2) return;
 
             // Updates edges the user already visited.
-            var lastPoint =MapManager.instance.map.userPath[^2];
-            var lastEdge = edges.First(edge =>
-            edge.source.node == currentNode && edge.target.node.point.Equals(lastPoint));
+            for (var i = 0; i < MapManager.instance.map.userPath.Count - 1; ++i)
+            {
+                var sourcePoint = MapManager.instance.map.userPath[i];
+                var targetPoint = MapManager.instance.map.userPath[i + 1];
+                var edge = edges.First(edge =>
+                    edge.source.node.point.Equals(sourcePoint) && edge.target.node.point.Equals(targetPoint));
 
-            lastEdge.SetColor(visitedColor);
+                edge.SetColor(visitedColor);
+            }
         }
 
         private void RenderEdge(MapNode source, MapNode target)

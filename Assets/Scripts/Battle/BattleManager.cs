@@ -8,6 +8,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     private int time;
     public List<GameObject> location;
     public Character _target_test;
+
     void Start()
     {
         Reset();
@@ -23,7 +24,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
         throw new NotImplementedException();
     }
 
-    
+
     /*
      *  SKill Methods
      */
@@ -32,9 +33,10 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
         return _target_test;
         //throw new NotImplementedException();
     }
-    
-    public int getPosition()
+
+    public Vector3 getPosition()
     {
-        throw new NotImplementedException();
+        return location[0].transform.position;
+        //throw new NotImplementedException();
     }
 }

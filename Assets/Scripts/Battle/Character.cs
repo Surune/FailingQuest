@@ -41,9 +41,9 @@ public class Character : MonoBehaviour
         updateHPBar();
     }
 
-    public void move(int position)
+    public void move(Vector3 position)
     {
-        this.position = position;
+        gameObject.transform.position = position;
     }
 
     public void addBuf(Skill buf)

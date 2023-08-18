@@ -38,13 +38,14 @@ public class Skill : MonoBehaviour
         Character target = battleManager.getTarget();
         if (skillType == SkillType.Move)
         {
-            int pos = battleManager.getPosition();
+            Vector3 pos = battleManager.getPosition();
             return Use(target, pos);
         }
-        return Use(target, -1);
+
+        return Use(target,new Vector3(0, 0, 0));
     }
 
-    public int Use(Character target, int pos)
+    public int Use(Character target, Vector3 pos )
     {
         switch (skillType)
         {
@@ -52,7 +53,7 @@ public class Skill : MonoBehaviour
                 target.getDamage(damage);
                 return coolTime;
             case SkillType.Move:
-                if (pos == -1)
+                if (pos.x == 0)
                 {
                     throw new Exception("Invalid Move Position");
                 }

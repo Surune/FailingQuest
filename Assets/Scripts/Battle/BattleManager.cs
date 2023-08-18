@@ -6,15 +6,10 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour //전투의 진행을 담당
 {
     private int time;
-    
+
     void Start()
     {
         Reset();
-    }
-
-    void Update()
-    {
-        
     }
 
     public void Reset()
@@ -23,6 +18,20 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     }
 
     public int FindMinCoolTime()
+    {
+        throw new NotImplementedException();
+    }
+
+    
+    /*
+     *  SKill Methods
+     */
+    public Character getTarget()
+    {
+        throw new NotImplementedException();
+    }
+    
+    public int getPosition()
     {
         throw new NotImplementedException();
     }

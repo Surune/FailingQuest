@@ -1,55 +1,72 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
-public abstract class Skill
+public class Skill : MonoBehaviour
 {
     [SerializeField] protected int coolTime = -1;
     [SerializeField] protected SkillType skillType = SkillType._UNDEFINED;
     public string description = "Description";
+    [SerializeField] private int damage = 0; // attack skill
 
-    public Skill()
+    public BattleManager battleManager = null;
+    public Button button = null;
+
+    private void Start()
     {
         if (coolTime == -1 || skillType == SkillType._UNDEFINED)
         {
             throw new Exception("Skill Not Implemented");
         }
+
+        if (button == null)
+        {
+            throw new Exception("Button Not Assigned");
+        }
+
+        if (battleManager == null)
+        {
+            throw new Exception("BattleManager Not Assigned");
+        }
+
+        button.onClick.AddListener(() => _Use());
     }
-}
 
-public class AttackSkill : Skill
-{
-    [SerializeField] private int damage = 0;
-
-    public int Use(Character target)
+    public int _Use()
     {
-        target.getDamage(damage);
-        return coolTime;
+        Debug.Log("use");
+        Character target = battleManager.getTarget();
+        if (skillType == SkillType.Move)
+        {
+            int pos = battleManager.getPosition();
+            return Use(target, pos);
+        }
+        return Use(target, -1);
     }
-}
 
-public class MoveSkill : Skill
-{
     public int Use(Character target, int pos)
     {
-        target.move(pos);
-        return coolTime;
-    }
-}
+        switch (skillType)
+        {
+            case SkillType.Attack:
+                target.getDamage(damage);
+                return coolTime;
+            case SkillType.Move:
+                if (pos == -1)
+                {
+                    throw new Exception("Invalid Move Position");
+                }
 
-public class BufSkill : Skill
-{
-    public int Use(Character target)
-    {
-        target.addBuf(this);
-        return coolTime;
-    }
-}
-
-public class DebufSkill : Skill
-{
-    public int Use(Character target)
-    {
-        target.addDebuf(this);
-        return coolTime;
+                target.move(pos);
+                return coolTime;
+            case SkillType.Buf:
+                target.addBuf(this);
+                return coolTime;
+            case SkillType.DeBuf:
+                target.addDebuf(this);
+                return coolTime;
+            default:
+                throw new Exception("Skill use error");
+        }
     }
 }

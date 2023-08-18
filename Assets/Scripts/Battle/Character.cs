@@ -2,31 +2,43 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Character
+public class Character : MonoBehaviour
 {
-    [SerializeField] private int position = -1;
+    public int position = -1;
 
     [SerializeField] private int HP = 100;
     private List<Skill> bufList = new List<Skill>();
     private List<Skill> DeBufList = new List<Skill>();
 
     public int remainCoolTime = 0;
+    public Slider HPStatus;
+
+    private int _initialHP;
 
     // 보유한 스킬 리스트
     public List<Skill> Skills = new List<Skill>();
 
-    public Character()
+    private void Start()
     {
         if (Skills.Count > 8)
         {
             throw new Exception("Skill Count Exceeds 8");
         }
+
+        if (position == -1)
+        {
+            throw new Exception("Position not initialized");
+        }
+
+        _initialHP = HP;
     }
 
     public void getDamage(int damage)
     {
         HP -= damage;
+        updateHPBar();
     }
 
     public void move(int position)
@@ -45,8 +57,8 @@ public class Character
     }
 
 
-    public int getHP()
+    public void updateHPBar()
     {
-        return HP;
+        HPStatus.value = (float)HP / _initialHP;
     }
 }

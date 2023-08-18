@@ -6,7 +6,8 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour //전투의 진행을 담당
 {
     private int time;
-
+    public List<GameObject> location;
+    public Character _target_test;
     void Start()
     {
         Reset();
@@ -28,7 +29,8 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
      */
     public Character getTarget()
     {
-        throw new NotImplementedException();
+        return _target_test;
+        //throw new NotImplementedException();
     }
     
     public int getPosition()

@@ -2077,12 +2077,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6158763092985508262, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      propertyPath: m_Size.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158763092985508262, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      propertyPath: m_Size.y
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158763092985508262, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -861902236, guid: ef21757c06d254185a9a0c7bf589c471, type: 3}
+      objectReference: {fileID: -115070211, guid: 0ecfcada967634f18b078167acade861, type: 3}
+    - target: {fileID: 6158763092985508262, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6387711714741736045, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2206,15 +2230,66 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6158763092985508262, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      propertyPath: m_Size.x
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158763092985508262, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      propertyPath: m_Size.y
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158763092985508262, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1254582091, guid: e0d99df1523c3424ab31e42c14686279, type: 3}
+    - target: {fileID: 6158763092985508262, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6387711714741736045, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8151683736430048856, guid: 63f084951be539849bead2e900de51b4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4794973331123915458}
   m_SourcePrefab: {fileID: 100100000, guid: 63f084951be539849bead2e900de51b4, type: 3}
+--- !u!1 &4794973331123915457 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8151683736430048856, guid: 63f084951be539849bead2e900de51b4, type: 3}
+  m_PrefabInstance: {fileID: 4794973331123915456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4794973331123915458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4794973331123915457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!4 &5470211936055798882 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2237749944941254227, guid: 63f084951be539849bead2e900de51b4, type: 3}

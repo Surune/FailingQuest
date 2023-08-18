@@ -31,10 +31,7 @@ public class Treasure : MonoBehaviour
             GameManager.treasureCount = myTreasure.Length;
         }
         prefabIndex = Random.Range(0, 4);
-<<<<<<< HEAD:Assets/Scripts/Treasure/Treasure.cs
         myTreasure[GameManager.treasureCount] = Instantiate(treasures[prefabIndex], new Vector2(0, 0), transform.rotation, GameObject.Find("Canvas").transform);
-=======
->>>>>>> 81652253be8bdce13c56ea852a25bc398de58576:Assets/Scripts/Treasure.cs
         
     }
 

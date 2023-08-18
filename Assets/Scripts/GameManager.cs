@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
     public static GameManager Instance;
     public static int money;
     public static int treasureCount = 0;
-    private int[,] currentQuest; //현재 진행중인 퀘스트 종류와 난이도 (3)
+    private static int[,] currentQuest; //현재 진행중인 퀘스트 종류와 난이도 (3)
 
     private void Awake()
     {

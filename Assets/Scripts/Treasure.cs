@@ -8,7 +8,8 @@ public class Treasure : MonoBehaviour
     private GameObject[] treasures;
     public GameObject[] myTreasure;
     public int prefabIndex;
-    
+
+    public Animator chestAnimator;
 
     private Vector2 treasurePosition = new Vector2(-616, 174);
 
@@ -17,6 +18,7 @@ public class Treasure : MonoBehaviour
     {
         GetComponentInParent<Button>().gameObject.SetActive(true);
         treasures = FindObjectOfType<TreasureList>().treasurePrefab;
+        chestAnimator.speed = 0f;
 
         if (myTreasure.Length == 0)
         {
@@ -28,9 +30,8 @@ public class Treasure : MonoBehaviour
             GameManager.treasureCount = myTreasure.Length;
         }
         prefabIndex = Random.Range(0, 4);
-        myTreasure[GameManager.treasureCount] = Instantiate(treasures[prefabIndex], new Vector2(0, 0), transform.rotation, GameObject.Find("Canvas").transform);
+        
     }
-
 
     void Update()
     {
@@ -39,6 +40,8 @@ public class Treasure : MonoBehaviour
 
     public void ShowTreasure()
     {
+        chestAnimator.speed = 1f;
+        myTreasure[GameManager.treasureCount] = Instantiate(treasures[prefabIndex], new Vector2(0, 0), transform.rotation, GameObject.Find("Canvas").transform);
         myTreasure[GameManager.treasureCount].transform.localPosition = treasurePosition;
         myTreasure[GameManager.treasureCount].transform.localScale = new Vector2(100, 100);
         treasurePosition.x += 2;

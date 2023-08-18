@@ -15,6 +15,7 @@ public class Treasure : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(FindObjectOfType<TreasureList>());
         GetComponentInParent<Button>().gameObject.SetActive(true);
         treasures = FindObjectOfType<TreasureList>().treasurePrefab;
 
@@ -29,6 +30,7 @@ public class Treasure : MonoBehaviour
         }
         prefabIndex = Random.Range(0, 4);
         myTreasure[GameManager.treasureCount] = Instantiate(treasures[prefabIndex], new Vector2(0, 0), transform.rotation, GameObject.Find("Canvas").transform);
+        
     }
 
 

@@ -215,6 +215,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &438090115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438090117}
+  - component: {fileID: 438090116}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &438090116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438090115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1a167af7e74274e838c50af3646771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &438090117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438090115}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 516.2802, y: 282.7053, z: -15.238677}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &450823918
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,14 +966,6 @@ PrefabInstance:
       propertyPath: EffectInfo
       value: 
       objectReference: {fileID: 2088745474}
-    - target: {fileID: 2990309917602953537, guid: c92fe15f2c8eb4bbea6036753a713337, type: 3}
-      propertyPath: m_SortingLayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2990309917602953537, guid: c92fe15f2c8eb4bbea6036753a713337, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4442372030989893454, guid: c92fe15f2c8eb4bbea6036753a713337, type: 3}
       propertyPath: EffectInfo
       value: 
@@ -996,3 +1032,4 @@ SceneRoots:
   - {fileID: 450823921}
   - {fileID: 1996074066}
   - {fileID: 2981575616423004482}
+  - {fileID: 438090117}

@@ -99,11 +99,12 @@ namespace Map
 
             var width = map.PathLength();
             background.transform.localPosition = new Vector3(width / 2f, bossMapNode.transform.localPosition.y, 0f);
+            background.transform.localScale = new Vector3(5.25f, 5.25f, 1f);
+            background.transform.Rotate(0f, 0f, -1f);
 
             var spriteRenderer = background.AddComponent<SpriteRenderer>();
-            spriteRenderer.drawMode = SpriteDrawMode.Sliced;
+            spriteRenderer.drawMode = SpriteDrawMode.Simple;
             spriteRenderer.sprite = backgroundSprite;
-            spriteRenderer.size = new Vector2(width + xPadding * 6f, height);
         }
 
         private MapNode GenerateMapNode(Node node)

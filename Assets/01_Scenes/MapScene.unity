@@ -228,7 +228,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.24313727, g: 0.24313727, b: 0.24313727, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -442,34 +442,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1690924335}
     - target: {fileID: 3657516152842967238, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657516152842967238, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657516152842967238, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657516152842967238, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657516152842967238, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657516152842967238, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657516152842967238, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657516152842967238, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -487,7 +459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4299140265061884643, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
       propertyPath: height
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4299140265061884643, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
       propertyPath: xOffset
@@ -512,7 +484,7 @@ PrefabInstance:
     - target: {fileID: 4299140265061884643, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
       propertyPath: backgroundSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1b014329f423144b58bcf67568efe5a9, type: 3}
+      objectReference: {fileID: 21300000, guid: efb1b1d7ec44b4e6dbe764d1f35897a8, type: 3}
     - target: {fileID: 4299140265061884643, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
       propertyPath: lockedColor.rgba
       value: 4281808695
@@ -525,6 +497,14 @@ PrefabInstance:
       propertyPath: asseccibleColor.rgba
       value: 4278620917
       objectReference: {fileID: 0}
+    - target: {fileID: 4299140265061884643, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
+      propertyPath: backgroundSprite_back
+      value: 
+      objectReference: {fileID: 21300000, guid: 062cad3d4e7884b4286813daf2a92759, type: 3}
+    - target: {fileID: 4299140265061884643, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
+      propertyPath: backgroundSprite_front
+      value: 
+      objectReference: {fileID: 21300000, guid: 1cef33446b7444dd5afaa3be11cea16b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

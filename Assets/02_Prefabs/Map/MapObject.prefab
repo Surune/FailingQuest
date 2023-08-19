@@ -123,22 +123,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8665919e97cf0ee419ea8095e0e7faed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapConfigs:
-  - {fileID: 11400000, guid: 358b4ea29c145074f956fce0a60246d5, type: 2}
   nodePrefab: {fileID: 4365635818764302815, guid: cdf16c12dd2ba8446862e33689d9089e, type: 3}
   edgePrefab: {fileID: 0}
-  background: {fileID: 0}
+  backgroundSprite: {fileID: 0}
   lockedColor:
     serializedVersion: 2
     rgba: 4286611584
   visitedColor:
     serializedVersion: 2
     rgba: 4278190080
-  assecibleColor:
+  asseccibleColor:
     serializedVersion: 2
     rgba: 4294967295
-  ySize: 0
-  xOffset: 0
+  xPadding: 0
+  height: 0
+  leftScrollBoundary: 0
+  rightScrollBoundary: 0
 --- !u!1 &7046720256924048632
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,4 +183,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e53f3ddb626f8faa8d0c88942eeaedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapConfig: {fileID: 11400000, guid: 358b4ea29c145074f956fce0a60246d5, type: 2}
+  mapGenerator: {fileID: 0}

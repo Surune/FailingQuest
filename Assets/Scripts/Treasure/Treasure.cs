@@ -20,7 +20,7 @@ public class Treasure : MonoBehaviour
        
         treasureCount = GameManager.Instance.mytreasureCount;
 
-        while(GameManager.Instance.mytreasureCount<4)
+        while(GameManager.Instance.mytreasureCount<5)
         {
             prefabIndex = Random.Range(0, 4);
             int flag = 0;
@@ -29,13 +29,13 @@ public class Treasure : MonoBehaviour
                 if (GameManager.Instance.mytreasureIndex[i] == prefabIndex)
                 {
                     flag = 1;
-                    break;
+                    //break;
                 }
             }
             if (flag == 0)
                 break;
         }
-        Debug.Log(treasureCount);
+        //Debug.Log(prefabIndex);
         GameManager.Instance.mytreasureIndex[treasureCount] = prefabIndex;
 
         //GameManager.Instance.myTreasure[GameManager.treasureCount] = Instantiate(treasures[prefabIndex], new Vector2(0, 0), transform.rotation, GameObject.Find("Canvas").transform);

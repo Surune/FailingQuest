@@ -11,7 +11,11 @@ public class TreasureList : MonoBehaviour
 
     void Start()
     {
-        
+        var obj = FindObjectsOfType<DontDestroy>();
+        if (obj.Length == 1)
+            DontDestroyOnLoad(gameObject);
+        else
+            Destroy(gameObject);
     }
     void Update()
     {
@@ -31,7 +35,7 @@ public class TreasureList : MonoBehaviour
     private void OnMouseEnter()
     {
         currentIndex = this.gameObject.name;
-        Debug.Log(currentIndex);
+        //Debug.Log(currentIndex);
         if (currentIndex == "gold(Clone)")//골드
         {
             EffectInfo.text = "골드 획득";

@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +13,8 @@ public class Skill : MonoBehaviour
 
     public BattleManager battleManager = null;
     public Button button = null;
+
+    public bool buttonDisable = false; // 동시에 스킬 발동 x
 
     private void Start()
     {
@@ -29,42 +33,73 @@ public class Skill : MonoBehaviour
             throw new Exception("BattleManager Not Assigned");
         }
 
-        button.onClick.AddListener(() => _Use());
+        button.onClick.AddListener(() =>
+        {
+            if (!buttonDisable)
+            {
+                StartCoroutine(_Use());
+            }
+
+            buttonDisable = true;
+        });
     }
 
-    public int _Use()
+
+    // 타겟팅 방식 개선 필요
+    public IEnumerator _Use()
     {
-        Debug.Log("use");
+        Debug.Log("getTarget");
+        battleManager.resetTarget();
         Character target = battleManager.getTarget();
-        if (skillType == SkillType.Move)
+        while (target == null)
         {
-            Vector3 pos = battleManager.getPosition();
-            return Use(target, pos);
+            yield return new WaitForSeconds(0.1f);
+            target = battleManager.getTarget();
         }
 
-        return Use(target,new Vector3(0, 0, 0));
+        if (skillType == SkillType.Move)
+        {
+            Debug.Log("getPosition");
+            battleManager.resetTargetPosition();
+            Vector3 pos = battleManager.getPosition();
+            // Vector3 none = new Vector3(0, 0, 0);
+            // while (pos.x == none.x && pos.y==none.y)
+            // {
+            //     yield return new WaitForSeconds(0.1f);
+            //     pos = battleManager.getTarget()
+            // }
+            // Debug.Log("POSITION:"+pos);
+            Use(target, pos);
+        }
+
+        Use(target, new Vector3(0, 0, 0));
     }
 
-    public int Use(Character target, Vector3 pos )
+    public int Use(Character target, Vector3 pos)
     {
+        Debug.Log("Use");
         switch (skillType)
         {
             case SkillType.Attack:
                 target.getDamage(damage);
+                buttonDisable = false;
                 return coolTime;
             case SkillType.Move:
-                if (pos.x == 0)
+                if (pos.x == 0 && pos.y == 0)
                 {
                     throw new Exception("Invalid Move Position");
                 }
 
                 target.move(pos);
+                buttonDisable = false;
                 return coolTime;
             case SkillType.Buf:
                 target.addBuf(this);
+                buttonDisable = false;
                 return coolTime;
             case SkillType.DeBuf:
                 target.addDebuf(this);
+                buttonDisable = false;
                 return coolTime;
             default:
                 throw new Exception("Skill use error");

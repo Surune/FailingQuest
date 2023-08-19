@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2990309917602953537}
   - component: {fileID: 4846878619434967215}
   - component: {fileID: 1161157832580024893}
+  - component: {fileID: 8635187908377860598}
   m_Layer: 5
   m_Name: gold
   m_TagString: Untagged
@@ -149,6 +150,18 @@ MonoBehaviour:
   - {fileID: 4346859705781006157}
   - {fileID: 6750562521248572330}
   EffectInfo: {fileID: 0}
+--- !u!114 &8635187908377860598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285261289386901359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4836475a14d2242f7b9ef1ad2a6cb332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4346859705781006157
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +174,7 @@ GameObject:
   - component: {fileID: 5117338611227155632}
   - component: {fileID: 3960853246303410019}
   - component: {fileID: 4442372030989893454}
+  - component: {fileID: 1317066514111762771}
   m_Layer: 5
   m_Name: green_book
   m_TagString: Untagged
@@ -221,8 +235,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -237892133
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 4c38197f9b1da4e678bf7e31d3abc8bd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -298,6 +312,18 @@ MonoBehaviour:
   - {fileID: 4346859705781006157}
   - {fileID: 6750562521248572330}
   EffectInfo: {fileID: 0}
+--- !u!114 &1317066514111762771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346859705781006157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4836475a14d2242f7b9ef1ad2a6cb332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6750562521248572330
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +336,7 @@ GameObject:
   - component: {fileID: 2093060268231716929}
   - component: {fileID: 3223032014737836678}
   - component: {fileID: 5843456152577347756}
+  - component: {fileID: 4969843121559299162}
   m_Layer: 5
   m_Name: blue_book
   m_TagString: Untagged
@@ -370,8 +397,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -237892133
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 8677b451792754c5bb99c12fe8900d94, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -447,6 +474,18 @@ MonoBehaviour:
   - {fileID: 4346859705781006157}
   - {fileID: 6750562521248572330}
   EffectInfo: {fileID: 0}
+--- !u!114 &4969843121559299162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6750562521248572330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4836475a14d2242f7b9ef1ad2a6cb332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8190233614531800235
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +498,7 @@ GameObject:
   - component: {fileID: 8228074437669535745}
   - component: {fileID: 1454439233589147835}
   - component: {fileID: 2327479580750811093}
+  - component: {fileID: 2592393371714146600}
   m_Layer: 5
   m_Name: red_book
   m_TagString: Untagged
@@ -519,8 +559,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -237892133
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: fd7ab89efaebb4686acf33a50fd4f27c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -596,6 +636,18 @@ MonoBehaviour:
   - {fileID: 4346859705781006157}
   - {fileID: 6750562521248572330}
   EffectInfo: {fileID: 0}
+--- !u!114 &2592393371714146600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8190233614531800235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4836475a14d2242f7b9ef1ad2a6cb332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8558588233875473953
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,48 +6,61 @@ using UnityEngine.UI;
 public class Treasure : MonoBehaviour
 {
     private GameObject[] treasures;
-    public GameObject[] myTreasure;
     public int prefabIndex;
+    private int treasureCount = 0;
 
     public Animator chestAnimator;
-
-    private Vector2 treasurePosition = new Vector2(-616, 174);
 
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(FindObjectOfType<TreasureList>());
-        GetComponentInParent<Button>().gameObject.SetActive(true);
+        FindObjectOfType<Button>().gameObject.SetActive(true);
         treasures = FindObjectOfType<TreasureList>().treasurePrefab;
         chestAnimator.speed = 0f;
+       
+        treasureCount = GameManager.Instance.mytreasureCount;
 
-        if (myTreasure.Length == 0)
+        while(GameManager.Instance.mytreasureCount<4)
         {
-            GameManager.treasureCount = 0;
-            myTreasure = new GameObject[16];
+            prefabIndex = Random.Range(0, 4);
+            int flag = 0;
+            for (int i = 0; i < treasureCount;i++)
+            {
+                if (GameManager.Instance.mytreasureIndex[i] == prefabIndex)
+                {
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 0)
+                break;
         }
-        else
-        {
-            GameManager.treasureCount = myTreasure.Length;
-        }
-        prefabIndex = Random.Range(0, 4);
-        myTreasure[GameManager.treasureCount] = Instantiate(treasures[prefabIndex], new Vector2(0, 0), transform.rotation, GameObject.Find("Canvas").transform);
-        
+        Debug.Log(treasureCount);
+        GameManager.Instance.mytreasureIndex[treasureCount] = prefabIndex;
+
+        //GameManager.Instance.myTreasure[GameManager.treasureCount] = Instantiate(treasures[prefabIndex], new Vector2(0, 0), transform.rotation, GameObject.Find("Canvas").transform);
     }
 
     void Update()
     {
-        
+        if (GameManager.Instance.sceneLoadedTriger == true)
+        {
+            chestAnimator.SetTrigger("SceneLoaded");
+            FindObjectOfType<Button>().gameObject.SetActive(true);
+        }
     }
 
     public void ShowTreasure()
     {
         chestAnimator.speed = 1f;
-        myTreasure[GameManager.treasureCount] = Instantiate(treasures[prefabIndex], new Vector2(0, 0), transform.rotation, GameObject.Find("Canvas").transform);
-        myTreasure[GameManager.treasureCount].transform.localPosition = treasurePosition;
-        myTreasure[GameManager.treasureCount].transform.localScale = new Vector2(100, 100);
-        treasurePosition.x += 2;
-        GameManager.treasureCount++;
-        GetComponentInParent<Button>().gameObject.SetActive(false);
+        GameManager.Instance.myTreasure[treasureCount] = Instantiate(treasures[prefabIndex], new Vector2(0, 0), transform.rotation, GameObject.Find("Canvas(1)").transform);
+        GameManager.Instance.myTreasure[treasureCount].transform.localPosition = GameManager.treasurePosition;
+        GameManager.Instance.myTreasure[treasureCount].transform.localScale = new Vector2(100, 100);
+        //DontDestroyOnLoad(GameManager.Instance.myTreasure[GameManager.treasureCount]);
+
+        GameManager.treasurePosition.x += 60;
+        treasureCount++;
+        GameManager.Instance.mytreasureCount = treasureCount;
+        FindObjectOfType<Button>().gameObject.SetActive(false);
     }
 }

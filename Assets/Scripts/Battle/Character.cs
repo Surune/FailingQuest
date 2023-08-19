@@ -50,7 +50,7 @@ public class Character : MonoBehaviour
 
     public void move(Vector3 position)
     {
-        gameObject.transform.position = position;
+        gameObject.transform.localPosition = position;
     }
 
     public void addBuf(Skill buf)
@@ -71,6 +71,7 @@ public class Character : MonoBehaviour
 
     public void OnMouseUp()
     {
+        Debug.Log("ONCLICK");
         battleManager.setTarget(this);
     }
 }

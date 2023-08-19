@@ -62,12 +62,13 @@ public class Skill : MonoBehaviour
             Debug.Log("getPosition");
             battleManager.resetTargetPosition();
             Vector3 pos = battleManager.getPosition();
-            Vector3 none = new Vector3(0, 0, 0);
-            while (pos.x == none.x && pos.y==none.y)
-            {
-                yield return new WaitForSeconds(0.1f);
-                pos = battleManager.getPosition();
-            }
+            // Vector3 none = new Vector3(0, 0, 0);
+            // while (pos.x == none.x && pos.y==none.y)
+            // {
+            //     yield return new WaitForSeconds(0.1f);
+            //     pos = battleManager.getTarget()
+            // }
+            // Debug.Log("POSITION:"+pos);
             Use(target, pos);
         }
 
@@ -76,6 +77,7 @@ public class Skill : MonoBehaviour
 
     public int Use(Character target, Vector3 pos)
     {
+        Debug.Log("Use");
         switch (skillType)
         {
             case SkillType.Attack:

@@ -47,7 +47,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
     public Vector3 getPosition()
     {
-        return location[0].transform.position;
+        return new Vector3(-3, 3, -0.2f);
     }
 
     public void setTargetPosition(Vector3 position)

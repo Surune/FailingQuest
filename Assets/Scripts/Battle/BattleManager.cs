@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour //전투의 진행을 담당
@@ -10,6 +8,19 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     public List<LocationHelper> location;
     private Character target = null; // 스킬 타겟
     private Vector3 target_position = new Vector3(0, 0, 0); // 이동 스킬 타겟 위치
+
+    public static BattleManager Instance;
+
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(Instance);
+    }
 
     void Start()
     {

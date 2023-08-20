@@ -183,5 +183,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coolTime: -1
   skillType: 0
+  name: Skill Name
   description: Description
   damage: 0
+  battleManager: {fileID: 0}
+  button: {fileID: 977246967409090517}
+  buttonDisable: 0

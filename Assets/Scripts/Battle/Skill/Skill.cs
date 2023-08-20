@@ -8,10 +8,10 @@ public class Skill : MonoBehaviour
 {
     [SerializeField] protected int coolTime = -1;
     [SerializeField] protected SkillType skillType = SkillType._UNDEFINED;
+    public string name = "Skill Name";
     public string description = "Description";
     [SerializeField] private int damage = 0; // attack skill
 
-    public BattleManager battleManager = null;
     public Button button = null;
 
     public bool buttonDisable = false; // 동시에 스킬 발동 x
@@ -26,11 +26,6 @@ public class Skill : MonoBehaviour
         if (button == null)
         {
             throw new Exception("Button Not Assigned");
-        }
-
-        if (battleManager == null)
-        {
-            throw new Exception("BattleManager Not Assigned");
         }
 
         button.onClick.AddListener(() =>
@@ -49,24 +44,24 @@ public class Skill : MonoBehaviour
     public IEnumerator _Use()
     {
         Debug.Log("getTarget");
-        battleManager.resetTarget();
-        Character target = battleManager.getTarget();
+        BattleManager.Instance.resetTarget();
+        Character target = BattleManager.Instance.getTarget();
         while (target == null)
         {
             yield return new WaitForSeconds(0.1f);
-            target = battleManager.getTarget();
+            target = BattleManager.Instance.getTarget();
         }
 
         if (skillType == SkillType.Move)
         {
             Debug.Log("getPosition");
-            battleManager.resetTargetPosition();
-            Vector3 pos = battleManager.getPosition();
+            BattleManager.Instance.resetTargetPosition();
+            Vector3 pos = BattleManager.Instance.getPosition();
             // Vector3 none = new Vector3(0, 0, 0);
             // while (pos.x == none.x && pos.y==none.y)
             // {
             //     yield return new WaitForSeconds(0.1f);
-            //     pos = battleManager.getTarget()
+            //     pos = BattleManager.Instance.getTarget()
             // }
             // Debug.Log("POSITION:"+pos);
             Use(target, pos);

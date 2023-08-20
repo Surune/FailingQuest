@@ -19,7 +19,6 @@ public class Character : MonoBehaviour
 
     // 보유한 스킬 리스트
     public List<Skill> Skills = new List<Skill>();
-    public BattleManager battleManager = null;
 
     private void Start()
     {
@@ -32,11 +31,6 @@ public class Character : MonoBehaviour
         if (position == -1)
         {
             throw new Exception("Position not initialized");
-        }
-
-        if (battleManager == null)
-        {
-            throw new Exception("Character: Battlemanager not initialized");
         }
 
         _initialHP = HP;
@@ -72,6 +66,6 @@ public class Character : MonoBehaviour
     public void OnMouseUp()
     {
         Debug.Log("ONCLICK");
-        battleManager.setTarget(this);
+        BattleManager.Instance.setTarget(this);
     }
 }

@@ -20,4 +20,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/MapScene.unity
     guid: fce4039aacf9740828276df421ed17ac
+  - enabled: 1
+    path: Assets/01_Scenes/GameClearScene.unity
+    guid: fc8235aa73c934703a973fd5901546e1
+  - enabled: 1
+    path: Assets/01_Scenes/GameOverScene.unity
+    guid: d3f6b9cb1b6fd436b859944542564ec0
+  - enabled: 1
+    path: Assets/01_Scenes/QuestScene.unity
+    guid: 80d96c41c14834298a84c4cc081fbc13
+  - enabled: 1
+    path: Assets/01_Scenes/TreasureScene.unity
+    guid: 1c2b714bea6074275bda5e45874470bc
   m_configObjects: {}

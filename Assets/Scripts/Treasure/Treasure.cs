@@ -35,10 +35,8 @@ public class Treasure : MonoBehaviour
             if (flag == 0)
                 break;
         }
-        //Debug.Log(prefabIndex);
+        
         GameManager.Instance.mytreasureIndex[treasureCount] = prefabIndex;
-
-        //GameManager.Instance.myTreasure[GameManager.treasureCount] = Instantiate(treasures[prefabIndex], new Vector2(0, 0), transform.rotation, GameObject.Find("Canvas").transform);
     }
 
     void Update()

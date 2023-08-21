@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: c88bd5a5549ae4f8aaa77ae3f20bf4f9, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 73278664}
   - component: {fileID: 73278663}
   - component: {fileID: 73278662}
+  - component: {fileID: 73278665}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -209,7 +210,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uD018\uC2A4\uD2B81"
+  m_Text: empty new quest
 --- !u!222 &73278664
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -218,6 +219,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73278660}
   m_CullTransparentMesh: 1
+--- !u!114 &73278665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73278660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c200250aacf749f480c9f28905713c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questText: {fileID: 73278663}
+  i: 1
+  newQuestBtns:
+  - {fileID: 219759725}
+  - {fileID: 1018905480}
+  - {fileID: 641973399}
 --- !u!1 &130042926
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +319,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 130042929}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 517333764}
+        m_TargetAssemblyTypeName: CurrentQuestBtn, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &130042929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,7 +452,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 219759726}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 914743615}
+        m_TargetAssemblyTypeName: NewQuestBtn, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &219759726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,7 +688,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 431511514}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1086155430}
+        m_TargetAssemblyTypeName: CurrentQuestBtn, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &431511514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,7 +748,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 447239389}
-  - component: {fileID: 447239388}
   - component: {fileID: 447239387}
   m_Layer: 0
   m_Name: QuestManager
@@ -714,22 +768,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58856ee1ee10f414a80bc0269cd51083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &447239388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447239386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff1a167af7e74274e838c50af3646771, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mytreasureCount: 0
-  myTreasure: []
-  mytreasureIndex: 
-  sceneLoadedTriger: 0
 --- !u!4 &447239389
 Transform:
   m_ObjectHideFlags: 0
@@ -740,6 +778,55 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 516.2802, y: 282.7053, z: -15.238677}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &492634118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 492634120}
+  - component: {fileID: 492634119}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &492634119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492634118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1a167af7e74274e838c50af3646771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mytreasureCount: 0
+  myTreasure: []
+  mytreasureIndex: 
+  questManage: 000000000000000000000000
+  sceneLoadedTriger: 0
+--- !u!4 &492634120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492634118}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 679.48206, y: 278.21344, z: 6.86839}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -757,6 +844,7 @@ GameObject:
   - component: {fileID: 517333763}
   - component: {fileID: 517333762}
   - component: {fileID: 517333761}
+  - component: {fileID: 517333764}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -831,7 +919,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uD018\uC2A4\uD2B81"
+  m_Text: new quest required
 --- !u!222 &517333763
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -840,6 +928,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517333759}
   m_CullTransparentMesh: 1
+--- !u!114 &517333764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517333759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecdd0ff0fc47f4e71a953c653185681b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questText: {fileID: 517333762}
+  i: 2
 --- !u!1 &641973397
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,7 +1024,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 641973400}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1153028527}
+        m_TargetAssemblyTypeName: NewQuestBtn, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &641973400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,6 +1125,7 @@ GameObject:
   - component: {fileID: 727844568}
   - component: {fileID: 727844567}
   - component: {fileID: 727844566}
+  - component: {fileID: 727844569}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1085,7 +1200,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uD018\uC2A4\uD2B81"
+  m_Text: new quest required
 --- !u!222 &727844568
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1094,6 +1209,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727844564}
   m_CullTransparentMesh: 1
+--- !u!114 &727844569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727844564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecdd0ff0fc47f4e71a953c653185681b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questText: {fileID: 727844567}
+  i: 0
 --- !u!1 &812548387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,6 +1303,7 @@ GameObject:
   - component: {fileID: 914743614}
   - component: {fileID: 914743613}
   - component: {fileID: 914743612}
+  - component: {fileID: 914743615}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1248,7 +1378,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uD018\uC2A4\uD2B81"
+  m_Text: empty new quest
 --- !u!222 &914743614
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1257,6 +1387,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914743610}
   m_CullTransparentMesh: 1
+--- !u!114 &914743615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914743610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c200250aacf749f480c9f28905713c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questText: {fileID: 914743613}
+  i: 0
+  newQuestBtns:
+  - {fileID: 219759725}
+  - {fileID: 1018905480}
+  - {fileID: 641973399}
 --- !u!1 &1018905478
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,7 +1487,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1018905481}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 73278665}
+        m_TargetAssemblyTypeName: NewQuestBtn, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1018905481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1390,6 +1550,7 @@ GameObject:
   - component: {fileID: 1086155429}
   - component: {fileID: 1086155428}
   - component: {fileID: 1086155427}
+  - component: {fileID: 1086155430}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1464,7 +1625,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uD018\uC2A4\uD2B81"
+  m_Text: new quest required
 --- !u!222 &1086155429
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1473,6 +1634,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086155425}
   m_CullTransparentMesh: 1
+--- !u!114 &1086155430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086155425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecdd0ff0fc47f4e71a953c653185681b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questText: {fileID: 1086155428}
+  i: 1
 --- !u!1 &1153028522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,6 +1660,7 @@ GameObject:
   - component: {fileID: 1153028526}
   - component: {fileID: 1153028525}
   - component: {fileID: 1153028524}
+  - component: {fileID: 1153028527}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1559,7 +1735,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uD018\uC2A4\uD2B81"
+  m_Text: empty new quest
 --- !u!222 &1153028526
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1568,6 +1744,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153028522}
   m_CullTransparentMesh: 1
+--- !u!114 &1153028527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153028522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c200250aacf749f480c9f28905713c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questText: {fileID: 1153028525}
+  i: 2
+  newQuestBtns:
+  - {fileID: 219759725}
+  - {fileID: 1018905480}
+  - {fileID: 641973399}
 --- !u!1 &1220620980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,7 +1844,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1220620983}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 727844569}
+        m_TargetAssemblyTypeName: CurrentQuestBtn, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1220620983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1827,3 +2033,4 @@ SceneRoots:
   - {fileID: 404566499}
   - {fileID: 812548390}
   - {fileID: 447239389}
+  - {fileID: 492634120}

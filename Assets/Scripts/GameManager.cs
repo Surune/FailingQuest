@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
 
     public int[,] currentQuest; //현재 진행중인 퀘스트 종류와 난이도 (3)
     public int[,] newQuest = new int[3, 2] {{ -1, -1 }, { -1, -1 },{ -1, -1 }}; // 새로 받아올 수 있는 퀘스트(3)
-    public int[] questManage = new int[3] { 0, 0, 0 }; // 여기저기에서 값 가져와서 저장(3)
+    public int[] questManage = new int[3] { -1, -1, -1 }; // 여기저기에서 값 가져와서 저장(3)
 
     public bool sceneLoadedTriger = false;
 
@@ -48,14 +48,13 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
     
     void Update()
     {
+        
        
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log(myTreasure);
-            sceneLoadedTriger = true;
-            SceneManager.LoadScene("TreasureScene(1)");
-            
+            SceneManager.LoadScene("QuestScene");
         }
+
         
     }
 }

@@ -11,7 +11,7 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         questList = new int[11, 4] { { 30, 60, 90, 0 }, { 3, 5, 7, 0 }, { 3, 4, 5, 0 }, { 1, 2, 3, 0 }, { 3, 4, 5, 0 }, { 3, 4, 5, 0 }, { 20, 30, 40, 0 }, { 100, 125, 150, 0 }, { 3, 4, 5, 0 }, { 5, 7, 10, 0 }, { 3, 5, 7, 0 } };
-        if (GameManager.Instance.currentQuest == null)
+        if (GameManager.Instance.currentQuest==null)
         {
             GameManager.Instance.currentQuest = new int[3, 2];
             //중복 제거 !
@@ -36,23 +36,24 @@ public class QuestManager : MonoBehaviour
         //신규 퀘스트 값 비어있으면 받아오고 저장
         for (int i = 0; i < 3; i++)
         {
-            int flag = 0;
-            int num = Random.Range(0, 11);
-            while (flag == 0)
+            if(GameManager.Instance.newQuest[i, 0] == -1)
             {
-                num = Random.Range(0, 11);
-                if (questList[num, 3] == 0)
-                    flag = 1;
-            }
-            if (questList[num, 3] == 0)
+                int flag = 0;
+                int num = Random.Range(0, 11);
+                while (flag == 0)
+                {
+                    num = Random.Range(0, 11);
+                    if (questList[num, 3] == 0)
+                        flag = 1;
+                }
                 GameManager.Instance.newQuest[i, 0] = num;
-            questList[num, 3] = 1;
-            GameManager.Instance.newQuest[i, 1] = i;
+                questList[num, 3] = 1;
+                GameManager.Instance.newQuest[i, 1] = i;
+            }
         }
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         /*

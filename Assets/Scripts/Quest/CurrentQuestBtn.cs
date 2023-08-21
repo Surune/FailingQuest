@@ -7,56 +7,89 @@ public class CurrentQuestBtn : MonoBehaviour
 {
     private QuestManager questManager;
     private Button button;
-    // Start is called before the first frame update
+    public Text questText;
+    private int index = 0;
+    private int questIdx;
+    private int questLvl;
+    public int i;
+
     void Start()
     {
         button = GetComponentInParent<Button>();
         button.interactable = false;
+        questManager = FindObjectOfType<QuestManager>();
     }
 
     // Update is called once per frame
-    /*
+    
     void Update()
     {
-        
+
         //기준값과 비교 후 퀘스트 달성 시 버튼클릭 가능 + 보상지급 + 퀘스트 빈칸 만들기
         //해당 퀘스트 부분 퀘스트 매니지, 현재 퀘스트에서 비우기
         //퀘스트리스트에서 해당 인덱스 4열 0으로 변경
-
+        //Debug.Log(GameManager.Instance.currentQuest[0, 0]);
 
         //신규 퀘스트에서 버튼 누르면 해당 내용 매니지, 현재퀘스트에 반영
-        //해당 신규퀘스트 부분은 비우기 
-        for (int i = 0; i < 3; i++)
+        //해당 신규퀘스트 부분은 비우기
+
+        questIdx = GameManager.Instance.currentQuest[i, 0];
+        questLvl = GameManager.Instance.currentQuest[i, 1];
+        if (questIdx == 0)
+            questText.text = questManager.questList[questIdx, questLvl] + "골드 사용";
+        else if (questIdx == 1)
+            questText.text = questManager.questList[questIdx, questLvl] + "회 전투";
+        else if (questIdx == 2)
+            questText.text = questManager.questList[questIdx, questLvl] + "회 이벤트 칸 도착";
+        else if (questIdx == 3)
+            questText.text = questManager.questList[questIdx, questLvl] + "회 엘리트 전투";
+        else if (questIdx == 4)
+            questText.text = "보물 " + questManager.questList[questIdx, questLvl] + "개 획득";
+        else if (questIdx == 5)
+            questText.text = questManager.questList[questIdx, questLvl] + "회 전투 중 이동";
+        else if (questIdx == 6)
+            questText.text = "누적 " + questManager.questList[questIdx, questLvl] + "회복";
+        else if (questIdx == 7)
+            questText.text = "누적 " + questManager.questList[questIdx, questLvl] + "의 피해";
+        else if (questIdx == 8)
+            questText.text = questManager.questList[questIdx, questLvl] + "회 방어 성공";
+        else if (questIdx == 9)
+            questText.text = "화상 최대 " + questManager.questList[questIdx, questLvl] + "달성";
+        else if (questIdx == 10)
+            questText.text = "집중 누적 " + questManager.questList[questIdx, questLvl] + "달성";
+
+
+        //기준달성 ->보상+빈칸처리 
+        //if (GameManager.Instance.questManage[i] >= questManager.questList[GameManager.Instance.currentQuest[i, 0], GameManager.Instance.currentQuest[i, 1]])
+        if(Input.GetKeyDown(KeyCode.Tab))
         {
-            //기준달성 ->보상+빈칸처리 
-            if (GameManager.Instance.questManage[i] >= questManager.questList[GameManager.Instance.currentQuest[i, 0], GameManager.Instance.currentQuest[i, 1]])
-            {
-                OnEnable();
-                //해당 퀘스트 부분 퀘스트 매니지, 현재 퀘스트에서 비우기
-                GameManager.Instance.questManage[i] = 0;
-                questManager.questList[GameManager.Instance.currentQuest[i, 0], 3] = 0;
-                GameManager.Instance.currentQuest[i, 0] = -1;
-                GameManager.Instance.currentQuest[i, 1] = -1;
-            }
+            OnEnable();
+            //해당 퀘스트 부분 퀘스트 매니지, 현재 퀘스트에서 비우기
+            GameManager.Instance.questManage[i] = 0;
+            questManager.questList[GameManager.Instance.currentQuest[i, 0], 3] = 0;
+            index = i;
+
         }
         
     }
 
+    
     private void OnEnable()
     {
+        button = GetComponentInParent<Button>();
         button.interactable = true;
     }
-        */
+    
 
-        //onclick->
-        void Onclick()
-        {
-            //award + blank
+    //onclick->
+    public void Onclick()
+    {
+        //award + blank
 
-
-
-            //button.interactable = false;
-        }
-
+        GameManager.Instance.currentQuest[i, 0] = -1;
+        GameManager.Instance.currentQuest[i, 1] = -1;
+        questText.text = "new quest required";
+        button.interactable = false;
     }
+}
 

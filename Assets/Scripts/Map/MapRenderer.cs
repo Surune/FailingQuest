@@ -21,8 +21,10 @@ namespace Map
         public float height;
         public const float nodeEdgeGap = 0.1f;
 
-        public float leftScrollBoundary;
-        public float rightScrollBoundary;
+        public float scrollLeftBound;
+        public float scrollRightBound;
+        public const float scrollUpperBound = 5f;
+        public const float scrollLowerBound = -5f;
 
         private Camera mainCam;
 
@@ -75,8 +77,8 @@ namespace Map
             mainCam.transform.localPosition = new Vector3(startingMapNode.transform.localPosition.x, bossMapNode.transform.localPosition.y, -10f);
 
             // Set scroll boundaries.
-            leftScrollBoundary = startingMapNode.transform.localPosition.x;
-            rightScrollBoundary = bossMapNode.transform.localPosition.x;
+            scrollLeftBound = startingMapNode.transform.localPosition.x;
+            scrollRightBound = bossMapNode.transform.localPosition.x;
 
             var boxCollider = mapCompositionObject.AddComponent<BoxCollider>();
             boxCollider.center = new Vector3(width / 2f, bossMapNode.transform.localPosition.y, 0f);

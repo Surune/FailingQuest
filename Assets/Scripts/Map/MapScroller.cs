@@ -38,12 +38,15 @@ namespace Map
         private void Update()
         {
             if (!isMouseDown) return;
-
+            
             var mousePosition = GetMousePosition();
             var targetX = 
-                Mathf.Max(Mathf.Min(mousePosition.x - mouseDisplacement.x, -MapRenderer.instance.leftScrollBoundary + scrollLimit), 
-                -MapRenderer.instance.rightScrollBoundary - scrollLimit);
-            transform.DOLocalMoveX(targetX, tweenScrollingDuration).SetEase(tweenEase);
+                Mathf.Max(Mathf.Min(mousePosition.x - mouseDisplacement.x, -MapRenderer.instance.scrollLeftBound + scrollLimit), 
+                -MapRenderer.instance.scrollRightBound - scrollLimit);
+            var targetY = 
+                Mathf.Max(Mathf.Min(mousePosition.y - mouseDisplacement.y, MapRenderer.scrollUpperBound + scrollLimit), 
+                MapRenderer.scrollLowerBound - scrollLimit);
+            transform.DOLocalMove(new Vector3(targetX, targetY, transform.localPosition.z), tweenScrollingDuration).SetEase(tweenEase);
         }
 
         private Vector3 GetMousePosition()
@@ -54,15 +57,27 @@ namespace Map
         private void ClampScroll()
         {
             // Left Boundary
-            if (MapRenderer.instance.leftScrollBoundary > -transform.localPosition.x)
+            if (MapRenderer.instance.scrollLeftBound > -transform.localPosition.x)
             {
-                transform.DOLocalMoveX(-MapRenderer.instance.leftScrollBoundary, tweenClampingDuration).SetEase(tweenEase);
+                transform.DOLocalMoveX(-MapRenderer.instance.scrollLeftBound, tweenClampingDuration).SetEase(tweenEase);
             }
 
             // Right Boundary
-            if (-transform.localPosition.x > MapRenderer.instance.rightScrollBoundary)
+            if (-transform.localPosition.x > MapRenderer.instance.scrollRightBound)
             {
-                transform.DOLocalMoveX(-MapRenderer.instance.rightScrollBoundary, tweenClampingDuration).SetEase(tweenEase);
+                transform.DOLocalMoveX(-MapRenderer.instance.scrollRightBound, tweenClampingDuration).SetEase(tweenEase);
+            }
+
+            // Upper Bound
+            if (-transform.localPosition.y > MapRenderer.scrollUpperBound)
+            {
+                transform.DOLocalMoveY(-MapRenderer.scrollUpperBound, tweenClampingDuration).SetEase(tweenEase); 
+            }
+
+            // Lower Bound
+            if (MapRenderer.scrollLowerBound > -transform.localPosition.y)
+            {
+                transform.DOLocalMoveY(-MapRenderer.scrollLowerBound, tweenClampingDuration).SetEase(tweenEase);
             }
         }
     }

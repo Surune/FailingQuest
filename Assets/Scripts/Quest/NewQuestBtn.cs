@@ -29,7 +29,7 @@ public class NewQuestBtn : MonoBehaviour
     {
         questIdx = GameManager.Instance.newQuest[i, 0];
         questLvl = i;
-        questText.text = questManager.GetQuestText(questIdx, questLvl);
+        questText.text = QuestManager.GetQuestText(questIdx, questLvl);
         
         //신규 퀘스트에서 버튼 누르면 해당 내용 매니지, 현재퀘스트에 반영
         //해당 신규퀘스트 부분은 비우기
@@ -67,7 +67,5 @@ public class NewQuestBtn : MonoBehaviour
         {
             newQuestBtns[idx].interactable = false;
         }
-
     }
-
 }

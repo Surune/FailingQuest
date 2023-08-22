@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    public int[,] questList; //전체 퀘스트 내용 저장 (11)
+    public static int[,] questList; //전체 퀘스트 내용 저장 (11)
    
 
     // Start is called before the first frame update
@@ -53,7 +53,7 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public string GetQuestText(int questIdx, int questLevel)
+    public static string GetQuestText(int questIdx, int questLevel)
     {
         string text = "";
         switch (questIdx) {

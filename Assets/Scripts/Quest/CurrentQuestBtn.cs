@@ -36,7 +36,7 @@ public class CurrentQuestBtn : MonoBehaviour
 
         questIdx = GameManager.Instance.currentQuest[i, 0];
         questLvl = GameManager.Instance.currentQuest[i, 1];
-        questText.text = questManager.GetQuestText(questIdx, questLvl);
+        questText.text = QuestManager.GetQuestText(questIdx, questLvl);
         
         //기준달성 ->보상+빈칸처리 
         //if (GameManager.Instance.questManage[i] >= questManager.questList[GameManager.Instance.currentQuest[i, 0], GameManager.Instance.currentQuest[i, 1]])
@@ -45,11 +45,9 @@ public class CurrentQuestBtn : MonoBehaviour
             OnEnable();
             //해당 퀘스트 부분 퀘스트 매니지, 현재 퀘스트에서 비우기
             GameManager.Instance.questManage[i] = 0;
-            questManager.questList[GameManager.Instance.currentQuest[i, 0], 3] = 0;
+            QuestManager.questList[GameManager.Instance.currentQuest[i, 0], 3] = 0;
             index = i;
-
         }
-        
     }
 
     

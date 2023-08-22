@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class NewQuestBtn : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class NewQuestBtn : MonoBehaviour
     private int questLvl;
     private Button button;
     private QuestManager questManager;
-    public Text questText;
+    public TextMeshProUGUI questText;
     public int i;
     private int changeableIdx;
     public Button[] newQuestBtns;
@@ -26,33 +27,10 @@ public class NewQuestBtn : MonoBehaviour
 
     void Update()
     {
-        
         questIdx = GameManager.Instance.newQuest[i, 0];
         questLvl = i;
-        if (questIdx == 0)
-            questText.text = questManager.questList[questIdx, questLvl] + "골드 사용";
-        else if (questIdx == 1)
-            questText.text = questManager.questList[questIdx, questLvl] + "회 전투";
-        else if (questIdx == 2)
-            questText.text = questManager.questList[questIdx, questLvl] + "회 이벤트 칸 도착";
-        else if (questIdx == 3)
-            questText.text = questManager.questList[questIdx, questLvl] + "회 엘리트 전투";
-        else if (questIdx == 4)
-            questText.text = "보물 " + questManager.questList[questIdx, questLvl] + "개 획득";
-        else if (questIdx == 5)
-            questText.text = questManager.questList[questIdx, questLvl] + "회 전투 중 이동";
-        else if (questIdx == 6)
-            questText.text = "누적 " + questManager.questList[questIdx, questLvl] + "회복";
-        else if (questIdx == 7)
-            questText.text = "누적 " + questManager.questList[questIdx, questLvl] + "의 피해";
-        else if (questIdx == 8)
-            questText.text = questManager.questList[questIdx, questLvl] + "회 방어 성공";
-        else if (questIdx == 9)
-            questText.text = "화상 최대 " + questManager.questList[questIdx, questLvl] + "달성";
-        else if (questIdx == 10)
-            questText.text = "집중 누적 " + questManager.questList[questIdx, questLvl] + "달성";
-
-
+        questText.text = questManager.GetQuestText(questIdx, questLvl);
+        
         //신규 퀘스트에서 버튼 누르면 해당 내용 매니지, 현재퀘스트에 반영
         //해당 신규퀘스트 부분은 비우기
 
@@ -66,8 +44,6 @@ public class NewQuestBtn : MonoBehaviour
                     OnEnable();
             }
         }
-
-
     }
 
     private void OnEnable()

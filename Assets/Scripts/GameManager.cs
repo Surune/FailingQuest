@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
 
     private void Awake()
     {
-        if(Instance!=null)
+        if(Instance != null)
         {
             Destroy(gameObject);
             return;
@@ -48,13 +48,5 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
     
     void Update()
     {
-        
-       
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene("QuestScene");
-        }
-
-        
     }
 }

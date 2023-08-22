@@ -18,7 +18,7 @@ public class QuestManager : MonoBehaviour
             for (int i = 0; i < 3; i++)
             {
                 int flag = 0;
-                int num=Random.Range(0, 11);
+                int num = Random.Range(0, 11);
                 while (flag == 0)
                 {
                     num = Random.Range(0, 11);
@@ -51,7 +51,47 @@ public class QuestManager : MonoBehaviour
                 GameManager.Instance.newQuest[i, 1] = i;
             }
         }
-        
+    }
+
+    public string GetQuestText(int questIdx, int questLevel)
+    {
+        string text = "";
+        switch (questIdx) {
+            case 0:
+                text = questList[questIdx, questLevel] + "골드 사용";
+                break;
+            case 1:
+                text = questList[questIdx, questLevel] + "회 전투";
+                break;
+            case 2:
+                text = questList[questIdx, questLevel] + "회 이벤트 칸 도착";
+                break;
+            case 3:
+                text = questList[questIdx, questLevel] + "회 엘리트 전투";
+                break;
+            case 4:
+                text = "보물 " + questList[questIdx, questLevel] + "개 획득";
+                break;
+            case 5:
+                text = questList[questIdx, questLevel] + "회 전투 중 이동";
+                break;
+            case 6:
+                text = "누적 " + questList[questIdx, questLevel] + "회복";
+                break;
+            case 7:
+                text = "누적 " + questList[questIdx, questLevel] + "의 피해";
+                break;
+            case 8:
+                text = questList[questIdx, questLevel] + "회 방어 성공";
+                break;
+            case 9:
+                text = "화상 최대 " + questList[questIdx, questLevel] + "달성";
+                break;
+            case 10:
+                text = "집중 누적 " + questList[questIdx, questLevel] + "달성";
+                break;
+        }
+        return text;
     }
 
     void Update()

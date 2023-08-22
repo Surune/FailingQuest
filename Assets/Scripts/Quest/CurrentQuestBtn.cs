@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CurrentQuestBtn : MonoBehaviour
 {
     private QuestManager questManager;
     private Button button;
-    public Text questText;
+    public TextMeshProUGUI questText;
     private int index = 0;
     private int questIdx;
     private int questLvl;
@@ -35,30 +36,8 @@ public class CurrentQuestBtn : MonoBehaviour
 
         questIdx = GameManager.Instance.currentQuest[i, 0];
         questLvl = GameManager.Instance.currentQuest[i, 1];
-        if (questIdx == 0)
-            questText.text = questManager.questList[questIdx, questLvl] + "골드 사용";
-        else if (questIdx == 1)
-            questText.text = questManager.questList[questIdx, questLvl] + "회 전투";
-        else if (questIdx == 2)
-            questText.text = questManager.questList[questIdx, questLvl] + "회 이벤트 칸 도착";
-        else if (questIdx == 3)
-            questText.text = questManager.questList[questIdx, questLvl] + "회 엘리트 전투";
-        else if (questIdx == 4)
-            questText.text = "보물 " + questManager.questList[questIdx, questLvl] + "개 획득";
-        else if (questIdx == 5)
-            questText.text = questManager.questList[questIdx, questLvl] + "회 전투 중 이동";
-        else if (questIdx == 6)
-            questText.text = "누적 " + questManager.questList[questIdx, questLvl] + "회복";
-        else if (questIdx == 7)
-            questText.text = "누적 " + questManager.questList[questIdx, questLvl] + "의 피해";
-        else if (questIdx == 8)
-            questText.text = questManager.questList[questIdx, questLvl] + "회 방어 성공";
-        else if (questIdx == 9)
-            questText.text = "화상 최대 " + questManager.questList[questIdx, questLvl] + "달성";
-        else if (questIdx == 10)
-            questText.text = "집중 누적 " + questManager.questList[questIdx, questLvl] + "달성";
-
-
+        questText.text = questManager.GetQuestText(questIdx, questLvl);
+        
         //기준달성 ->보상+빈칸처리 
         //if (GameManager.Instance.questManage[i] >= questManager.questList[GameManager.Instance.currentQuest[i, 0], GameManager.Instance.currentQuest[i, 1]])
         if(Input.GetKeyDown(KeyCode.Tab))

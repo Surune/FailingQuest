@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
     public static GameManager Instance;
 
 
-    public static int money;
+    public int money;
 
     public int mytreasureCount;
     public GameObject[] myTreasure;
@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
     public int[] questManage = new int[3] { -1, -1, -1 }; // 여기저기에서 값 가져와서 저장(3)
 
     public bool sceneLoadedTriger = false;
+
+    public int Money { get => money; set => money = value; }
 
     private void Awake()
     {
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
 
     void Start()
     {
-        money = 0;
+        Money = 0;
         if (myTreasure.Length == 0)
         {
             mytreasureCount = 0;

@@ -5,7 +5,7 @@ namespace Map
     public class EdgeRenderer : MonoBehaviour
     {
         private LineRenderer lineRenderer;
-        private Renderer renderer;
+        private new Renderer renderer;
 
         private void Start()
         {

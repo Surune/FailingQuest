@@ -21,7 +21,25 @@ namespace Map
         {
             if (PlayerPrefs.HasKey("Map"))
             {
-                MapRenderer.instance.RenderMap(map);
+                PlayerPrefs.DeleteKey("Map");
+                Debug.Log("Map?");
+                /*
+                var savedMapJson = PlayerPrefs.GetString("Map");
+                var savedMap = JsonUtility.FromJson<Map>(savedMapJson);
+
+                if (savedMap.userPath.Any(point => point.Equals(savedMap.GetBossNode().point)))
+                {
+                    // The player has already cleared this map.
+                    GenerateMap();
+                }
+                else
+                {
+                    // The player hasn't cleared this map yet.
+                    map = savedMap;
+                    MapRenderer.instance.RenderMap(map);
+                }
+                */
+                GenerateMap();
             }
             else
             {
@@ -38,6 +56,10 @@ namespace Map
         public void SaveMap()
         {
             if (map == null) return;
+            
+           // var savedMapJson = JsonUtility.ToJson(map);
+          //  PlayerPrefs.SetString("Map", savedMapJson);
+         //   PlayerPrefs.Save();
         }
 
         private void OnApplicationQuit()

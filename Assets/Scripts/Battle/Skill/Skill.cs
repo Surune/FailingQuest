@@ -12,6 +12,9 @@ public class Skill : MonoBehaviour
     public string description = "Description";
     [SerializeField] private int damage = 0; // attack skill
 
+    protected ForgeType forgeType = ForgeType.UNFORGED;
+    [SerializeField] protected ForgeType[] forgeAvailableType;
+
     public Button button = null;
 
     public bool buttonDisable = false; // 동시에 스킬 발동 x

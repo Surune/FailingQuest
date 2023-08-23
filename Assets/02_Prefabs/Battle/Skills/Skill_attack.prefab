@@ -54,7 +54,7 @@ MonoBehaviour:
   name: "\uACF5\uACA9"
   description: attack skill description
   damage: 1
-  battleManager: {fileID: 0}
+  forgeAvailableType: 
   button: {fileID: 3785476522428301411}
   buttonDisable: 0
 --- !u!1 &4855062271109177540
@@ -91,9 +91,9 @@ RectTransform:
   m_Father: {fileID: 3890126517330773165}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -414, y: -230}
-  m_SizeDelta: {x: 25, y: 125}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7715477206359553794
 CanvasRenderer:
@@ -125,7 +125,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: fa7a0796a346544a3913e1aeeb0c6a0d, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

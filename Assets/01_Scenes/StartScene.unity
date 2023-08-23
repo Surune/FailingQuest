@@ -493,6 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1a167af7e74274e838c50af3646771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: 0
   mytreasureCount: 0
   myTreasure: []
   mytreasureIndex: 
@@ -1239,7 +1240,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB098\uAC00\uAE30"
+  m_text: "\uD06C\uB808\uB527"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d26d28fa9b5f24944a235a53f11ee682, type: 2}
   m_sharedMaterial: {fileID: 5307239175681231869, guid: d26d28fa9b5f24944a235a53f11ee682, type: 2}

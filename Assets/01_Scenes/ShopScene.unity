@@ -215,10 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb727e3795db244f59c9207aec4e976f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillText:
-  - {fileID: 192325314}
-  - {fileID: 656435675}
-  - {fileID: 2064919171}
+  skillText: {fileID: 22299361}
   price: 30
 --- !u!1 &92079509
 GameObject:
@@ -393,10 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb727e3795db244f59c9207aec4e976f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillText:
-  - {fileID: 192325314}
-  - {fileID: 656435675}
-  - {fileID: 2064919171}
+  skillText: {fileID: 192325314}
   price: 50
 --- !u!1 &240729579
 GameObject:
@@ -849,10 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb727e3795db244f59c9207aec4e976f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillText:
-  - {fileID: 192325314}
-  - {fileID: 656435675}
-  - {fileID: 2064919171}
+  skillText: {fileID: 656435675}
   price: 50
 --- !u!1 &669737083
 GameObject:
@@ -946,10 +937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb727e3795db244f59c9207aec4e976f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillText:
-  - {fileID: 192325314}
-  - {fileID: 656435675}
-  - {fileID: 2064919171}
+  skillText: {fileID: 669737085}
   price: 40
 --- !u!1 &706557651
 GameObject:
@@ -2195,10 +2183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb727e3795db244f59c9207aec4e976f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillText:
-  - {fileID: 192325314}
-  - {fileID: 656435675}
-  - {fileID: 2064919171}
+  skillText: {fileID: 2064919171}
   price: 50
 --- !u!1 &2102268471
 GameObject:

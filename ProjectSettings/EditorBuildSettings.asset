@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/TreasureScene.unity
     guid: 1c2b714bea6074275bda5e45874470bc
+  - enabled: 1
+    path: Assets/01_Scenes/ShopScene.unity
+    guid: 6e9b335443d9248a0b0d81aab9efafd4
   m_configObjects: {}

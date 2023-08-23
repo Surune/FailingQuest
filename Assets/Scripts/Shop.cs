@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Shop : MonoBehaviour
 {
-    public Text skillText;
+    public TextMeshProUGUI itemText;
     public int price;
     private Button button;
 
@@ -34,15 +35,15 @@ public class Shop : MonoBehaviour
 
             if (price == 50)
             {
-                skillText.text = "보유중이지 않은 스킬";
+                itemText.text = "보유중이지 않은 스킬";
             }
             else if (price == 40)
             {
-                skillText.text = "강화권";
+                itemText.text = "강화권";
             }
             else if (price == 30)
             {
-                skillText.text = "포션";
+                itemText.text = "포션";
             }
 
         }

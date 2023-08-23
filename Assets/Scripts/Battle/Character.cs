@@ -3,13 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public enum CharacterType{
-    _UNDEFINED,character1,character2,character3
+
+public enum CharacterType
+{
+    _UNDEFINED,
+    character1,
+    character2,
+    character3
 }
+
 public class Character : MonoBehaviour
 {
     public int position = -1;
-    public CharacterType type=CharacterType._UNDEFINED;
+    public CharacterType type = CharacterType._UNDEFINED;
     [SerializeField] private int HP = 100;
     private List<Skill> bufList = new List<Skill>();
     private List<Skill> DeBufList = new List<Skill>();
@@ -19,8 +25,13 @@ public class Character : MonoBehaviour
 
     private int _initialHP;
 
+    public GameObject BufStatus;
+
     // 보유한 스킬 리스트
     public List<Skill> Skills = new List<Skill>();
+    public Vector3 BufStatusIconScale = new Vector3(0.4f, 1.2f, 1); //버프 아이콘 렌더링 시 scale 비율
+    public Vector3 BufStatusInitialLocalPosition = new Vector3(-0.3f, 0, 0);
+    private float BufStatusXOffset = 0.3f; // 버프 하나당 width
 
     private void Start()
     {
@@ -46,18 +57,20 @@ public class Character : MonoBehaviour
 
     public void move(Vector3 position)
     {
-        Debug.Log("move >> "+position);
+        Debug.Log("move >> " + position);
         gameObject.transform.localPosition = position;
     }
 
     public void addBuf(Skill buf)
     {
         bufList.Add(buf);
+        AddBufDebufStatus(buf);
     }
 
     public void addDebuf(Skill debuf)
     {
         DeBufList.Add(debuf);
+        AddBufDebufStatus(debuf);
     }
 
 
@@ -65,6 +78,26 @@ public class Character : MonoBehaviour
     {
         HPStatus.value = (float)HP / _initialHP;
     }
+
+    public void AddBufDebufStatus(Skill buf)
+    {
+        Debug.Log(buf);
+        GameObject newBuf = new GameObject("buf_" + buf.name);
+        Debug.Log(newBuf);
+        var spriteRenderer = newBuf.AddComponent<SpriteRenderer>();
+        Debug.Log(spriteRenderer);
+        spriteRenderer.sprite = buf.gameObject.GetComponentInChildren<Image>().sprite;
+        newBuf.transform.parent = BufStatus.transform;
+        var totalBufLen = bufList.Count + DeBufList.Count;
+        newBuf.transform.localPosition =
+            BufStatusInitialLocalPosition + new Vector3(BufStatusXOffset * (totalBufLen - 1), 0, 0);
+        newBuf.transform.localScale = BufStatusIconScale;
+    }
+
+
+    /*
+     *  Events
+     */
     public void OnMouseUp()
     {
         Debug.Log("character onclick");

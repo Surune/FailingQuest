@@ -5,11 +5,12 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour //전투의 진행을 담당
 {
     private int time;
-    public List<LocationHelper> location;
     private Character target = null; // 스킬 타겟
-    private Vector3 target_position = new Vector3(0, 0, 0); // 이동 스킬 타겟 위치
+    private LocationHelper location = null; // 이동 스킬 타겟 위치
 
     public static BattleManager Instance;
+
+    [SerializeField] private List<LocationHelper> locations = new List<LocationHelper>(); // 타겟팅시 collider 잠깐 비활성화 위해
 
     void Awake()
     {
@@ -18,6 +19,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
         DontDestroyOnLoad(Instance);
     }
@@ -56,18 +58,31 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
         target = null;
     }
 
-    public Vector3 getPosition()
+    public LocationHelper getTargetPosition()
     {
-        return new Vector3(-3, 3, -0.2f);
+        return location;
     }
 
-    public void setTargetPosition(Vector3 position)
+    public void setTargetPosition(LocationHelper locationHelper)
     {
-        target_position = position;
+        location = locationHelper;
     }
 
     public void resetTargetPosition()
     {
-        target_position = new Vector3(0, 0, 0);
+        location = null;
+    }
+
+
+    /*
+     * Skill 사용 시 캐릭터 타겟팅 도중에는 location collider 비활성화
+     */
+    public void HandleLocationCollider(bool enable)
+    {
+        foreach (var locationHelper in locations)
+        {
+            Debug.Log(locationHelper);
+            locationHelper.gameObject.SetActive(enable);
+        }
     }
 }

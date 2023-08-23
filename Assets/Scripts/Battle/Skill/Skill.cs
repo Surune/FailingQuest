@@ -40,11 +40,11 @@ public class Skill : MonoBehaviour
     }
 
 
-    // 타겟팅 방식 개선 필요
     public IEnumerator _Use()
     {
         Debug.Log("getTarget");
         BattleManager.Instance.resetTarget();
+        BattleManager.Instance.HandleLocationCollider(false);
         Character target = BattleManager.Instance.getTarget();
         while (target == null)
         {
@@ -52,22 +52,24 @@ public class Skill : MonoBehaviour
             target = BattleManager.Instance.getTarget();
         }
 
+        BattleManager.Instance.HandleLocationCollider(true);
         if (skillType == SkillType.Move)
         {
             Debug.Log("getPosition");
             BattleManager.Instance.resetTargetPosition();
-            Vector3 pos = BattleManager.Instance.getPosition();
-            // Vector3 none = new Vector3(0, 0, 0);
-            // while (pos.x == none.x && pos.y==none.y)
-            // {
-            //     yield return new WaitForSeconds(0.1f);
-            //     pos = BattleManager.Instance.getTarget()
-            // }
-            // Debug.Log("POSITION:"+pos);
-            Use(target, pos);
-        }
+            LocationHelper locationHelper = BattleManager.Instance.getTargetPosition();
+            while (locationHelper == null)
+            {
+                yield return new WaitForSeconds(0.1f);
+                locationHelper = BattleManager.Instance.getTargetPosition();
+            }
 
-        Use(target, new Vector3(0, 0, 0));
+            Use(target, locationHelper.GetPosition());
+        }
+        else
+        {
+            Use(target, new Vector3(0, 0, 0));
+        }
     }
 
     public int Use(Character target, Vector3 pos)
@@ -80,11 +82,6 @@ public class Skill : MonoBehaviour
                 buttonDisable = false;
                 return coolTime;
             case SkillType.Move:
-                if (pos.x == 0 && pos.y == 0)
-                {
-                    throw new Exception("Invalid Move Position");
-                }
-
                 target.move(pos);
                 buttonDisable = false;
                 return coolTime;

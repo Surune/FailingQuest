@@ -46,6 +46,7 @@ public class Character : MonoBehaviour
 
     public void move(Vector3 position)
     {
+        Debug.Log("move >> "+position);
         gameObject.transform.localPosition = position;
     }
 
@@ -64,10 +65,9 @@ public class Character : MonoBehaviour
     {
         HPStatus.value = (float)HP / _initialHP;
     }
-
     public void OnMouseUp()
     {
-        Debug.Log("ONCLICK");
+        Debug.Log("character onclick");
         BattleManager.Instance.setTarget(this);
     }
 }

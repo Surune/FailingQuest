@@ -14,7 +14,7 @@ namespace Map
         private Ease tweenEase;
 
         private const float scrollLimit = 1f;
-        private const float tweenScrollingDuration = 0.2f;
+        private const float tweenScrollingDuration = 0.35f;
         private const float tweenClampingDuration = 0.3f;
 
         private void Awake()

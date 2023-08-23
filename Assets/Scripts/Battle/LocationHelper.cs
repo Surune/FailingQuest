@@ -16,13 +16,12 @@ public class LocationHelper : MonoBehaviour
 
     public Vector3 GetPosition()
     {
-        return _location;
-        //+ new Vector3(0, 0, 0.2f); //character collider는 location collider보다 z index가 더 크기 때문에 여기서 유지해줌
+        return _location + new Vector3(0, 0, 0.2f);
     }
 
     public void OnMouseUp()
     {
-        Debug.Log("location helper onclick"+transform.localPosition);
+        Debug.Log("location helper onclick" + transform.localPosition);
         BattleManager.Instance.setTargetPosition(this);
     }
 }

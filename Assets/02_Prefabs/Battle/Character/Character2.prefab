@@ -436,7 +436,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1559414230, guid: f2c715ee32c074a10b4f7b302aca265f, type: 3}
+  m_Sprite: {fileID: -684790565, guid: f2c715ee32c074a10b4f7b302aca265f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -457,7 +457,7 @@ Animator:
   m_GameObject: {fileID: 3207331635556098345}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 58180bbb8001c514badc3e95182e34da, type: 2}
+  m_Controller: {fileID: 9100000, guid: e31f232fce579244c8fbcc536e6164a6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -555,7 +555,7 @@ GameObject:
   - component: {fileID: -5959184896608423591}
   - component: {fileID: 3570447135771672925}
   m_Layer: 0
-  m_Name: Character
+  m_Name: Character2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -593,7 +593,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: -1
-  HP: 100
+  type: 2
+  HP: 25
   remainCoolTime: 0
   HPStatus: {fileID: 8263882939848331741}
   Skills: []
@@ -626,7 +627,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -1.55, y: 3.8}

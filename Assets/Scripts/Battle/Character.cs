@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+public enum CharacterType{
+    _UNDEFINED,character1,character2,character3
+}
 public class Character : MonoBehaviour
 {
     public int position = -1;
-
+    public CharacterType type=CharacterType._UNDEFINED;
     [SerializeField] private int HP = 100;
     private List<Skill> bufList = new List<Skill>();
     private List<Skill> DeBufList = new List<Skill>();

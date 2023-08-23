@@ -1,6 +1,6 @@
 using System.Linq;
-using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
 
 namespace Map
 {
@@ -21,13 +21,10 @@ namespace Map
         {
             if (PlayerPrefs.HasKey("Map"))
             {
-                PlayerPrefs.DeleteKey("Map");
-                Debug.Log("Map?");
-                /*
-                var savedMapJson = PlayerPrefs.GetString("Map");
-                var savedMap = JsonUtility.FromJson<Map>(savedMapJson);
+                var loadedMapJson = PlayerPrefs.GetString("Map");
+                var loadedMap = JsonConvert.DeserializeObject<Map>(loadedMapJson);
 
-                if (savedMap.userPath.Any(point => point.Equals(savedMap.GetBossNode().point)))
+                if (loadedMap.userPath.Any(point => point.Equals(loadedMap.GetBossNode().point)))
                 {
                     // The player has already cleared this map.
                     GenerateMap();
@@ -35,11 +32,9 @@ namespace Map
                 else
                 {
                     // The player hasn't cleared this map yet.
-                    map = savedMap;
+                    map = loadedMap;
                     MapRenderer.instance.RenderMap(map);
                 }
-                */
-                GenerateMap();
             }
             else
             {
@@ -57,9 +52,10 @@ namespace Map
         {
             if (map == null) return;
             
-           // var savedMapJson = JsonUtility.ToJson(map);
-          //  PlayerPrefs.SetString("Map", savedMapJson);
-         //   PlayerPrefs.Save();
+            var mapJson = JsonConvert.SerializeObject(map, Formatting.Indented,
+                new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            PlayerPrefs.SetString("Map", mapJson);
+            PlayerPrefs.Save();
         }
 
         private void OnApplicationQuit()

@@ -10,7 +10,7 @@ namespace Map
     {
         public static MapUserInteraction instance;
 
-        public float enterNodeDelay = 1f;
+        public float enterNodeDelay = 0.1f;
 
         private void Awake()
         {

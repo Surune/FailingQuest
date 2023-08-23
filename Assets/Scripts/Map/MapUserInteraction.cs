@@ -27,7 +27,7 @@ namespace Map
                 }
                 else
                 {
-                    WarnInaaccessibleNode();
+                    WarnInaccessibleNode();
                 }
             }
             else
@@ -41,7 +41,7 @@ namespace Map
                 }
                 else
                 {
-                    WarnInaaccessibleNode();
+                    WarnInaccessibleNode();
                 }
             }
         }
@@ -90,7 +90,7 @@ namespace Map
             }
         }
 
-        private void WarnInaaccessibleNode()
+        private void WarnInaccessibleNode()
         {
             Debug.Log("The selected node cannot be accessed");
         }

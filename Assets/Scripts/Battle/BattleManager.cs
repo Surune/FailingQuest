@@ -42,7 +42,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     }
 
     public void EnrollCharacter(Character character){
-        CharacterList.Add(character)
+        CharacterList.Add(character);
     }
 
     public void ApplyCoolTime(int coolTime){

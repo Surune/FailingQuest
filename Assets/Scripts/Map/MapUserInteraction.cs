@@ -32,22 +32,39 @@ namespace Map
             }
             else
             {
-                var currentPoint = MapManager.instance.map.userPath[MapManager.instance.map.userPath.Count - 1];
+                var currentPoint = MapManager.instance.map.userPath[^1];
                 var currentNode = MapManager.instance.map.GetNode(currentPoint);
-
-                if (currentNode.outgoingNodes.Any(point => point.Equals(mapNode.node.point)))
+                
+                if (MapManager.instance.map.hasSelectedNode)
                 {
-                    MoveNode(mapNode);
+                    if (true)
+                    {
+                        MoveNode(mapNode);
+                    }
+                    else
+                    {
+                        WarnInaccessibleNode();
+                    }
                 }
                 else
                 {
-                    WarnInaccessibleNode();
+                    if (currentNode.outgoingNodes.Any(point => point.Equals(mapNode.node.point)))
+                    {
+                        MoveNode(mapNode);
+                    }
+                    else
+                    {
+                        WarnInaccessibleNode();
+                    }
                 }
             }
         }
 
         private void MoveNode(MapNode mapNode)
         {
+            mapNode.SetState(NodeState.Selected);
+            MapManager.instance.map.hasSelectedNode = true;
+
             MapManager.instance.map.userPath.Add(mapNode.node.point);
             MapManager.instance.SaveMap();
 
@@ -63,6 +80,7 @@ namespace Map
             {
                 case NodeType.Normal:
                     SceneManager.LoadScene("BattleScene");
+
                     break;
                 case NodeType.Elite:
 
@@ -72,6 +90,7 @@ namespace Map
                     break;
                 case NodeType.Treasure:
                     SceneManager.LoadScene("TreasureScene");
+
                     break;
                 case NodeType.Merchant:
 
@@ -81,9 +100,11 @@ namespace Map
                     break;
                 case NodeType.Quest:
                     SceneManager.LoadScene("QuestScene");
+
                     break;
                 case NodeType.Mystery:
                     SceneManager.LoadScene("EventScene");
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

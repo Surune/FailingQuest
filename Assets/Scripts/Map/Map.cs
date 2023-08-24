@@ -7,6 +7,8 @@ namespace Map
     {
         public List<Node> nodes;
         public List<Point> userPath;
+        
+        public bool hasSelectedNode;
 
         public Map(List<Node> nodes, List<Point> userPath)
         {

@@ -14,8 +14,9 @@ namespace Map
         public Sprite backgroundSprite;
 
         public Color32 lockedColor = Color.gray;
-        public Color32 visitedColor = Color.black;
-        public Color32 asseccibleColor = Color.white;
+        public Color32 selectedColor = Color.red;
+        public Color32 passedColor = Color.green;
+        public Color32 openColor = Color.yellow;
 
         public float xPadding;
         public float height;
@@ -132,9 +133,9 @@ namespace Map
         public void UpdateNodeState()
         {
             // Initialize: Lock
-            foreach (var node in mapNodes)
+            foreach (var mapNode in mapNodes)
             {
-                node.SetState(NodeState.Locked);
+                mapNode.SetState(NodeState.Locked);
             }
 
             if (MapManager.instance.map.userPath.Count == 0)
@@ -142,33 +143,46 @@ namespace Map
                 // When just starting.
 
                 // Starting nodes are accessible.
-                foreach (var node in mapNodes.Where(mapNode => mapNode.node.point.x == 0))
+                foreach (var mapNode in mapNodes.Where(mapNode => mapNode.node.point.x == 0))
                 {
-                    node.SetState(NodeState.Accessible);
+                    mapNode.SetState(NodeState.Open);
                 }
             }
             else
             {
                 // When already started.
-
-                // Updates nodes accessible.
+                
                 var currentPoint = MapManager.instance.map.userPath[^1];
                 var currentNode = MapManager.instance.map.GetNode(currentPoint);
-
-                foreach (var point in currentNode.outgoingNodes)
-                {
-                    var mapNode = GetMapNode(point);
-                    if (mapNode != null)
-                    {
-                        mapNode.SetState(NodeState.Accessible);
-                    }
-                }
 
                 // Updates nodes the user already visited.
                 foreach (var point in MapManager.instance.map.userPath)
                 {
                     var mapNode = GetMapNode(point);
-                    mapNode.SetState(NodeState.Visited);
+                    mapNode.SetState(NodeState.Passed);
+                }
+
+                
+                if (map.hasSelectedNode != false)
+                {
+                    // The player hasn't passed the selected node yet.
+                    
+                    var selectedMapNode = GetMapNode(currentPoint);
+                    selectedMapNode.SetState(NodeState.Selected);
+                }
+                else
+                {
+                    // The player passed the seleceted node.
+                    
+                    // Updates open nodes.
+                    foreach (var point in currentNode.outgoingNodes)
+                    {
+                        var mapNode = GetMapNode(point);
+                        if (mapNode != null)
+                        {
+                            mapNode.SetState(NodeState.Open);
+                        }
+                    }
                 }
             }
         }
@@ -184,30 +198,42 @@ namespace Map
             // There are no visited nodes.
             if (MapManager.instance.map.userPath.Count == 0) return;
 
-            // Updates edges accessible.
-            var currentPoint = MapManager.instance.map.userPath[^1];
-            var currentNode = MapManager.instance.map.GetNode(currentPoint);
-
-            foreach (var point in currentNode.outgoingNodes)
-            {
-                var edge = edges.First(edge =>
-                edge.source.node == currentNode && edge.target.node.point.Equals(point));
-
-                edge.SetColor(asseccibleColor);
-            }
-
-            // There are no passed edges. 
-            if (MapManager.instance.map.userPath.Count < 2) return;
-
             // Updates edges the user already visited.
             for (var i = 0; i < MapManager.instance.map.userPath.Count - 1; ++i)
             {
                 var sourcePoint = MapManager.instance.map.userPath[i];
                 var targetPoint = MapManager.instance.map.userPath[i + 1];
-                var edge = edges.First(edge =>
+                var edge = edges.FirstOrDefault(edge =>
                     edge.source.node.point.Equals(sourcePoint) && edge.target.node.point.Equals(targetPoint));
 
-                edge.SetColor(visitedColor);
+                if (edge != null) edge.SetColor(passedColor);
+            }
+
+            
+            if (MapManager.instance.map.hasSelectedNode)
+            {
+                if (MapManager.instance.map.userPath.Count < 2) return;
+
+                var sourcePoint = MapManager.instance.map.userPath[^2];
+                var targetPoint = MapManager.instance.map.userPath[^1];
+                var edge = edges.FirstOrDefault(edge =>
+                    edge.source.node.point.Equals(sourcePoint) && edge.target.node.point.Equals(targetPoint));
+
+                if (edge != null) edge.SetColor(selectedColor);
+            }
+            else
+            {
+                // Updates edges accessible.
+                var currentPoint = MapManager.instance.map.userPath[^1];
+                var currentNode = MapManager.instance.map.GetNode(currentPoint);
+                
+                foreach (var point in currentNode.outgoingNodes)
+                {
+                  var edge = edges.FirstOrDefault(edge =>
+                    edge.source.node == currentNode && edge.target.node.point.Equals(point));
+
+                  if (edge != null) edge.SetColor(openColor);
+                }
             }
         }
 

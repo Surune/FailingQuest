@@ -21,6 +21,9 @@ namespace Map
         {
             if (PlayerPrefs.HasKey("Map"))
             {
+                //PlayerPrefs.DeleteKey("Map");
+                //return;
+
                 var loadedMapJson = PlayerPrefs.GetString("Map");
                 var loadedMap = JsonConvert.DeserializeObject<Map>(loadedMapJson);
 

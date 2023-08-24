@@ -47,6 +47,7 @@ public class Character : MonoBehaviour
         }
 
         _initialHP = HP;
+        BattleManager.Instance.EnrollCharacter(this);
     }
 
     public void getDamage(int damage)

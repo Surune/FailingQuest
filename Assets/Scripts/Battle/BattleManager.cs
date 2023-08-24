@@ -12,6 +12,8 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
     [SerializeField] private List<LocationHelper> locations = new List<LocationHelper>(); // 타겟팅시 collider 잠깐 비활성화 위해
 
+    private List<Character> CharacterList=new List<Character>();
+    private Character current; //현재 차례
     void Awake()
     {
         if (Instance != null)
@@ -37,6 +39,14 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     public int FindMinCoolTime()
     {
         throw new NotImplementedException();
+    }
+
+    public void EnrollCharacter(Character character){
+        CharacterList.Add(character)
+    }
+
+    public void ApplyCoolTime(int coolTime){
+        current.remainCoolTime=coolTime;
     }
 
 

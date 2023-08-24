@@ -14,8 +14,8 @@ namespace Map
         private Ease tweenEase;
 
         private const float scrollLimit = 1f;
-        private const float tweenScrollingDuration = 0.35f;
-        private const float tweenClampingDuration = 0.3f;
+        private const float tweenScrollingDuration = 0.5f;
+        // private const float tweenClampingDuration = 0.3f;        // Map Clamping - unused
 
         private void Awake()
         {
@@ -32,7 +32,7 @@ namespace Map
         public void OnMouseUp()
         {
             isMouseDown = false;
-            ClampScroll();
+            // ClampScroll();           // Map Clamping - unused
         }
 
         private void Update()
@@ -53,7 +53,8 @@ namespace Map
         {
             return mainCam.ScreenToWorldPoint(Input.mousePosition);
         }
-        
+
+        /* Map Clamping - unused
         private void ClampScroll()
         {
             // Left Boundary
@@ -80,5 +81,6 @@ namespace Map
                 transform.DOLocalMoveY(-MapRenderer.scrollLowerBound, tweenClampingDuration).SetEase(tweenEase);
             }
         }
+        */
     }
 }

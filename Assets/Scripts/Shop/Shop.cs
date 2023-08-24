@@ -37,9 +37,9 @@ public class Shop : MonoBehaviour
             {
                 itemText.text = "보유중이지 않은 스킬";
             }
-            else if (price == 40)
+            else if (price == 100)
             {
-                itemText.text = "강화권";
+                itemText.text = "무작위 유물";
             }
             else if (price == 30)
             {

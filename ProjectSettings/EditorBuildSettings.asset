@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/01_Scenes/GameOverScene.unity
     guid: d3f6b9cb1b6fd436b859944542564ec0
   - enabled: 1
+    path: Assets/01_Scenes/ForgeScene.unity
+    guid: 1689c1732884643e6a3d305af42cef8b
+  - enabled: 1
     path: Assets/01_Scenes/QuestScene.unity
     guid: 80d96c41c14834298a84c4cc081fbc13
   - enabled: 1

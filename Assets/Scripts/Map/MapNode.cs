@@ -9,8 +9,9 @@ namespace Map
     public enum NodeState
     {
         Locked,
-        Visited,
-        Accessible
+        Selected,
+        Passed,
+        Open
     }
 }
 
@@ -47,21 +48,27 @@ namespace Map
         public void SetState(NodeState nodeState)
         {
             switch (nodeState)
-            {
+            { 
                 case NodeState.Locked:
                     spriteRenderer.DOKill();
                     spriteRenderer.color = MapRenderer.instance.lockedColor;
 
                     break;
-                case NodeState.Visited:
-                    spriteRenderer.DOKill();
-                    spriteRenderer.color = MapRenderer.instance.visitedColor;
-
-                    break;
-                case NodeState.Accessible:
+                case NodeState.Selected:
                     spriteRenderer.color = MapRenderer.instance.lockedColor;
                     spriteRenderer.DOKill();
-                    spriteRenderer.DOColor(MapRenderer.instance.asseccibleColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
+                    spriteRenderer.DOColor(MapRenderer.instance.selectedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
+
+                    break;
+                case NodeState.Passed:
+                    spriteRenderer.DOKill();
+                    spriteRenderer.color = MapRenderer.instance.passedColor;
+
+                    break;
+                case NodeState.Open:
+                    spriteRenderer.color = MapRenderer.instance.lockedColor;
+                    spriteRenderer.DOKill();
+                    spriteRenderer.DOColor(MapRenderer.instance.openColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
 
                     break;
                 default:

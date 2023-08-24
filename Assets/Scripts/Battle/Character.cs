@@ -56,10 +56,11 @@ public class Character : MonoBehaviour
         updateHPBar();
     }
 
-    public void move(Vector3 position)
+    public void move(Vector3 position, int index)
     {
         Debug.Log("move >> " + position);
         gameObject.transform.localPosition = position;
+        this.position = index;
     }
 
     public void addBuf(Skill buf)
@@ -91,7 +92,7 @@ public class Character : MonoBehaviour
         newBuf.transform.parent = BufStatus.transform;
         var totalBufLen = bufList.Count + DeBufList.Count;
         newBuf.transform.localPosition =
-            BufStatusInitialLocalPosition + new Vector3(BufStatusXOffset * (totalBufLen - 1), 0, 0);
+            BufStatusInitialLocalPosition + new Vector3(BufStatusXOffset * (totalBufLen - 1), 0, -0.3f);
         newBuf.transform.localScale = BufStatusIconScale;
     }
 

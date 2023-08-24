@@ -45,17 +45,6 @@ public class Skill : MonoBehaviour
 
     public IEnumerator _Use()
     {
-        Debug.Log("getTarget");
-        BattleManager.Instance.resetTarget();
-        BattleManager.Instance.HandleLocationCollider(false);
-        Character target = BattleManager.Instance.getTarget();
-        while (target == null)
-        {
-            yield return new WaitForSeconds(0.1f);
-            target = BattleManager.Instance.getTarget();
-        }
-
-        BattleManager.Instance.HandleLocationCollider(true);
         if (skillType == SkillType.Move)
         {
             Debug.Log("getPosition");
@@ -67,37 +56,70 @@ public class Skill : MonoBehaviour
                 locationHelper = BattleManager.Instance.getTargetPosition();
             }
 
-            Use(target, locationHelper.GetPosition());
+            Use(BattleManager.Instance.getCurrent(), locationHelper.GetPosition(), locationHelper.Index);
+            yield break;
         }
-        else
+
+        Debug.Log("getTarget");
+        BattleManager.Instance.resetTarget();
+        BattleManager.Instance.HandleLocationCollider(false);
+
+        Character target = BattleManager.Instance.getTarget();
+        while (target == null)
         {
-            Use(target, new Vector3(0, 0, 0));
+            yield return new WaitForSeconds(0.1f);
+            target = BattleManager.Instance.getTarget();
         }
+
+        BattleManager.Instance.HandleLocationCollider(true);
+
+        Use(target, new Vector3(0, 0, 0), 0);
     }
 
-    public int Use(Character target, Vector3 pos)
+    public void Use(Character target, Vector3 pos, int posIndex)
     {
         Debug.Log("Use");
         switch (skillType)
         {
             case SkillType.Attack:
                 target.getDamage(damage);
-                buttonDisable = false;
-                return coolTime;
+                break;
             case SkillType.Move:
-                target.move(pos);
-                buttonDisable = false;
-                return coolTime;
+                ExchangePosition(target, pos, posIndex);
+                break;
             case SkillType.Buf:
                 target.addBuf(this);
-                buttonDisable = false;
-                return coolTime;
+                break;
             case SkillType.DeBuf:
                 target.addDebuf(this);
-                buttonDisable = false;
-                return coolTime;
+                break;
             default:
                 throw new Exception("Skill use error");
+        }
+
+        buttonDisable = false;
+        BattleManager.Instance.ApplyCoolTime(coolTime);
+    }
+
+    public void ExchangePosition(Character target, Vector3 pos, int posIndex)
+    {
+        bool find = false;
+        foreach (var character in BattleManager.Instance.GetCharacterList())
+        {
+            if (character.position == posIndex)
+            {
+                var prevPosition = character.transform.localPosition;
+                var prevPosIndex = character.position;
+                character.move(target.transform.localPosition, target.position);
+                target.move(prevPosition, prevPosIndex);
+                find = true;
+                break;
+            }
+        }
+
+        if (!find)
+        {
+            target.move(pos, posIndex);
         }
     }
 }

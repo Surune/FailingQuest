@@ -12,8 +12,15 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
     [SerializeField] private List<LocationHelper> locations = new List<LocationHelper>(); // 타겟팅시 collider 잠깐 비활성화 위해
 
-    private List<Character> CharacterList=new List<Character>();
+    private List<Character> CharacterList = new List<Character>();
     private Character current; //현재 차례
+    public GameObject CurrentTag; //현재 캐릭터 위의 표시
+
+
+    public Transform coolTimeInitPosition; //속도 표기 기준위치
+    public Transform coolTimeEndPosition; //속도 표기 기준위치
+    private int maxRemainCooltime;
+
     void Awake()
     {
         if (Instance != null)
@@ -29,6 +36,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     void Start()
     {
         Reset();
+        FindMinCoolTime();
     }
 
     public void Reset()
@@ -36,23 +44,64 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
         time = 0;
     }
 
-    public int FindMinCoolTime()
+    public void FindMinCoolTime()
     {
-        throw new NotImplementedException();
+        Character nextCharacter = CharacterList[0];
+        foreach (var character in CharacterList)
+        {
+            if (character.remainCoolTime < nextCharacter.remainCoolTime)
+            {
+                nextCharacter = character;
+            }
+            else if (character.remainCoolTime == nextCharacter.remainCoolTime)
+            {
+                nextCharacter = character.position < nextCharacter.position ? character : nextCharacter;
+            }
+        }
+
+        current = nextCharacter;
+        var coolTimeOffset = current.remainCoolTime;
+        foreach (var character in CharacterList)
+        {
+            character.remainCoolTime -= coolTimeOffset;
+            if (character.remainCoolTime > maxRemainCooltime)
+            {
+                maxRemainCooltime = character.remainCoolTime;
+            }
+        }
+
+        UpdateCurrentTag();
+        UpdateCoolTimeStatus();
     }
 
-    public void EnrollCharacter(Character character){
+    public void EnrollCharacter(Character character)
+    {
         CharacterList.Add(character);
     }
 
-    public void ApplyCoolTime(int coolTime){
-        current.remainCoolTime=coolTime;
+    public List<Character> GetCharacterList()
+    {
+        return CharacterList;
+    }
+
+    /*
+     * 스킬 사용 직후 호출, 현재 스킬 사용한 캐릭터에 쿨타임 적용
+     * 다음 차례의 캐릭터를 찾음
+     */
+    public void ApplyCoolTime(int coolTime)
+    {
+        current.remainCoolTime = coolTime;
+        FindMinCoolTime();
     }
 
 
     /*
      *  SKill Methods
      */
+    public Character getCurrent()
+    {
+        return current;
+    }
     public Character getTarget()
     {
         return target;
@@ -83,6 +132,35 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
         location = null;
     }
 
+    public void UpdateCurrentTag()
+    {
+        switch (current.position)
+        {
+            case 1:
+                CurrentTag.transform.localPosition = new Vector3(-6.73f, 1.57f, 0);
+                break;
+            case 2:
+                CurrentTag.transform.localPosition = new Vector3(-4.12f, 1.57f, 0);
+                break;
+            case 3:
+                CurrentTag.transform.localPosition = new Vector3(-1.55f, 1.57f, 0);
+                break;
+        }
+    }
+
+    public void UpdateCoolTimeStatus()
+    {
+        var xOffset = (coolTimeEndPosition.position - coolTimeInitPosition.position).x;
+
+        foreach (var character in CharacterList)
+        {
+            var Status = character.transform.GetChild(1).gameObject;
+            Status.transform.position = coolTimeInitPosition.position +
+                                        new Vector3(
+                                            xOffset * character.remainCoolTime /
+                                            (maxRemainCooltime == 0 ? 100 : maxRemainCooltime), 0, 0);
+        }
+    }
 
     /*
      * Skill 사용 시 캐릭터 타겟팅 도중에는 location collider 비활성화

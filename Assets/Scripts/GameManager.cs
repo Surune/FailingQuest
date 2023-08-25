@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
 {
     public static GameManager Instance;
 
-
     public int money;
 
     public int mytreasureCount;

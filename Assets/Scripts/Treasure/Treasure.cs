@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Treasure : MonoBehaviour
 {
     private GameObject[] treasures;
     public int prefabIndex;
     private int treasureCount = 0;
+    private Transform chestPosition;
 
     public Animator chestAnimator;
 
@@ -50,9 +52,13 @@ public class Treasure : MonoBehaviour
 
     public void ShowTreasure()
     {
-        chestAnimator.speed = 1f;
         GameManager.Instance.myTreasure[treasureCount] = Instantiate(treasures[prefabIndex], new Vector2(0, 0), transform.rotation, GameObject.Find("Canvas(1)").transform);
-        GameManager.Instance.myTreasure[treasureCount].transform.localPosition = GameManager.treasurePosition;
+        
+        GameManager.Instance.myTreasure[treasureCount].transform.localPosition = new Vector2(340, -255);
+
+
+        GameManager.Instance.myTreasure[treasureCount].transform.DOLocalMove(GameManager.treasurePosition, 2f);
+     
         GameManager.Instance.myTreasure[treasureCount].transform.localScale = new Vector2(100, 100);
         //DontDestroyOnLoad(GameManager.Instance.myTreasure[GameManager.treasureCount]);
 
@@ -61,4 +67,11 @@ public class Treasure : MonoBehaviour
         GameManager.Instance.mytreasureCount = treasureCount;
         FindObjectOfType<Button>().gameObject.SetActive(false);
     }
+
+    public void timeDelay()
+    {
+        chestAnimator.speed = 1f;
+        Invoke("ShowTreasure", 0.8f);
+    }
+
 }

@@ -2,24 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TreasureList : MonoBehaviour
 {
     public GameObject[] treasurePrefab;
     string currentIndex;
-    public Text EffectInfo;
+    public TextMeshProUGUI EffectInfo;
 
     void Start()
     {
         var obj = FindObjectsOfType<DontDestroy>();
+        /*
         if (obj.Length == 1)
             DontDestroyOnLoad(gameObject);
         else
             Destroy(gameObject);
-    }
-    void Update()
-    {
-        
+        */
     }
 
     private void OnEnable()

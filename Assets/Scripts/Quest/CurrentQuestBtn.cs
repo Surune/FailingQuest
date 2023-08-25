@@ -36,7 +36,8 @@ public class CurrentQuestBtn : MonoBehaviour
 
         questIdx = GameManager.Instance.currentQuest[i, 0];
         questLvl = GameManager.Instance.currentQuest[i, 1];
-        questText.text = QuestManager.GetQuestText(questIdx, questLvl);
+        if(questIdx>=0)
+            questText.text = QuestManager.GetQuestText(questIdx, questLvl) + "(" + GameManager.Instance.questManage[i] + ")";
         
         //기준달성 ->보상+빈칸처리 
         //if (GameManager.Instance.questManage[i] >= questManager.questList[GameManager.Instance.currentQuest[i, 0], GameManager.Instance.currentQuest[i, 1]])

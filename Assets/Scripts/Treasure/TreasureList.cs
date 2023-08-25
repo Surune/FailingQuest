@@ -56,13 +56,9 @@ public class TreasureList : MonoBehaviour
         EffectInfo.gameObject.SetActive(true);
 
     }
-
     
     private void OnMouseExit()
     {
         EffectInfo.gameObject.SetActive(false);
     }
-    
-
-
 }

@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 //event 조건 enable 되면 발동 
 public class Event : MonoBehaviour
-
 { 
-    public Text typeText;
-    public Text eventText;
-    public Text choiceText;
+    public TextMeshProUGUI typeText;
+    public TextMeshProUGUI eventText;
+    public TextMeshProUGUI choiceText;
+    public Transform choicesTransform;
     public Button choicePrefabs;
     private Button[] choiceButtons;
     private Vector2 buttonPosition = new Vector2(0, -30);
@@ -32,31 +33,26 @@ public class Event : MonoBehaviour
 
     void Start()
     {
-        
+        GenerateEvent();   
     }
 
-    void Update()
+    void GenerateEvent()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            int num = (int)Random.Range(0, 11);
-            typeText.text = "이벤트 제목";
-            eventText.text = eventArray[num, 0];
-            
-            string choices = eventArray[num, 1];
-            buttonPosition = eventText.transform.position;
-            buttonPosition.y -= 60;
-            choiceButtons = new Button[choices.Length];
-            for (int idx = 0; idx < choices.Length; idx++)
-            {
-                choiceButtons[idx] = Instantiate(choicePrefabs, buttonPosition, Quaternion.identity);
-                choiceButtons[idx].transform.SetParent(eventText.transform.parent); // Set the parent of the button
-                Text choiceButtonText = choiceButtons[idx].GetComponentInChildren<Text>();
-                choiceButtonText.text = choiceArray[choices[idx] - '0'];
-                choiceButtons[idx].gameObject.SetActive(true);
-                buttonPosition.y -= 60;
-            }
-        }
+        int num = (int)Random.Range(0, 11);
+        typeText.text = "이벤트 제목";
+        eventText.text = eventArray[num, 0];
         
+        string choices = eventArray[num, 1];
+        //buttonPosition = eventText.transform.position;
+        //buttonPosition.y -= 60;
+        choiceButtons = new Button[choices.Length];
+        for (int idx = 0; idx < choices.Length; idx++)
+        {
+            choiceButtons[idx] = Instantiate(choicePrefabs, choicesTransform); // Set the parent of the button
+            var choiceButtonText = choiceButtons[idx].GetComponentInChildren<TextMeshProUGUI>();
+            choiceButtonText.text = choiceArray[choices[idx] - '0'];
+            choiceButtons[idx].gameObject.SetActive(true);
+            buttonPosition.y -= 60;
+        }
     }
 }

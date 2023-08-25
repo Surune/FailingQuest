@@ -92,11 +92,11 @@ namespace Map
                     SceneManager.LoadScene("TreasureScene");
 
                     break;
-                case NodeType.Merchant:
-
+                case NodeType.Shop:
+                    SceneManager.LoadScene("ShopScene");
                     break;
                 case NodeType.Forge:
-
+                    SceneManager.LoadScene("ForgeScene");
                     break;
                 case NodeType.Quest:
                     SceneManager.LoadScene("QuestScene");

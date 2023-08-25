@@ -10,7 +10,7 @@ namespace Map
         Boss,
 
         Treasure,
-        Merchant,
+        Shop,
         Forge,
 
         Quest,

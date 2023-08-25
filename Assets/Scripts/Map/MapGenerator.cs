@@ -9,7 +9,7 @@ namespace Map
         public MapConfig mapConfig;
 
         private List<NodeType> randomNodes = new()
-        {NodeType.Normal, NodeType.Elite, NodeType.Treasure, NodeType.Merchant, NodeType.Forge, NodeType.Quest, NodeType.Mystery};
+        {NodeType.Normal, NodeType.Elite, NodeType.Treasure, NodeType.Shop, NodeType.Forge, NodeType.Quest, NodeType.Mystery};
 
         private List<List<Node>> nodeLayers = new();
 

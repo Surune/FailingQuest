@@ -16,10 +16,10 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
 
 
     public int[,] currentQuest; //현재 진행중인 퀘스트 종류와 난이도 (3)
-    public int[,] newQuest = new int[3, 2] {{ -1, -1 }, { -1, -1 },{ -1, -1 }}; // 새로 받아올 수 있는 퀘스트(3)
+    public int[,] newQuest = new int[3, 2] {{ -1, -1 }, { -1, -1 }, { -1, -1 }}; // 새로 받아올 수 있는 퀘스트(3)
     public int[] questManage = new int[3] { -1, -1, -1 }; // 여기저기에서 값 가져와서 저장(3)
 
-    public List<List<int>> currentSkills;  // 현재 보유중인 스킬 번호
+    public List<List<string>> currentSkills;  // 현재 보유중인 스킬 번호
 
     public bool sceneLoadedTriger = false;
 
@@ -47,9 +47,10 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
             mytreasureIndex = new int[16];
         }
 
+        currentSkills = new List<List<string>> {};
         for (int i = 0; i < 3; i++)
         {
-            List<int> sublist = new List<int> {001, 002};
+            List<string> sublist = new List<string> {"001", "002"};
             currentSkills.Add(sublist);
         }
     }

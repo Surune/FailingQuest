@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 2209442752901650137}
   - component: {fileID: 6978600975835021037}
   m_Layer: 5
-  m_Name: SkillImage
+  m_Name: SkillIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 4076041194943178803}
   - component: {fileID: 7294906815172328172}
   - component: {fileID: 5565617413592240002}
+  - component: {fileID: 4060028149286544963}
   m_Layer: 5
   m_Name: Forge Button
   m_TagString: Untagged
@@ -367,6 +368,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4060028149286544963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3024442114670655141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc0b9fc201cc4ca59d404a0954ad5c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillIcon: {fileID: 2209442752901650137}
+  forgeIcon: {fileID: 5012119184482248167}
+  forgeText: {fileID: 610224917861382086}
+  skillNameText: {fileID: 871869160702503138}
+  skillDescriptionText: {fileID: 2210748231281845163}
 --- !u!1 &4741280209630716951
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +397,7 @@ GameObject:
   - component: {fileID: 2079871533700476915}
   - component: {fileID: 610224917861382086}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ForgeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

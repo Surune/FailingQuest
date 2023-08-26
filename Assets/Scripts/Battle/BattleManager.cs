@@ -55,7 +55,15 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
             }
             else if (character.remainCoolTime == nextCharacter.remainCoolTime)
             {
-                nextCharacter = character.position < nextCharacter.position ? character : nextCharacter;
+                if (character.type == CharacterType.enemy) // 적이 우선순위
+                {
+                    nextCharacter = character.position > nextCharacter.position ? character : nextCharacter;
+                }
+                else if (nextCharacter.type != CharacterType.enemy)
+                {
+                    //바깥에 있는 캐릭터 우선
+                    nextCharacter = character.position < nextCharacter.position ? character : nextCharacter;
+                }
             }
         }
 
@@ -102,6 +110,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     {
         return current;
     }
+
     public Character getTarget()
     {
         return target;
@@ -144,6 +153,15 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
                 break;
             case 3:
                 CurrentTag.transform.localPosition = new Vector3(-1.55f, 1.57f, 0);
+                break;
+            case 4:
+                CurrentTag.transform.localPosition = new Vector3(2.18f, 1.57f, 0);
+                break;
+            case 5:
+                CurrentTag.transform.localPosition = new Vector3(4.9f, 1.57f, 0);
+                break;
+            case 6:
+                CurrentTag.transform.localPosition = new Vector3(7.22f, 1.57f, 0);
                 break;
         }
     }

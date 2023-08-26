@@ -9,7 +9,8 @@ public enum CharacterType
     _UNDEFINED,
     character1,
     character2,
-    character3
+    character3,
+    enemy
 }
 
 public class Character : MonoBehaviour

@@ -8,9 +8,17 @@ public class Skill : MonoBehaviour
 {
     [SerializeField] protected int coolTime = -1;
     [SerializeField] protected SkillType skillType = SkillType._UNDEFINED;
+    [SerializeField] protected SkillType skillType2 = SkillType._UNDEFINED;
     public string name = "Skill Name";
     public string description = "Description";
     [SerializeField] private int damage = 0; // attack skill
+    [SerializeField] private BufType buf1; // buf/debuf1
+    [SerializeField] private BufType buf2; // buf/debuf2
+    [SerializeField] private int buf1Intensity = 0;
+    [SerializeField] private int buf2Intensity = 0;
+    [SerializeField] private TargetType targetType1;
+    [SerializeField] private TargetType targetType2;
+
 
     protected ForgeType forgeType = ForgeType.UNFORGED;
     [SerializeField] protected ForgeType[] forgeAvailableType;
@@ -35,10 +43,17 @@ public class Skill : MonoBehaviour
         {
             if (!buttonDisable)
             {
-                StartCoroutine(_Use());
-            }
+                if (skillType2 != SkillType._UNDEFINED)
+                {
+                    StartCoroutine(_UseMulti());
+                }
+                else
+                {
+                    StartCoroutine(_Use());
+                }
 
-            buttonDisable = true;
+                buttonDisable = true;
+            }
         });
     }
 
@@ -76,10 +91,90 @@ public class Skill : MonoBehaviour
         Use(target, new Vector3(0, 0, 0), 0);
     }
 
-    public void Use(Character target, Vector3 pos, int posIndex)
+    public IEnumerator _UseMulti()
+    {
+        // 이동 + 다른 효과가 있는 경우 자신에게 거는 효과만 있는 현재 상황 가정
+        if (skillType == SkillType.Move)
+        {
+            Debug.Log("getPosition");
+            BattleManager.Instance.resetTargetPosition();
+            LocationHelper locationHelper = BattleManager.Instance.getTargetPosition();
+            while (locationHelper == null)
+            {
+                yield return new WaitForSeconds(0.1f);
+                locationHelper = BattleManager.Instance.getTargetPosition();
+            }
+
+            Use(BattleManager.Instance.getCurrent(), locationHelper.GetPosition(), locationHelper.Index, false, 0);
+            Use(BattleManager.Instance.getCurrent(), locationHelper.GetPosition(), locationHelper.Index, true, 1);
+            yield break;
+        }
+
+        // 타겟팅 필요한 경우 반드시 SkillType 에 넣어야 함 (targetType1에 대응)
+        switch (targetType1)
+        {
+            case TargetType._UNDEFINED:
+                throw new Exception("target type undefined");
+            //need targeting
+            case TargetType.ally1:
+            case TargetType.enemy1:
+                Debug.Log("getTarget");
+                BattleManager.Instance.resetTarget();
+                BattleManager.Instance.HandleLocationCollider(false);
+
+                Character target = BattleManager.Instance.getTarget();
+                while (target == null)
+                {
+                    yield return new WaitForSeconds(0.1f);
+                    target = BattleManager.Instance.getTarget();
+                }
+
+                BattleManager.Instance.HandleLocationCollider(true);
+                Use(target, new Vector3(0, 0, 0), 0, false, 0);
+                Use(target, new Vector3(0, 0, 0), 0, true, 1);
+                break;
+            case TargetType.all:
+                var all = BattleManager.Instance.GetAllCharacter();
+                foreach (var character in all)
+                {
+                    Use(character, new Vector3(0, 0, 0), 0, false, 0);
+                    Use(character, new Vector3(0, 0, 0), 0, false, 1);
+                }
+
+                BattleManager.Instance.ApplyCoolTime(coolTime);
+                break;
+            case TargetType.allyAll:
+                var allies = BattleManager.Instance.GetAllies();
+                foreach (var character in allies)
+                {
+                    Use(character, new Vector3(0, 0, 0), 0, false, 0);
+                    Use(character, new Vector3(0, 0, 0), 0, false, 1);
+                }
+
+                BattleManager.Instance.ApplyCoolTime(coolTime);
+                break;
+            case TargetType.enemyAll:
+                var enemies = BattleManager.Instance.GetEnemies();
+                foreach (var character in enemies)
+                {
+                    Use(character, new Vector3(0, 0, 0), 0, false, 0);
+                    Use(character, new Vector3(0, 0, 0), 0, false, 1);
+                }
+
+                BattleManager.Instance.ApplyCoolTime(coolTime);
+                break;
+            case TargetType.self:
+                Use(BattleManager.Instance.getCurrent(), new Vector3(0, 0, 0), 0, false, 0);
+                Use(BattleManager.Instance.getCurrent(), new Vector3(0, 0, 0), 0, true, 1);
+                break;
+        }
+    }
+
+    public void Use(Character target, Vector3 pos, int posIndex, bool applyCoolTime = true, int skillIndex = 0)
     {
         Debug.Log("Use");
-        switch (skillType)
+        var _skillType = skillIndex == 1 ? skillType : skillType2;
+        switch (_skillType)
         {
             case SkillType.Attack:
                 target.getDamage(damage);
@@ -88,17 +183,20 @@ public class Skill : MonoBehaviour
                 ExchangePosition(target, pos, posIndex);
                 break;
             case SkillType.Buf:
-                target.addBuf(this);
-                break;
             case SkillType.DeBuf:
-                target.addDebuf(this);
+                target.addBufDebuf(this, skillIndex == 1 ? buf1Intensity : buf2Intensity);
                 break;
+            case SkillType.custom:
+                throw new NotImplementedException("Custom Skills");
             default:
-                throw new Exception("Skill use error");
+                throw new Exception("Undefined skill type");
         }
 
-        buttonDisable = false;
-        BattleManager.Instance.ApplyCoolTime(coolTime);
+        if (applyCoolTime)
+        {
+            buttonDisable = false;
+            BattleManager.Instance.ApplyCoolTime(coolTime);
+        }
     }
 
     public void ExchangePosition(Character target, Vector3 pos, int posIndex)

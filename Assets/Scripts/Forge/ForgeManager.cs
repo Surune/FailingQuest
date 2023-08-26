@@ -5,6 +5,7 @@ using UnityEngine;
 public class ForgeManager : MonoBehaviour
 {
     public ForgeButton[] buttons;
+    public List<Dictionary<string, object>> skillInfo;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,8 @@ public class ForgeManager : MonoBehaviour
         ShuffleList(concatenatedList); // Shuffle the concatenated list
         List<string> pickedNumbers = concatenatedList.GetRange(0, 3);
 
+
+        skillInfo = CSVReader.Read("SkillInfo");
         for(int i=0; i<buttons.Length; i++){
             SetForgeButton(buttons[i], pickedNumbers[i]);
         }
@@ -39,5 +42,7 @@ public class ForgeManager : MonoBehaviour
     private void SetForgeButton(ForgeButton btn, string skillNum) {
         Debug.Log(skillNum);
         btn.skillIcon.sprite = Resources.Load<Sprite>("SkillIcons/skill_" + skillNum);
+        var row = CSVReader.FindRowWithNum(skillInfo, int.Parse(skillNum));
+        btn.skillNameText.text = row["NAME"].ToString();
     }
 }

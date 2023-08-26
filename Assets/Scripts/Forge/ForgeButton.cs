@@ -6,6 +6,7 @@ using TMPro;
 
 public class ForgeButton : MonoBehaviour 
 {
+    public Button button;
     public Image skillIcon;
     public Image forgeIcon;
     public TextMeshProUGUI forgeText;

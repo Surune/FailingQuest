@@ -380,6 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdc0b9fc201cc4ca59d404a0954ad5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 5565617413592240002}
   skillIcon: {fileID: 2209442752901650137}
   forgeIcon: {fileID: 5012119184482248167}
   forgeText: {fileID: 610224917861382086}

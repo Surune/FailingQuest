@@ -13,13 +13,16 @@ public class ForgeManager : MonoBehaviour
     void Start()
     {
         List<string> concatenatedList = new List<string>();
-        foreach (var innerList in GameManager.Instance.currentSkills) 
-        {
-            concatenatedList.AddRange(innerList);
+        foreach (var skillSet in GameManager.Instance.currentSkills){
+            foreach (KeyValuePair<string, ForgeType> kvp in skillSet)
+            {
+                if (kvp.Value == ForgeType.UNFORGED && !concatenatedList.Contains(kvp.Key))
+                {
+                    concatenatedList.Add(kvp.Key);
+                }
+            }
         }
         concatenatedList.Add("101");
-
-        concatenatedList = new List<string>(new HashSet<string>(concatenatedList));
 
         ShuffleList(concatenatedList); // Shuffle the concatenated list
         List<string> pickedNumbers = concatenatedList.GetRange(0, 3);
@@ -29,6 +32,21 @@ public class ForgeManager : MonoBehaviour
         {
             SetForgeButton(buttons[i], pickedNumbers[i]);
         }
+    }
+
+    private List<string> FindKeysWithValue(Dictionary<string, int> dict, int value)
+    {
+        List<string> keysWithDesiredValue = new List<string>();
+
+        foreach (KeyValuePair<string, int> kvp in dict)
+        {
+            if (kvp.Value == value)
+            {
+                keysWithDesiredValue.Add(kvp.Key);
+            }
+        }
+
+        return keysWithDesiredValue;
     }
 
     // Fisher-Yates shuffle algorithm
@@ -53,29 +71,46 @@ public class ForgeManager : MonoBehaviour
         btn.skillDescriptionText.text = row["DESCRIPTION"].ToString();
 
         var forgeAvailable = row["FORGETYPE"].ToString().Split(",");
-        Debug.Log(forgeAvailable.Length);
         var randomIndex = Random.Range(0, forgeAvailable.Length);
-        
+
         switch(forgeAvailable[randomIndex]) 
         {
             case "쿨타임":
                 btn.forgeText.text = "쿨타임 감소";
                 btn.forgeIcon.sprite = forgeIcons[0];
+                btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.COOLTIME));
                 break;
             case "대미지":
                 btn.forgeText.text = "대미지 증가";
                 btn.forgeIcon.sprite = forgeIcons[1];
+                btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.DAMAGE));
                 break;
             case "버프":
-                btn.forgeText.text = "버프양 증가";
+                btn.forgeText.text = "버프 효과 증가";
                 btn.forgeIcon.sprite = forgeIcons[2];
+                btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.BUFF));
                 break;
             case "디버프":
-                btn.forgeText.text = "디버프양 증가";
+                btn.forgeText.text = "디버프 효과 증가";
                 btn.forgeIcon.sprite = forgeIcons[3];
+                btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.DEBUFF));
                 break;
             default:
                 break;
+        }
+    }
+
+    public void ForgeSelected(string skillNum, ForgeType type)
+    {
+        if(skillNum.StartsWith("0")) 
+        {
+            foreach (var skillset in GameManager.Instance.currentSkills)
+            {
+                skillset[skillNum] = type;
+            }
+        }
+        else {
+            GameManager.Instance.currentSkills[int.Parse(skillNum)-1][skillNum] = type;
         }
     }
 }

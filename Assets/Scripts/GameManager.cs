@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
     public int[,] newQuest = new int[3, 2] {{ -1, -1 }, { -1, -1 }, { -1, -1 }}; // 새로 받아올 수 있는 퀘스트(3)
     public int[] questManage = new int[3] { -1, -1, -1 }; // 여기저기에서 값 가져와서 저장(3)
 
-    public List<List<string>> currentSkills;  // 현재 보유중인 스킬 번호
+    public List<Dictionary<string, ForgeType>> currentSkills;  // {현재 보유중인 스킬 번호, 강화 형태}
 
     public bool sceneLoadedTriger = false;
 
@@ -47,10 +47,10 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
             mytreasureIndex = new int[16];
         }
 
-        currentSkills = new List<List<string>> {};
+        currentSkills = new List<Dictionary<string, ForgeType>> ();
         for (int i = 0; i < 3; i++)
         {
-            List<string> sublist = new List<string> {"001", "002"};
+            var sublist = new Dictionary<string, ForgeType>() {{"001", ForgeType.UNFORGED}, {"002", ForgeType.UNFORGED}};
             currentSkills.Add(sublist);
         }
     }

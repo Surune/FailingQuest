@@ -492,23 +492,7 @@ PrefabInstance:
       value: Forge Button (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
@@ -529,26 +513,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
@@ -682,7 +646,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 10
+  m_Spacing: 25
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -715,23 +679,7 @@ PrefabInstance:
       value: Forge Button (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
@@ -752,26 +700,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
@@ -1144,24 +1072,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forge Button
       objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 4060028149286544963, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 4438577199458280585}
     - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
@@ -1182,26 +1098,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4196787144542179248, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
@@ -1270,6 +1166,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdc0b9fc201cc4ca59d404a0954ad5c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4438577199458280585 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5565617413592240002, guid: 33e5f9231af7740b6a19858d08c1ae15, type: 3}
+  m_PrefabInstance: {fileID: 4438577199458280583}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

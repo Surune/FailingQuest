@@ -19,7 +19,7 @@ public class Character : MonoBehaviour
     public CharacterType type = CharacterType._UNDEFINED;
     [SerializeField] private int HP = 100;
     private List<Skill> bufList = new List<Skill>();
-    private List<Skill> DeBufList = new List<Skill>();
+    // private List<Skill> DeBufList = new List<Skill>();
 
     public int remainCoolTime = 0;
     public Slider HPStatus;
@@ -64,17 +64,18 @@ public class Character : MonoBehaviour
         this.position = index;
     }
 
-    public void addBuf(Skill buf)
+    public void addBufDebuf(Skill buf, int intensity = 0)
     {
         bufList.Add(buf);
-        AddBufDebufStatus(buf);
+        //TODO conditionally check whehter previously exist or not
+        AddBufDebufStatus(buf, intensity);
     }
 
-    public void addDebuf(Skill debuf)
-    {
-        DeBufList.Add(debuf);
-        AddBufDebufStatus(debuf);
-    }
+    // public void addDebuf(Skill debuf, int intensity=0)
+    // {
+    //     DeBufList.Add(debuf);
+    //     AddBufDebufStatus(debuf);
+    // }
 
 
     public void updateHPBar()
@@ -82,8 +83,9 @@ public class Character : MonoBehaviour
         HPStatus.value = (float)HP / _initialHP;
     }
 
-    public void AddBufDebufStatus(Skill buf)
+    public void AddBufDebufStatus(Skill buf, int intensity)
     {
+        // TODO buf intensity
         Debug.Log(buf);
         GameObject newBuf = new GameObject("buf_" + buf.name);
         Debug.Log(newBuf);
@@ -91,7 +93,7 @@ public class Character : MonoBehaviour
         Debug.Log(spriteRenderer);
         spriteRenderer.sprite = buf.gameObject.GetComponentInChildren<Image>().sprite;
         newBuf.transform.parent = BufStatus.transform;
-        var totalBufLen = bufList.Count + DeBufList.Count;
+        var totalBufLen = bufList.Count; //+ DeBufList.Count;
         newBuf.transform.localPosition =
             BufStatusInitialLocalPosition + new Vector3(BufStatusXOffset * (totalBufLen - 1), 0, -0.3f);
         newBuf.transform.localScale = BufStatusIconScale;

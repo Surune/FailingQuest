@@ -173,7 +173,7 @@ public class Skill : MonoBehaviour
     public void Use(Character target, Vector3 pos, int posIndex, bool applyCoolTime = true, int skillIndex = 0)
     {
         Debug.Log("Use");
-        var _skillType = skillIndex == 1 ? skillType : skillType2;
+        var _skillType = skillIndex == 0 ? skillType : skillType2;
         switch (_skillType)
         {
             case SkillType.Attack:
@@ -184,7 +184,7 @@ public class Skill : MonoBehaviour
                 break;
             case SkillType.Buf:
             case SkillType.DeBuf:
-                target.addBufDebuf(this, skillIndex == 1 ? buf1Intensity : buf2Intensity);
+                target.addBufDebuf(skillIndex == 0 ? buf1 : buf2, skillIndex == 0 ? buf1Intensity : buf2Intensity);
                 break;
             case SkillType.custom:
                 throw new NotImplementedException("Custom Skills");

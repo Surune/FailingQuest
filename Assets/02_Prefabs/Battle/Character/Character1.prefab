@@ -511,7 +511,7 @@ MonoBehaviour:
   HPStatus: {fileID: 8263882939848331741}
   BufStatus: {fileID: 2550955809434497873}
   Skills: []
-  BufStatusIconScale: {x: 0.4, y: 1.2, z: 1}
+  BufStatusIconScale: {x: 2, y: 6, z: 1}
   BufStatusInitialLocalPosition: {x: -0.3, y: 0, z: 0}
 --- !u!61 &3570447135771672925
 BoxCollider2D:

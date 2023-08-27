@@ -11,6 +11,7 @@ public class SceneLoader : MonoBehaviour
             MapManager.instance.map.hasSelectedNode = false;
             MapManager.instance.SaveMap();
         }
+
         SceneManager.LoadScene(sceneName);
     }
 }

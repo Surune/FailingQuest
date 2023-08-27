@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
             currentSkills.Add(sublist);
         }
 
+        /*
         if (PlayerPrefs.HasKey("Game"))
         {
             //If errors occur, delete the key.
@@ -90,6 +91,7 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
             var loadedGameJson = PlayerPrefs.GetString("Game");
             Instance = JsonConvert.DeserializeObject<GameManager>(loadedGameJson);
         }
+        */
     }
 
     public void SaveGame()

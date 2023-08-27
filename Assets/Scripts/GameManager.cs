@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
     public int money;
 
     public int mytreasureCount;
-    public GameObject[] myTreasure;
-    public int[] mytreasureIndex;
+    public List<GameObject> myTreasure;
+    public List<int> mytreasureIndex;
     public static Vector2 treasurePosition = new Vector2(-616, 174);
 
 
@@ -41,11 +41,11 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
     void Start()
     {
         Money = 0;
-        if (myTreasure.Length == 0)
+        if (myTreasure.Count == 0)
         {
             mytreasureCount = 0;
-            myTreasure = new GameObject[16];
-            mytreasureIndex = new int[16];
+            myTreasure = new(16);
+            mytreasureIndex = new(16);
         }
 
         currentSkills = new List<Dictionary<string, ForgeType>> ();

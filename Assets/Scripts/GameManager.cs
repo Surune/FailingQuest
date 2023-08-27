@@ -11,10 +11,27 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
     public int money;
 
     public int mytreasureCount;
+
+    /*
     public List<GameObject> myTreasure;
     public List<int> mytreasureIndex;
+    */
+    
+    public GameObject[] myTreasure;
+    public int[] mytreasureIndex;
+    
     public static Vector2 treasurePosition = new Vector2(-616, 174);
 
+    /*
+    public List<List<int>> currentQuest; //현재 진행중인 퀘스트 종류와 난이도 (3)
+    public List<List<int>> newQuest = new List<List<int>>()   // 새로 받아올 수 있는 퀘스트(3)
+    {
+        new List<int> {-1, -1},
+        new List<int> {-1, -1},
+        new List<int> {-1, -1}
+    };
+    public List<int> questManage = new List<int>() { -1, -1, -1 }; // 여기저기에서 값 가져와서 저장(3)
+    */
 
     public int[,] currentQuest; //현재 진행중인 퀘스트 종류와 난이도 (3)
     public int[,] newQuest = new int[3, 2] {{ -1, -1 }, { -1, -1 }, { -1, -1 }}; // 새로 받아올 수 있는 퀘스트(3)
@@ -41,11 +58,20 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
     void Start()
     {
         Money = 0;
-        if (myTreasure.Count == 0)
+        /*
+        if (myTreasure.Count == 0) // myTreasure.Length == 0
         {
             mytreasureCount = 0;
-            myTreasure = new(16);
-            mytreasureIndex = new(16);
+            myTreasure = new(16); // myTreasure = new Gameobject[16];
+            mytreasureIndex = new(16); // mytreasureIndex = new int[16];
+        }
+        */
+
+        if (myTreasure.Length == 0)
+        {
+            mytreasureCount = 0;
+            myTreasure = new GameObject[16];
+            mytreasureIndex = new int[16];
         }
 
         currentSkills = new List<Dictionary<string, ForgeType>> ();

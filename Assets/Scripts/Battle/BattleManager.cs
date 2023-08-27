@@ -110,8 +110,28 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
         return current;
     }
 
-    public Character getTarget()
+    public Character getTarget(TargetType specificTarget = TargetType._UNDEFINED)
     {
+        if (specificTarget == TargetType.ally1)
+        {
+            if (target != null && target.type != CharacterType.enemy)
+            {
+                return target;
+            }
+
+            return null;
+        }
+
+        if (specificTarget == TargetType.enemy1)
+        {
+            if (target != null && target.type == CharacterType.enemy)
+            {
+                return target;
+            }
+
+            return null;
+        }
+
         return target;
     }
 

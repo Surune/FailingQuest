@@ -85,11 +85,11 @@ public class Skill : MonoBehaviour
                 BattleManager.Instance.resetTarget();
                 BattleManager.Instance.HandleLocationCollider(false);
 
-                Character target = BattleManager.Instance.getTarget();
+                Character target = BattleManager.Instance.getTarget(targetType1);
                 while (target == null)
                 {
                     yield return new WaitForSeconds(0.1f);
-                    target = BattleManager.Instance.getTarget();
+                    target = BattleManager.Instance.getTarget(targetType1);
                 }
 
                 BattleManager.Instance.HandleLocationCollider(true);
@@ -160,11 +160,11 @@ public class Skill : MonoBehaviour
                 BattleManager.Instance.resetTarget();
                 BattleManager.Instance.HandleLocationCollider(false);
 
-                Character target = BattleManager.Instance.getTarget();
+                Character target = BattleManager.Instance.getTarget(targetType1);
                 while (target == null)
                 {
                     yield return new WaitForSeconds(0.1f);
-                    target = BattleManager.Instance.getTarget();
+                    target = BattleManager.Instance.getTarget(targetType1);
                 }
 
                 BattleManager.Instance.HandleLocationCollider(true);

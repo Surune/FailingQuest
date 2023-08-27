@@ -99,7 +99,6 @@ public class Character : MonoBehaviour
 
     public void AddBufDebufStatus(BufType buf, int intensity)
     {
-        // TODO buf intensity
         Debug.Log(buf);
         GameObject newBuf = new GameObject("buf_" + buf.name);
         Debug.Log(newBuf);

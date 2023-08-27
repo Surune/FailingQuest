@@ -62,14 +62,17 @@ namespace Map
 
         private void MoveNode(MapNode mapNode)
         {
-            mapNode.SetState(NodeState.Selected);
-            MapManager.instance.map.hasSelectedNode = true;
+            if (!MapManager.instance.map.hasSelectedNode)
+            {
+                mapNode.SetState(NodeState.Selected);
+                MapManager.instance.map.hasSelectedNode = true;
 
-            MapManager.instance.map.userPath.Add(mapNode.node.point);
-            MapManager.instance.SaveMap();
+                MapManager.instance.map.userPath.Add(mapNode.node.point);
+                MapManager.instance.SaveMap();
 
-            MapRenderer.instance.UpdateNodeState();
-            MapRenderer.instance.UpdateEdgeState();
+                MapRenderer.instance.UpdateNodeState();
+                MapRenderer.instance.UpdateEdgeState();
+            }
 
             DOTween.Sequence().AppendInterval(enterNodeDelay).OnComplete(() => EnterNode(mapNode));
         }

@@ -29,7 +29,6 @@ namespace Map
 
         private Camera mainCam;
 
-        public Map map { get; private set; }
         private readonly List<MapNode> mapNodes = new();
         private readonly List<Edge> edges = new();
 
@@ -49,8 +48,6 @@ namespace Map
 
         public void RenderMap(Map map)
         {
-            this.map = map;
-
             ClearMap();
 
             GenerateMapObject();
@@ -72,7 +69,7 @@ namespace Map
         {
             var startingMapNode = mapNodes.First(node => node.node.point.x == 0);
             var bossMapNode = mapNodes.First(node => node.node.nodeType == NodeType.Boss);
-            var width = map.PathLength();
+            var width = MapManager.instance.map.PathLength();
 
             // Set the main camera.
             mainCam.transform.localPosition = new Vector3(startingMapNode.transform.localPosition.x, bossMapNode.transform.localPosition.y, -10f);
@@ -162,8 +159,7 @@ namespace Map
                     mapNode.SetState(NodeState.Passed);
                 }
 
-                
-                if (map.hasSelectedNode != false)
+                if (MapManager.instance.map.hasSelectedNode)
                 {
                     // The player hasn't passed the selected node yet.
                     
@@ -173,7 +169,10 @@ namespace Map
                 else
                 {
                     // The player passed the seleceted node.
-                    
+
+                    var passedMapNode = GetMapNode(currentPoint);
+                    passedMapNode.SetState(NodeState.Passed);
+
                     // Updates open nodes.
                     foreach (var point in currentNode.outgoingNodes)
                     {
@@ -197,29 +196,28 @@ namespace Map
 
             // There are no visited nodes.
             if (MapManager.instance.map.userPath.Count == 0) return;
-
+            
             // Updates edges the user already visited.
             for (var i = 0; i < MapManager.instance.map.userPath.Count - 1; ++i)
             {
                 var sourcePoint = MapManager.instance.map.userPath[i];
                 var targetPoint = MapManager.instance.map.userPath[i + 1];
-                var edge = edges.FirstOrDefault(edge =>
+                var edge = edges.First(edge =>
                     edge.source.node.point.Equals(sourcePoint) && edge.target.node.point.Equals(targetPoint));
-
-                if (edge != null) edge.SetColor(passedColor);
+                
+                edge.SetColor(passedColor);
             }
 
-            
             if (MapManager.instance.map.hasSelectedNode)
             {
                 if (MapManager.instance.map.userPath.Count < 2) return;
-
+                
                 var sourcePoint = MapManager.instance.map.userPath[^2];
                 var targetPoint = MapManager.instance.map.userPath[^1];
-                var edge = edges.FirstOrDefault(edge =>
+                var edge = edges.First(edge =>
                     edge.source.node.point.Equals(sourcePoint) && edge.target.node.point.Equals(targetPoint));
-
-                if (edge != null) edge.SetColor(selectedColor);
+                
+                edge.SetColor(selectedColor);
             }
             else
             {
@@ -229,10 +227,10 @@ namespace Map
                 
                 foreach (var point in currentNode.outgoingNodes)
                 {
-                  var edge = edges.FirstOrDefault(edge =>
+                    var edge = edges.First(edge =>
                     edge.source.node == currentNode && edge.target.node.point.Equals(point));
 
-                  if (edge != null) edge.SetColor(openColor);
+                    edge.SetColor(openColor);
                 }
             }
         }

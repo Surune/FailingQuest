@@ -181,11 +181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1192d87afdf21d8449fed7cb1f4bacf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillNumber: 108
   coolTime: 40
   skillType: 2
   skillType2: 3
-  name: "\uD654\uC5FC\uCE7C\uB0A0"
-  description: Description
   damage: 3
   buf1: {fileID: 0}
   buf2: {fileID: 6497509315327290259, guid: b6ebbb78f23e840489f5375364a99d21, type: 3}
@@ -193,6 +192,5 @@ MonoBehaviour:
   buf2Intensity: 10
   targetType1: 4
   targetType2: 4
-  forgeAvailableType: 02000000
   button: {fileID: 977246967409090517}
   buttonDisable: 0

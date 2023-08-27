@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class Skill : MonoBehaviour
 {
+    [SerializeField] private int skillNumber = -1;
     [SerializeField] protected int coolTime = -1;
     [SerializeField] protected SkillType skillType = SkillType._UNDEFINED;
     [SerializeField] protected SkillType skillType2 = SkillType._UNDEFINED;
-    public string name = "Skill Name";
-    public string description = "Description";
+    // public string name = "Skill Name";
+    // public string description = "Description";
     [SerializeField] private int damage = 0; // attack skill
     [SerializeField] private BufType buf1; // buf/debuf1
     [SerializeField] private BufType buf2; // buf/debuf2
@@ -21,7 +22,6 @@ public class Skill : MonoBehaviour
 
 
     protected ForgeType forgeType = ForgeType.UNFORGED;
-    [SerializeField] protected ForgeType[] forgeAvailableType;
 
     public Button button = null;
 
@@ -54,6 +54,7 @@ public class Skill : MonoBehaviour
                 }
             }
         });
+        button.onClick.AddListener(() => BattleManager.Instance.SetSkillText(skillNumber));
     }
 
 

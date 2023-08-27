@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BattleManager : MonoBehaviour //전투의 진행을 담당
 {
@@ -20,6 +21,12 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     public Transform coolTimeEndPosition; //속도 표기 기준위치
     private int maxRemainCooltime;
 
+
+    [HideInInspector] public List<Dictionary<string, object>> skillInfo;
+    public TextMeshProUGUI skillNameText;
+    public TextMeshProUGUI skillCooltimeText;
+    public TextMeshProUGUI skillDescriptionText;
+
     void Awake()
     {
         if (Instance != null)
@@ -35,6 +42,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     void Start()
     {
         FindMinCoolTime();
+        skillInfo = CSVReader.Read("SkillInfo");
     }
 
 
@@ -243,5 +251,13 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
             Debug.Log(locationHelper);
             locationHelper.gameObject.SetActive(enable);
         }
+    }
+
+    public void SetSkillText(int skillNum)
+    {
+        var row = CSVReader.FindRowWithNum(skillInfo, skillNum);
+        skillNameText.text = row["NAME"].ToString();
+        skillCooltimeText.text = row["COOLTIME"].ToString();
+        skillDescriptionText.text = row["DESCRIPTION"].ToString();
     }
 }

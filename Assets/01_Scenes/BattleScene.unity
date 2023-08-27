@@ -180,9 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'CoolTime
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dea0dfbb6b2e1471a8d5bdac775728b1, type: 2}
   m_sharedMaterial: {fileID: 5178579556417739482, guid: dea0dfbb6b2e1471a8d5bdac775728b1, type: 2}
@@ -468,11 +466,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_LocalScale.x
-      value: -5
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -890,6 +888,9 @@ MonoBehaviour:
   CurrentTag: {fileID: 1495820832}
   coolTimeInitPosition: {fileID: 296053994}
   coolTimeEndPosition: {fileID: 1422565394}
+  skillNameText: {fileID: 814046931}
+  skillCooltimeText: {fileID: 94260394}
+  skillDescriptionText: {fileID: 1791908854}
 --- !u!4 &355738418
 Transform:
   m_ObjectHideFlags: 0
@@ -1543,7 +1544,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Skill Name
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dea0dfbb6b2e1471a8d5bdac775728b1, type: 2}
   m_sharedMaterial: {fileID: 5178579556417739482, guid: dea0dfbb6b2e1471a8d5bdac775728b1, type: 2}
@@ -2029,7 +2030,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1001405464}
   - component: {fileID: 1001405465}
-  - component: {fileID: 1001405466}
   m_Layer: 5
   m_Name: Skills
   m_TagString: Untagged
@@ -2088,19 +2088,6 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 2
   m_ConstraintCount: 2
---- !u!114 &1001405466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001405463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 0
 --- !u!1001 &1048140956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2846,9 +2833,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Skill Description
-
-    testssssssssssssssssssssssdddddddddddddddddddddddddddddddddddddddddd'
+  m_text: "\uC0AC\uC6A9\uD560 \uC2A4\uD0AC\uC744 \uC120\uD0DD\uD558\uC138\uC694."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dea0dfbb6b2e1471a8d5bdac775728b1, type: 2}
   m_sharedMaterial: {fileID: 5178579556417739482, guid: dea0dfbb6b2e1471a8d5bdac775728b1, type: 2}
@@ -3019,10 +3004,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1001405464}
-  - {fileID: 814046930}
-  - {fileID: 94260393}
   - {fileID: 1791908853}
+  - {fileID: 94260393}
+  - {fileID: 814046930}
+  - {fileID: 1001405464}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3041,7 +3026,7 @@ GameObject:
   - component: {fileID: 1975193894}
   - component: {fileID: 1975193895}
   m_Layer: 0
-  m_Name: CoolTImeStatus
+  m_Name: CooltimeStatus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3250,11 +3235,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_LocalScale.x
-      value: -5
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3380,11 +3365,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_LocalScale.x
-      value: -3
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6409051983925505681, guid: 63f084951be539849bead2e900de51b4, type: 3}
       propertyPath: m_LocalPosition.y

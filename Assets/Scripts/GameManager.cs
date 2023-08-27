@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Newtonsoft.Json;
 
 public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담당
 {
@@ -53,5 +54,28 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
             var sublist = new Dictionary<string, ForgeType>() {{"001", ForgeType.UNFORGED}, {"002", ForgeType.UNFORGED}};
             currentSkills.Add(sublist);
         }
+
+        if (PlayerPrefs.HasKey("Game"))
+        {
+            //If errors occur, delete the key.
+            //PlayerPrefs.DeleteKey("Game");
+            //return;
+
+            var loadedGameJson = PlayerPrefs.GetString("Game");
+            Instance = JsonConvert.DeserializeObject<GameManager>(loadedGameJson);
+        }
+    }
+
+    public void SaveGame()
+    {
+        var gameJson = JsonConvert.SerializeObject(Instance, Formatting.Indented,
+            new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+        PlayerPrefs.SetString("Game", gameJson);
+        PlayerPrefs.Save();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveGame();
     }
 }

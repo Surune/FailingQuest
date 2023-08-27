@@ -37,7 +37,7 @@ namespace Map
                 
                 if (MapManager.instance.map.hasSelectedNode)
                 {
-                    if (true)
+                    if (mapNode.node.point.Equals(currentPoint))
                     {
                         MoveNode(mapNode);
                     }

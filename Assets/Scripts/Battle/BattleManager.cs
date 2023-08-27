@@ -31,6 +31,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     public TextMeshProUGUI skillCooltimeText;
     public TextMeshProUGUI skillDescriptionText;
 
+    public string prevClickSkillName; // 버튼 두번 클릭시에 스킬 사용되도록
     void Awake()
     {
         if (Instance != null)

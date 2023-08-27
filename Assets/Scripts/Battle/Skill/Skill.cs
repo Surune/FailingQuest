@@ -9,9 +9,9 @@ public class Skill : MonoBehaviour
     [SerializeField] private int skillNumber = -1;
     [SerializeField] protected int coolTime = -1;
     [SerializeField] protected SkillType skillType = SkillType._UNDEFINED;
+
     [SerializeField] protected SkillType skillType2 = SkillType._UNDEFINED;
-    // public string name = "Skill Name";
-    // public string description = "Description";
+
     [SerializeField] private int damage = 0; // attack skill
     [SerializeField] private BufType buf1; // buf/debuf1
     [SerializeField] private BufType buf2; // buf/debuf2
@@ -24,7 +24,8 @@ public class Skill : MonoBehaviour
     protected ForgeType forgeType = ForgeType.UNFORGED;
 
     public Button button = null;
-
+    private bool prevClick = false;
+    private string prevClickName;
     public bool buttonDisable = false; // 동시에 스킬 발동 x
 
     private void Start()
@@ -43,6 +44,14 @@ public class Skill : MonoBehaviour
         {
             if (!buttonDisable)
             {
+                if (!prevClick || BattleManager.Instance.prevClickSkillName != name)
+                {
+                    prevClick = true;
+                    BattleManager.Instance.prevClickSkillName = name;
+                    return;
+                }
+
+                prevClick = false;
                 buttonDisable = true;
                 if (skillType2 != SkillType._UNDEFINED)
                 {

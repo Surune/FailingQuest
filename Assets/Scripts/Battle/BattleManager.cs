@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour //전투의 진행을 담당
 {
@@ -15,7 +16,10 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     private List<Character> CharacterList = new List<Character>();
     private Character current; //현재 차례
     public GameObject CurrentTag; //현재 캐릭터 위의 표시
-
+    public SpriteRenderer BottomCurrentSprite; //아래에 있는 현재 캐릭터
+    public Slider BottomCurrentHP; //아래에 있는 현재 캐릭터
+    public GameObject BottomCurrentBuf; //아래에 있는 현재 캐릭터
+    private List<GameObject> BottomCurrentTempBuf = new(); // bottom 영역 현재 캐릭터 버프영역
 
     public Transform coolTimeInitPosition; //속도 표기 기준위치
     public Transform coolTimeEndPosition; //속도 표기 기준위치
@@ -82,6 +86,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
         UpdateCurrentTag();
         UpdateCoolTimeStatus();
+        UpdateBottomCurrentCharacter();
     }
 
     public void EnrollCharacter(Character character)
@@ -204,6 +209,24 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
                                         new Vector3(
                                             xOffset * character.remainCoolTime /
                                             (maxRemainCooltime == 0 ? 100 : maxRemainCooltime), 0, 0);
+        }
+    }
+
+    public void UpdateBottomCurrentCharacter()
+    {
+        foreach (var prevBuf in BottomCurrentTempBuf)
+        {
+            Destroy(prevBuf);
+        }
+        BottomCurrentTempBuf = new();
+        BottomCurrentSprite.sprite = current.GetComponentInChildren<SpriteRenderer>().sprite;
+        BottomCurrentHP.value = current.GetComponentInChildren<Slider>().value;
+        foreach (var bufCanvas in current.BufStatus.GetComponentsInChildren<Canvas>())
+        {
+            var buf = bufCanvas.transform.parent.gameObject;
+            var instance = Instantiate(buf, BottomCurrentBuf.transform);
+            BottomCurrentTempBuf.Add(instance);
+            instance.transform.localPosition = buf.transform.localPosition;
         }
     }
 

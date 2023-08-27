@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,7 @@ public class Character : MonoBehaviour
     public int position = -1;
     public CharacterType type = CharacterType._UNDEFINED;
     [SerializeField] private int HP = 100;
-    private List<BufIntensityType> bufList = new ();
+    private List<BufIntensityType> bufList = new();
     // private List<Skill> DeBufList = new List<Skill>();
 
     public int remainCoolTime = 0;
@@ -110,10 +111,49 @@ public class Character : MonoBehaviour
         newBuf.transform.localPosition =
             BufStatusInitialLocalPosition + new Vector3(BufStatusXOffset * (totalBufLen - 1), 0, -0.3f);
         newBuf.transform.localScale = BufStatusIconScale;
+
+        // 버프 강도 표시
+        var canvasObject = new GameObject("intensity_canvas" + buf.name);
+        var canvas = canvasObject.AddComponent<Canvas>();
+        canvas.renderMode = RenderMode.WorldSpace;
+        canvas.transform.parent = newBuf.transform;
+        var rectTransform = canvasObject.GetComponent<RectTransform>();
+        rectTransform.sizeDelta = new Vector2(1, 1);
+        rectTransform.transform.localPosition = new Vector3(0, 0, 0);
+
+        var intensityText = new GameObject("intensity_buf_" + buf.name);
+        var tmpText = intensityText.AddComponent<TextMeshPro>();
+        var textRect = intensityText.GetComponent<RectTransform>();
+        intensityText.transform.parent = canvas.transform;
+        textRect.transform.localPosition = new Vector3(0.5f, -0.5f, -1);
+        textRect.sizeDelta = new Vector2(1, 1);
+        tmpText.fontSize = 3f;
+        tmpText.text = intensity.ToString();
     }
 
     public void RefreshBufDebufStatus(BufType buf, int intensity)
     {
+        //TODO Exception handling
+        BufIntensityType prevBuf = bufList.Find(_buf => _buf.bufType.name == buf.name);
+        prevBuf.intensity += intensity;
+
+        TextMeshPro[] tmpTexts = gameObject.GetComponentsInChildren<TextMeshPro>();
+        TextMeshPro tmpText = null;
+        foreach (var _tmpText in tmpTexts)
+        {
+            if (_tmpText.gameObject.name.Contains(buf.name))
+            {
+                tmpText = _tmpText;
+                break;
+            }
+        }
+
+        if (tmpText == null)
+        {
+            throw new Exception("Cannot find buf");
+        }
+
+        tmpText.text = (int.Parse(tmpText.text) + intensity).ToString();
     }
 
 

@@ -10,8 +10,6 @@ namespace Map
     {
         public static MapUserInteraction instance;
 
-        public float enterNodeDelay = 0.1f;
-
         private void Awake()
         {
             instance = this;
@@ -74,7 +72,7 @@ namespace Map
                 MapRenderer.instance.UpdateEdgeState();
             }
 
-            DOTween.Sequence().AppendInterval(enterNodeDelay).OnComplete(() => EnterNode(mapNode));
+            EnterNode(mapNode);
         }
 
         private void EnterNode(MapNode mapNode)

@@ -171,9 +171,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coolTime: 20
   skillType: 1
+  skillType2: 0
   name: "\uC774\uB3D9"
   description: move skill description
   damage: 0
+  buf1: {fileID: 0}
+  buf2: {fileID: 0}
+  buf1Intensity: 0
+  buf2Intensity: 0
+  targetType1: 1
+  targetType2: 0
   forgeAvailableType: 
   button: {fileID: 8613823362005550204}
   buttonDisable: 0

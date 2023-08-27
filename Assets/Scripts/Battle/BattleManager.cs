@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour //전투의 진행을 담당
 {
-    private int time;
     private Character target = null; // 스킬 타겟
     private LocationHelper location = null; // 이동 스킬 타겟 위치
 
@@ -35,14 +34,9 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
     void Start()
     {
-        Reset();
         FindMinCoolTime();
     }
 
-    public void Reset()
-    {
-        time = 0;
-    }
 
     public void FindMinCoolTime()
     {
@@ -88,6 +82,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
         {
             throw new Exception("Character Type Undefined");
         }
+
         CharacterList.Add(character);
     }
 
@@ -186,7 +181,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
     public List<Character> GetAllies()
     {
-        List<Character> allies=new ();
+        List<Character> allies = new();
         foreach (var character in CharacterList)
         {
             if (character.type != CharacterType.enemy)
@@ -200,7 +195,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
     public List<Character> GetEnemies()
     {
-        List<Character> allies=new ();
+        List<Character> allies = new();
         foreach (var character in CharacterList)
         {
             if (character.type == CharacterType.enemy)
@@ -211,12 +206,13 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
         return allies;
     }
+
     public List<Character> GetAllCharacter()
     {
         return CharacterList;
     }
-    
-    
+
+
     /*
      * Skill 사용 시 캐릭터 타겟팅 도중에는 location collider 비활성화
      */

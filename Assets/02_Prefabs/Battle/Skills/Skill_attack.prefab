@@ -51,9 +51,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coolTime: 30
   skillType: 2
+  skillType2: 0
   name: "\uACF5\uACA9"
   description: attack skill description
   damage: 1
+  buf1: {fileID: 0}
+  buf2: {fileID: 0}
+  buf1Intensity: 0
+  buf2Intensity: 0
+  targetType1: 4
+  targetType2: 0
   forgeAvailableType: 
   button: {fileID: 3785476522428301411}
   buttonDisable: 0

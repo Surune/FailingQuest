@@ -116,7 +116,7 @@ public class Character : MonoBehaviour
         var canvasObject = new GameObject("intensity_canvas" + buf.name);
         var canvas = canvasObject.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.WorldSpace;
-        canvas.transform.parent = newBuf.transform;
+        canvas.transform.SetParent(newBuf.transform);
         var rectTransform = canvasObject.GetComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(1, 1);
         rectTransform.transform.localPosition = new Vector3(0, 0, 0);
@@ -124,7 +124,7 @@ public class Character : MonoBehaviour
         var intensityText = new GameObject("intensity_buf_" + buf.name);
         var tmpText = intensityText.AddComponent<TextMeshPro>();
         var textRect = intensityText.GetComponent<RectTransform>();
-        intensityText.transform.parent = canvas.transform;
+        intensityText.transform.SetParent(canvas.transform);
         textRect.transform.localPosition = new Vector3(0.5f, -0.5f, -1);
         textRect.sizeDelta = new Vector2(1, 1);
         tmpText.fontSize = 3f;

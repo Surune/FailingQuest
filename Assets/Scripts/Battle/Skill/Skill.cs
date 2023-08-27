@@ -43,6 +43,7 @@ public class Skill : MonoBehaviour
         {
             if (!buttonDisable)
             {
+                buttonDisable = true;
                 if (skillType2 != SkillType._UNDEFINED)
                 {
                     StartCoroutine(_UseMulti());
@@ -51,8 +52,6 @@ public class Skill : MonoBehaviour
                 {
                     StartCoroutine(_Use());
                 }
-
-                buttonDisable = true;
             }
         });
     }
@@ -75,20 +74,59 @@ public class Skill : MonoBehaviour
             yield break;
         }
 
-        Debug.Log("getTarget");
-        BattleManager.Instance.resetTarget();
-        BattleManager.Instance.HandleLocationCollider(false);
 
-        Character target = BattleManager.Instance.getTarget();
-        while (target == null)
+        switch (targetType1)
         {
-            yield return new WaitForSeconds(0.1f);
-            target = BattleManager.Instance.getTarget();
+            case TargetType._UNDEFINED:
+                throw new Exception("target type undefined");
+            case TargetType.ally1:
+            case TargetType.enemy1:
+                Debug.Log("getTarget");
+                BattleManager.Instance.resetTarget();
+                BattleManager.Instance.HandleLocationCollider(false);
+
+                Character target = BattleManager.Instance.getTarget();
+                while (target == null)
+                {
+                    yield return new WaitForSeconds(0.1f);
+                    target = BattleManager.Instance.getTarget();
+                }
+
+                BattleManager.Instance.HandleLocationCollider(true);
+
+                Use(target, new Vector3(0, 0, 0), 0);
+                break;
+            case TargetType.all:
+                var all = BattleManager.Instance.GetAllCharacter();
+                foreach (var character in all)
+                {
+                    Use(character, new Vector3(0, 0, 0), 0, false);
+                }
+
+                BattleManager.Instance.ApplyCoolTime(coolTime);
+                break;
+            case TargetType.allyAll:
+                var allies = BattleManager.Instance.GetAllies();
+                foreach (var character in allies)
+                {
+                    Use(character, new Vector3(0, 0, 0), 0, false);
+                }
+
+                BattleManager.Instance.ApplyCoolTime(coolTime);
+                break;
+            case TargetType.enemyAll:
+                var enemies = BattleManager.Instance.GetEnemies();
+                foreach (var character in enemies)
+                {
+                    Use(character, new Vector3(0, 0, 0), 0, false);
+                }
+
+                BattleManager.Instance.ApplyCoolTime(coolTime);
+                break;
+            case TargetType.self:
+                Use(BattleManager.Instance.getCurrent(), new Vector3(0, 0, 0), 0);
+                break;
         }
-
-        BattleManager.Instance.HandleLocationCollider(true);
-
-        Use(target, new Vector3(0, 0, 0), 0);
     }
 
     public IEnumerator _UseMulti()
@@ -194,6 +232,7 @@ public class Skill : MonoBehaviour
 
         if (applyCoolTime)
         {
+            Debug.Log("buttonDisable=false, applycoolTime:" + coolTime);
             buttonDisable = false;
             BattleManager.Instance.ApplyCoolTime(coolTime);
         }

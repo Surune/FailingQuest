@@ -15,7 +15,7 @@ public class CharacterSelect : MonoBehaviour
     private void Start() 
     {
         selectedIndices = new int[max_selection];
-        for(int i = 0 ; i<max_selection; i++){
+        for(int i = 0 ; i < max_selection; i++){
             selectedIndices[i] = -1;
         }
         startButton.interactable = false;
@@ -25,9 +25,9 @@ public class CharacterSelect : MonoBehaviour
     {
         if (current_selection < max_selection)
         {
-            for(int i = 0 ; i<max_selection; i++)
+            for(int i = 0 ; i < max_selection; i++)
             {
-                if(selectedIndices[i]==-1)
+                if(selectedIndices[i] == -1)
                 {
                     selectedIndices[i] = charNum;
                     Selects[i].gameObject.GetComponent<Image>().sprite = Characters[charNum-1].gameObject.GetComponent<Image>().sprite;
@@ -54,5 +54,13 @@ public class CharacterSelect : MonoBehaviour
             startButton.interactable = false;
         }
         Debug.Log(selectedIndices[0].ToString()+""+selectedIndices[1]+""+selectedIndices[2]);
+    }
+
+    public void SetTeam()
+    {
+        foreach(int index in selectedIndices)
+        {
+            GameManager.Instance.characters.Add(index);
+        }
     }
 }

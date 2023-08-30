@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
 
     public int money;
 
+    public List<int> characters;
+
     public int mytreasureCount;
 
     /*
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
             mytreasureIndex = new(16); // mytreasureIndex = new int[16];
         }
         */
+        characters = new List<int>();
 
         if (myTreasure.Length == 0)
         {

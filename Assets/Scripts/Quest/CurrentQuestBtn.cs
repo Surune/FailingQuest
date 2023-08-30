@@ -34,10 +34,10 @@ public class CurrentQuestBtn : MonoBehaviour
         //신규 퀘스트에서 버튼 누르면 해당 내용 매니지, 현재퀘스트에 반영
         //해당 신규퀘스트 부분은 비우기
 
-        questIdx = GameManager.Instance.currentQuest[i, 0];
-        questLvl = GameManager.Instance.currentQuest[i, 1];
+        questIdx = GameManager.Instance.userData.currentQuest[i][0];
+        questLvl = GameManager.Instance.userData.currentQuest[i][1];
         if(questIdx>=0)
-            questText.text = QuestManager.GetQuestText(questIdx, questLvl) + "(" + GameManager.Instance.questManage[i] + ")";
+            questText.text = QuestManager.GetQuestText(questIdx, questLvl) + "(" + GameManager.Instance.userData.questManage[i] + ")";
         
         //기준달성 ->보상+빈칸처리 
         //if (GameManager.Instance.questManage[i] >= questManager.questList[GameManager.Instance.currentQuest[i, 0], GameManager.Instance.currentQuest[i, 1]])
@@ -45,8 +45,8 @@ public class CurrentQuestBtn : MonoBehaviour
         {
             OnEnable();
             //해당 퀘스트 부분 퀘스트 매니지, 현재 퀘스트에서 비우기
-            GameManager.Instance.questManage[i] = 0;
-            QuestManager.questList[GameManager.Instance.currentQuest[i, 0], 3] = 0;
+            GameManager.Instance.userData.questManage[i] = 0;
+            QuestManager.questList[GameManager.Instance.userData.currentQuest[i][0], 3] = 0;
             index = i;
         }
     }
@@ -64,8 +64,8 @@ public class CurrentQuestBtn : MonoBehaviour
     {
         //award + blank
 
-        GameManager.Instance.currentQuest[i, 0] = -1;
-        GameManager.Instance.currentQuest[i, 1] = -1;
+        GameManager.Instance.userData.currentQuest[i][0] = -1;
+        GameManager.Instance.userData.currentQuest[i][1] = -1;
         questText.text = "new quest required";
         button.interactable = false;
     }

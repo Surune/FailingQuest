@@ -23,15 +23,15 @@ public class Treasure : MonoBehaviour
         treasures = FindObjectOfType<TreasureList>().treasurePrefab;
         chestAnimator.speed = 0f;
        
-        treasureCount = GameManager.Instance.mytreasureCount;
+        treasureCount = GameManager.Instance.userData.myTreasureCount;
 
-        while(GameManager.Instance.mytreasureCount<5)
+        while(GameManager.Instance.userData.myTreasureCount < 5)
         {
             prefabIndex = Random.Range(0, 4);
             int flag = 0;
             for (int i = 0; i < treasureCount;i++)
             {
-                if (GameManager.Instance.mytreasureIndex[i] == prefabIndex)
+                if (GameManager.Instance.userData.myTreasureIndex[i] == prefabIndex)
                 {
                     flag = 1;
                     //break;
@@ -41,7 +41,7 @@ public class Treasure : MonoBehaviour
                 break;
         }
         
-        GameManager.Instance.mytreasureIndex[treasureCount] = prefabIndex;
+        GameManager.Instance.userData.myTreasureIndex[treasureCount] = prefabIndex;
     }
 
     void Update()
@@ -55,19 +55,19 @@ public class Treasure : MonoBehaviour
 
     public void ShowTreasure()
     {
-        GameManager.Instance.myTreasure[treasureCount] = Instantiate(treasures[prefabIndex], new Vector2(0, 0), transform.rotation, GameObject.Find("Canvas(1)").transform);
+        GameManager.Instance.userData.myTreasure[treasureCount] = Instantiate(treasures[prefabIndex], new Vector2(0, 0), transform.rotation, GameObject.Find("Canvas(1)").transform);
         
-        GameManager.Instance.myTreasure[treasureCount].transform.localPosition = new Vector2(340, -100);
+        GameManager.Instance.userData.myTreasure[treasureCount].transform.localPosition = new Vector2(340, -100);
 
 
-        GameManager.Instance.myTreasure[treasureCount].transform.DOLocalMove(GameManager.treasurePosition, 2f);
+        GameManager.Instance.userData.myTreasure[treasureCount].transform.DOLocalMove(GameManager.treasurePosition, 2f);
      
-        GameManager.Instance.myTreasure[treasureCount].transform.localScale = new Vector2(100, 100);
+        GameManager.Instance.userData.myTreasure[treasureCount].transform.localScale = new Vector2(100, 100);
         //DontDestroyOnLoad(GameManager.Instance.myTreasure[GameManager.treasureCount]);
 
         GameManager.treasurePosition.x += 60;
         treasureCount++;
-        GameManager.Instance.mytreasureCount = treasureCount; 
+        GameManager.Instance.userData.myTreasureCount = treasureCount; 
     }
 
     public void timeDelay()

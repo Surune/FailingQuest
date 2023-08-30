@@ -27,7 +27,7 @@ public class NewQuestBtn : MonoBehaviour
 
     void Update()
     {
-        questIdx = GameManager.Instance.newQuest[i, 0];
+        questIdx = GameManager.Instance.userData.newQuest[i][0];
         questLvl = i;
         questText.text = QuestManager.GetQuestText(questIdx, questLvl);
         
@@ -37,10 +37,10 @@ public class NewQuestBtn : MonoBehaviour
         //currenetQuest에 빈칸 발생시
         for (int idx = 0; idx < 3; idx++)
         {
-            if (GameManager.Instance.currentQuest[idx, 0] == -1)
+            if (GameManager.Instance.userData.currentQuest[idx][0] == -1)
             {
                 changeableIdx = idx;
-                if (GameManager.Instance.newQuest[i, 0] != -1)
+                if (GameManager.Instance.userData.newQuest[i][0] != -1)
                     OnEnable();
             }
         }
@@ -58,10 +58,10 @@ public class NewQuestBtn : MonoBehaviour
     {
         //award + blank
 
-        GameManager.Instance.currentQuest[changeableIdx, 0] = GameManager.Instance.newQuest[i, 0];
-        GameManager.Instance.currentQuest[changeableIdx, 1] = GameManager.Instance.newQuest[i, 1];
-        GameManager.Instance.newQuest[i, 0] = -1;
-        GameManager.Instance.newQuest[i, 1] = -1;
+        GameManager.Instance.userData.currentQuest[changeableIdx][0] = GameManager.Instance.userData.newQuest[i][0];
+        GameManager.Instance.userData.currentQuest[changeableIdx][1] = GameManager.Instance.userData.newQuest[i][1];
+        GameManager.Instance.userData.newQuest[i][0] = -1;
+        GameManager.Instance.userData.newQuest[i][1] = -1;
         questText.text = "empty new quest";
         for (int idx = 0; idx < 3; idx++)
         {

@@ -14,9 +14,9 @@ public class QuestInterface : MonoBehaviour
     void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
-        questText.text = QuestManager.GetQuestText(GameManager.Instance.currentQuest[0, 0], GameManager.Instance.currentQuest[0, 1]) + "\n"
-                        + QuestManager.GetQuestText(GameManager.Instance.currentQuest[1, 0], GameManager.Instance.currentQuest[1, 1]) + "\n"
-                        + QuestManager.GetQuestText(GameManager.Instance.currentQuest[2, 0], GameManager.Instance.currentQuest[2, 1]);
+        questText.text = QuestManager.GetQuestText(GameManager.Instance.userData.currentQuest[0][0], GameManager.Instance.userData.currentQuest[0][1]) + "\n"
+                        + QuestManager.GetQuestText(GameManager.Instance.userData.currentQuest[1][0], GameManager.Instance.userData.currentQuest[1][1]) + "\n"
+                        + QuestManager.GetQuestText(GameManager.Instance.userData.currentQuest[2][0], GameManager.Instance.userData.currentQuest[2][1]);
         init_x = transform.position.x;
         showing = false;
     }

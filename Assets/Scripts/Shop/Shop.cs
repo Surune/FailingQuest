@@ -23,7 +23,7 @@ public class Shop : MonoBehaviour
     {
         if (flag == false)
         {
-            money = GameManager.Instance.money;
+            money = GameManager.Instance.userData.money;
             if (money >= price)
             {
                 GetComponentInParent<Button>().interactable = true;
@@ -53,7 +53,7 @@ public class Shop : MonoBehaviour
 
     public void Onclick()
     {
-        GameManager.Instance.Money -= price;
+        GameManager.Instance.userData.money -= price;
         GetComponentInParent<Button>().interactable = false;
         flag = true;
     }

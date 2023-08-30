@@ -96,6 +96,11 @@ public class ForgeManager : MonoBehaviour
                 btn.forgeIcon.sprite = forgeIcons[3];
                 btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.DEBUFF));
                 break;
+            case "회복량":
+                btn.forgeText.text = "회복량 증가";
+                btn.forgeIcon.sprite = forgeIcons[4];
+                btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.HEAL));
+                break;
             default:
                 break;
         }

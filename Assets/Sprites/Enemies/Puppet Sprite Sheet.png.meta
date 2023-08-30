@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7be4895853a544a30a121e7382aa326d
+guid: 732c345dbdf1e44e2bf06d165a96f3ea
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_0
+      name: Puppet Sprite Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 160
-        width: 32
-        height: 32
+        x: 34
+        y: 317
+        width: 45
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68299e5ef8a42429687ad16e2be9bba4
-      internalID: -588546307
+      spriteID: a9e2453822a7540a0890616561d59441
+      internalID: -1414767898
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_1
+      name: Puppet Sprite Sheet_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 160
-        width: 32
-        height: 32
+        x: 134
+        y: 319
+        width: 45
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf0083766181d412cb892e8527e51d70
-      internalID: -1701608985
+      spriteID: 8f156b7f2c91549e9926b411fd265ab1
+      internalID: 788703440
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_2
+      name: Puppet Sprite Sheet_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 160
-        width: 32
-        height: 32
+        x: 234
+        y: 319
+        width: 45
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c3147b33408e44b48a4198cfb8f09cc
-      internalID: 1408523830
+      spriteID: d7ccd0269a99b49a2b2bf299d445f144
+      internalID: -1389138345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_3
+      name: Puppet Sprite Sheet_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 160
-        width: 32
-        height: 32
+        x: 334
+        y: 322
+        width: 45
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58b98b784520d45e58ad348da54f1b78
-      internalID: 80171102
+      spriteID: 4dcca7cf6f5094f86a7ad52cecd492bf
+      internalID: -1138020110
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_4
+      name: Puppet Sprite Sheet_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 160
-        width: 32
-        height: 32
+        x: 34
+        y: 227
+        width: 45
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9810e4d0d6584fa9b821fa7d79361fa
-      internalID: 1424689612
+      spriteID: e3e6b9648415344718f20a8f6bd2f39c
+      internalID: 105383965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_5
+      name: Puppet Sprite Sheet_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
-        width: 32
-        height: 32
+        x: 134
+        y: 227
+        width: 48
+        height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,20 +255,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4482f91b32eaf4f8a890024bd903fea9
-      internalID: -78407952
+      spriteID: e7a7f4565e2234309a031d145dbe8e25
+      internalID: 1849082339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_6
+      name: Puppet Sprite Sheet_6
       rect:
         serializedVersion: 2
-        x: 32
-        y: 128
-        width: 32
-        height: 32
+        x: 234
+        y: 227
+        width: 30
+        height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,20 +276,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d6df6dbb18824ce4a04d775ff52c323
-      internalID: 897936849
+      spriteID: 10f545e24015946d4bdc5069678315f6
+      internalID: -976643269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_7
+      name: Puppet Sprite Sheet_7
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
-        width: 32
-        height: 32
+        x: 334
+        y: 227
+        width: 30
+        height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,20 +297,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b8ac668d82cd4c16aeff640b41ba576
-      internalID: -646483619
+      spriteID: 77e6b11807f7b4b30aa97730dbf061e3
+      internalID: 1572413742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_8
+      name: Puppet Sprite Sheet_8
       rect:
         serializedVersion: 2
-        x: 96
-        y: 128
-        width: 32
-        height: 32
+        x: 427
+        y: 227
+        width: 31
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,20 +318,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6390e0ca61b64ff29a5e181969d2b00
-      internalID: -1394608779
+      spriteID: 2bb00682fa0db4e04b228cd85e488c11
+      internalID: -724540620
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_9
+      name: Puppet Sprite Sheet_9
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
-        width: 32
-        height: 32
+        x: 527
+        y: 227
+        width: 33
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,20 +339,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abbeac04221854451a12155ff1581951
-      internalID: 581045346
+      spriteID: 0cd6aa9149b494c518870a0265583c73
+      internalID: -275906089
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_10
+      name: Puppet Sprite Sheet_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
-        width: 32
-        height: 32
+        x: 621
+        y: 228
+        width: 52
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,20 +360,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6ec9505e812240b3a0ec1056bc9ae67
-      internalID: -1432044204
+      spriteID: afb8db56a39384a478339138dae00c96
+      internalID: 1460713614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_11
+      name: Puppet Sprite Sheet_11
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
+        x: 709
+        y: 228
+        width: 77
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,20 +381,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1234614a9bdb462eaf442fc5e0f1d31
-      internalID: -334287994
+      spriteID: f231db2af32c448be8ce4188986df5fa
+      internalID: -1389558861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_12
+      name: Puppet Sprite Sheet_12
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
+        x: 821
+        y: 228
+        width: 52
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -402,20 +402,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e18abf574c26e48a3a4a8b8518b673a6
-      internalID: -1071066204
+      spriteID: da97241e1c36e42948aa812241371c22
+      internalID: -1854146968
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_13
+      name: Puppet Sprite Sheet_13
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
-        width: 32
-        height: 32
+        x: 931
+        y: 228
+        width: 33
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -423,20 +423,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67e70562e7c314638ab1933b3787ad66
-      internalID: 992898939
+      spriteID: 7ce7d0ab6c10b4b1992fb63e8b29117d
+      internalID: -581999720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_14
+      name: Puppet Sprite Sheet_14
       rect:
         serializedVersion: 2
-        x: 128
-        y: 96
-        width: 32
-        height: 32
+        x: 1031
+        y: 227
+        width: 31
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -444,20 +444,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43ac3367d37a14261b686a35783a326d
-      internalID: 841519587
+      spriteID: 04bde3690559b4f849492214bdf5739d
+      internalID: -1829139537
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_15
+      name: Puppet Sprite Sheet_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
+        x: 1138
+        y: 227
+        width: 48
+        height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -465,20 +465,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d067d579d0e6945379faea8a37b9da44
-      internalID: 788412564
+      spriteID: b8b9ce510d2a54f88bc26348026a9353
+      internalID: -1326625457
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_16
+      name: Puppet Sprite Sheet_16
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
+        x: 34
+        y: 135
+        width: 45
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -486,20 +486,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a402c8a10fd64842a7216cd0be80cd9
-      internalID: 1048511840
+      spriteID: 50d5e1d71d61a448485892cf7c347cc6
+      internalID: 2104892035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_17
+      name: Puppet Sprite Sheet_17
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
+        x: 130
+        y: 137
+        width: 31
+        height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -507,20 +507,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15a2ac08b84ad4994b8b6fa697e43fce
-      internalID: 22119131
+      spriteID: ec5f9fc9147354cf9af4f622489a35df
+      internalID: -838272770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_18
+      name: Puppet Sprite Sheet_18
       rect:
         serializedVersion: 2
-        x: 96
-        y: 64
-        width: 32
-        height: 32
+        x: 230
+        y: 134
+        width: 66
+        height: 71
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -528,20 +528,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 936eeb31eba6e4fc09d91a7a34a98c67
-      internalID: 1311759104
+      spriteID: abc2770c231fe4db8a4a5c6eb8f14133
+      internalID: 426561603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_19
+      name: Puppet Sprite Sheet_19
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
-        width: 32
-        height: 32
+        x: 334
+        y: 135
+        width: 59
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -549,20 +549,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6be1d62c8282478ca65ab10e380f569
-      internalID: 893997132
+      spriteID: a20ced3051e504156aeea29abe6fe55c
+      internalID: -933491870
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_20
+      name: Puppet Sprite Sheet_20
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
+        x: 434
+        y: 135
+        width: 53
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -570,20 +570,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76ff70fdc1cd6472bb72aae37154d11f
-      internalID: -1909197993
+      spriteID: e2bbfc091d3504f6890949c7614a498d
+      internalID: 591584369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_21
+      name: Puppet Sprite Sheet_21
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
+        x: 34
+        y: 28
+        width: 53
+        height: 63
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -591,20 +591,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7ffa74cd9102401eb53cda6c0f3bce3
-      internalID: 1646371662
+      spriteID: 339b4c39ebc0f44c7b9d5caa9f378551
+      internalID: 1967236547
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_22
+      name: Puppet Sprite Sheet_22
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
+        x: 134
+        y: 28
+        width: 38
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -612,20 +612,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a00cfc1112f54780b02aef07f7f2975
-      internalID: -1988557091
+      spriteID: f29e6c08ac7f04c3e833130695a2c17d
+      internalID: 1161083270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_23
+      name: Puppet Sprite Sheet_23
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
+        x: 161
+        y: 73
+        width: 26
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -633,20 +633,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 749e66652592340358591cf42a7fb9ff
-      internalID: 1104275794
+      spriteID: 651dcd1c53e054be996fe4b8621296c7
+      internalID: 501072088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_24
+      name: Puppet Sprite Sheet_24
       rect:
         serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
+        x: 172
+        y: 70
+        width: 8
+        height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -654,20 +654,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bf5df95bf1ac4daeb31dbc4c76955d1
-      internalID: 1740651521
+      spriteID: ab5844d8d2b23473ca3f583b57d5797f
+      internalID: -837311482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_25
+      name: Puppet Sprite Sheet_25
       rect:
         serializedVersion: 2
-        x: 160
-        y: 32
-        width: 32
-        height: 32
+        x: 234
+        y: 28
+        width: 53
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -675,20 +675,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84d6638204ea944d680937ea24e20c45
-      internalID: 488302516
+      spriteID: cec9e45e997ee47d99d7926ad3a64220
+      internalID: -497720347
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_26
+      name: Puppet Sprite Sheet_26
       rect:
         serializedVersion: 2
-        x: 192
-        y: 32
+        x: 334
+        y: 28
         width: 32
-        height: 32
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -696,20 +696,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a420935b2e984641a0dc537e460750b
-      internalID: -61257854
+      spriteID: fc4e8fcd9d83942b39defa1e905dc6b9
+      internalID: 1219515140
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_27
+      name: Puppet Sprite Sheet_27
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 435
+        y: 37
+        width: 20
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -717,20 +717,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5578a95ffe05433eb5c877c7b0d39fb
-      internalID: 97257852
+      spriteID: 6766ecbddbcca4615abe88be1170b84f
+      internalID: 1633819979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_28
+      name: Puppet Sprite Sheet_28
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
+        x: 536
+        y: 37
+        width: 22
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -738,20 +738,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 405c28d826a58441f9f3ce096153b021
-      internalID: -1620603557
+      spriteID: 161677a42b8314943892637a886492b7
+      internalID: -2064744552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_29
+      name: Puppet Sprite Sheet_29
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
+        x: 636
+        y: 44
+        width: 26
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -759,20 +759,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf6889d03cdf8437fb944edd402414e4
-      internalID: 909640019
+      spriteID: 13249aa16ff75419ba4cf3017c4f2bde
+      internalID: 1345375635
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_30
+      name: Puppet Sprite Sheet_30
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
+        x: 736
+        y: 56
+        width: 26
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -780,20 +780,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92d36a409398349d9b30d8b2202b24f6
-      internalID: -1793529405
+      spriteID: a75e1895d9dfb4792b3caa740b753fa6
+      internalID: -844692819
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_31
+      name: Puppet Sprite Sheet_31
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
+        x: 831
+        y: 55
+        width: 17
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -801,20 +801,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6306eea81dc2442858f8acc249799278
-      internalID: 1228531450
+      spriteID: a8eb8131198cc4ccd8c2ca58244a606e
+      internalID: -1165178768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf Elemental S Sprite Sheet_32
+      name: Puppet Sprite Sheet_32
       rect:
         serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
+        x: 931
+        y: 61
+        width: 7
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -822,8 +822,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82a4580e42fdb460aac1c1efe6e00b89
-      internalID: 1050606064
+      spriteID: 4c12305b907844224bda9b735568f000
+      internalID: 259782620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Puppet Sprite Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 63
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 111a087fa51164d0f91facba4ea7f011
+      internalID: 1204049040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Puppet Sprite Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 59
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 053f73c4ea46449469a9de23de51ae85
+      internalID: 2130816157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Puppet Sprite Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 66
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80e541eccd8824b63afdd02c04a7957b
+      internalID: -164580069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Puppet Sprite Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 63
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f1d9307f78a04ee2a3b1eb809c887c0
+      internalID: 323063688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Puppet Sprite Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 59
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e5f04d80c1a54787bea1a8b51f9d6ee
+      internalID: -63745474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Puppet Sprite Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 61
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 530b5cfb2cc4049c783a18f8f3929606
+      internalID: -93189073
       vertices: []
       indices: 
       edges: []
@@ -839,39 +965,45 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Leaf Elemental S Sprite Sheet_0: -588546307
-      Leaf Elemental S Sprite Sheet_1: -1701608985
-      Leaf Elemental S Sprite Sheet_10: -1432044204
-      Leaf Elemental S Sprite Sheet_11: -334287994
-      Leaf Elemental S Sprite Sheet_12: -1071066204
-      Leaf Elemental S Sprite Sheet_13: 992898939
-      Leaf Elemental S Sprite Sheet_14: 841519587
-      Leaf Elemental S Sprite Sheet_15: 788412564
-      Leaf Elemental S Sprite Sheet_16: 1048511840
-      Leaf Elemental S Sprite Sheet_17: 22119131
-      Leaf Elemental S Sprite Sheet_18: 1311759104
-      Leaf Elemental S Sprite Sheet_19: 893997132
-      Leaf Elemental S Sprite Sheet_2: 1408523830
-      Leaf Elemental S Sprite Sheet_20: -1909197993
-      Leaf Elemental S Sprite Sheet_21: 1646371662
-      Leaf Elemental S Sprite Sheet_22: -1988557091
-      Leaf Elemental S Sprite Sheet_23: 1104275794
-      Leaf Elemental S Sprite Sheet_24: 1740651521
-      Leaf Elemental S Sprite Sheet_25: 488302516
-      Leaf Elemental S Sprite Sheet_26: -61257854
-      Leaf Elemental S Sprite Sheet_27: 97257852
-      Leaf Elemental S Sprite Sheet_28: -1620603557
-      Leaf Elemental S Sprite Sheet_29: 909640019
-      Leaf Elemental S Sprite Sheet_3: 80171102
-      Leaf Elemental S Sprite Sheet_30: -1793529405
-      Leaf Elemental S Sprite Sheet_31: 1228531450
-      Leaf Elemental S Sprite Sheet_32: 1050606064
-      Leaf Elemental S Sprite Sheet_4: 1424689612
-      Leaf Elemental S Sprite Sheet_5: -78407952
-      Leaf Elemental S Sprite Sheet_6: 897936849
-      Leaf Elemental S Sprite Sheet_7: -646483619
-      Leaf Elemental S Sprite Sheet_8: -1394608779
-      Leaf Elemental S Sprite Sheet_9: 581045346
+      Puppet Sprite Sheet_0: -1414767898
+      Puppet Sprite Sheet_1: 788703440
+      Puppet Sprite Sheet_10: 1460713614
+      Puppet Sprite Sheet_11: -1389558861
+      Puppet Sprite Sheet_12: -1854146968
+      Puppet Sprite Sheet_13: -581999720
+      Puppet Sprite Sheet_14: -1829139537
+      Puppet Sprite Sheet_15: -1326625457
+      Puppet Sprite Sheet_16: 2104892035
+      Puppet Sprite Sheet_17: -838272770
+      Puppet Sprite Sheet_18: 426561603
+      Puppet Sprite Sheet_19: -933491870
+      Puppet Sprite Sheet_2: -1389138345
+      Puppet Sprite Sheet_20: 591584369
+      Puppet Sprite Sheet_21: 1967236547
+      Puppet Sprite Sheet_22: 1161083270
+      Puppet Sprite Sheet_23: 501072088
+      Puppet Sprite Sheet_24: -837311482
+      Puppet Sprite Sheet_25: -497720347
+      Puppet Sprite Sheet_26: 1219515140
+      Puppet Sprite Sheet_27: 1633819979
+      Puppet Sprite Sheet_28: -2064744552
+      Puppet Sprite Sheet_29: 1345375635
+      Puppet Sprite Sheet_3: -1138020110
+      Puppet Sprite Sheet_30: -844692819
+      Puppet Sprite Sheet_31: -1165178768
+      Puppet Sprite Sheet_32: 259782620
+      Puppet Sprite Sheet_33: 1204049040
+      Puppet Sprite Sheet_34: 2130816157
+      Puppet Sprite Sheet_35: -164580069
+      Puppet Sprite Sheet_36: 323063688
+      Puppet Sprite Sheet_37: -63745474
+      Puppet Sprite Sheet_38: -93189073
+      Puppet Sprite Sheet_4: 105383965
+      Puppet Sprite Sheet_5: 1849082339
+      Puppet Sprite Sheet_6: -976643269
+      Puppet Sprite Sheet_7: 1572413742
+      Puppet Sprite Sheet_8: -724540620
+      Puppet Sprite Sheet_9: -275906089
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -16,6 +16,6 @@ public class MoneyText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moneyText.text = "보유중인 코인 : " + GameManager.Instance.money + "코인";
+        moneyText.text = "보유중인 코인 : " + GameManager.Instance.userData.money + "코인";
     }
 }

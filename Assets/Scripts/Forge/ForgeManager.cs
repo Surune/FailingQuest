@@ -13,7 +13,8 @@ public class ForgeManager : MonoBehaviour
     void Start()
     {
         List<string> concatenatedList = new List<string>();
-        foreach (var skillSet in GameManager.Instance.currentSkills){
+        foreach (var skillSet in GameManager.Instance.userData.currentSkills)
+        {
             foreach (KeyValuePair<string, ForgeType> kvp in skillSet)
             {
                 if (kvp.Value == ForgeType.UNFORGED && !concatenatedList.Contains(kvp.Key))
@@ -95,6 +96,11 @@ public class ForgeManager : MonoBehaviour
                 btn.forgeIcon.sprite = forgeIcons[3];
                 btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.DEBUFF));
                 break;
+            case "회복량":
+                btn.forgeText.text = "회복량 증가";
+                btn.forgeIcon.sprite = forgeIcons[4];
+                btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.HEAL));
+                break;
             default:
                 break;
         }
@@ -104,13 +110,13 @@ public class ForgeManager : MonoBehaviour
     {
         if(skillNum.StartsWith("0")) 
         {
-            foreach (var skillset in GameManager.Instance.currentSkills)
+            foreach (var skillset in GameManager.Instance.userData.currentSkills)
             {
                 skillset[skillNum] = type;
             }
         }
         else {
-            GameManager.Instance.currentSkills[int.Parse(skillNum)-1][skillNum] = type;
+            GameManager.Instance.userData.currentSkills[int.Parse(skillNum)-1][skillNum] = type;
         }
     }
 }

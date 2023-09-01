@@ -60,7 +60,7 @@ public class CharacterSelect : MonoBehaviour
     {
         foreach(int index in selectedIndices)
         {
-            GameManager.Instance.characters.Add(index);
+            GameManager.Instance.userData.characters.Add(index);
         }
     }
 }

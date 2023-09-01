@@ -6,19 +6,17 @@ using DG.Tweening;
 
 public class QuestInterface : MonoBehaviour
 {
-    private QuestManager questManager;
     public TextMeshProUGUI questText;
     private bool showing;
     private float init_x;
     // Start is called before the first frame update
     void Start()
     {
-        questManager = FindObjectOfType<QuestManager>();
-        questText.text = QuestManager.GetQuestText(GameManager.Instance.currentQuest[0, 0], GameManager.Instance.currentQuest[0, 1]) + "\n"
-                        + QuestManager.GetQuestText(GameManager.Instance.currentQuest[1, 0], GameManager.Instance.currentQuest[1, 1]) + "\n"
-                        + QuestManager.GetQuestText(GameManager.Instance.currentQuest[2, 0], GameManager.Instance.currentQuest[2, 1]);
         init_x = transform.position.x;
         showing = false;
+        questText.text = QuestManager.GetQuestText(GameManager.Instance.userData.currentQuest[0][0], GameManager.Instance.userData.currentQuest[0][1]) + "\n"
+                        + QuestManager.GetQuestText(GameManager.Instance.userData.currentQuest[1][0], GameManager.Instance.userData.currentQuest[1][1]) + "\n"
+                        + QuestManager.GetQuestText(GameManager.Instance.userData.currentQuest[2][0], GameManager.Instance.userData.currentQuest[2][1]);
     }
 
     public void UIClicked()

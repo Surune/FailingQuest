@@ -57,6 +57,7 @@ namespace Map
             
             var mapJson = JsonConvert.SerializeObject(map, Formatting.Indented,
                 new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+
             PlayerPrefs.SetString("Map", mapJson);
             PlayerPrefs.Save();
         }

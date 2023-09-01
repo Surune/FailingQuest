@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c6a63f496e554cacb9e0bc7cd14f7cb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a898ef5701109475d8d1ed1fd2e3ce9d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 6390263898222452579}
   - component: {fileID: -8576151204447199683}
   m_Layer: 5
-  m_Name: Skill_213
+  m_Name: Skill_301
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,16 +181,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1192d87afdf21d8449fed7cb1f4bacf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillNumber: 213
-  coolTime: 100
-  skillType: 6
-  skillType2: 3
-  damage: 1
+  skillNumber: 301
+  coolTime: 40
+  skillType: 4
+  skillType2: 0
+  damage: 0
   buf1: {fileID: 0}
-  buf2: {fileID: 8263524844148230812, guid: 8366de3eb04703043ab8d889771f82a4, type: 3}
-  buf1Intensity: 0
-  buf2Intensity: 1
-  targetType1: 3
-  targetType2: 3
+  buf2: {fileID: 0}
+  buf1Intensity: 3
+  buf2Intensity: 0
+  targetType1: 4
+  targetType2: 0
   button: {fileID: 977246967409090517}
   buttonDisable: 0

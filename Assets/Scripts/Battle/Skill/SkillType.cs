@@ -1,5 +1,10 @@
-﻿
-public enum SkillType
+﻿public enum SkillType
 {
-    _UNDEFINED, Move, Attack, Buf, DeBuf, custom
+    _UNDEFINED,
+    Move,
+    Attack,
+    Buf,
+    DeBuf,
+    custom,
+    heal
 }

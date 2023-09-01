@@ -236,6 +236,9 @@ public class Skill : MonoBehaviour
                 break;
             case SkillType.custom:
                 throw new NotImplementedException("Custom Skills");
+            case SkillType.heal:
+                target.getHeal(damage);
+                break;
             default:
                 throw new Exception("Undefined skill type");
         }

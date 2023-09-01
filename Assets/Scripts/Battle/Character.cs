@@ -57,6 +57,11 @@ public class Character : MonoBehaviour
         HP -= damage;
         updateHPBar();
     }
+    public void getHeal(int heal)
+    {
+        HP = Math.Min(HP + heal, _initialHP);
+        updateHPBar();
+    }
 
     public void move(Vector3 position, int index)
     {

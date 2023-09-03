@@ -40,6 +40,20 @@ public class Skill : MonoBehaviour
             throw new Exception("Button Not Assigned");
         }
 
+        switch (forgeType)
+        {
+            case ForgeType.BUFF:
+            case ForgeType.DEBUFF:
+                throw new Exception("ForgeType buff, debuff not determined");
+            case ForgeType.DAMAGE:
+            case ForgeType.HEAL:
+                damage += 1;
+                break;
+            case ForgeType.COOLTIME:
+                coolTime -= 5;
+                break;
+        }
+
         button.onClick.AddListener(() =>
         {
             if (!buttonDisable)

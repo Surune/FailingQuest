@@ -5,7 +5,7 @@ public class UserData
 {
     public int money;
 
-    public List<int> characters;
+    public List<CharacterType> characters;
 
     public int myTreasureCount;
     public List<GameObject> myTreasure;

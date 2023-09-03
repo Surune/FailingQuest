@@ -25,7 +25,7 @@ public class Treasure : MonoBehaviour
        
         treasureCount = GameManager.Instance.userData.myTreasureCount;
 
-        while(GameManager.Instance.userData.myTreasureCount < 5)
+        while (GameManager.Instance.userData.myTreasureCount < 5)
         {
             prefabIndex = Random.Range(0, 4);
             int flag = 0;
@@ -60,12 +60,12 @@ public class Treasure : MonoBehaviour
         GameManager.Instance.userData.myTreasure[treasureCount].transform.localPosition = new Vector2(340, -100);
 
 
-        GameManager.Instance.userData.myTreasure[treasureCount].transform.DOLocalMove(GameManager.treasurePosition, 2f);
+        GameManager.Instance.userData.myTreasure[treasureCount].transform.DOLocalMove(GameManager.Instance.treasurePosition, 2f);
      
         GameManager.Instance.userData.myTreasure[treasureCount].transform.localScale = new Vector2(100, 100);
         //DontDestroyOnLoad(GameManager.Instance.myTreasure[GameManager.treasureCount]);
 
-        GameManager.treasurePosition.x += 60;
+        GameManager.Instance.treasurePosition.x += 60;
         treasureCount++;
         GameManager.Instance.userData.myTreasureCount = treasureCount; 
     }

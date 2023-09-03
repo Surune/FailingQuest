@@ -19,7 +19,8 @@ namespace Map
 
         private void Start()
         {
-            if (PlayerPrefs.HasKey("Map"))
+            if(false)
+            //if (PlayerPrefs.HasKey("Map"))
             {
                 //PlayerPrefs.DeleteKey("Map");
                 //return;

@@ -41,7 +41,6 @@ public class CharacterSelect : MonoBehaviour
                 startButton.interactable = true;
             }
         }
-        Debug.Log(selectedIndices[0].ToString()+""+selectedIndices[1]+""+selectedIndices[2]);
     }
 
     public void Cancel(int index)
@@ -53,12 +52,11 @@ public class CharacterSelect : MonoBehaviour
             current_selection -= 1;
             startButton.interactable = false;
         }
-        Debug.Log(selectedIndices[0].ToString()+""+selectedIndices[1]+""+selectedIndices[2]);
     }
 
     public void SetTeam()
     {
-        foreach(int index in selectedIndices)
+        foreach(CharacterType index in selectedIndices)
         {
             GameManager.Instance.userData.characters.Add(index);
         }

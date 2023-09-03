@@ -19,6 +19,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     public SpriteRenderer BottomCurrentSprite; //아래에 있는 현재 캐릭터
     public Slider BottomCurrentHP; //아래에 있는 현재 캐릭터
     public GameObject BottomCurrentBuf; //아래에 있는 현재 캐릭터
+    public GameObject BottomCurrentSkills;
     private List<GameObject> BottomCurrentTempBuf = new(); // bottom 영역 현재 캐릭터 버프영역
 
     public Transform coolTimeInitPosition; //속도 표기 기준위치
@@ -46,6 +47,9 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
     void Start()
     {
+        foreach(int num in GameManager.Instance.userData.characters) {
+            EnrollCharacter(GameManager.Instance.charPrefabs[num-1].GetComponent<Character>());
+        }
         FindMinCoolTime();
         skillInfo = CSVReader.Read("SkillInfo");
     }
@@ -229,6 +233,14 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
             BottomCurrentTempBuf.Add(instance);
             instance.transform.localPosition = buf.transform.localPosition;
         }
+
+        foreach (Transform child in BottomCurrentSkills.transform)
+        {
+            //Destroy(child.gameObject); // Destroy each child object
+        }
+        int index = GameManager.Instance.userData.characters.IndexOf(current.type);
+        Debug.Log(index+""+current.type);
+        Debug.Log(GameManager.Instance.userData.currentSkills[index]);
     }
 
     public List<Character> GetAllies()

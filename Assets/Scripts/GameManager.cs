@@ -30,8 +30,10 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
             new() {{"001", ForgeType.UNFORGED}, {"002", ForgeType.UNFORGED}}
         }
     };
+
+    public GameObject[] charPrefabs;
     
-    public static Vector2 treasurePosition = new Vector2(-616, 174);
+    public Vector2 treasurePosition = new Vector2(-616, 174);
 
     public bool sceneLoadedTriger = false;
 
@@ -53,8 +55,8 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
         {
             //PlayerPrefs.DeleteKey("UserData");
             //return;
-            Debug.Log("게임 정보를 불러왔습니다.");
             DataManager.instance.LoadData();
+            Debug.Log("게임 정보를 불러왔습니다.");
         }
     }
 

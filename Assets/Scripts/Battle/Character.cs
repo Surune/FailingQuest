@@ -11,6 +11,8 @@ public enum CharacterType
     character1,
     character2,
     character3,
+    character4,
+    caharcter5,
     enemy
 }
 
@@ -37,7 +39,7 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
         if (Skills.Count > 8)
         {
             throw new Exception("Skill Count Exceeds 8");

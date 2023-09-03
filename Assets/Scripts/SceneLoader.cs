@@ -8,8 +8,8 @@ public class SceneLoader : MonoBehaviour
     {
         if (sceneName == "MapScene")
         {
-            MapManager.instance.map.hasSelectedNode = false;
-            MapManager.instance.SaveMap();
+            //MapManager.instance.map.hasSelectedNode = false;
+            //MapManager.instance.SaveMap();
         }
 
         SceneManager.LoadScene(sceneName);

@@ -26,7 +26,6 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     public Transform coolTimeEndPosition; //속도 표기 기준위치
     private int maxRemainCooltime;
 
-
     [HideInInspector] public List<Dictionary<string, object>> skillInfo;
     public TextMeshProUGUI skillNameText;
     public TextMeshProUGUI skillCooltimeText;
@@ -42,7 +41,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
         }
 
         Instance = this;
-        DontDestroyOnLoad(Instance);
+        //DontDestroyOnLoad(Instance);
     }
 
     void Start()
@@ -66,11 +65,11 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
             }
             else if (character.remainCoolTime == nextCharacter.remainCoolTime)
             {
-                if (character.type == CharacterType.enemy) // 적이 우선순위
+                if (character.type >= CharacterType.character1 && character.type < CharacterType.enemy) // 적이 우선순위
                 {
                     nextCharacter = character.position > nextCharacter.position ? character : nextCharacter;
                 }
-                else if (nextCharacter.type != CharacterType.enemy)
+                else// if (nextCharacter.type != CharacterType.enemy)
                 {
                     //바깥에 있는 캐릭터 우선
                     nextCharacter = character.position < nextCharacter.position ? character : nextCharacter;
@@ -234,13 +233,23 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
             instance.transform.localPosition = buf.transform.localPosition;
         }
 
+        LoadSkills();
+    }
+
+    private void LoadSkills()
+    {
         foreach (Transform child in BottomCurrentSkills.transform)
         {
-            //Destroy(child.gameObject); // Destroy each child object
+            Destroy(child.gameObject); // Destroy each child object
         }
+        Debug.Log(GameManager.Instance.userData.characters[0]+""+GameManager.Instance.userData.characters[1]+""+GameManager.Instance.userData.characters[2]);
         int index = GameManager.Instance.userData.characters.IndexOf(current.type);
-        Debug.Log(index+""+current.type);
-        Debug.Log(GameManager.Instance.userData.currentSkills[index]);
+
+        foreach(var pair in GameManager.Instance.userData.currentSkills[index]){
+            Debug.Log(pair.Key);
+            var s = Resources.Load<GameObject>("Skills/Skill_" + pair.Key.ToString());
+            Instantiate(s, BottomCurrentSkills.transform);
+        }
     }
 
     public List<Character> GetAllies()
@@ -291,6 +300,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
     public void SetSkillText(int skillNum)
     {
+        Debug.Log(skillNum);
         var row = CSVReader.FindRowWithNum(skillInfo, skillNum);
         skillNameText.text = row["NAME"].ToString();
         skillCooltimeText.text = row["COOLTIME"].ToString();

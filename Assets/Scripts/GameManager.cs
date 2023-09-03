@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
 
     public UserData userData = new()
     {
-        characters = new(),
+        characters = new() {CharacterType.character1, CharacterType.character2, CharacterType.character3},
 
         myTreasure = new(16),
         myTreasureIndex = new(16),

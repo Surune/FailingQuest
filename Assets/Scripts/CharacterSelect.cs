@@ -56,6 +56,7 @@ public class CharacterSelect : MonoBehaviour
 
     public void SetTeam()
     {
+        GameManager.Instance.userData.characters = new();
         foreach(CharacterType index in selectedIndices)
         {
             GameManager.Instance.userData.characters.Add(index);

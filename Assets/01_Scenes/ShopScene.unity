@@ -584,6 +584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1a167af7e74274e838c50af3646771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charPrefabs: []
+  treasurePosition: {x: -616, y: 174}
   sceneLoadedTriger: 0
 --- !u!4 &240729581
 Transform:
@@ -3169,7 +3171,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2142437186}
   - component: {fileID: 2142437185}
-  - component: {fileID: 2142437184}
   m_Layer: 0
   m_Name: DataManager
   m_TagString: Untagged
@@ -3177,18 +3178,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2142437184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142437183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4836475a14d2242f7b9ef1ad2a6cb332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2142437185
 MonoBehaviour:
   m_ObjectHideFlags: 0

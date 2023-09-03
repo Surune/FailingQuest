@@ -30,7 +30,7 @@ public class CharacterSelect : MonoBehaviour
                 if(selectedIndices[i] == -1)
                 {
                     selectedIndices[i] = charNum;
-                    Selects[i].gameObject.GetComponent<Image>().sprite = Characters[charNum-1].gameObject.GetComponent<Image>().sprite;
+                    Selects[i].gameObject.GetComponent<Image>().sprite = Characters[charNum-1].transform.GetChild(1).gameObject.GetComponent<Image>().sprite;
                     current_selection += 1;
                     break;
                 }

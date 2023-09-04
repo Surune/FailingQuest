@@ -785,6 +785,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6688392464451991721, guid: 87a638907d3b547d3be6cbeace235522, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9c8cbcdfb225d410bad496e4e5fb42ea, type: 3}
     - target: {fileID: 8669405034912569394, guid: 87a638907d3b547d3be6cbeace235522, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
@@ -1100,6 +1104,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6688392464451991721, guid: 87a638907d3b547d3be6cbeace235522, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1057434978, guid: 4d69d66defd0340979a00827b39492e9, type: 3}
     - target: {fileID: 8669405034912569394, guid: 87a638907d3b547d3be6cbeace235522, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
@@ -1213,6 +1221,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6688392464451991721, guid: 87a638907d3b547d3be6cbeace235522, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b500f372cce314ac19330da76f028071, type: 3}
     - target: {fileID: 8669405034912569394, guid: 87a638907d3b547d3be6cbeace235522, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2057,6 +2069,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6688392464451991721, guid: 87a638907d3b547d3be6cbeace235522, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1042076906, guid: 4d69d66defd0340979a00827b39492e9, type: 3}
     - target: {fileID: 8669405034912569394, guid: 87a638907d3b547d3be6cbeace235522, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5

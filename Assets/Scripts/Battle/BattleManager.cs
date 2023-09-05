@@ -41,6 +41,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
         }
 
         Instance = this;
+        skillInfo = CSVReader.Read("SkillInfo");
         //DontDestroyOnLoad(Instance);
     }
 
@@ -50,7 +51,6 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
             EnrollCharacter(GameManager.Instance.charPrefabs[num-1].GetComponent<Character>());
         }
         FindMinCoolTime();
-        skillInfo = CSVReader.Read("SkillInfo");
     }
 
 

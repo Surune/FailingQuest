@@ -39,6 +39,43 @@ public class Skill : MonoBehaviour
             throw new Exception("Button Not Assigned");
         }
 
+        SetCooltime();
+        SetForge();
+
+        button.onClick.AddListener(() =>
+        {
+            if (!buttonDisable)
+            {
+                if (!prevClick || BattleManager.Instance.prevClickSkillName != name)
+                {
+                    prevClick = true;
+                    BattleManager.Instance.prevClickSkillName = name;
+                    return;
+                }
+
+                prevClick = false;
+                buttonDisable = true;
+                if (skillType2 != SkillType._UNDEFINED)
+                {
+                    StartCoroutine(_UseMulti());
+                }
+                else
+                {
+                    StartCoroutine(_Use());
+                }
+            }
+        });
+        button.onClick.AddListener(() => BattleManager.Instance.SetSkillText(skillNumber));
+    }
+
+    public void SetCooltime()
+    {
+        var row = CSVReader.FindRowWithNum(BattleManager.Instance.skillInfo, skillNumber);
+        coolTime = int.Parse(row["COOLTIME"].ToString());
+    }
+
+    public void SetForge()
+    {
         switch (forgeType)
         {
             case ForgeType.BUFF:
@@ -73,31 +110,6 @@ public class Skill : MonoBehaviour
                 coolTime -= 5;
                 break;
         }
-
-        button.onClick.AddListener(() =>
-        {
-            if (!buttonDisable)
-            {
-                if (!prevClick || BattleManager.Instance.prevClickSkillName != name)
-                {
-                    prevClick = true;
-                    BattleManager.Instance.prevClickSkillName = name;
-                    return;
-                }
-
-                prevClick = false;
-                buttonDisable = true;
-                if (skillType2 != SkillType._UNDEFINED)
-                {
-                    StartCoroutine(_UseMulti());
-                }
-                else
-                {
-                    StartCoroutine(_Use());
-                }
-            }
-        });
-        button.onClick.AddListener(() => BattleManager.Instance.SetSkillText(skillNumber));
     }
 
 

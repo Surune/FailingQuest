@@ -47,7 +47,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
     void Start()
     {
-        foreach(int num in GameManager.Instance.userData.characters) {
+        foreach (int num in GameManager.Instance.userData.characters) {
             EnrollCharacter(GameManager.Instance.charPrefabs[num-1].GetComponent<Character>());
         }
         FindMinCoolTime();
@@ -67,6 +67,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
             {
                 if (character.type >= CharacterType.character1 && character.type < CharacterType.enemy) // 적이 우선순위
                 {
+                    //플레이어 우선
                     nextCharacter = character.position > nextCharacter.position ? character : nextCharacter;
                 }
                 else// if (nextCharacter.type != CharacterType.enemy)

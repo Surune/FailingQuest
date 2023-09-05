@@ -8,8 +8,7 @@ public class Skill : MonoBehaviour
 {
     [SerializeField] private int skillNumber = -1;
     [SerializeField] protected int coolTime = -1;
-    [SerializeField] protected SkillType skillType = SkillType._UNDEFINED;
-
+    [SerializeField] protected SkillType skillType1 = SkillType._UNDEFINED;
     [SerializeField] protected SkillType skillType2 = SkillType._UNDEFINED;
 
     [SerializeField] private int damage = 0; // attack skill
@@ -30,7 +29,7 @@ public class Skill : MonoBehaviour
 
     private void Start()
     {
-        if (coolTime == -1 || skillType == SkillType._UNDEFINED)
+        if (coolTime == -1 || skillType1 == SkillType._UNDEFINED)
         {
             throw new Exception("Skill Not Implemented");
         }
@@ -43,8 +42,29 @@ public class Skill : MonoBehaviour
         switch (forgeType)
         {
             case ForgeType.BUFF:
+                if (skillType1 == SkillType.Buf) 
+                {
+                    buf1Intensity += 1;
+                }
+                else if (skillType2 == SkillType.Buf)
+                {
+                    buf2Intensity += 1;
+                }
+                else
+                    throw new Exception("Not a BUFF, But BUFF Forge Applied");
+                break;
             case ForgeType.DEBUFF:
-                throw new Exception("ForgeType buff, debuff not determined");
+                if (skillType1 == SkillType.DeBuf) 
+                {
+                    buf1Intensity += 1;
+                }
+                else if (skillType2 == SkillType.DeBuf)
+                {
+                    buf2Intensity += 1;
+                }
+                else
+                    throw new Exception("Not a DEBUFF, But DEBUFF Forge Applied");
+                break;
             case ForgeType.DAMAGE:
             case ForgeType.HEAL:
                 damage += 1;
@@ -83,7 +103,7 @@ public class Skill : MonoBehaviour
 
     public IEnumerator _Use()
     {
-        if (skillType == SkillType.Move)
+        if (skillType1 == SkillType.Move)
         {
             Debug.Log("getPosition");
             BattleManager.Instance.resetTargetPosition();
@@ -156,7 +176,7 @@ public class Skill : MonoBehaviour
     public IEnumerator _UseMulti()
     {
         // 이동 + 다른 효과가 있는 경우 자신에게 거는 효과만 있는 현재 상황 가정
-        if (skillType == SkillType.Move)
+        if (skillType1 == SkillType.Move)
         {
             Debug.Log("getPosition");
             BattleManager.Instance.resetTargetPosition();
@@ -235,7 +255,7 @@ public class Skill : MonoBehaviour
     public void Use(Character target, Vector3 pos, int posIndex, bool applyCoolTime = true, int skillIndex = 0)
     {
         Debug.Log("Use");
-        var _skillType = skillIndex == 0 ? skillType : skillType2;
+        var _skillType = skillIndex == 0 ? skillType1 : skillType2;
         switch (_skillType)
         {
             case SkillType.Attack:

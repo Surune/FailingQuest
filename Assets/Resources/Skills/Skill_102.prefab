@@ -183,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillNumber: 102
   coolTime: 40
-  skillType: 2
+  skillType1: 2
   skillType2: 4
   damage: 3
   buf1: {fileID: 0}

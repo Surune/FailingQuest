@@ -28,7 +28,7 @@ public class Character : MonoBehaviour
     public Slider HPStatus;
 
     private int _initialHP;
-
+    public GameObject status;
     public GameObject BufStatus;
 
     // 보유한 스킬 리스트
@@ -51,6 +51,8 @@ public class Character : MonoBehaviour
         }
 
         _initialHP = HP;
+        status.GetComponent<SpriteRenderer>().sprite = transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+        status.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
         BattleManager.Instance.EnrollCharacter(this);
     }
 

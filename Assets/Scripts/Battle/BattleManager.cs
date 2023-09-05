@@ -32,6 +32,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     public TextMeshProUGUI skillDescriptionText;
 
     public string prevClickSkillName; // 버튼 두번 클릭시에 스킬 사용되도록
+    
     void Awake()
     {
         if (Instance != null)
@@ -47,9 +48,6 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
     void Start()
     {
-        foreach (int num in GameManager.Instance.userData.characters) {
-            EnrollCharacter(GameManager.Instance.charPrefabs[num-1].GetComponent<Character>());
-        }
         FindMinCoolTime();
     }
 

@@ -9,19 +9,19 @@ namespace Map
         public MapConfig mapConfig;
 
         private List<NodeType> randomNodes = new()
-        {NodeType.Normal, NodeType.Elite, NodeType.Treasure, NodeType.Shop, NodeType.Forge, NodeType.Quest, NodeType.Mystery};
+        {NodeType.Normal, NodeType.Elite, NodeType.Treasure, NodeType.Shop, NodeType.Forge, NodeType.Quest, NodeType.Mystery, NodeType.Skill};
 
         private List<List<Node>> nodeLayers = new();
 
         private List<float> layerIntervals;
-        private List<List<Point> > paths;
+        private List<List<Point>> paths;
 
         public Map GetMap()
         {
             nodeLayers.Clear();
 
             GenerateLayerIntervals();
-
+            
             for (int i = 0; i < mapConfig.mapNodeLayers.Count; ++i)
             {
                 InstallLayer(i);

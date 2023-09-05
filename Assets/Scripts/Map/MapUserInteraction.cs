@@ -107,6 +107,9 @@ namespace Map
                     SceneManager.LoadScene("EventScene");
 
                     break;
+                case NodeType.Skill:
+                    
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

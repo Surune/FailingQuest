@@ -14,7 +14,8 @@ namespace Map
         Forge,
 
         Quest,
-        Mystery
+        Mystery,
+        Skill
     }
 }
 

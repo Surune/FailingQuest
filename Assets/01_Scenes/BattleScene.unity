@@ -1997,7 +1997,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 34367619281238780, guid: 46f69cab03e6be84196bd4cc951cbd35, type: 3}
       propertyPath: m_Name
-      value: Skill_attack (1)
+      value: Skill_002
       objectReference: {fileID: 0}
     - target: {fileID: 933334913600410259, guid: 46f69cab03e6be84196bd4cc951cbd35, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2296,8 +2296,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6276475992081392410}
   - {fileID: 485016937}
+  - {fileID: 6276475992081392410}
   - {fileID: 1048140957}
   - {fileID: 600244371}
   - {fileID: 828171837}
@@ -2613,7 +2613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2960624072435991492, guid: 687cf2d17569e074da5d4ad991f4ddcb, type: 3}
       propertyPath: m_Name
-      value: Skill_move
+      value: Skill_001
       objectReference: {fileID: 0}
     - target: {fileID: 4615219844560010393, guid: 687cf2d17569e074da5d4ad991f4ddcb, type: 3}
       propertyPath: battleManager

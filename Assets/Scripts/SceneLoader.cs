@@ -11,6 +11,10 @@ public class SceneLoader : MonoBehaviour
             //MapManager.instance.map.hasSelectedNode = false;
             //MapManager.instance.SaveMap();
         }
+        if (sceneName == "GameOverScene")
+        {
+            PlayerPrefs.DeleteKey("Map");
+        }
 
         SceneManager.LoadScene(sceneName);
     }

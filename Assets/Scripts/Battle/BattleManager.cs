@@ -87,6 +87,12 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
             }
         }
 
+        if(current.type == CharacterType.enemy)
+        {
+            current.Pass();
+            return;
+        }
+
         UpdateCurrentTag();
         UpdateCoolTimeStatus();
         UpdateBottomCurrentCharacter();
@@ -217,6 +223,12 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
     public void UpdateBottomCurrentCharacter()
     {
+        if (current.type == CharacterType.enemy)
+        {
+            current.Pass();
+            return;
+        }
+
         foreach (var prevBuf in BottomCurrentTempBuf)
         {
             Destroy(prevBuf);
@@ -241,11 +253,10 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
         {
             Destroy(child.gameObject); // Destroy each child object
         }
-        Debug.Log(GameManager.Instance.userData.characters[0]+""+GameManager.Instance.userData.characters[1]+""+GameManager.Instance.userData.characters[2]);
+        //Debug.Log(GameManager.Instance.userData.characters[0]+""+GameManager.Instance.userData.characters[1]+""+GameManager.Instance.userData.characters[2]);
         int index = GameManager.Instance.userData.characters.IndexOf(current.type);
-
-        foreach(var pair in GameManager.Instance.userData.currentSkills[index]){
-            Debug.Log(pair.Key);
+        foreach (var pair in GameManager.Instance.userData.currentSkills[index])
+        {
             var s = Resources.Load<GameObject>("Skills/Skill_" + pair.Key.ToString());
             Instantiate(s, BottomCurrentSkills.transform);
         }

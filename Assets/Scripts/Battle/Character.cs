@@ -69,7 +69,7 @@ public class Character : MonoBehaviour
 
     public void move(Vector3 position, int index)
     {
-        Debug.Log("move >> " + position);
+        //Debug.Log("move >> " + position);
         gameObject.transform.localPosition = position;
         this.position = index;
     }
@@ -162,6 +162,12 @@ public class Character : MonoBehaviour
         }
 
         tmpText.text = (int.Parse(tmpText.text) + intensity).ToString();
+    }
+
+    public void Pass()
+    {
+        Debug.Log("ENEMY PASSED");
+        BattleManager.Instance.ApplyCoolTime(100);
     }
 
 

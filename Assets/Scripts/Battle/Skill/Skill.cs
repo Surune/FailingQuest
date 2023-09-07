@@ -148,7 +148,7 @@ public class Skill : MonoBehaviour
                     target = BattleManager.Instance.getTarget(targetType1);
                 }
 
-                BattleManager.Instance.HandleLocationCollider(true);
+                //BattleManager.Instance.HandleLocationCollider(true);
 
                 Use(target, new Vector3(0, 0, 0), 0);
                 break;
@@ -159,7 +159,7 @@ public class Skill : MonoBehaviour
                     Use(character, new Vector3(0, 0, 0), 0, false);
                 }
 
-                BattleManager.Instance.ApplyCoolTime(coolTime);
+                //BattleManager.Instance.ApplyCoolTime(coolTime);
                 break;
             case TargetType.allyAll:
                 var allies = BattleManager.Instance.GetAllies();
@@ -168,7 +168,7 @@ public class Skill : MonoBehaviour
                     Use(character, new Vector3(0, 0, 0), 0, false);
                 }
 
-                BattleManager.Instance.ApplyCoolTime(coolTime);
+                //BattleManager.Instance.ApplyCoolTime(coolTime);
                 break;
             case TargetType.enemyAll:
                 var enemies = BattleManager.Instance.GetEnemies();
@@ -177,12 +177,13 @@ public class Skill : MonoBehaviour
                     Use(character, new Vector3(0, 0, 0), 0, false);
                 }
 
-                BattleManager.Instance.ApplyCoolTime(coolTime);
+                
                 break;
             case TargetType.self:
                 Use(BattleManager.Instance.getCurrent(), new Vector3(0, 0, 0), 0);
                 break;
         }
+        BattleManager.Instance.ApplyCoolTime(coolTime);
     }
 
     public IEnumerator _UseMulti()

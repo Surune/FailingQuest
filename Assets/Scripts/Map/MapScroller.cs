@@ -43,10 +43,12 @@ namespace Map
             var targetX = 
                 Mathf.Max(Mathf.Min(mousePosition.x - mouseDisplacement.x, -MapRenderer.instance.scrollLeftBound + scrollLimit), 
                 -MapRenderer.instance.scrollRightBound - scrollLimit);
+            /*
             var targetY = 
                 Mathf.Max(Mathf.Min(mousePosition.y - mouseDisplacement.y, MapRenderer.scrollUpperBound + scrollLimit), 
                 MapRenderer.scrollLowerBound - scrollLimit);
-            transform.DOLocalMove(new Vector3(targetX, targetY, transform.localPosition.z), tweenScrollingDuration).SetEase(tweenEase);
+            */
+            transform.DOLocalMove(new Vector3(targetX, transform.localPosition.y, transform.localPosition.z), tweenScrollingDuration).SetEase(tweenEase);
         }
 
         private Vector3 GetMousePosition()

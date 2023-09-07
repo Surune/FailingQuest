@@ -12,6 +12,8 @@ namespace Map
         public GameObject edgePrefab;
 
         public Sprite backgroundSprite;
+        public Sprite legendSprite;
+
 
         public Color32 lockedColor = Color.gray;
         public Color32 selectedColor = Color.red;
@@ -62,6 +64,8 @@ namespace Map
 
             GenerateMapBackground(map);
 
+            GenerateMapLegend(map);
+
             SetUI();
         }
         
@@ -105,6 +109,21 @@ namespace Map
             var spriteRenderer = background.AddComponent<SpriteRenderer>();
             spriteRenderer.drawMode = SpriteDrawMode.Simple;
             spriteRenderer.sprite = backgroundSprite;
+        }
+
+        private void GenerateMapLegend(Map map)
+        {
+            var legend = new GameObject("Legend");
+            legend.transform.SetParent(mapCompositionObject.transform);
+
+            var width = map.PathLength();
+            legend.transform.localPosition = new Vector3(-width / 8f, -1f, 0f);
+            legend.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
+            legend.transform.Rotate(0f, 0f, 5f);
+
+            var spriteRenderer = legend.AddComponent<SpriteRenderer>();
+            spriteRenderer.drawMode = SpriteDrawMode.Simple;
+            spriteRenderer.sprite = legendSprite;
         }
 
         private MapNode GenerateMapNode(Node node)

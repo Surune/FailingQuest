@@ -411,6 +411,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8693692254892908108, guid: cdf16c12dd2ba8446862e33689d9089e, type: 3}
     - target: {fileID: 4299140265061884643, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
+      propertyPath: legendSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f1b58128a27684f39be1d1489045a854, type: 3}
+    - target: {fileID: 4299140265061884643, guid: 2ee628515b9d443498084cbba6b398db, type: 3}
       propertyPath: backgroundSprite
       value: 
       objectReference: {fileID: 21300000, guid: efb1b1d7ec44b4e6dbe764d1f35897a8, type: 3}

@@ -839,6 +839,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CurrentQuestButton
       objectReference: {fileID: 0}
+    - target: {fileID: 1965802086245220212, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1001453265}
+    - target: {fileID: 1965802086245220212, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Onclick
+      objectReference: {fileID: 0}
     - target: {fileID: 8257525429618595668, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -946,6 +954,14 @@ PrefabInstance:
     - target: {fileID: 1798620430956320891, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
       propertyPath: i
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1965802086245220212, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1098199680}
+    - target: {fileID: 1965802086245220212, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Onclick
       objectReference: {fileID: 0}
     - target: {fileID: 8257525429618595668, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
       propertyPath: m_Pivot.x
@@ -1166,6 +1182,14 @@ PrefabInstance:
     - target: {fileID: 1798620430956320891, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
       propertyPath: i
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1965802086245220212, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1155793495}
+    - target: {fileID: 1965802086245220212, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Onclick
       objectReference: {fileID: 0}
     - target: {fileID: 8257525429618595668, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
       propertyPath: m_Pivot.x

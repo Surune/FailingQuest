@@ -21,21 +21,20 @@ public class FirstCurrentQuestBtn : MonoBehaviour
 
         questIdx = GameManager.Instance.userData.currentQuest[i][0];
         questLvl = GameManager.Instance.userData.currentQuest[i][1];
-       
+        GameManager.Instance.userData.currentQuest[i][0] = questIdx;
+        GameManager.Instance.userData.currentQuest[i][1] = questLvl;
+
         questText.text = QuestManager.GetQuestText(questIdx, questLvl) + "(0)";
         GameManager.Instance.firstQuestLoaded = true;
     }
 
     void Update()
     {
-        /*
-        Debug.Log(GameManager.Instance.userData.currentQuest[i][0]);
-        questIdx = GameManager.Instance.userData.currentQuest[i][0];
-        questLvl = GameManager.Instance.userData.currentQuest[i][1];
-        Debug.Log(questIdx);
+        GameManager.Instance.userData.currentQuest[i][0] = questIdx;
+        GameManager.Instance.userData.currentQuest[i][1] = questLvl;
         if (questIdx >= 0)
             questText.text = QuestManager.GetQuestText(questIdx, questLvl) + "(0)";
-     */   
+      
     }
 
 }

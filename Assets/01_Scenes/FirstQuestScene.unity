@@ -704,6 +704,14 @@ PrefabInstance:
       propertyPath: i
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1965802086245220212, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1875914958}
+    - target: {fileID: 1965802086245220212, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8257525429618595668, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1416,6 +1424,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97fa2838cbac41ec99a8066776bd99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1875914958 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3635732219413092235, guid: b6b5780801eb54010a0e198d1a6ec6e0, type: 3}
+  m_PrefabInstance: {fileID: 1001453261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1884340826
 GameObject:
   m_ObjectHideFlags: 0

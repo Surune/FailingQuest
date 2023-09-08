@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
         }
     };
 
-    public bool firstQuestLoaded = true;//false;
+    public bool firstQuestLoaded = false;
     public GameObject[] charPrefabs;
     
     public Vector2 treasurePosition = new Vector2(-616, 174);
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour //전반적인 게임의 진행을 담�
                 GameManager.Instance.userData.currentQuest[i][0] = num;
             GameManager.Instance.userData.questList[num, 3] = 1;
             GameManager.Instance.userData.currentQuest[i][1] = Random.Range(0, 3);
+            GameManager.Instance.userData.questManage = new List<int>() { 0, 0, 0 };
         }
     }
 

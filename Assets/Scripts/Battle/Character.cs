@@ -20,7 +20,9 @@ public class Character : MonoBehaviour
 {
     public int position = -1;
     public CharacterType type = CharacterType._UNDEFINED;
-    [SerializeField] private int HP = 100;
+    [SerializeField]    private int HP = 100;
+    [HideInInspector]   public bool isDead = false;
+    private Animator animator;
     private List<BufIntensityType> bufList = new();
     // private List<Skill> DeBufList = new List<Skill>();
 
@@ -51,6 +53,7 @@ public class Character : MonoBehaviour
         }
 
         _initialHP = HP;
+        animator = transform.GetChild(0).GetComponent<Animator>();
         status.GetComponent<SpriteRenderer>().sprite = transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
         status.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
         BattleManager.Instance.EnrollCharacter(this);
@@ -59,6 +62,10 @@ public class Character : MonoBehaviour
     public void getDamage(int damage)
     {
         HP -= damage;
+        if (HP <= 0) {
+            isDead = true;
+            animator.SetTrigger("Dead");
+        } 
         updateHPBar();
     }
     public void getHeal(int heal)

@@ -53,7 +53,7 @@ MonoBehaviour:
   coolTime: 30
   skillType1: 2
   skillType2: 0
-  damage: 1
+  damage: 3
   buf1: {fileID: 0}
   buf2: {fileID: 0}
   buf1Intensity: 0

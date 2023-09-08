@@ -418,9 +418,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: -1
-  type: 4
-  HP: 100
-  remainCoolTime: 0
+  type: 6
+  HP: 5
+  remainCoolTime: 10
   HPStatus: {fileID: 2243433301986521511}
   status: {fileID: 1771815693204854294}
   BufStatus: {fileID: 8382571869438812551}

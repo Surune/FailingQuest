@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: -1
-  type: 4
+  type: 6
   HP: 100
   remainCoolTime: 0
   HPStatus: {fileID: 2243433301986521511}

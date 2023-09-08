@@ -184,6 +184,8 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
     public void UpdateCurrentTag()
     {
+        CurrentTag.transform.localPosition = new Vector3(current.transform.localPosition.x, 2f, 0f);
+        return;
         switch (current.position)
         {
             case 1:

@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 6669827894287975739}
   - component: {fileID: 5595739211110311255}
   m_Layer: 0
-  m_Name: Skeleton
+  m_Name: Spider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -603,7 +603,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2073036364, guid: e310f5e9368214a62b0d981c338cb0d5, type: 3}
+  m_Sprite: {fileID: 1499695041, guid: 58150296f972f4aae8f9e06d95cbdfc1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -624,7 +624,7 @@ Animator:
   m_GameObject: {fileID: 8151683736430048856}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 001bf231ef90a498e992220dc07b0e81, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0a21021a82f7149a79f5eb4a44a06fd2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

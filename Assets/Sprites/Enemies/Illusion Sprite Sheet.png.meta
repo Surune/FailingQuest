@@ -136,211 +136,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: illusion sprite sheet_0
+      name: Illusion Sprite Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 50
         width: 50
         height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bd9ef194822849dcb40c90961c0e19f
-      internalID: -864819117
+      spriteID: 9cf2ae2a264e8465a99e2d4d5fcf828b
+      internalID: -879461560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: illusion sprite sheet_1
+      name: Illusion Sprite Sheet_1
       rect:
         serializedVersion: 2
         x: 50
         y: 50
         width: 50
         height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77fc07a2f9a28445e96a1522ecc9f664
-      internalID: -444654564
+      spriteID: aadd1ddab53434ecaac4e1a1aa35b7af
+      internalID: -786190999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: illusion sprite sheet_2
+      name: Illusion Sprite Sheet_2
       rect:
         serializedVersion: 2
         x: 100
         y: 50
         width: 50
         height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 912b8d02d31fc4421b507aa172b84d81
-      internalID: -556667726
+      spriteID: 228a7fa31deec457c933c1b9df13a52f
+      internalID: 1155747754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: illusion sprite sheet_3
+      name: Illusion Sprite Sheet_3
       rect:
         serializedVersion: 2
         x: 150
         y: 50
         width: 50
         height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7dc9c2700294474db67f27448f484aa
-      internalID: 258364252
+      spriteID: 618976046bb9a47fca5d6f08d1935832
+      internalID: 213144265
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: illusion sprite sheet_4
+      name: Illusion Sprite Sheet_4
       rect:
         serializedVersion: 2
         x: 200
         y: 50
         width: 50
         height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d34f70b3a23584f7cb42644b3016abe3
-      internalID: 1786921388
+      spriteID: 5f01bb2569b494b62b7ab68e4bf04288
+      internalID: 1513220673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: illusion sprite sheet_5
+      name: Illusion Sprite Sheet_5
       rect:
         serializedVersion: 2
         x: 250
         y: 50
         width: 50
         height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d087cbd8ca0854c8e84ecad09c258ac6
-      internalID: 1855555018
+      spriteID: b7403ed6368b34c26860a4134def5eb1
+      internalID: -1688298890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: illusion sprite sheet_6
+      name: Illusion Sprite Sheet_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 50
         height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36ad805b15c5b4ba9b469928bf5428c3
-      internalID: 1008757824
+      spriteID: 43188468783644b4ab7b1a0a9c0fbbe2
+      internalID: -705362032
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: illusion sprite sheet_7
+      name: Illusion Sprite Sheet_7
       rect:
         serializedVersion: 2
         x: 50
         y: 0
         width: 50
         height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 044dcfd40920640509f97e03ee39c1a0
-      internalID: 292003822
+      spriteID: e314940fb60ab4855b017237366d0863
+      internalID: -1700916401
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: illusion sprite sheet_8
+      name: Illusion Sprite Sheet_8
       rect:
         serializedVersion: 2
         x: 100
         y: 0
         width: 50
         height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4aa8c443e9eaf4a919de9f41d453c835
-      internalID: -23726982
+      spriteID: 8abb9d45cde6d498188208e0a73184e2
+      internalID: -285742085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: illusion sprite sheet_9
+      name: Illusion Sprite Sheet_9
       rect:
         serializedVersion: 2
         x: 150
         y: 0
         width: 50
         height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43839c119327743119a9343ca39aafe0
-      internalID: -166472718
+      spriteID: 81e50976ddc374b30885ae990fe308df
+      internalID: -1178097315
       vertices: []
       indices: 
       edges: []
@@ -356,16 +356,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      illusion sprite sheet_0: -864819117
-      illusion sprite sheet_1: -444654564
-      illusion sprite sheet_2: -556667726
-      illusion sprite sheet_3: 258364252
-      illusion sprite sheet_4: 1786921388
-      illusion sprite sheet_5: 1855555018
-      illusion sprite sheet_6: 1008757824
-      illusion sprite sheet_7: 292003822
-      illusion sprite sheet_8: -23726982
-      illusion sprite sheet_9: -166472718
+      Illusion Sprite Sheet_0: -879461560
+      Illusion Sprite Sheet_1: -786190999
+      Illusion Sprite Sheet_2: 1155747754
+      Illusion Sprite Sheet_3: 213144265
+      Illusion Sprite Sheet_4: 1513220673
+      Illusion Sprite Sheet_5: -1688298890
+      Illusion Sprite Sheet_6: -705362032
+      Illusion Sprite Sheet_7: -1700916401
+      Illusion Sprite Sheet_8: -285742085
+      Illusion Sprite Sheet_9: -1178097315
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

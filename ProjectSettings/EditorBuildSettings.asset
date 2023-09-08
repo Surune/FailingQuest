@@ -25,7 +25,10 @@ EditorBuildSettings:
     guid: fc8235aa73c934703a973fd5901546e1
   - enabled: 1
     path: Assets/01_Scenes/GameOverScene.unity
-    guid: d3f6b9cb1b6fd436b859944542564ec0
+    guid: 805bef91f90a844ef871c288c2cf6337
+  - enabled: 1
+    path: Assets/01_Scenes/FirstQuestScene.unity
+    guid: de3cfbee0b3934415b064b5156cf5277
   - enabled: 1
     path: Assets/01_Scenes/ForgeScene.unity
     guid: 1689c1732884643e6a3d305af42cef8b

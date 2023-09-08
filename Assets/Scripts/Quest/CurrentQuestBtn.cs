@@ -19,9 +19,8 @@ public class CurrentQuestBtn : MonoBehaviour
         button = GetComponentInParent<Button>();
         button.interactable = false;
         questManager = FindObjectOfType<QuestManager>();
-    }
 
-    // Update is called once per frame
+    }
     
     void Update()
     {
@@ -33,7 +32,7 @@ public class CurrentQuestBtn : MonoBehaviour
 
         //신규 퀘스트에서 버튼 누르면 해당 내용 매니지, 현재퀘스트에 반영
         //해당 신규퀘스트 부분은 비우기
-
+        
         questIdx = GameManager.Instance.userData.currentQuest[i][0];
         questLvl = GameManager.Instance.userData.currentQuest[i][1];
         if(questIdx>=0)
@@ -46,19 +45,17 @@ public class CurrentQuestBtn : MonoBehaviour
             OnEnable();
             //해당 퀘스트 부분 퀘스트 매니지, 현재 퀘스트에서 비우기
             GameManager.Instance.userData.questManage[i] = 0;
-            QuestManager.questList[GameManager.Instance.userData.currentQuest[i][0], 3] = 0;
+            GameManager.Instance.userData.questList[GameManager.Instance.userData.currentQuest[i][0],3] = 0;
             index = i;
         }
     }
 
-    
     private void OnEnable()
     {
         button = GetComponentInParent<Button>();
         button.interactable = true;
     }
     
-
     //onclick->
     public void Onclick()
     {

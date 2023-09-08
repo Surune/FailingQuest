@@ -4,56 +4,27 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    public static int[,] questList; //전체 퀘스트 내용 저장 (11)
-   
-
-    // Start is called before the first frame update
     void Start()
     {
-        questList = new int[11, 4] { { 30, 60, 90, 0 }, { 3, 5, 7, 0 }, { 3, 4, 5, 0 }, { 1, 2, 3, 0 }, { 3, 4, 5, 0 }, { 3, 4, 5, 0 }, { 20, 30, 40, 0 }, { 100, 125, 150, 0 }, { 3, 4, 5, 0 }, { 5, 7, 10, 0 }, { 3, 5, 7, 0 } };
-        if (GameManager.Instance.userData.currentQuest == null)
+        if (GameManager.Instance.firstQuestLoaded)
         {
-            GameManager.Instance.userData.currentQuest = new List<List<int>>()
-            {
-                new List<int> {0, 0},
-                new List<int> {0, 0},
-                new List<int> {0, 0}
-            };
-            //중복 제거 !
+            //신규 퀘스트 값 비어있으면 받아오고 저장
             for (int i = 0; i < 3; i++)
             {
-                int flag = 0;
-                int num = Random.Range(0, 11);
-                while (flag == 0)
+                if (GameManager.Instance.userData.newQuest[i][0] == -1)
                 {
-                    num = Random.Range(0, 11);
-                    if (questList[num, 3] == 0)
-                        flag = 1;
+                    int flag = 0;
+                    int num = Random.Range(0, 11);
+                    while (flag == 0)
+                    {
+                        num = Random.Range(0, 11);
+                        if (GameManager.Instance.userData.questList[num, 3] == 0)
+                            flag = 1;
+                    }
+                    GameManager.Instance.userData.newQuest[i][0] = num;
+                    GameManager.Instance.userData.questList[num, 3] = 1;
+                    GameManager.Instance.userData.newQuest[i][1] = i;
                 }
-                if (questList[num, 3] == 0)
-                    GameManager.Instance.userData.currentQuest[i][0] = num;
-                questList[num, 3] = 1;
-                GameManager.Instance.userData.currentQuest[i][1] = Random.Range(0, 3);
-            }
-        }
-
-        
-        //신규 퀘스트 값 비어있으면 받아오고 저장
-        for (int i = 0; i < 3; i++)
-        {
-            if (GameManager.Instance.userData.newQuest[i][0] == -1)
-            {
-                int flag = 0;
-                int num = Random.Range(0, 11);
-                while (flag == 0)
-                {
-                    num = Random.Range(0, 11);
-                    if (questList[num, 3] == 0)
-                        flag = 1;
-                }
-                GameManager.Instance.userData.newQuest[i][0] = num;
-                questList[num, 3] = 1;
-                GameManager.Instance.userData.newQuest[i][1] = i;
             }
         }
     }
@@ -63,37 +34,37 @@ public class QuestManager : MonoBehaviour
         string text = "";
         switch (questIdx) {
             case 0:
-                text = questList[questIdx, questLevel] + "골드 사용";
+                text = GameManager.Instance.userData.questList[questIdx,questLevel] + "골드 사용";
                 break;
             case 1:
-                text = questList[questIdx, questLevel] + "회 전투";
+                text = GameManager.Instance.userData.questList[questIdx,questLevel] + "회 전투";
                 break;
             case 2:
-                text = questList[questIdx, questLevel] + "회 이벤트 칸 도착";
+                text = GameManager.Instance.userData.questList[questIdx,questLevel] + "회 이벤트 칸 도착";
                 break;
             case 3:
-                text = questList[questIdx, questLevel] + "회 엘리트 전투";
+                text = GameManager.Instance.userData.questList[questIdx,questLevel] + "회 엘리트 전투";
                 break;
             case 4:
-                text = "보물 " + questList[questIdx, questLevel] + "개 획득";
+                text = "보물 " + GameManager.Instance.userData.questList[questIdx,questLevel] + "개 획득";
                 break;
             case 5:
-                text = questList[questIdx, questLevel] + "회 전투 중 이동";
+                text = GameManager.Instance.userData.questList[questIdx,questLevel] + "회 전투 중 이동";
                 break;
             case 6:
-                text = "누적 " + questList[questIdx, questLevel] + "회복";
+                text = "누적 " + GameManager.Instance.userData.questList[questIdx,questLevel] + "회복";
                 break;
             case 7:
-                text = "누적 " + questList[questIdx, questLevel] + "의 피해";
+                text = "누적 " + GameManager.Instance.userData.questList[questIdx,questLevel] + "의 피해";
                 break;
             case 8:
-                text = questList[questIdx, questLevel] + "회 방어 성공";
+                text = GameManager.Instance.userData.questList[questIdx,questLevel] + "회 방어 성공";
                 break;
             case 9:
-                text = "화상 최대 " + questList[questIdx, questLevel] + "달성";
+                text = "화상 최대 " + GameManager.Instance.userData.questList[questIdx,questLevel] + "달성";
                 break;
             case 10:
-                text = "집중 누적 " + questList[questIdx, questLevel] + "달성";
+                text = "집중 누적 " + GameManager.Instance.userData.questList[questIdx,questLevel] + "달성";
                 break;
         }
         return text;

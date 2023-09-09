@@ -48,13 +48,15 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
 
     void Start()
     {
-        FindMinCoolTime();
+        NextTurn();
     }
 
 
-    public void FindMinCoolTime()
+    public void NextTurn()
     {
         Character nextCharacter = CharacterList[0];
+        bool battleEnd = true;
+        // Finding Character with minimum cooltime
         foreach (var character in CharacterList)
         {
             if (character.remainCoolTime < nextCharacter.remainCoolTime)
@@ -74,6 +76,13 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
                     nextCharacter = character.position < nextCharacter.position ? character : nextCharacter;
                 }
             }
+
+            if (character.type == CharacterType.enemy) battleEnd = battleEnd & character.isDead;
+        }
+        if(battleEnd) 
+        {
+            Debug.Log("BATTLE END");
+            return;
         }
 
         current = nextCharacter;
@@ -120,7 +129,7 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     public void ApplyCoolTime(int coolTime)
     {
         current.remainCoolTime = coolTime;
-        FindMinCoolTime();
+        NextTurn();
     }
 
 
@@ -186,27 +195,6 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     {
         CurrentTag.transform.localPosition = new Vector3(current.transform.localPosition.x, 2f, 0f);
         return;
-        switch (current.position)
-        {
-            case 1:
-                CurrentTag.transform.localPosition = new Vector3(-6.73f, 1.57f, 0);
-                break;
-            case 2:
-                CurrentTag.transform.localPosition = new Vector3(-4.12f, 1.57f, 0);
-                break;
-            case 3:
-                CurrentTag.transform.localPosition = new Vector3(-1.55f, 1.57f, 0);
-                break;
-            case 4:
-                CurrentTag.transform.localPosition = new Vector3(2.18f, 1.57f, 0);
-                break;
-            case 5:
-                CurrentTag.transform.localPosition = new Vector3(4.9f, 1.57f, 0);
-                break;
-            case 6:
-                CurrentTag.transform.localPosition = new Vector3(7.22f, 1.57f, 0);
-                break;
-        }
     }
 
     public void UpdateCoolTimeStatus()

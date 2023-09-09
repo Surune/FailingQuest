@@ -419,7 +419,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: -1
   type: 6
-  HP: 100
+  HP: 10
+  isDead: 0
   remainCoolTime: 0
   HPStatus: {fileID: 2243433301986521511}
   status: {fileID: 1771815693204854294}

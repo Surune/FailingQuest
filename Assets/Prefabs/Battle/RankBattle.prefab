@@ -3110,7 +3110,12 @@ MonoBehaviour:
       Protection: 15
       Resistance: 20
       Skills:
-      - Name: "\uAC15\uD0C0"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uAC15\uD0C0"
         Description: "\uC804\uC5F4\uC758 \uC801\uC5D0\uAC8C \uAC15\uD55C \uC77C\uACA9"
         From: 0100000002000000
         To: 0100000002000000
@@ -3124,7 +3129,12 @@ MonoBehaviour:
         Potency: 2
         Duration: 3
         Advance: 0
-      - Name: "\uBC29\uD328 \uD0C0\uACA9"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uBC29\uD328 \uD0C0\uACA9"
         Description: "\uD53C\uD574 + \uAE30\uC808 1\uD134 \xB7 \uC800\uD56D \uD310\uC815"
         From: 0100000002000000
         To: 0100000002000000
@@ -3138,7 +3148,12 @@ MonoBehaviour:
         Potency: 1
         Duration: 1
         Advance: 0
-      - Name: "\uBC29\uC5B4 \uD0DC\uC138"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uBC29\uC5B4 \uD0DC\uC138"
         Description: "\uC544\uAD70 \uBCF4\uD638\uB3C4 +25% \xB7 3\uD134"
         From: 01000000020000000300000004000000
         To: 01000000020000000300000004000000
@@ -3152,7 +3167,12 @@ MonoBehaviour:
         Potency: 25
         Duration: 3
         Advance: 0
-      - Name: "\uC804\uC7A5\uC758 \uD568\uC131"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uC804\uC7A5\uC758 \uD568\uC131"
         Description: "\uC544\uAD70 \uC2A4\uD2B8\uB808\uC2A4 12 \uAC10\uC18C"
         From: 01000000020000000300000004000000
         To: 01000000020000000300000004000000
@@ -3176,7 +3196,12 @@ MonoBehaviour:
       Protection: 0
       Resistance: 20
       Skills:
-      - Name: "\uC808\uAC1C"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uC808\uAC1C"
         Description: "\uD53C\uD574 + \uCD9C\uD608 2 / 3\uD134"
         From: 010000000200000003000000
         To: 0100000002000000
@@ -3190,7 +3215,12 @@ MonoBehaviour:
         Potency: 2
         Duration: 3
         Advance: 0
-      - Name: "\uC870\uC900 \uC0AC\uACA9"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uC870\uC900 \uC0AC\uACA9"
         Description: "\uD6C4\uC5F4\uC758 \uC801\uC744 \uC815\uD655\uD558\uAC8C \uC0AC\uACA9"
         From: 020000000300000004000000
         To: 020000000300000004000000
@@ -3204,7 +3234,12 @@ MonoBehaviour:
         Potency: 2
         Duration: 3
         Advance: 0
-      - Name: "\uC0AC\uB0E5 \uD45C\uC2DD"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uC0AC\uB0E5 \uD45C\uC2DD"
         Description: "\uD45C\uC2DD \uB300\uC0C1\uC5D0\uAC8C \uBC1B\uB294 \uACF5\uACA9
           \uD53C\uD574 +3"
         From: 01000000020000000300000004000000
@@ -3219,7 +3254,12 @@ MonoBehaviour:
         Potency: 2
         Duration: 3
         Advance: 0
-      - Name: "\uB3CC\uC9C4"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uB3CC\uC9C4"
         Description: "\uACF5\uACA9 \uD6C4 \uD55C \uCE78 \uC804\uC9C4"
         From: 020000000300000004000000
         To: 0100000002000000
@@ -3243,7 +3283,12 @@ MonoBehaviour:
       Protection: 0
       Resistance: 20
       Skills:
-      - Name: "\uB3C5\uC131 \uD3ED\uBC1C"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uB3C5\uC131 \uD3ED\uBC1C"
         Description: "\uC801 \uD6C4\uC5F4 \uC804\uCCB4 \xB7 \uD53C\uD574 + \uC911\uB3C5
           3 / 3\uD134"
         From: 0300000004000000
@@ -3258,7 +3303,12 @@ MonoBehaviour:
         Potency: 3
         Duration: 3
         Advance: 0
-      - Name: "\uC12C\uAD11\uD0C4"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uC12C\uAD11\uD0C4"
         Description: "\uD6C4\uC5F4\uC758 \uC801\uC744 \uAE30\uC808\uC2DC\uD0B4"
         From: 020000000300000004000000
         To: 0300000004000000
@@ -3272,7 +3322,12 @@ MonoBehaviour:
         Potency: 1
         Duration: 1
         Advance: 0
-      - Name: "\uC218\uC220"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uC218\uC220"
         Description: "\uC544\uAD70 \uCCB4\uB825 3~6 \uD68C\uBCF5"
         From: 020000000300000004000000
         To: 01000000020000000300000004000000
@@ -3286,7 +3341,12 @@ MonoBehaviour:
         Potency: 2
         Duration: 3
         Advance: 0
-      - Name: "\uB2E8\uAC80"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uB2E8\uAC80"
         Description: "\uC804\uC5F4\uC5D0\uC11C \uC0AC\uC6A9\uD558\uB294 \uBE44\uC0C1
           \uACF5\uACA9"
         From: 0100000002000000
@@ -3311,7 +3371,12 @@ MonoBehaviour:
       Protection: 0
       Resistance: 20
       Skills:
-      - Name: "\uBE5B\uC758 \uCE58\uC720"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uBE5B\uC758 \uCE58\uC720"
         Description: "\uC544\uAD70 \uCCB4\uB825 5~9 \uD68C\uBCF5 \xB7 \uC8FD\uC74C\uC758
           \uBB38\uD131 \uD574\uC81C"
         From: 020000000300000004000000
@@ -3326,7 +3391,12 @@ MonoBehaviour:
         Potency: 2
         Duration: 3
         Advance: 0
-      - Name: "\uC2EC\uD310"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uC2EC\uD310"
         Description: "\uC801 \uD55C \uBA85\uC5D0\uAC8C \uBE5B\uC758 \uC77C\uACA9"
         From: 0300000004000000
         To: 01000000020000000300000004000000
@@ -3340,7 +3410,12 @@ MonoBehaviour:
         Potency: 2
         Duration: 3
         Advance: 0
-      - Name: "\uC704\uB85C"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uC704\uB85C"
         Description: "\uC544\uAD70 \uC2A4\uD2B8\uB808\uC2A4 18 \uAC10\uC18C"
         From: 020000000300000004000000
         To: 01000000020000000300000004000000
@@ -3354,7 +3429,12 @@ MonoBehaviour:
         Potency: 18
         Duration: 3
         Advance: 0
-      - Name: "\uCCA0\uD1F4"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uCCA0\uD1F4"
         Description: "\uC804\uC5F4\uC5D0\uC11C \uC801\uC5D0\uAC8C \uC77C\uACA9"
         From: 0100000002000000
         To: 0100000002000000
@@ -3378,7 +3458,12 @@ MonoBehaviour:
       Protection: 0
       Resistance: 20
       Skills:
-      - Name: "\uBE5B\uC758 \uCE58\uC720"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uBE5B\uC758 \uCE58\uC720"
         Description: "\uC544\uAD70 \uCCB4\uB825 5~9 \uD68C\uBCF5 \xB7 \uC8FD\uC74C\uC758
           \uBB38\uD131 \uD574\uC81C"
         From: 020000000300000004000000
@@ -3393,7 +3478,12 @@ MonoBehaviour:
         Potency: 2
         Duration: 3
         Advance: 0
-      - Name: "\uC2EC\uD310"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uC2EC\uD310"
         Description: "\uC801 \uD55C \uBA85\uC5D0\uAC8C \uBE5B\uC758 \uC77C\uACA9"
         From: 0300000004000000
         To: 01000000020000000300000004000000
@@ -3407,7 +3497,12 @@ MonoBehaviour:
         Potency: 2
         Duration: 3
         Advance: 0
-      - Name: "\uC704\uB85C"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uC704\uB85C"
         Description: "\uC544\uAD70 \uC2A4\uD2B8\uB808\uC2A4 18 \uAC10\uC18C"
         From: 020000000300000004000000
         To: 01000000020000000300000004000000
@@ -3421,7 +3516,12 @@ MonoBehaviour:
         Potency: 18
         Duration: 3
         Advance: 0
-      - Name: "\uCCA0\uD1F4"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uCCA0\uD1F4"
         Description: "\uC804\uC5F4\uC5D0\uC11C \uC801\uC5D0\uAC8C \uC77C\uACA9"
         From: 0100000002000000
         To: 0100000002000000
@@ -3446,7 +3546,12 @@ MonoBehaviour:
       Protection: 20
       Resistance: 20
       Skills:
-      - Name: "\uBF08 \uAC00\uB974\uAE30"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uBF08 \uAC00\uB974\uAE30"
         Description: "\uC804\uC5F4 \uACF5\uACA9"
         From: 01000000020000000300000004000000
         To: 0100000002000000
@@ -3460,7 +3565,12 @@ MonoBehaviour:
         Potency: 2
         Duration: 3
         Advance: 0
-      - Name: "\uB454\uC911\uD55C \uAC15\uD0C0"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uB454\uC911\uD55C \uAC15\uD0C0"
         Description: "\uD53C\uD574 + \uAE30\uC808"
         From: 0100000002000000
         To: 0100000002000000
@@ -3484,7 +3594,12 @@ MonoBehaviour:
       Protection: 0
       Resistance: 20
       Skills:
-      - Name: "\uCC22\uAE30"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uCC22\uAE30"
         Description: "\uD53C\uD574 + \uCD9C\uD608"
         From: 01000000020000000300000004000000
         To: 010000000200000003000000
@@ -3498,7 +3613,12 @@ MonoBehaviour:
         Potency: 3
         Duration: 3
         Advance: 0
-      - Name: "\uAE09\uC2B5"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uAE09\uC2B5"
         Description: "\uD6C4\uC5F4 \uACF5\uACA9"
         From: 01000000020000000300000004000000
         To: 020000000300000004000000
@@ -3522,7 +3642,12 @@ MonoBehaviour:
       Protection: 0
       Resistance: 20
       Skills:
-      - Name: "\uC5ED\uBCD1"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uC5ED\uBCD1"
         Description: "\uD53C\uD574 + \uC911\uB3C5"
         From: 020000000300000004000000
         To: 01000000020000000300000004000000
@@ -3536,7 +3661,12 @@ MonoBehaviour:
         Potency: 3
         Duration: 3
         Advance: 0
-      - Name: "\uC9C0\uD321\uC774"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uC9C0\uD321\uC774"
         Description: "\uBE44\uC0C1 \uADFC\uC811 \uACF5\uACA9"
         From: 01000000
         To: 0100000002000000
@@ -3560,7 +3690,12 @@ MonoBehaviour:
       Protection: 0
       Resistance: 20
       Skills:
-      - Name: "\uC808\uB9DD\uC758 \uC18D\uC0AD\uC784"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uC808\uB9DD\uC758 \uC18D\uC0AD\uC784"
         Description: "\uC2A4\uD2B8\uB808\uC2A4 +18"
         From: 020000000300000004000000
         To: 01000000020000000300000004000000
@@ -3574,7 +3709,12 @@ MonoBehaviour:
         Potency: 18
         Duration: 3
         Advance: 0
-      - Name: "\uD560\uD034\uAE30"
+      - Id: 0
+        Cooldown: 0
+        SelfOnly: 0
+        BothTeams: 0
+        AdditionalEffects: []
+        Name: "\uD560\uD034\uAE30"
         Description: "\uADFC\uC811 \uACF5\uACA9"
         From: 0100000002000000
         To: 0100000002000000
@@ -3617,6 +3757,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3185c21d420294cc78f164e332d932a1, type: 3}
   - {fileID: 21300000, guid: 2bc99f7799ea84d078e803a37af87754, type: 3}
   - {fileID: 21300000, guid: 9f0c57163c056426889d74a3bde6eb7c, type: 3}
+  SkillCatalog: {fileID: 11400000, guid: 6f01bb73340c18140bac238ae325d06f, type: 2}
   SkillLabels:
   - {fileID: 574667016686111439}
   - {fileID: 8609406745911889324}

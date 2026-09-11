@@ -19,14 +19,13 @@ public static class RunEffects
         foreach (var key in health.Keys.ToArray()) health[key] = Mathf.Clamp01(health[key] + fraction);
     }
 
-    public static List<Dictionary<string, object>> AvailableSkills()
+    public static List<CombatSkillDefinition> AvailableSkills()
     {
         var data = GameManager.Instance.userData;
-        return CSVReader.Read("SkillInfo").Where(row =>
+        return GameManager.Instance.skillCatalog.Skills.Where(skill =>
         {
-            int number = (int)row["NUM"];
-            int owner = data.characters.FindIndex(c => (int)c == number / 100);
-            return number >= 100 && owner >= 0 && !data.currentSkills[owner].ContainsKey(number.ToString("000"));
+            int owner = data.characters.FindIndex(c => (int)c == skill.Owner);
+            return skill.Id >= 100 && owner >= 0 && !data.currentSkills[owner].ContainsKey(skill.Key);
         }).ToList();
     }
 
@@ -47,7 +46,7 @@ public static class RunEffects
     public static void GainRandomSkill()
     {
         var offers = AvailableSkills();
-        int number = (int)offers[Random.Range(0, offers.Count)]["NUM"];
+        int number = offers[Random.Range(0, offers.Count)].Id;
         var data = GameManager.Instance.userData;
         int owner = data.characters.FindIndex(c => (int)c == number / 100);
         data.currentSkills[owner].Add(number.ToString("000"), ForgeType.UNFORGED);
@@ -59,19 +58,6 @@ public static class RunEffects
         skills.Remove(skills.Keys.Last(k => int.Parse(k) >= 100));
     }
 
-    public static CombatSkill RewardSkill(Dictionary<string, object> row)
-    {
-        string description = row["DESCRIPTION"].ToString();
-        Effect effect = description.Contains("회복") ? Effect.Heal : description.Contains("화상") ? Effect.Blight : description.Contains("감소") ? Effect.Mark : description.Contains("증가") ? Effect.Guard : Effect.Strike;
-        bool friendly = effect == Effect.Heal || effect == Effect.Guard;
-        bool status = effect == Effect.Guard || effect == Effect.Mark;
-        return new CombatSkill
-        {
-            Name = row["NAME"].ToString(),
-            Description = effect == Effect.Heal ? "아군 체력 4~8 회복" : effect == Effect.Guard ? "아군 보호도 +25% · 3턴" : effect == Effect.Mark ? "적 표식 · 받는 공격 피해 +3 · 3턴" : effect == Effect.Blight ? "피해 4~8 + 중독 2 · 3턴" : "적에게 4~8 피해",
-            Effect = effect, Friendly = friendly, Min = status ? 0 : 4, Max = status ? 0 : 8
-        };
-    }
     public static CombatTemplate Prepare(CombatAppearance appearance)
     {
         var template = JsonConvert.DeserializeObject<CombatTemplate>(JsonConvert.SerializeObject(appearance.Template));
@@ -83,23 +69,23 @@ public static class RunEffects
             var acquired = skills.Keys.Where(k => int.Parse(k) >= 100).ToArray();
             if (acquired.Length > 0)
             {
-                var row = CSVReader.FindRowWithNum(CSVReader.Read("SkillInfo"), int.Parse(acquired.Last()));
-                template.Skills[3] = RewardSkill(row);
+                template.Skills[3] = GameManager.Instance.skillCatalog.Get(acquired.Last()).CreateSkill();
             }
             foreach (var forge in skills.Values.Where(f => f != ForgeType.UNFORGED))
             {
                 if (forge == ForgeType.COOLTIME) template.Speed += 1;
                 foreach (var skill in template.Skills)
                 {
-                    if (forge == ForgeType.DAMAGE && !skill.Friendly || forge == ForgeType.HEAL && skill.Effect == Effect.Heal) { skill.Min++; skill.Max++; }
-                    if (forge == ForgeType.BUFF && skill.Friendly || forge == ForgeType.DEBUFF && !skill.Friendly) { skill.Potency++; skill.Duration++; }
+                    if (skill.Max > 0 && (forge == ForgeType.DAMAGE && skill.Effect != Effect.Heal || forge == ForgeType.HEAL && skill.Effect == Effect.Heal)) { skill.Min++; skill.Max++; }
+                    if (MatchesForge(skill.Effect, forge)) { skill.Potency++; skill.Duration++; }
+                    foreach (var effect in skill.AdditionalEffects.Where(e => MatchesForge(e.Effect, forge))) { effect.Potency++; effect.Duration++; }
                 }
             }
         }
         foreach (int index in data.myTreasureIndex)
         {
             var treasure = GameManager.Instance.treasureCatalog.treasures[index];
-            foreach (var skill in template.Skills.Where(s => !s.Friendly))
+            foreach (var skill in template.Skills.Where(s => s.Effect != Effect.Heal && s.Max > 0))
             {
                 skill.Min += treasure.attackBonus;
                 skill.Max += treasure.attackBonus;
@@ -109,4 +95,9 @@ public static class RunEffects
         }
         return template;
     }
+
+    private static bool MatchesForge(Effect effect, ForgeType forge)
+        => forge == ForgeType.BUFF && (effect == Effect.Guard || effect == Effect.AttackUp || effect == Effect.SpeedUp || effect == Effect.Focus)
+            || forge == ForgeType.DEBUFF && (effect == Effect.Bleed || effect == Effect.Blight || effect == Effect.Burn
+                || effect == Effect.Stun || effect == Effect.Mark || effect == Effect.AttackDown || effect == Effect.SpeedDown);
 }

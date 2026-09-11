@@ -6,7 +6,6 @@ public class ForgeManager : MonoBehaviour
 {
     [SerializeField] private ForgeButton[] buttons;
     [SerializeField] private Sprite[] forgeIcons;
-    public List<Dictionary<string, object>> skillInfo;
     
 
     // Start is called before the first frame update
@@ -27,7 +26,6 @@ public class ForgeManager : MonoBehaviour
         ShuffleList(concatenatedList); // Shuffle the concatenated list
         List<string> pickedNumbers = concatenatedList.GetRange(0, Mathf.Min(buttons.Length, concatenatedList.Count));
 
-        skillInfo = CSVReader.Read("SkillInfo");
         for(int i = 0; i < buttons.Length; i++) 
         {
             buttons[i].gameObject.SetActive(i < pickedNumbers.Count);
@@ -66,37 +64,37 @@ public class ForgeManager : MonoBehaviour
 
     private void SetForgeButton(ForgeButton btn, string skillNum) 
     {
-        btn.skillIcon.sprite = Resources.Load<Sprite>("SkillIcons/skill_" + skillNum);
-        var row = CSVReader.FindRowWithNum(skillInfo, int.Parse(skillNum));
-        btn.skillNameText.text = row["NAME"].ToString();
+        var definition = GameManager.Instance.skillCatalog.Get(skillNum);
+        btn.skillIcon.sprite = definition.Icon;
+        btn.skillNameText.text = definition.Skill.Name;
         btn.skillDescriptionText.text = "이 스킬을 보유한 동료에게 강화가 적용됩니다.";
 
-        var forgeAvailable = row["FORGETYPE"].ToString().Split(",");
+        var forgeAvailable = definition.ForgeOptions;
         var randomIndex = Random.Range(0, forgeAvailable.Length);
 
         switch(forgeAvailable[randomIndex]) 
         {
-            case "쿨타임":
+            case ForgeType.COOLTIME:
                 btn.forgeText.text = "속도 +1";
                 btn.forgeIcon.sprite = forgeIcons[0];
                 btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.COOLTIME));
                 break;
-            case "대미지":
+            case ForgeType.DAMAGE:
                 btn.forgeText.text = "공격 피해 +1";
                 btn.forgeIcon.sprite = forgeIcons[1];
                 btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.DAMAGE));
                 break;
-            case "버프":
+            case ForgeType.BUFF:
                 btn.forgeText.text = "버프 강도·지속 +1";
                 btn.forgeIcon.sprite = forgeIcons[2];
                 btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.BUFF));
                 break;
-            case "디버프":
+            case ForgeType.DEBUFF:
                 btn.forgeText.text = "디버프 강도·지속 +1";
                 btn.forgeIcon.sprite = forgeIcons[3];
                 btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.DEBUFF));
                 break;
-            case "회복량":
+            case ForgeType.HEAL:
                 btn.forgeText.text = "회복량 +1";
                 btn.forgeIcon.sprite = forgeIcons[4];
                 btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.HEAL));

@@ -16,6 +16,7 @@ namespace FailingQuest.Combat
         public Button[] SkillButtons;
         public Image[] SkillIcons;
         public Sprite[] AbilityIcons;
+        public CombatSkillCatalog SkillCatalog;
         public TMP_Text[] SkillLabels;
         public TMP_Text RoundText;
         public TMP_Text TurnText;
@@ -230,10 +231,13 @@ namespace FailingQuest.Combat
                 SkillButtons[i].gameObject.SetActive(hasSkill);
                 if (!hasSkill) continue;
                 var skill = actor.Template.Skills[i];
-                SkillLabels[i].text = $"{i + 1}  {skill.Name}\n<color=#B5A17B>{string.Join("·", skill.From)}열</color>";
+                int cooldown = Model.RemainingCooldown(actor, skill);
+                SkillLabels[i].text = $"{i + 1}  {skill.Name}\n<color=#B5A17B>{string.Join("·", skill.From)}열</color>"
+                    + (cooldown > 0 ? $" · 재사용 {cooldown}R" : "");
                 SkillButtons[i].interactable = PlayerTurn && Model.CanUse(actor, skill);
                 SkillButtons[i].GetComponent<Image>().color = SelectedSkill == i ? Tone(0.45f, 0.3f, 0.13f) : Tone(0.17f, 0.15f, 0.14f);
-                SkillIcons[i].sprite = AbilityIcons[((int)skill.Effect) % AbilityIcons.Length];
+                SkillIcons[i].sprite = skill.Id > 0 ? SkillCatalog.Get(skill.Id.ToString("000")).Icon
+                    : AbilityIcons[((int)skill.Effect) % AbilityIcons.Length];
             }
             int count = Model.Units.Count(u => u.Enemy == actor.Enemy && u.Living);
             ForwardButton.interactable = PlayerTurn && actor.Rank > 1;
@@ -249,8 +253,9 @@ namespace FailingQuest.Combat
         }
 
         private string Describe(CombatSkill skill)
-            => $"<color=#E8C781>{skill.Name}</color>\n{skill.Description}\n사용: {string.Join("·", skill.From)}열  →  {(skill.Friendly ? "아군" : "적")} {string.Join("·", skill.To)}열"
-                + (skill.Max > 0 ? $"\n{(skill.Friendly ? "회복" : "기본 피해")} {skill.Min}~{skill.Max}" : "");
+            => $"<color=#E8C781>{skill.Name}</color>\n{skill.Description}\n사용: {string.Join("·", skill.From)}열  →  {(skill.SelfOnly ? "자신" : skill.BothTeams ? "양 진영 전체" : skill.Friendly ? "아군" : "적")} {string.Join("·", skill.To)}열"
+                + (skill.Max > 0 ? $"\n{(skill.Effect == Effect.Heal ? "회복" : "기본 피해")} {skill.Min}~{skill.Max}" : "")
+                + (skill.Cooldown > 0 ? $"\n사용 후 {skill.Cooldown}개 라운드 동안 재사용 불가" : "");
 
         private void RefreshTarget()
         {

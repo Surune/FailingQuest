@@ -233,23 +233,6 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
             BottomCurrentTempBuf.Add(instance);
             instance.transform.localPosition = buf.transform.localPosition;
         }
-
-        LoadSkills();
-    }
-
-    private void LoadSkills()
-    {
-        foreach (Transform child in BottomCurrentSkills.transform)
-        {
-            Destroy(child.gameObject); // Destroy each child object
-        }
-        //Debug.Log(GameManager.Instance.userData.characters[0]+""+GameManager.Instance.userData.characters[1]+""+GameManager.Instance.userData.characters[2]);
-        int index = GameManager.Instance.userData.characters.IndexOf(current.type);
-        foreach (var pair in GameManager.Instance.userData.currentSkills[index])
-        {
-            var s = Resources.Load<GameObject>("Skills/Skill_" + pair.Key.ToString());
-            Instantiate(s, BottomCurrentSkills.transform);
-        }
     }
 
     public List<Character> GetAllies()

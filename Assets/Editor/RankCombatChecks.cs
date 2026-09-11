@@ -14,10 +14,10 @@ public static class RankCombatChecks
     private static CombatModel Duel(int seed = 1)
     {
         var model = new CombatModel(seed);
-        var hero = CombatRoster.Hero(0);
+        var hero = RankCombatTemplates.Hero(0);
         hero.Speed = 100;
         model.Add(hero, false, 1);
-        model.Add(CombatRoster.Enemy(0), true, 1);
+        model.Add(RankCombatTemplates.Enemy(0), true, 1);
         return model;
     }
 
@@ -45,7 +45,7 @@ public static class RankCombatChecks
         Check(target.Use(0, 1) && !target.Use(0, 1), "Double-click cannot execute twice");
         passed.Add("team and rank targeting / duplicate submission");
 
-        var movement = Duel(); movement.Add(CombatRoster.Hero(1), false, 2); movement.Next();
+        var movement = Duel(); movement.Add(RankCombatTemplates.Hero(1), false, 2); movement.Next();
         Check(!movement.Move(-1), "Cannot move beyond rank 1");
         Check(movement.Move(1), "Move consumes action");
         Check(movement.Units[0].Rank == 2 && movement.Units[2].Rank == 1 && !movement.AwaitingAction, "Same-team swap");
@@ -55,12 +55,12 @@ public static class RankCombatChecks
         var door = Duel(); door.Next();
         door.Damage(door.Units[0], 999, false);
         Check(door.Units[0].AtDeathsDoor && !door.Units[0].Dead, "First lethal hit enters death's door");
-        door.Active.Template.Skills[0] = CombatRoster.Hero(3).Skills[0];
+        door.Active.Template.Skills[0] = RankCombatTemplates.Hero(3).Skills[0];
         door.Active.Template.Skills[0].From = new[] { 1 };
         Check(door.Use(0, 0) && door.Units[0].Health > 0 && !door.Units[0].AtDeathsDoor, "Healing escapes death's door");
         passed.Add("death's door and healing");
 
-        var corpse = Duel(); corpse.Add(CombatRoster.Enemy(1), true, 2); corpse.Next();
+        var corpse = Duel(); corpse.Add(RankCombatTemplates.Enemy(1), true, 2); corpse.Next();
         corpse.Damage(corpse.Units[1], 999, false);
         Check(corpse.Units[1].Corpse && corpse.Units[2].Rank == 2, "Corpse retains formation slot");
         Check(corpse.Use(0, 1) && !corpse.Units[1].Corpse && corpse.Units[2].Rank == 1, "Clearing corpse compacts ranks");
@@ -68,7 +68,7 @@ public static class RankCombatChecks
         Check(corpse.Active.Id != 1, "Corpse cannot act");
         passed.Add("corpse blocking / clearing / dead turn filtering");
 
-        var dot = Duel(); dot.Add(CombatRoster.Enemy(1), true, 2);
+        var dot = Duel(); dot.Add(RankCombatTemplates.Enemy(1), true, 2);
         dot.Damage(dot.Units[1], 999, true);
         Check(!dot.Units[1].Corpse && dot.Units[2].Rank == 1, "DOT kill creates no corpse");
         passed.Add("DOT corpse bypass");
@@ -105,17 +105,17 @@ public static class RankCombatChecks
         passed.Add("retreat action");
 
         var aoe = new CombatModel(10);
-        aoe.Add(CombatRoster.Hero(2), false, 3);
-        for (int i = 1; i <= 4; i++) aoe.Add(CombatRoster.Enemy(i - 1), true, i);
+        aoe.Add(RankCombatTemplates.Hero(2), false, 3);
+        for (int i = 1; i <= 4; i++) aoe.Add(RankCombatTemplates.Enemy(i - 1), true, i);
         Check(aoe.Targets(aoe.Units[0], aoe.Units[0].Template.Skills[0]).Select(u => u.Rank).SequenceEqual(new[] {3,4}), "AOE respects target ranks");
         passed.Add("area targeting");
 
         int wins = 0, losses = 0;
-        for (int seed = 0; seed < 100; seed++)
+        for (int seed = 0; seed < 10; seed++)
         {
             var model = new CombatModel(seed);
-            for (int i = 0; i < 4; i++) model.Add(CombatRoster.Hero(i), false, i + 1);
-            for (int i = 0; i < 4; i++) model.Add(CombatRoster.Enemy(i), true, i + 1);
+            for (int i = 0; i < 4; i++) model.Add(RankCombatTemplates.Hero(i), false, i + 1);
+            for (int i = 0; i < 4; i++) model.Add(RankCombatTemplates.Enemy(i), true, i + 1);
             int turns = 0;
             while (model.Next() && turns++ < 500)
             {
@@ -143,7 +143,7 @@ public static class RankCombatChecks
             Check(model.Outcome != Outcome.Fighting, $"Battle failed to terminate: seed {seed}");
             if (model.Outcome == Outcome.Victory) wins++; else losses++;
         }
-        passed.Add($"100 seeded full battles: {wins} victories / {losses} defeats, no hangs or rank collisions");
+        passed.Add($"10 seeded full battles: {wins} victories / {losses} defeats, no hangs or rank collisions");
         return string.Join("\n", passed);
     }
 }

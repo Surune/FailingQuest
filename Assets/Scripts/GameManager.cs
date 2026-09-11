@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public bool firstQuestLoaded;
     public GameObject[] charPrefabs;
     public TreasureCatalog treasureCatalog;
+    public FailingQuest.Combat.CombatSkillCatalog skillCatalog;
     public Vector2 treasurePosition;
     public bool sceneLoadedTriger;
 

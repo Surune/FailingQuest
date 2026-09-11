@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3de192c5724804099edf153f09eefd, type: 3}
+  m_Name: Skill_113
+  m_EditorClassIdentifier: Assembly-CSharp::FailingQuest.Combat.CombatSkillDefinition
+  Id: 113
+  Icon: {fileID: 21300000, guid: 67b8fac849e4e4b52b13ab0dcbf87465, type: 3}
+  ConversionNotes: "\uD504\uB9AC\uD339 \uD6A8\uACFC\xB7\uB300\uC0C1 \uAE30\uC900.
+    \uCFE8\uD0C0\uC784 1~30=0, 31~60=1, 61~90=2, 91~120=3\uAC1C \uB77C\uC6B4\uB4DC
+    \uB300\uAE30. \uC0C1\uD0DC 3\uD134, \uAE30\uC808 1\uD134. \uC18D\uB3C4\uB294
+    \uAE30\uC874 \uC218\uCE58/10 \uC62C\uB9BC(\uCD5C\uB300 5), \uBCF4\uD638 25%,
+    \uC9D1\uC911 \uBA85\uC911 +10. \uB450 \uBC88\uC9F8 \uD6A8\uACFC\uC758 \uB204\uB77D\uB41C
+    \uCC38\uC870\uB97C buf1\uC758 \uC18D\uB3C4 \uC99D\uAC00\uC5D0\uC11C \uBCF5\uC6D0.
+    \uD6C4\uBC29 \uD55C \uCE78 \uC774\uB3D9."
+  ForgeOptions: 0100000003000000
+  Skill:
+    Id: 113
+    Cooldown: 0
+    SelfOnly: 1
+    BothTeams: 0
+    AdditionalEffects:
+    - Effect: 12
+      Target: 0
+      Potency: 1
+      Duration: 3
+    Name: "\uD154\uB808\uD3EC\uD2B8"
+    Description: "\uD6C4\uBC29 \uD55C \uCE78 \uC774\uB3D9 / \uC790\uC2E0: \uC18D\uB3C4
+      \uC99D\uAC00 1 \xB7 3\uD134"
+    From: 010000000200000003000000
+    To: 01000000020000000300000004000000
+    Effect: 15
+    Friendly: 1
+    All: 0
+    Min: 0
+    Max: 0
+    Accuracy: 95
+    Critical: 5
+    Potency: 0
+    Duration: 3
+    Advance: -1

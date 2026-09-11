@@ -40,6 +40,7 @@ public static class RankCombatAuthoring
         scaler.referenceResolution = V2(1440, 900);
         scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
         var controller = rootObject.AddComponent<RankBattleController>();
+        controller.SkillCatalog = AssetDatabase.LoadAssetAtPath<CombatSkillCatalog>("Assets/ScriptableObjects/CombatSkills/SkillCatalog.asset");
         var stage = Rect("Composition", rootObject.transform, 0, 0, 1440, 900);
         stage.anchorMin = stage.anchorMax = V2(0.5f, 0.5f);
         stage.pivot = V2(0.5f, 0.5f);
@@ -118,12 +119,12 @@ public static class RankCombatAuthoring
             Hero(CharacterType.character1, 0, "Assets/02_Prefabs/Battle/Character/Character1.prefab"),
             Hero(CharacterType.character2, 1, "Assets/02_Prefabs/Battle/Character/Character2.prefab"),
             Hero(CharacterType.character3, 2, "Assets/02_Prefabs/Battle/Character/Character3.prefab"),
-            new CombatAppearance { CharacterType = CharacterType.character4, Template = CombatRoster.Hero(3), Sprite = SpriteAt("Assets/Sprites/Characters/char4.png") },
-            new CombatAppearance { CharacterType = CharacterType.caharcter5, Template = CombatRoster.Hero(3), Sprite = SpriteAt("Assets/Sprites/Characters/char5.png") }
+            new CombatAppearance { CharacterType = CharacterType.character4, Template = RankCombatTemplates.Hero(3), Sprite = SpriteAt("Assets/Sprites/Characters/char4.png") },
+            new CombatAppearance { CharacterType = CharacterType.caharcter5, Template = RankCombatTemplates.Hero(3), Sprite = SpriteAt("Assets/Sprites/Characters/char5.png") }
         };
         string[] enemies = { "Ghoul", "RatfolkAxe", "RatfolkMage", "Witch" };
         controller.Enemies = enemies.Select((name, index) => new CombatAppearance {
-            Template = CombatRoster.Enemy(index), Sprite = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/02_Prefabs/Battle/Enemies/Monster/" + name + ".prefab")
+            Template = RankCombatTemplates.Enemy(index), Sprite = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/02_Prefabs/Battle/Enemies/Monster/" + name + ".prefab")
                 .GetComponentsInChildren<SpriteRenderer>(true).First(s => s.gameObject.name == "Body").sprite }).ToArray();
         for (int i = 0; i < controller.Enemies.Length; i++)
             controller.Enemies[i].Sprite = TrimSprite(controller.Enemies[i].Sprite, i);
@@ -159,7 +160,7 @@ public static class RankCombatAuthoring
     }
 
     private static CombatAppearance Hero(CharacterType type, int role, string path) => new CombatAppearance {
-        CharacterType = type, Template = CombatRoster.Hero(role), Sprite = AssetDatabase.LoadAssetAtPath<GameObject>(path)
+        CharacterType = type, Template = RankCombatTemplates.Hero(role), Sprite = AssetDatabase.LoadAssetAtPath<GameObject>(path)
             .GetComponentsInChildren<SpriteRenderer>(true).First(s => s.gameObject.name == "Body").sprite };
 
     private static Sprite SpriteAt(string path) => AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().First();

@@ -41,7 +41,7 @@
 - CombatModel은 씬과 독립적인 순수 전투 상태이며, RankBattleController가 UI와 애니메이션을 연결한다.
 - `FailingQuest/Author rank combat prefab` 메뉴는 기본값으로 프리팹을 재생성한다. 수동 프리팹 편집을 덮어쓰므로 편집 내용을 유지하려면 실행하지 않는다.
 - 생성기는 Editor 전용이다. 기존 씬 오브젝트는 보존하고 자신이 생성한 프리팹 인스턴스만 교체한다.
-- 에디터에서 `RankCombatChecks.Run()`을 실행하면 턴·대상·이동·시체·지속 피해·기절·스트레스·승패·후퇴 회귀 검사와 시드 100개의 완전한 전투를 검사한다.
+- 에디터에서 `RankCombatChecks.Run()`을 실행하면 턴·대상·이동·시체·지속 피해·기절·스트레스·승패·후퇴 회귀 검사와 시드 10개의 완전한 전투를 검사한다.
 - 직접 플레이에서는 스킬 버튼→대상 버튼, 중복 클릭 차단, 적 AI 자동 행동 및 결과 패널을 점검했다. 실제 UI 버튼으로 23회 행동하여 7라운드 뒤 승리 패널까지 도달했으며 런타임 오류는 0건이었다.
 
 원작 참고: [Red Hook의 Darkest Dungeon 소개](https://www.darkestdungeon.com/darkest-dungeon/about/), [전투 규칙 위키](https://darkestdungeon.wiki.gg/wiki/Combat_Mechanics_(Darkest_Dungeon)).

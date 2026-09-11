@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff1a167af7e74274e838c50af3646771, type: 3}
+  treasureCatalog: {fileID: 11400000, guid: 0aedda4e46274e71b51f9020b2388698, type: 2}
   m_Name: 
   m_EditorClassIdentifier: 
   firstQuestLoaded: 1

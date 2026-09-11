@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124c72c45f7a4d6d8846dd7ce083027c, type: 3}
+  m_Name: sando
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: aaf8152fc1fd94943878b2ee5cfb462d, type: 3}
+  description: "든든한 샌드위치: 최대 체력 +7"
+  coins: 0
+  attackBonus: 0
+  healthBonus: 7
+  speedBonus: 0
+

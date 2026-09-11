@@ -30,18 +30,18 @@ public static class RunEffects
         }).ToList();
     }
 
-    public static bool CanGainTreasure => GameManager.Instance.userData.myTreasureIndex.Count < 4;
+    public static bool CanGainTreasure => GameManager.Instance.userData.myTreasureIndex.Count < GameManager.Instance.treasureCatalog.treasures.Length;
     public static void GainTreasure(int index)
     {
         var data = GameManager.Instance.userData;
         data.myTreasureIndex.Add(index);
         data.myTreasureCount = data.myTreasureIndex.Count;
-        if (index == 0) data.money += 50;
+        data.money += GameManager.Instance.treasureCatalog.treasures[index].coins;
         Progress(4, 1);
     }
     public static void GainRandomTreasure()
     {
-        var available = Enumerable.Range(0, 4).Except(GameManager.Instance.userData.myTreasureIndex).ToArray();
+        var available = Enumerable.Range(0, GameManager.Instance.treasureCatalog.treasures.Length).Except(GameManager.Instance.userData.myTreasureIndex).ToArray();
         GainTreasure(available[Random.Range(0, available.Length)]);
     }
     public static void GainRandomSkill()
@@ -96,9 +96,17 @@ public static class RunEffects
                 }
             }
         }
-        if (data.myTreasureIndex.Contains(1)) foreach (var skill in template.Skills.Where(s => !s.Friendly)) { skill.Min++; skill.Max++; }
-        if (data.myTreasureIndex.Contains(2)) template.Health += 5;
-        if (data.myTreasureIndex.Contains(3)) template.Speed += 1;
+        foreach (int index in data.myTreasureIndex)
+        {
+            var treasure = GameManager.Instance.treasureCatalog.treasures[index];
+            foreach (var skill in template.Skills.Where(s => !s.Friendly))
+            {
+                skill.Min += treasure.attackBonus;
+                skill.Max += treasure.attackBonus;
+            }
+            template.Health += treasure.healthBonus;
+            template.Speed += treasure.speedBonus;
+        }
         return template;
     }
 }

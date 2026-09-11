@@ -5,10 +5,10 @@ using TMPro;
 
 public class Treasure : MonoBehaviour
 {
-    public GameObject[] treasures;
+    public TreasureList treasurePrefab;
     public Transform treasureParent;
     public TMP_Text effectInfo;
-    public int prefabIndex;
+    private int treasureIndex;
     public GameObject openButton;
     public GameObject sceneloadButton;
     public Animator chestAnimator;
@@ -17,25 +17,25 @@ public class Treasure : MonoBehaviour
     {
         chestAnimator.speed = 0f;
         var available = new List<int>();
-        for (int i = 0; i < treasures.Length; i++)
+        for (int i = 0; i < GameManager.Instance.treasureCatalog.treasures.Length; i++)
             if (!GameManager.Instance.userData.myTreasureIndex.Contains(i)) available.Add(i);
         openButton.SetActive(available.Count > 0);
         sceneloadButton.SetActive(available.Count == 0);
-        if (available.Count > 0) prefabIndex = available[Random.Range(0, available.Count)];
+        if (available.Count > 0) treasureIndex = available[Random.Range(0, available.Count)];
     }
 
     public void ShowTreasure()
     {
         var data = GameManager.Instance.userData;
-        var treasure = Instantiate(treasures[prefabIndex], treasureParent);
-        treasure.GetComponent<TreasureList>().EffectInfo = effectInfo;
+        var treasure = Instantiate(treasurePrefab, treasureParent);
+        treasure.Initialize(GameManager.Instance.treasureCatalog.treasures[treasureIndex], effectInfo);
         Vector3 position = default;
         position.x = 340; position.y = -100;
         treasure.transform.localPosition = position;
         treasure.transform.localScale = Vector3.one * 100;
         treasure.transform.DOLocalMove(GameManager.Instance.treasurePosition, 2f);
-        RunEffects.GainTreasure(prefabIndex);
-        data.myTreasure.Add(treasure);
+        RunEffects.GainTreasure(treasureIndex);
+        data.myTreasure.Add(treasure.gameObject);
         data.myTreasureCount = data.myTreasureIndex.Count;
         GameManager.Instance.treasurePosition.x += 60;
     }

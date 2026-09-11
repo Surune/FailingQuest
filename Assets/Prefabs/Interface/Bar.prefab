@@ -76,11 +76,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconPrefab: {fileID: 8133524761462917079, guid: aa2c82474e1475d4d938e6e74ee2c2f0, type: 3}
-  treasureIcons:
-  - {fileID: 21300000, guid: 2128940a112aa41938cb8ae2cd1fbc14, type: 3}
-  - {fileID: 21300000, guid: fd7ab89efaebb4686acf33a50fd4f27c, type: 3}
-  - {fileID: 21300000, guid: 8677b451792754c5bb99c12fe8900d94, type: 3}
-  - {fileID: 21300000, guid: 4c38197f9b1da4e678bf7e31d3abc8bd, type: 3}
 --- !u!1 &4365364313606441072
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,4 +484,4 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c97fa2838cbac41ec99a8066776bd99d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:

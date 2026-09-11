@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5090809591727728617}
   - component: {fileID: 3213904595248184839}
   - component: {fileID: 9206700943758873749}
-  - component: {fileID: 1733849546456581982}
+
   m_Layer: 5
-  m_Name: gold
+  m_Name: TreasureView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 2128940a112aa41938cb8ae2cd1fbc14, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -144,21 +144,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f59226338b548189d908df48d0d093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treasurePrefab:
-  - {fileID: 9083669233575879111}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  EffectInfo: {fileID: 0}
---- !u!114 &1733849546456581982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9083669233575879111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4836475a14d2242f7b9ef1ad2a6cb332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  icon: {fileID: 5090809591727728617}
+

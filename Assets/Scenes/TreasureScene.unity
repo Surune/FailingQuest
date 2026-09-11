@@ -1745,14 +1745,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f6da53d61074181bf10dd22ef56ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treasures:
-  - {fileID: 9083669233575879111, guid: 8a17b7f0ae2d24e61b5344b20f80815d, type: 3}
-  - {fileID: 7030180492025632976, guid: c52e0438d5dfa4ec7a5bccdfd0c5fbab, type: 3}
-  - {fileID: 1259145906133952504, guid: d4d63bc13784345c69c76ad64da41768, type: 3}
-  - {fileID: 5486395837694423192, guid: b1b431ba55f084a9c97b551eb175a04a, type: 3}
+  treasurePrefab: {fileID: 9206700943758873749, guid: 03f2dda3a6c247aaa8b29a6833e82b4d, type: 3}
   treasureParent: {fileID: 150502585}
   effectInfo: {fileID: 2088745477}
-  prefabIndex: 0
   openButton: {fileID: 2094705788}
   sceneloadButton: {fileID: 1497906858}
   chestAnimator: {fileID: 685092803}

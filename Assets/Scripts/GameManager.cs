@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public UserData userData = CreateData();
     public bool firstQuestLoaded;
     public GameObject[] charPrefabs;
+    public TreasureCatalog treasureCatalog;
     public Vector2 treasurePosition;
     public bool sceneLoadedTriger;
 

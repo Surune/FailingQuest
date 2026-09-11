@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 using Newtonsoft.Json;
 
@@ -21,29 +20,18 @@ namespace Map
         {
             if (PlayerPrefs.HasKey("Map"))
             {
-                //PlayerPrefs.DeleteKey("Map");
-                //return;
-
                 var loadedMapJson = PlayerPrefs.GetString("Map");
-                var loadedMap = JsonConvert.DeserializeObject<Map>(loadedMapJson);
-
-                if (loadedMap.userPath.Any(point => point.Equals(loadedMap.GetBossNode().point)))
-                {
-                    // The player has already cleared this map.
-                    GenerateMap();
-                }
-                else
-                {
-                    // The player hasn't cleared this map yet.
-                    map = loadedMap;
-                    map.hasSelectedNode = false;
-                    MapRenderer.instance.RenderMap(map);
-                }
+                map = JsonConvert.DeserializeObject<Map>(loadedMapJson);
+                map.hasSelectedNode = false;
+                MapRenderer.instance.RenderMap(map);
             }
             else
             {
                 GenerateMap();
             }
+            GameManager.Instance.userData.nodesVisited = map.userPath.Count;
+            SaveMap();
+            DataManager.instance.SaveCheckpoint();
         }
 
         public void GenerateMap()

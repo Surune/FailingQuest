@@ -33,4 +33,31 @@ public class DataManager : MonoBehaviour
         var userDataJson = PlayerPrefs.GetString("UserData");
         GameManager.Instance.userData = JsonConvert.DeserializeObject<UserData>(userDataJson);
     }
+
+    public bool HasCheckpoint => PlayerPrefs.HasKey("RunCheckpoint");
+
+    public void SaveCheckpoint()
+    {
+        var checkpoint = new RunCheckpoint
+        {
+            data = GameManager.Instance.userData,
+            map = PlayerPrefs.GetString("Map")
+        };
+        PlayerPrefs.SetString("RunCheckpoint", JsonConvert.SerializeObject(checkpoint));
+        SaveData();
+    }
+
+    public void ContinueRun()
+    {
+        var checkpoint = JsonConvert.DeserializeObject<RunCheckpoint>(PlayerPrefs.GetString("RunCheckpoint"));
+        GameManager.Instance.userData = checkpoint.data;
+        PlayerPrefs.SetString("Map", checkpoint.map);
+        SceneLoader.LoadScene("MapScene");
+    }
+
+    private class RunCheckpoint
+    {
+        public UserData data;
+        public string map;
+    }
 }

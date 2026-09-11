@@ -32,6 +32,12 @@ namespace Map
         private float mouseDownTime;
         private const float maxClickDuration = 0.5f;
 
+        private void OnDestroy()
+        {
+            spriteRenderer.DOKill();
+            spriteRenderer.transform.DOKill();
+        }
+
         public void SetNode(Node node, NodeInfo nodeInfo)
         {
             this.node = node;

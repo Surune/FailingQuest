@@ -4,6 +4,11 @@ using UnityEngine;
 public class UserData
 {
     public int money;
+    public int battlesWon;
+    public int elitesWon;
+    public int retreats;
+    public int battleRounds;
+    public int nodesVisited;
     public Dictionary<CharacterType, float> partyHealth = new()
     {
         { CharacterType.character1, 1f }, { CharacterType.character2, 1f },

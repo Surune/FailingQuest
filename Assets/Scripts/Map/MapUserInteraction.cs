@@ -80,7 +80,7 @@ namespace Map
             switch (mapNode.node.nodeType)
             {
                 case NodeType.Normal:
-                    SceneManager.LoadScene("BattleScene");
+                    SceneLoader.LoadScene("BattleScene");
 
                     break;
                 case NodeType.Elite:
@@ -90,21 +90,21 @@ namespace Map
                     SceneLoader.LoadScene("BattleScene");
                     break;
                 case NodeType.Treasure:
-                    SceneManager.LoadScene("TreasureScene");
+                    SceneLoader.LoadScene("TreasureScene");
 
                     break;
                 case NodeType.Shop:
-                    SceneManager.LoadScene("ShopScene");
+                    SceneLoader.LoadScene("ShopScene");
                     break;
                 case NodeType.Forge:
-                    SceneManager.LoadScene("ForgeScene");
+                    SceneLoader.LoadScene("ForgeScene");
                     break;
                 case NodeType.Quest:
-                    SceneManager.LoadScene("QuestScene");
+                    SceneLoader.LoadScene("QuestScene");
 
                     break;
                 case NodeType.Mystery:
-                    SceneManager.LoadScene("EventScene");
+                    SceneLoader.LoadScene("EventScene");
 
                     break;
                 case NodeType.Skill:
@@ -121,3 +121,4 @@ namespace Map
         }
     }
 }
+

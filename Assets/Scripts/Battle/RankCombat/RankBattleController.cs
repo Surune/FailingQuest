@@ -10,6 +10,7 @@ namespace FailingQuest.Combat
 {
     public class RankBattleController : MonoBehaviour
     {
+        public const int MaxTeamSize = 3;
         public CombatAppearance[] Heroes;
         public CombatAppearance[] Enemies;
         public CombatUnitView[] Views;
@@ -62,19 +63,19 @@ namespace FailingQuest.Combat
             }
             var managers = FindObjectsByType<GameManager>(FindObjectsSortMode.None);
             if (managers.Length > 0)
-                foreach (var type in managers[0].userData.characters.Take(4)) party.Add(Heroes.First(h => h.CharacterType == type));
-            foreach (var hero in Heroes.Take(4))
-                if (party.Count < 4 && !party.Contains(hero)) party.Add(hero);
+                foreach (var type in managers[0].userData.characters.Take(MaxTeamSize)) party.Add(Heroes.First(h => h.CharacterType == type));
+            else
+                party.AddRange(Heroes.Take(MaxTeamSize));
             Model = new CombatModel(Seed == 0 ? System.Environment.TickCount : Seed);
             if (managers.Length > 0) Model.QuestProgress = RunEffects.Progress;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < party.Count; i++)
             {
                 Model.Add(managers.Length > 0 ? RunEffects.Prepare(party[i]) : party[i].Template, false, i + 1);
                 if (managers.Length > 0)
                     Model.Units[i].Health = Mathf.CeilToInt(Model.Units[i].Template.Health * managers[0].userData.partyHealth[party[i].CharacterType]);
                 appearance.Add(party[i]);
             }
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < Mathf.Min(MaxTeamSize, Enemies.Length); i++)
             {
                 var template = Newtonsoft.Json.JsonConvert.DeserializeObject<CombatTemplate>(Newtonsoft.Json.JsonConvert.SerializeObject(Enemies[i].Template));
                 if (encounterType == Map.NodeType.Elite || encounterType == Map.NodeType.Boss)
@@ -94,6 +95,8 @@ namespace FailingQuest.Combat
             }
             for (int i = 0; i < Views.Length; i++)
             {
+                Views[i].gameObject.SetActive(i < Model.Units.Count);
+                if (i >= Model.Units.Count) continue;
                 int id = i;
                 Views[i].Id = id;
                 Views[i].Controller = this;
@@ -116,8 +119,6 @@ namespace FailingQuest.Combat
             ResultPanel.SetActive(false);
             HelpPanel.SetActive(false);
             Model.Record($"{EncounterName} · 원정대가 폐허에 진입했습니다.");
-            if (managers.Length > 0 && managers[0].userData.characters.Count < 4)
-                Model.Record("선택한 동료에 지원대원을 보충해 4인 진형으로 출전합니다.");
             Advance();
         }
 
@@ -190,7 +191,7 @@ namespace FailingQuest.Combat
             var rect = Views[actor].Portrait.rectTransform;
             var origin = rect.anchoredPosition;
             float direction = Model.Units[actor].Enemy ? -1 : 1;
-            for (int i = 0; i < Views.Length; i++)
+            for (int i = 0; i < Model.Units.Count; i++)
             {
                 int delta = Model.Units[i].Health - health[i];
                 Views[i].FloatingText.text = delta == 0 ? "" : delta > 0 ? $"+{delta}" : delta.ToString();
@@ -319,7 +320,7 @@ namespace FailingQuest.Combat
             {
                 session[0].userData.battleRounds += Model.Round;
                 if (Model.Outcome == Outcome.Retreated) session[0].userData.retreats++;
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < party.Count; i++)
                     session[0].userData.partyHealth[party[i].CharacterType] = Mathf.Max(0.1f, (float)Model.Units[i].Health / Model.Units[i].Template.Health);
                 if (Model.Outcome == Outcome.Victory)
                 {
@@ -340,7 +341,7 @@ namespace FailingQuest.Combat
             bool victory = Model.Outcome == Outcome.Victory;
             ResultTitle.text = victory ? EncounterName + " 승리" : Model.Outcome == Outcome.Defeat ? "원정대 전멸" : "원정대 후퇴";
             int survivors = Model.Units.Count(u => !u.Enemy && u.Living);
-            ResultBody.text = $"{Model.Round} 라운드  ·  생존 {survivors}/4\n" + (victory ? $"폐허에 잠시 고요가 찾아옵니다.\n보상: {Reward} 골드" : "어둠은 쉽게 물러서지 않습니다.");
+            ResultBody.text = $"{Model.Round} 라운드  ·  생존 {survivors}/{party.Count}\n" + (victory ? $"폐허에 잠시 고요가 찾아옵니다.\n보상: {Reward} 골드" : "어둠은 쉽게 물러서지 않습니다.");
             ContinueLabel.text = FindObjectsByType<GameManager>(FindObjectsSortMode.None).Length == 0 ? "시작 화면으로"
                 : Model.Outcome == Outcome.Defeat || victory && encounterType == Map.NodeType.Boss ? "원정 결과 보기" : "지도로 돌아가기";
             if (victory)

@@ -57,8 +57,8 @@ public static class RankCombatAuthoring
         Text("Party", stage, 110, 667, 500, 24, "원 정 대     /     후열  ←  전열", 17, Gold);
         Text("Enemy", stage, 815, 667, 520, 24, "전열  →  후열     /     폐 허 의 주 인", 17, Tone(0.72f, 0.38f, 0.32f));
         Text("Divider", stage, 689, 456, 62, 80, "/", 27, Gold, TextAlignmentOptions.Center);
-        controller.Views = new CombatUnitView[8];
-        for (int i = 0; i < 8; i++) controller.Views[i] = Unit(stage, i, controller);
+        controller.Views = new CombatUnitView[MaxTeamSize * 2];
+        for (int i = 0; i < MaxTeamSize * 2; i++) controller.Views[i] = Unit(stage, i, controller);
 
         Panel("HUD", stage, 0, 0, 1440, 276, Ink);
         Panel("Gold divider", stage, 28, 274, 1384, 2, Gold);
@@ -98,7 +98,7 @@ public static class RankCombatAuthoring
         controller.HelpPanel.GetComponent<Image>().raycastTarget = true;
         Text("Help heading", controller.HelpPanel.transform, 260, 740, 920, 60, "폐허에서 살아남는 법", 35, Gold);
         Text("Help body", controller.HelpPanel.transform, 260, 245, 930, 480,
-            "01  진형과 차례\n각 진영은 4열. 가운데에 가까울수록 1열입니다. 매 라운드 속도 + 1~8로 순서를 정합니다.\n\n" +
+            "01  진형과 차례\n각 진영은 최대 3명, 3열. 가운데에 가까울수록 1열입니다. 매 라운드 속도 + 1~8로 순서를 정합니다.\n\n" +
             "02  스킬 → 대상\n[1–4] 또는 스킬 클릭 후, 강조된 대상을 클릭하세요. 스킬 아래 숫자는 사용 가능한 열입니다.\n[Q/E]로 한 칸 이동, [Space]로 대기, [ESC]로 선택을 취소합니다. 대기는 스트레스 +5.\n\n" +
             "03  상태와 시체\n출혈·중독은 자기 차례 시작에 피해를 줍니다. 기절은 행동을 소모합니다.\n죽은 적은 자리를 막습니다. 시체를 공격하거나 지속 피해로 처치해 적을 앞으로 끌어내세요.\n\n" +
             "04  스트레스와 죽음\n스트레스 100에서 붕괴/각성을 판정하고, 200에서 심장마비가 발생합니다.\n영웅은 체력 0에서 죽음의 문턱에 들어갑니다. 추가 피해는 사망 위험! 치유로 벗어나세요.\n\n" +
@@ -130,15 +130,15 @@ public static class RankCombatAuthoring
             controller.Enemies[i].Sprite = TrimSprite(controller.Enemies[i].Sprite, i);
         int[] icons = { 2, 203, 102, 205, 105, 103, 101, 202, 104 };
         controller.AbilityIcons = icons.Select(i => SpriteAt($"Assets/Resources/SkillIcons/skill_{i:000}.png")).ToArray();
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < MaxTeamSize * 2; i++)
         {
             var view = controller.Views[i];
-            var look = i < 4 ? controller.Heroes[i] : controller.Enemies[i - 4];
+            var look = i < MaxTeamSize ? controller.Heroes[i] : controller.Enemies[i - MaxTeamSize];
             view.Portrait.sprite = look.Sprite;
             view.NameText.text = look.Template.Name;
             view.HealthText.text = $"{look.Template.Health} / {look.Template.Health}";
-            view.RankText.text = $"{i % 4 + 1}열";
-            view.Rect.anchoredPosition = V2(i < 4 ? 635 - i * 145 : 780 + (i - 4) * 145, 355);
+            view.RankText.text = $"{i % MaxTeamSize + 1}열";
+            view.Rect.anchoredPosition = V2(i < MaxTeamSize ? 635 - i * 145 : 780 + (i - MaxTeamSize) * 145, 355);
         }
 
         var events = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));

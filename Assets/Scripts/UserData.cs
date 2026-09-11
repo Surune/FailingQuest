@@ -4,11 +4,18 @@ using UnityEngine;
 public class UserData
 {
     public int money;
+    public Dictionary<CharacterType, float> partyHealth = new()
+    {
+        { CharacterType.character1, 1f }, { CharacterType.character2, 1f },
+        { CharacterType.character3, 1f }, { CharacterType.character4, 1f },
+        { CharacterType.caharcter5, 1f }
+    };
 
     public List<CharacterType> characters;
 
     public int myTreasureCount;
-    public List<GameObject> myTreasure;
+    [Newtonsoft.Json.JsonIgnore]
+    public List<GameObject> myTreasure = new();
     public List<int> myTreasureIndex;
 
     public int[,] questList; //전체 퀘스트 내용 저장 (11)

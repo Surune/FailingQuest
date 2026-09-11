@@ -1,71 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class NewQuestBtn : MonoBehaviour
 {
-    private int questIdx;
-    private int questLvl;
-    private Button button;
-    private QuestManager questManager;
-    public TextMeshProUGUI questText;
+    public TMP_Text questText;
     public int i;
-    private int changeableIdx;
     public Button[] newQuestBtns;
-    private int flag = 0;
-
-   
-    void Start()
-    {
-        button = GetComponentInParent<Button>();
-        button.interactable = false;
-        questManager = FindObjectOfType<QuestManager>();
-    }
-
-
+    private Button button;
+    void Start() => button = GetComponentInParent<Button>();
     void Update()
     {
-        questIdx = GameManager.Instance.userData.newQuest[i][0];
-        questLvl = i;
-        questText.text = QuestManager.GetQuestText(questIdx, questLvl);
-        
-        //신규 퀘스트에서 버튼 누르면 해당 내용 매니지, 현재퀘스트에 반영
-        //해당 신규퀘스트 부분은 비우기
-
-        //currenetQuest에 빈칸 발생시
-        for (int idx = 0; idx < 3; idx++)
-        {
-            if (GameManager.Instance.userData.currentQuest[idx][0] == -1)
-            {
-                changeableIdx = idx;
-                if (GameManager.Instance.userData.newQuest[i][0] != -1)
-                    OnEnable();
-            }
-        }
+        var data = GameManager.Instance.userData;
+        int index = data.newQuest[i][0];
+        questText.text = index < 0 ? "선택 완료" : QuestManager.GetQuestText(index, data.newQuest[i][1]);
+        button.interactable = index >= 0 && data.currentQuest.Exists(q => q[0] < 0);
     }
-
-    private void OnEnable()
-    {
-        button = GetComponentInParent<Button>();
-        button.interactable = true;
-    }
-
-
-    //onclick->
     public void Onclick()
     {
-        //award + blank
-
-        GameManager.Instance.userData.currentQuest[changeableIdx][0] = GameManager.Instance.userData.newQuest[i][0];
-        GameManager.Instance.userData.currentQuest[changeableIdx][1] = GameManager.Instance.userData.newQuest[i][1];
-        GameManager.Instance.userData.newQuest[i][0] = -1;
-        GameManager.Instance.userData.newQuest[i][1] = -1;
-        questText.text = "empty new quest";
-        for (int idx = 0; idx < 3; idx++)
-        {
-            newQuestBtns[idx].interactable = false;
-        }
+        var data = GameManager.Instance.userData;
+        int slot = data.currentQuest.FindIndex(q => q[0] < 0);
+        if (slot < 0 || data.newQuest[i][0] < 0) return;
+        data.currentQuest[slot][0] = data.newQuest[i][0];
+        data.currentQuest[slot][1] = data.newQuest[i][1];
+        data.questManage[slot] = 0;
+        data.newQuest[i][0] = -1;
+        data.newQuest[i][1] = -1;
+        button.interactable = false;
     }
 }

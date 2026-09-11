@@ -1,70 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class CurrentQuestBtn : MonoBehaviour
 {
-    private QuestManager questManager;
-    private Button button;
-    public TextMeshProUGUI questText;
-    private int index = 0;
-    private int questIdx;
-    private int questLvl;
+    public TMP_Text questText;
     public int i;
-
-    void Start()
-    {
-        button = GetComponentInParent<Button>();
-        button.interactable = false;
-        questManager = FindObjectOfType<QuestManager>();
-
-    }
-    
+    private Button button;
+    void Start() => button = GetComponentInParent<Button>();
     void Update()
     {
-
-        //기준값과 비교 후 퀘스트 달성 시 버튼클릭 가능 + 보상지급 + 퀘스트 빈칸 만들기
-        //해당 퀘스트 부분 퀘스트 매니지, 현재 퀘스트에서 비우기
-        //퀘스트리스트에서 해당 인덱스 4열 0으로 변경
-        //Debug.Log(GameManager.Instance.currentQuest[0, 0]);
-
-        //신규 퀘스트에서 버튼 누르면 해당 내용 매니지, 현재퀘스트에 반영
-        //해당 신규퀘스트 부분은 비우기
-        
-        questIdx = GameManager.Instance.userData.currentQuest[i][0];
-        questLvl = GameManager.Instance.userData.currentQuest[i][1];
-        if(questIdx>=0)
-            questText.text = QuestManager.GetQuestText(questIdx, questLvl) + "(" + GameManager.Instance.userData.questManage[i] + ")";
-        
-        //기준달성 ->보상+빈칸처리 
-        //if (GameManager.Instance.questManage[i] >= questManager.questList[GameManager.Instance.currentQuest[i, 0], GameManager.Instance.currentQuest[i, 1]])
-        if(Input.GetKeyDown(KeyCode.Tab))
+        var data = GameManager.Instance.userData;
+        int index = data.currentQuest[i][0];
+        if (index < 0)
         {
-            OnEnable();
-            //해당 퀘스트 부분 퀘스트 매니지, 현재 퀘스트에서 비우기
-            GameManager.Instance.userData.questManage[i] = 0;
-            GameManager.Instance.userData.questList[GameManager.Instance.userData.currentQuest[i][0],3] = 0;
-            index = i;
+            questText.text = "새 퀘스트를 선택하세요";
+            button.interactable = false;
+            return;
         }
+        int level = data.currentQuest[i][1];
+        questText.text = QuestManager.GetQuestText(index, level) + " (" + data.questManage[i] + ")";
+        button.interactable = data.questManage[i] >= data.questList[index, level];
     }
-
-    private void OnEnable()
-    {
-        button = GetComponentInParent<Button>();
-        button.interactable = true;
-    }
-    
-    //onclick->
     public void Onclick()
     {
-        //award + blank
-
-        GameManager.Instance.userData.currentQuest[i][0] = -1;
-        GameManager.Instance.userData.currentQuest[i][1] = -1;
-        questText.text = "new quest required";
+        var data = GameManager.Instance.userData;
+        int index = data.currentQuest[i][0];
+        if (index < 0 || data.questManage[i] < data.questList[index, data.currentQuest[i][1]]) return;
+        data.questList[index, 3] = 0;
+        data.money += 25 * (data.currentQuest[i][1] + 1);
+        data.questManage[i] = 0;
+        data.currentQuest[i][0] = -1;
+        data.currentQuest[i][1] = -1;
         button.interactable = false;
     }
 }
-

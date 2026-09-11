@@ -19,8 +19,7 @@ namespace Map
 
         private void Start()
         {
-            if(false)
-            //if (PlayerPrefs.HasKey("Map"))
+            if (PlayerPrefs.HasKey("Map"))
             {
                 //PlayerPrefs.DeleteKey("Map");
                 //return;
@@ -37,6 +36,7 @@ namespace Map
                 {
                     // The player hasn't cleared this map yet.
                     map = loadedMap;
+                    map.hasSelectedNode = false;
                     MapRenderer.instance.RenderMap(map);
                 }
             }

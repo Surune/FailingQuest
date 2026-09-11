@@ -84,10 +84,10 @@ namespace Map
 
                     break;
                 case NodeType.Elite:
-
+                    SceneLoader.LoadScene("BattleScene");
                     break;
                 case NodeType.Boss:
-
+                    SceneLoader.LoadScene("BattleScene");
                     break;
                 case NodeType.Treasure:
                     SceneManager.LoadScene("TreasureScene");
@@ -108,7 +108,7 @@ namespace Map
 
                     break;
                 case NodeType.Skill:
-                    
+                    SceneLoader.LoadScene("SkillScene");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

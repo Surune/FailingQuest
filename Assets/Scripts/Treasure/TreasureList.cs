@@ -8,7 +8,7 @@ public class TreasureList : MonoBehaviour
 {
     public GameObject[] treasurePrefab;
     string currentIndex;
-    public TextMeshProUGUI EffectInfo;
+    public TMP_Text EffectInfo;
 
     void Start()
     {
@@ -37,21 +37,21 @@ public class TreasureList : MonoBehaviour
         //Debug.Log(currentIndex);
         if (currentIndex == "gold(Clone)")//골드
         {
-            EffectInfo.text = "골드 획득";
+            EffectInfo.text = "50 코인 획득";
         }
         else if (currentIndex == "red_book(Clone)")//빨간책 
         {
-            EffectInfo.text = "스킬 강화";
+            EffectInfo.text = currentIndex == "red_book(Clone)" ? "공격 피해 +1" : currentIndex == "blue_book(Clone)" ? "최대 체력 +5" : "속도 +1";
         }
         else if (currentIndex == "green_book(Clone)")//초록책 
         {
-            EffectInfo.text = "스킬 강화";
+            EffectInfo.text = currentIndex == "red_book(Clone)" ? "공격 피해 +1" : currentIndex == "blue_book(Clone)" ? "최대 체력 +5" : "속도 +1";
         }
         else if (currentIndex == "blue_book(Clone)")//파란책 
         {
-            EffectInfo.text = "스킬 강화";
+            EffectInfo.text = currentIndex == "red_book(Clone)" ? "공격 피해 +1" : currentIndex == "blue_book(Clone)" ? "최대 체력 +5" : "속도 +1";
         }
-        EffectInfo.transform.localPosition= new Vector2(transform.localPosition.x+60, transform.localPosition.y-60);
+        EffectInfo.transform.localPosition= transform.localPosition + Vector3.right * 60 - Vector3.up * 60;
         EffectInfo.gameObject.SetActive(true);
 
     }

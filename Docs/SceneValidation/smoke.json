@@ -1,0 +1,80 @@
+[
+  {
+    "scene": "CharacterSelectScene",
+    "errors": [],
+    "gameManagers": 1,
+    "dataManagers": 1
+  },
+  {
+    "scene": "FirstQuestScene",
+    "errors": [],
+    "gameManagers": 1,
+    "dataManagers": 1
+  },
+  {
+    "scene": "MapScene",
+    "errors": [],
+    "gameManagers": 1,
+    "dataManagers": 1
+  },
+  {
+    "scene": "QuestScene",
+    "errors": [],
+    "gameManagers": 1,
+    "dataManagers": 1
+  },
+  {
+    "scene": "ForgeScene",
+    "errors": [],
+    "gameManagers": 1,
+    "dataManagers": 1
+  },
+  {
+    "scene": "SkillScene",
+    "errors": [],
+    "gameManagers": 1,
+    "dataManagers": 1
+  },
+  {
+    "scene": "ShopScene",
+    "errors": [],
+    "gameManagers": 1,
+    "dataManagers": 1
+  },
+  {
+    "scene": "EventScene",
+    "errors": [],
+    "gameManagers": 1,
+    "dataManagers": 1
+  },
+  {
+    "scene": "TreasureScene",
+    "errors": [],
+    "gameManagers": 1,
+    "dataManagers": 1
+  },
+  {
+    "scene": "BattleScene",
+    "errors": [],
+    "gameManagers": 1,
+    "dataManagers": 1
+  },
+  {
+    "scene": "GameClearScene",
+    "errors": [],
+    "gameManagers": 1,
+    "dataManagers": 1
+  },
+  {
+    "scene": "GameOverScene",
+    "errors": [],
+    "gameManagers": 1,
+    "dataManagers": 1
+  },
+  {
+    "scene": "StartScene",
+    "errors": [],
+    "gameManagers": 1,
+    "dataManagers": 1
+  }
+]

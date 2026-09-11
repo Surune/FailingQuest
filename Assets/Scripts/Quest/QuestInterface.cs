@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class QuestInterface : MonoBehaviour
 {
-    public TextMeshProUGUI questText;
+    public TMP_Text questText;
     private bool showing;
     private float init_x;
     // Start is called before the first frame update

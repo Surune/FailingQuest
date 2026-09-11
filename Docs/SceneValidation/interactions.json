@@ -1,0 +1,25 @@
+{
+  "passed": [
+    "Help opens",
+    "Credits opens",
+    "Three selections enable start",
+    "Cancel disables start",
+    "Selected party stored",
+    "Skill reward acquired",
+    "Skill returns to map",
+    "Forge applies before scene exit",
+    "No remaining forge offers does not throw",
+    "Potion heals party",
+    "Shop grants skill",
+    "Shop grants relic",
+    "All relics collected leaves exit available",
+    "Relics unique",
+    "Completed quest replaced and progress reset",
+    "Event effect returns to map",
+    "Battle initializes party and enemies",
+    "Saved party health applied",
+    "Inventory round trips through save",
+    "No runtime errors during interactions"
+  ],
+  "errors": []
+}

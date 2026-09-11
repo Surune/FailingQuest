@@ -1,60 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class Shop : MonoBehaviour
 {
-    public TextMeshProUGUI itemText;
+    public TMP_Text itemText;
     public int price;
     private Button button;
-
-    private bool flag = false;
-    private int money;
-    
-
-    void Start()
-    {
-        GetComponentInParent<Button>().interactable = false;
-    }
-    
+    private bool sold;
+    void Start() { button = GetComponentInParent<Button>(); button.transform.Find("Price").GetComponent<TMP_Text>().text = price.ToString(); }
     void Update()
     {
-        if (flag == false)
-        {
-            money = GameManager.Instance.userData.money;
-            if (money >= price)
-            {
-                GetComponentInParent<Button>().interactable = true;
-            }
-            else
-            {
-                GetComponentInParent<Button>().interactable = false;
-            }
-
-            if (price == 50)
-            {
-                itemText.text = "보유중이지 않은 스킬";
-            }
-            else if (price == 100)
-            {
-                itemText.text = "무작위 유물";
-            }
-            else if (price == 30)
-            {
-                itemText.text = "포션";
-            }
-
-        }
-
+        bool available = price == 50 ? RunEffects.AvailableSkills().Count > 0 : price == 90 ? RunEffects.CanGainTreasure : true;
+        button.interactable = !sold && available && GameManager.Instance.userData.money >= price;
+        itemText.text = sold ? "구매 완료" : price == 50 ? "무작위 새 스킬" : price == 90 ? "무작위 유물" : "파티 체력 30% 회복";
     }
-
-
     public void Onclick()
     {
+        if (!button.interactable) return;
+        if (price == 50) RunEffects.GainRandomSkill();
+        else if (price == 90) RunEffects.GainRandomTreasure();
+        else RunEffects.HealParty(0.3f);
         GameManager.Instance.userData.money -= price;
-        GetComponentInParent<Button>().interactable = false;
-        flag = true;
+        RunEffects.Progress(0, price);
+        sold = true;
+        button.interactable = false;
     }
 }

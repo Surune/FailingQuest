@@ -9,7 +9,7 @@ public class ForgeButton : MonoBehaviour
     public Button button;
     public Image skillIcon;
     public Image forgeIcon;
-    public TextMeshProUGUI forgeText;
-    public TextMeshProUGUI skillNameText;
-    public TextMeshProUGUI skillDescriptionText;
+    public TMP_Text forgeText;
+    public TMP_Text skillNameText;
+    public TMP_Text skillDescriptionText;
 }

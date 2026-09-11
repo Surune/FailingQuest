@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using UnityEngine;
 
+[DefaultExecutionOrder(-200)]
 public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
@@ -14,7 +15,7 @@ public class DataManager : MonoBehaviour
         }
         else
         {
-            Destroy(instance.gameObject);
+            Destroy(gameObject);
         }
     }
 

@@ -6,7 +6,7 @@ public class QuestManager : MonoBehaviour
 {
     void Start()
     {
-        if (GameManager.Instance.firstQuestLoaded)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "QuestScene")
         {
             //신규 퀘스트 값 비어있으면 받아오고 저장
             for (int i = 0; i < 3; i++)
@@ -58,13 +58,13 @@ public class QuestManager : MonoBehaviour
                 text = "누적 " + GameManager.Instance.userData.questList[questIdx,questLevel] + "의 피해";
                 break;
             case 8:
-                text = GameManager.Instance.userData.questList[questIdx,questLevel] + "회 방어 성공";
+                text = GameManager.Instance.userData.questList[questIdx,questLevel] + "회 보호 효과 부여";
                 break;
             case 9:
-                text = "화상 최대 " + GameManager.Instance.userData.questList[questIdx,questLevel] + "달성";
+                text = "중독 누적 " + GameManager.Instance.userData.questList[questIdx,questLevel] + "달성";
                 break;
             case 10:
-                text = "집중 누적 " + GameManager.Instance.userData.questList[questIdx,questLevel] + "달성";
+                text = "표식 누적 " + GameManager.Instance.userData.questList[questIdx,questLevel] + "달성";
                 break;
         }
         return text;

@@ -1,0 +1,67 @@
+[
+  {
+    "path": "Assets/01_Scenes\\BattleScene.unity",
+    "missingScripts": 0,
+    "brokenButtons": []
+  },
+  {
+    "path": "Assets/01_Scenes\\CharacterSelectScene.unity",
+    "missingScripts": 0,
+    "brokenButtons": []
+  },
+  {
+    "path": "Assets/01_Scenes\\EventScene.unity",
+    "missingScripts": 0,
+    "brokenButtons": []
+  },
+  {
+    "path": "Assets/01_Scenes\\FirstQuestScene.unity",
+    "missingScripts": 0,
+    "brokenButtons": []
+  },
+  {
+    "path": "Assets/01_Scenes\\ForgeScene.unity",
+    "missingScripts": 0,
+    "brokenButtons": []
+  },
+  {
+    "path": "Assets/01_Scenes\\GameClearScene.unity",
+    "missingScripts": 0,
+    "brokenButtons": []
+  },
+  {
+    "path": "Assets/01_Scenes\\GameOverScene.unity",
+    "missingScripts": 0,
+    "brokenButtons": []
+  },
+  {
+    "path": "Assets/01_Scenes\\MapScene.unity",
+    "missingScripts": 0,
+    "brokenButtons": []
+  },
+  {
+    "path": "Assets/01_Scenes\\QuestScene.unity",
+    "missingScripts": 0,
+    "brokenButtons": []
+  },
+  {
+    "path": "Assets/01_Scenes\\ShopScene.unity",
+    "missingScripts": 0,
+    "brokenButtons": []
+  },
+  {
+    "path": "Assets/01_Scenes\\SkillScene.unity",
+    "missingScripts": 0,
+    "brokenButtons": []
+  },
+  {
+    "path": "Assets/01_Scenes\\StartScene.unity",
+    "missingScripts": 0,
+    "brokenButtons": []
+  },
+  {
+    "path": "Assets/01_Scenes\\TreasureScene.unity",
+    "missingScripts": 0,
+    "brokenButtons": []
+  }
+]

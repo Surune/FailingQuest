@@ -279,7 +279,8 @@ namespace FailingQuest.Combat
 
         private string Describe(CombatSkill skill)
             => $"<color=#E8C781>{skill.Name}</color>\n{skill.Description}\n사용: {string.Join("·", skill.From)}열  →  {(skill.SelfOnly ? "자신" : skill.BothTeams ? "양 진영 전체" : skill.Friendly ? "아군" : "적")} {string.Join("·", skill.To)}열"
-                + (skill.Max > 0 ? $"\n{(skill.Effect == Effect.Heal ? "회복" : "기본 피해")} {skill.Min}~{skill.Max}" : "")
+                + (skill.Max > 0 ? skill.Effect == Effect.Heal ? $"\n회복 {skill.Min}~{skill.Max}"
+                    : $"\n기본 피해 {CombatModel.ScaleDamage(skill.Min)}~{CombatModel.ScaleDamage(skill.Max)}" : "")
                 + (skill.Cooldown > 0 ? $"\n사용 후 {skill.Cooldown}개 라운드 동안 재사용 불가" : "");
 
         private void RefreshTarget()

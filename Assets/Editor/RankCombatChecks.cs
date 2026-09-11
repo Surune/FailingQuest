@@ -74,9 +74,10 @@ public static class RankCombatChecks
         passed.Add("DOT corpse bypass");
 
         var tick = Duel(); tick.Units[0].Ailments.Add(new Ailment { Effect = Effect.Bleed, Power = 2, Turns = 2 });
-        tick.Next(); Check(tick.Units[0].Health == 36, "DOT at start of turn");
+        int tickHealth = tick.Units[0].Health;
+        tick.Next(); Check(tick.Units[0].Health == tickHealth - 3, "Scaled DOT at start of turn");
         tick.Pass(); tick.Next(); tick.Pass(); tick.Next();
-        Check(tick.Units[0].Health == 34 && tick.Units[0].Ailments.Count == 0, "DOT duration expires");
+        Check(tick.Units[0].Health == tickHealth - 6 && tick.Units[0].Ailments.Count == 0, "DOT duration expires");
         passed.Add("DOT timing / duration");
 
         var stun = Duel(); stun.Units[0].Ailments.Add(new Ailment { Effect = Effect.Stun, Turns = 1 });

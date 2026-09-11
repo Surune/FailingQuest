@@ -59,6 +59,7 @@ namespace FailingQuest.Combat
         public int Protection;
         public int Resistance = 20;
         public CombatSkill[] Skills;
+        public CombatTemplate Copy() => (CombatTemplate)MemberwiseClone();
     }
 
     public class Ailment
@@ -98,6 +99,9 @@ namespace FailingQuest.Combat
     // Pure combat state: independent of scene objects, frame rate and UI callbacks.
     public class CombatModel
     {
+        public const double DamageScale = 1.25;
+        public const double HealthScale = 0.85;
+        public static int ScaleDamage(int amount) => (int)Math.Ceiling(amount * DamageScale);
         public Action<int, int> QuestProgress = delegate { };
         private readonly Random random;
         public readonly List<Combatant> Units = new();
@@ -113,6 +117,8 @@ namespace FailingQuest.Combat
 
         public void Add(CombatTemplate template, bool enemy, int rank)
         {
+            template = template.Copy();
+            template.Health = (int)Math.Ceiling(template.Health * HealthScale);
             Units.Add(new Combatant { Id = Units.Count, Template = template, Enemy = enemy, Rank = rank, Health = template.Health });
         }
 
@@ -162,8 +168,9 @@ namespace FailingQuest.Combat
                     if (actor.TurnEffects.Contains(ailment)) continue;
                     if (ailment.Effect == Effect.Bleed || ailment.Effect == Effect.Blight || ailment.Effect == Effect.Burn)
                     {
-                        Damage(actor, ailment.Power, true);
-                        Record($"{actor.Name}: {EffectName(ailment.Effect)} {ailment.Power}");
+                        int damage = ScaleDamage(ailment.Power);
+                        Damage(actor, damage, true);
+                        Record($"{actor.Name}: {EffectName(ailment.Effect)} {damage}");
                     }
                     ailment.Turns--;
                     if (ailment.Turns <= 0) actor.Ailments.Remove(ailment);
@@ -294,7 +301,7 @@ namespace FailingQuest.Combat
                 if (actor.Afflicted) raw = Math.Max(1, raw * 80 / 100);
                 if (actor.Virtuous) raw = Math.Max(1, raw * 115 / 100);
                 if (target.Ailments.Any(a => a.Effect == Effect.Mark)) raw += 3;
-                int damage = Math.Max(1, raw * (100 - target.Protection) / 100);
+                int damage = ScaleDamage(Math.Max(1, raw * (100 - target.Protection) / 100));
                 Damage(target, damage, false);
                 Record($"{target.Name}: {(critical ? "치명타! " : "")}-{damage}");
                 if (critical)

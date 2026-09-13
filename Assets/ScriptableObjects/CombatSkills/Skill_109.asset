@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FailingQuest.Combat.CombatSkillDefinition
   Id: 109
   Icon: {fileID: 21300000, guid: 883485614f83c411fa1278c0b6a1e309, type: 3}
-  ConversionNotes: "\uD504\uB9AC\uD339 \uD6A8\uACFC\xB7\uB300\uC0C1 \uAE30\uC900.
-    \uCFE8\uD0C0\uC784 1~30=0, 31~60=1, 61~90=2, 91~120=3\uAC1C \uB77C\uC6B4\uB4DC
-    \uB300\uAE30. \uC0C1\uD0DC 3\uD134, \uAE30\uC808 1\uD134. \uC18D\uB3C4\uB294
-    \uAE30\uC874 \uC218\uCE58/10 \uC62C\uB9BC(\uCD5C\uB300 5), \uBCF4\uD638 25%,
-    \uC9D1\uC911 \uBA85\uC911 +10."
+  ConversionNotes: "프리팹 효과\xB7대상 기준.
+    쿨타임 1~30=0, 31~60=1, 61~90=2, 91~120=3개 라운드
+    대기. 상태 3턴, 기절 1턴. 명중 보정은 기존 수치/10 올림(최대 5)에 5%p를 곱한 값, 보호 25%,
+    집중 명중 +10."
   ForgeOptions: 0100000003000000
   Skill:
     Id: 109
@@ -26,14 +25,14 @@ MonoBehaviour:
     SelfOnly: 1
     BothTeams: 0
     AdditionalEffects: []
-    Name: "\uC8FC\uBB38"
-    Description: "\uC790\uC2E0: \uC18D\uB3C4 \uC99D\uAC00 3 \xB7 3\uD134"
-    Effect: 12
+    Name: "주문"
+    Description: "자신: 명중 증가 15%p \xB7 3턴"
+    Effect: 14
     Friendly: 1
     All: 0
     Min: 0
     Max: 0
     Accuracy: 95
     Critical: 5
-    Potency: 3
+    Potency: 15
     Duration: 3

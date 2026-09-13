@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: feather
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: d1da553a66c9940d1bc56230560b1d3a, type: 3}
-  description: "바람 깃털: 속도 +1"
+  description: "바람 깃털: 명중 +5%p"
   coins: 0
   attackBonus: 0
   healthBonus: 0
-  speedBonus: 1
+  accuracyBonus: 5
 

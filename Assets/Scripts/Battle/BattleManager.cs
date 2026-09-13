@@ -22,8 +22,8 @@ public class BattleManager : MonoBehaviour //전투의 진행을 담당
     public GameObject BottomCurrentSkills;
     private List<GameObject> BottomCurrentTempBuf = new(); // bottom 영역 현재 캐릭터 버프영역
 
-    public Transform coolTimeInitPosition; //속도 표기 기준위치
-    public Transform coolTimeEndPosition; //속도 표기 기준위치
+    public Transform coolTimeInitPosition; //쿨타임 표기 기준위치
+    public Transform coolTimeEndPosition; //쿨타임 표기 기준위치
     private int maxRemainCooltime;
 
     [HideInInspector] public List<Dictionary<string, object>> skillInfo;

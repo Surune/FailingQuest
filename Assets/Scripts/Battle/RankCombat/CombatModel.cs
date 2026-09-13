@@ -4,7 +4,13 @@ using System.Linq;
 
 namespace FailingQuest.Combat
 {
-    public enum Effect { Strike, Bleed, Blight, Stun, Heal, Rally, Guard, Mark, Stress, Burn, AttackUp, AttackDown, SpeedUp, SpeedDown, Focus }
+    // Explicit values preserve effect references in serialized skill assets.
+    public enum Effect
+    {
+        Strike = 0, Bleed = 1, Blight = 2, Stun = 3, Heal = 4, Rally = 5,
+        Guard = 6, Mark = 7, Stress = 8, Burn = 9, AttackUp = 10, AttackDown = 11,
+        AccuracyDown = 13, Focus = 14
+    }
     public enum EffectTarget { Selected, Self, Allies, Enemies, Everyone }
     [Serializable]
     public class CombatSkillEffect
@@ -49,7 +55,7 @@ namespace FailingQuest.Combat
     {
         public string Name;
         public int Health = 30;
-        public int Speed = 4;
+        public int AccuracyBonus;
         public int Dodge = 5;
         public int Protection;
         public int Resistance = 20;
@@ -69,14 +75,13 @@ namespace FailingQuest.Combat
         public int Id;
         public CombatTemplate Template;
         public bool Enemy;
-        public int Rank; // Display slot only; never affects combat rules.
+        public int Rank; // Display slot and turn order within each team.
         public int Health;
         public int Stress;
         public bool Dead;
         public bool Afflicted;
         public bool Virtuous;
         public bool ResolveTested;
-        public int Initiative;
         public int StunRecovery;
         public List<Ailment> Ailments = new();
         public Dictionary<CombatSkill, int> ReadyRound = new();
@@ -85,7 +90,6 @@ namespace FailingQuest.Combat
         public bool Living => !Dead;
         public bool AtDeathsDoor => !Enemy && Living && Health == 0;
         public string Name => Template.Name;
-        public int Speed => Template.Speed + Power(Effect.SpeedUp) - Power(Effect.SpeedDown) - (AtDeathsDoor ? 4 : 0) - (Afflicted ? 2 : 0);
         public int Dodge => Math.Max(0, Template.Dodge - (AtDeathsDoor ? 5 : 0));
         public int Protection => Math.Min(80, Template.Protection + Power(Effect.Guard));
     }
@@ -141,14 +145,8 @@ namespace FailingQuest.Combat
                 {
                     Round++;
                     Order.Clear();
-                    foreach (var unit in Units.Where(u => u.Living))
-                    {
-                        unit.Initiative = unit.Speed + random.Next(1, 9);
-                        Order.Add(unit);
-                    }
-                    Order.Sort((a, b) => b.Initiative != a.Initiative ? b.Initiative.CompareTo(a.Initiative)
-                        : b.Speed != a.Speed ? b.Speed.CompareTo(a.Speed)
-                        : a.Enemy != b.Enemy ? (a.Enemy ? 1 : -1) : a.Id.CompareTo(b.Id));
+                    Order.AddRange(Units.Where(u => u.Living)
+                        .OrderBy(u => u.Enemy).ThenBy(u => u.Rank).ThenBy(u => u.Id));
                     Cursor = 0;
                     Record($"라운드 {Round}");
                 }
@@ -199,7 +197,8 @@ namespace FailingQuest.Combat
         }
 
         public int HitChance(Combatant actor, CombatSkill skill, Combatant target)
-            => Math.Clamp(skill.Accuracy + actor.Power(Effect.Focus) - target.Dodge - (actor.AtDeathsDoor ? 10 : 0), 5, 95);
+            => Math.Clamp(skill.Accuracy + actor.Template.AccuracyBonus + actor.Power(Effect.Focus)
+                - actor.Power(Effect.AccuracyDown) - target.Dodge - (actor.AtDeathsDoor ? 10 : 0), 5, 95);
 
         public List<Combatant> Targets(Combatant actor, CombatSkill skill)
         {
@@ -412,7 +411,7 @@ namespace FailingQuest.Combat
         public static string EffectName(Effect effect) => effect switch
         {
             Effect.Burn => "화상", Effect.AttackUp => "공격력 증가", Effect.AttackDown => "공격력 감소",
-            Effect.SpeedUp => "속도 증가", Effect.SpeedDown => "속도 감소", Effect.Focus => "집중",
+            Effect.AccuracyDown => "명중 감소", Effect.Focus => "명중 증가",
             Effect.Bleed => "출혈", Effect.Blight => "중독", Effect.Stun => "기절", Effect.Guard => "보호",
             Effect.Mark => "표식", Effect.Rally => "격려", Effect.Heal => "치유", Effect.Stress => "공포", _ => "공격"
         };

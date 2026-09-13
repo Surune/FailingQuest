@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: green_book
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 4c38197f9b1da4e678bf7e31d3abc8bd, type: 3}
-  description: 속도 +1
+  description: 명중 +5%p
   coins: 0
   attackBonus: 0
   healthBonus: 0
-  speedBonus: 1
+  accuracyBonus: 5
 

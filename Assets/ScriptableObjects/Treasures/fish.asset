@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: fish
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 6ba9fa1987f7348a6a1dbfd4fb1914fe, type: 3}
-  description: "은빛 물고기: 최대 체력 +3, 속도 +1"
+  description: "은빛 물고기: 최대 체력 +3, 명중 +5%p"
   coins: 0
   attackBonus: 0
   healthBonus: 3
-  speedBonus: 1
+  accuracyBonus: 5
 

@@ -96,7 +96,7 @@ public static class RankCombatAuthoring
         controller.HelpPanel.GetComponent<Image>().raycastTarget = true;
         Text("Help heading", controller.HelpPanel.transform, 260, 740, 920, 60, "폐허에서 살아남는 법", 35, Gold);
         Text("Help body", controller.HelpPanel.transform, 260, 245, 930, 480,
-            "01  참가자와 차례\n플레이어 1명과 적 최대 5명이 참가합니다. 매 라운드 속도 + 1~8로 순서를 정합니다.\n\n" +
+            "01  참가자와 차례\n플레이어 1명과 적 최대 5명이 참가합니다. 매 라운드 플레이어가 먼저 행동하고, 적은 1열부터 순서대로 행동합니다.\n\n" +
             "02  스킬 → 대상\n[1–4] 또는 스킬 클릭 후, 강조된 대상을 클릭하세요. 위치에 관계없이 스킬을 사용할 수 있습니다.\n[Space]로 대기, [ESC]로 선택을 취소합니다. 대기는 스트레스 +5.\n\n" +
             "03  상태와 처치\n출혈·중독은 자기 차례 시작에 피해를 줍니다. 기절은 행동을 소모합니다.\n쓰러진 적은 전투에서 제외됩니다. 전체 공격은 살아 있는 대상 모두에게 적용됩니다.\n\n" +
             "04  스트레스와 죽음\n스트레스 100에서 붕괴/각성을 판정하고, 200에서 심장마비가 발생합니다.\n영웅은 체력 0에서 죽음의 문턱에 들어갑니다. 추가 피해는 사망 위험! 치유로 벗어나세요.\n\n" +

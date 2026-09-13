@@ -15,7 +15,6 @@ public static class RankCombatChecks
     {
         var model = new CombatModel(seed);
         var hero = RankCombatTemplates.Hero(0);
-        hero.Speed = 100;
         model.Add(hero, false, 1);
         model.Add(RankCombatTemplates.Enemy(0), true, 1);
         return model;
@@ -33,6 +32,31 @@ public static class RankCombatChecks
         round.Pass(); round.Next();
         Check(round.Active.Id == 0 && round.Round == 2, "New round after both turns");
         passed.Add("one action per round / stable pending action");
+
+        for (int seed = 0; seed < 10; seed++)
+        {
+            var ordered = new CombatModel(seed);
+            foreach (int rank in new[] { 5, 3, 1, 4, 2 })
+            {
+                var enemy = RankCombatTemplates.Enemy(0);
+                ordered.Add(enemy, true, rank);
+            }
+            var player = RankCombatTemplates.Hero(0);
+            ordered.Add(player, false, 1);
+            for (int roundNumber = 1; roundNumber <= 3; roundNumber++)
+            {
+                Check(ordered.Next() && !ordered.Active.Enemy && ordered.Round == roundNumber,
+                    "Player starts every round regardless of seed or insertion order");
+                ordered.Pass();
+                for (int rank = 1; rank <= 5; rank++)
+                {
+                    Check(ordered.Next() && ordered.Active.Enemy && ordered.Active.Rank == rank
+                        && ordered.Round == roundNumber, "Enemies act from rank 1 through 5");
+                    ordered.Pass();
+                }
+            }
+        }
+        passed.Add("player first / enemies in rank order across rounds and seeds");
 
         var target = Duel(); target.Next();
         Check(!target.Use(0, 0) && target.AwaitingAction, "Invalid team consumes no action");

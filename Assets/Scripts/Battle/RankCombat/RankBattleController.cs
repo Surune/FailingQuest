@@ -82,7 +82,6 @@ namespace FailingQuest.Combat
                     bool boss = encounterType == Map.NodeType.Boss && i == 0;
                     template.Name = (boss ? "폐허의 군주 · " : "정예 · ") + template.Name;
                     template.Health = Mathf.CeilToInt(template.Health * (boss ? 2f : 1.25f));
-                    template.Speed += boss ? 2 : 1;
                     foreach (var skill in template.Skills.Where(s => s.Max > 0))
                     {
                         skill.Min += boss ? 2 : 1;
@@ -219,7 +218,7 @@ namespace FailingQuest.Combat
             var actor = Model.Active;
             HeroPortrait.sprite = appearance[actor.Id].Sprite;
             HeroText.text = actor.Name + (actor.Enemy ? "  /  적의 차례" : "  /  행동 선택");
-            StatsText.text = $"체력  {actor.Health}/{actor.Template.Health}     스트레스  {actor.Stress}/200\n속도  {actor.Speed}     회피  {actor.Dodge}     보호  {actor.Protection}%";
+            StatsText.text = $"체력  {actor.Health}/{actor.Template.Health}     스트레스  {actor.Stress}/200\n명중 보정  {actor.Template.AccuracyBonus + actor.Power(Effect.Focus) - actor.Power(Effect.AccuracyDown):+0;-0;0}%p     회피  {actor.Dodge}     보호  {actor.Protection}%";
             var targets = SelectedSkill >= 0 ? Model.Targets(actor, actor.Template.Skills[SelectedSkill]) : new List<Combatant>();
             foreach (var unit in Model.Units)
             {

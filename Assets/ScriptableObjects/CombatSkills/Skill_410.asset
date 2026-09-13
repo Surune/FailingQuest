@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FailingQuest.Combat.CombatSkillDefinition
   Id: 410
   Icon: {fileID: 21300000, guid: 4edd55cad08f440c1b4e33a3a981b2a0, type: 3}
-  ConversionNotes: "\uC2E0\uADDC \uCC3D\uC791: \uC544\uC774\uCF58\uC758 \uC0AC\uBC29\uC744
-    \uAC00\uB9AC\uD0A4\uB294 \uD654\uC0B4\uC5D0\uC11C \uCC29\uC548. 4\uBC88 \uB3D9\uB8CC
-    / \uC0AC\uB0E5\uAFBC. \uD504\uB9AC\uD339 \uBCC0\uD658\uC774 \uC544\uB2CC \uC9C1\uC811
-    \uC815\uC758. \uD53C\uD574\xB7\uC0C1\uD0DC\xB7\uC0AC\uC6A9 \uC5F4\xB7\uCFE8\uD0C0\uC784\uC740
-    \uC9C4\uD615 \uC804\uD22C \uAE30\uC900."
+  ConversionNotes: "신규 창작: 아이콘의 사방을
+    가리키는 화살에서 착안. 4번 동료
+    / 사냥꾼. 프리팹 변환이 아닌 직접
+    정의. 피해\xB7상태\xB7사용 열\xB7쿨타임은
+    진형 전투 기준."
   ForgeOptions: 0100000004000000
   Skill:
     Id: 410
@@ -28,11 +28,11 @@ MonoBehaviour:
     AdditionalEffects:
     - Effect: 13
       Target: 0
-      Potency: 1
+      Potency: 5
       Duration: 2
-    Name: "\uD3EC\uC704 \uD45C\uC2DD"
-    Description: "\uC801 \uD55C \uBA85: \uD45C\uC2DD(\uBC1B\uB294 \uACF5\uACA9 \uD53C\uD574
-      +3) \xB7 3\uD134 / \uC801 \uD55C \uBA85: \uC18D\uB3C4 \uAC10\uC18C 1 \xB7 2\uD134"
+    Name: "포위 표식"
+    Description: "적 한 명: 표식(받는 공격 피해
+      +3) \xB7 3턴 / 적 한 명: 명중 감소 5%p \xB7 2턴"
     Effect: 7
     Friendly: 0
     All: 0

@@ -17,5 +17,5 @@ MonoBehaviour:
   coins: 0
   attackBonus: 1
   healthBonus: 3
-  speedBonus: 0
+  accuracyBonus: 0
 

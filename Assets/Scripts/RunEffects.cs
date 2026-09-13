@@ -73,7 +73,7 @@ public static class RunEffects
             }
             foreach (var forge in skills.Values.Where(f => f != ForgeType.UNFORGED))
             {
-                if (forge == ForgeType.COOLTIME) template.Speed += 1;
+                if (forge == ForgeType.COOLTIME) template.Health += 5;
                 foreach (var skill in template.Skills)
                 {
                     if (skill.Max > 0 && (forge == ForgeType.DAMAGE && skill.Effect != Effect.Heal || forge == ForgeType.HEAL && skill.Effect == Effect.Heal)) { skill.Min++; skill.Max++; }
@@ -91,13 +91,13 @@ public static class RunEffects
                 skill.Max += treasure.attackBonus;
             }
             template.Health += treasure.healthBonus;
-            template.Speed += treasure.speedBonus;
+            template.AccuracyBonus += treasure.accuracyBonus;
         }
         return template;
     }
 
     private static bool MatchesForge(Effect effect, ForgeType forge)
-        => forge == ForgeType.BUFF && (effect == Effect.Guard || effect == Effect.AttackUp || effect == Effect.SpeedUp || effect == Effect.Focus)
+        => forge == ForgeType.BUFF && (effect == Effect.Guard || effect == Effect.AttackUp || effect == Effect.Focus)
             || forge == ForgeType.DEBUFF && (effect == Effect.Bleed || effect == Effect.Blight || effect == Effect.Burn
-                || effect == Effect.Stun || effect == Effect.Mark || effect == Effect.AttackDown || effect == Effect.SpeedDown);
+                || effect == Effect.Stun || effect == Effect.Mark || effect == Effect.AttackDown || effect == Effect.AccuracyDown);
 }

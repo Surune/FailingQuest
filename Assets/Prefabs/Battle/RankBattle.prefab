@@ -2485,7 +2485,6 @@ MonoBehaviour:
     Template:
       Name: "\uC218\uD638\uC790"
       Health: 38
-      Speed: 3
       Dodge: 5
       Protection: 15
       Resistance: 20
@@ -2559,7 +2558,6 @@ MonoBehaviour:
     Template:
       Name: "\uCD94\uC801\uC790"
       Health: 29
-      Speed: 7
       Dodge: 15
       Protection: 0
       Resistance: 20
@@ -2634,7 +2632,6 @@ MonoBehaviour:
     Template:
       Name: "\uC5F0\uAE08\uC220\uC0AC"
       Health: 25
-      Speed: 5
       Dodge: 10
       Protection: 0
       Resistance: 20
@@ -2708,7 +2705,6 @@ MonoBehaviour:
     Template:
       Name: "\uCE58\uC720\uC0AC"
       Health: 28
-      Speed: 4
       Dodge: 5
       Protection: 0
       Resistance: 20
@@ -2783,7 +2779,6 @@ MonoBehaviour:
     Template:
       Name: "\uCE58\uC720\uC0AC"
       Health: 28
-      Speed: 4
       Dodge: 5
       Protection: 0
       Resistance: 20
@@ -2859,7 +2854,6 @@ MonoBehaviour:
     Template:
       Name: "\uBB34\uB364 \uD30C\uC218\uAFBC"
       Health: 35
-      Speed: 2
       Dodge: 5
       Protection: 20
       Resistance: 20
@@ -2901,7 +2895,6 @@ MonoBehaviour:
     Template:
       Name: "\uAC08\uD034 \uC0AC\uB0E5\uAFBC"
       Health: 29
-      Speed: 6
       Dodge: 10
       Protection: 0
       Resistance: 20
@@ -2943,7 +2936,6 @@ MonoBehaviour:
     Template:
       Name: "\uC5ED\uBCD1 \uC8FC\uC220\uC0AC"
       Health: 25
-      Speed: 4
       Dodge: 5
       Protection: 0
       Resistance: 20
@@ -2985,7 +2977,6 @@ MonoBehaviour:
     Template:
       Name: "\uC6B8\uBD80\uC9D6\uB294 \uC790"
       Health: 24
-      Speed: 5
       Dodge: 5
       Protection: 0
       Resistance: 20
@@ -3027,7 +3018,6 @@ MonoBehaviour:
     Template:
       Name: "\uBB34\uB364 \uD30C\uC218\uAFBC"
       Health: 35
-      Speed: 2
       Dodge: 5
       Protection: 20
       Resistance: 20
@@ -10804,7 +10794,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "01  \uCC38\uAC00\uC790\uC640 \uCC28\uB840\n\uD50C\uB808\uC774\uC5B4 1\uBA85\uACFC
     \uC801 \uCD5C\uB300 5\uBA85\uC774 \uCC38\uAC00\uD569\uB2C8\uB2E4. \uB9E4 \uB77C\uC6B4\uB4DC
-    \uC18D\uB3C4 + 1~8\uB85C \uC21C\uC11C\uB97C \uC815\uD569\uB2C8\uB2E4.\n\n02
+    플레이어가 먼저 행동하고, 적은 1열부터 순서대로 행동합니다.\n\n02
     \uC2A4\uD0AC \u2192 \uB300\uC0C1\n[1\u20134] \uB610\uB294 \uC2A4\uD0AC \uD074\uB9AD
     \uD6C4, \uAC15\uC870\uB41C \uB300\uC0C1\uC744 \uD074\uB9AD\uD558\uC138\uC694.
     \uC704\uCE58\uC5D0 \uAD00\uACC4\uC5C6\uC774 \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560

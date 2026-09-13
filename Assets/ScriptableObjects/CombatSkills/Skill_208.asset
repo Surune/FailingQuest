@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FailingQuest.Combat.CombatSkillDefinition
   Id: 208
   Icon: {fileID: 21300000, guid: 7f2bbbce6446c4265a134b0a8e2cccac, type: 3}
-  ConversionNotes: "\uD504\uB9AC\uD339 \uD6A8\uACFC\xB7\uB300\uC0C1 \uAE30\uC900.
-    \uCFE8\uD0C0\uC784 1~30=0, 31~60=1, 61~90=2, 91~120=3\uAC1C \uB77C\uC6B4\uB4DC
-    \uB300\uAE30. \uC0C1\uD0DC 3\uD134, \uAE30\uC808 1\uD134. \uC18D\uB3C4\uB294
-    \uAE30\uC874 \uC218\uCE58/10 \uC62C\uB9BC(\uCD5C\uB300 5), \uBCF4\uD638 25%,
-    \uC9D1\uC911 \uBA85\uC911 +10."
+  ConversionNotes: "프리팹 효과\xB7대상 기준.
+    쿨타임 1~30=0, 31~60=1, 61~90=2, 91~120=3개 라운드
+    대기. 상태 3턴, 기절 1턴. 명중 보정은 기존 수치/10 올림(최대 5)에 5%p를 곱한 값, 보호 25%,
+    집중 명중 +10."
   ForgeOptions: 010000000300000004000000
   Skill:
     Id: 208
@@ -30,9 +29,9 @@ MonoBehaviour:
       Target: 1
       Potency: 1
       Duration: 1
-    Name: "\uC608\uB9AC\uD568"
-    Description: "\uC790\uC2E0: \uACF5\uACA9\uB825 \uC99D\uAC00 3 \xB7 3\uD134 /
-      \uC790\uC2E0: \uAE30\uC808 1 \xB7 1\uD134"
+    Name: "예리함"
+    Description: "자신: 공격력 증가 3 \xB7 3턴 /
+      자신: 기절 1 \xB7 1턴"
     Effect: 10
     Friendly: 1
     All: 0

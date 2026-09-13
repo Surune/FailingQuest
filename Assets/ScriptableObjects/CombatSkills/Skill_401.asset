@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FailingQuest.Combat.CombatSkillDefinition
   Id: 401
   Icon: {fileID: 21300000, guid: 724c6a411ea3f4510baf924aeb597d73, type: 3}
-  ConversionNotes: "\uC2E0\uADDC \uCC3D\uC791: \uC544\uC774\uCF58\uC758 \uBC1C\uC790\uAD6D\uC5D0\uC11C
-    \uCC29\uC548. 4\uBC88 \uB3D9\uB8CC / \uC0AC\uB0E5\uAFBC. \uD504\uB9AC\uD339 \uBCC0\uD658\uC774
-    \uC544\uB2CC \uC9C1\uC811 \uC815\uC758. \uD53C\uD574\xB7\uC0C1\uD0DC\xB7\uC0AC\uC6A9
-    \uC5F4\xB7\uCFE8\uD0C0\uC784\uC740 \uC9C4\uD615 \uC804\uD22C \uAE30\uC900."
+  ConversionNotes: "신규 창작: 아이콘의 발자국에서
+    착안. 4번 동료 / 사냥꾼. 프리팹 변환이
+    아닌 직접 정의. 피해\xB7상태\xB7사용
+    열\xB7쿨타임은 진형 전투 기준."
   ForgeOptions: 0100000003000000
   Skill:
     Id: 401
@@ -25,13 +25,13 @@ MonoBehaviour:
     SelfOnly: 1
     BothTeams: 0
     AdditionalEffects:
-    - Effect: 12
+    - Effect: 14
       Target: 1
-      Potency: 1
+      Potency: 5
       Duration: 2
-    Name: "\uC57C\uC218\uC758 \uBCF8\uB2A5"
-    Description: "\uC790\uC2E0: \uACF5\uACA9\uB825 \uC99D\uAC00 2 \xB7 2\uD134 /
-      \uC790\uC2E0: \uC18D\uB3C4 \uC99D\uAC00 1 \xB7 2\uD134"
+    Name: "야수의 본능"
+    Description: "자신: 공격력 증가 2 \xB7 2턴 /
+      자신: 명중 증가 5%p \xB7 2턴"
     Effect: 10
     Friendly: 1
     All: 0

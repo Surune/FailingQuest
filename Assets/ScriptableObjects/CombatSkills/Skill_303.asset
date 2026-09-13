@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FailingQuest.Combat.CombatSkillDefinition
   Id: 303
   Icon: {fileID: 21300000, guid: 599c2c658ddec4f2db6c3a0fb18e76c1, type: 3}
-  ConversionNotes: "\uD504\uB9AC\uD339 \uD6A8\uACFC\xB7\uB300\uC0C1 \uAE30\uC900.
-    \uCFE8\uD0C0\uC784 1~30=0, 31~60=1, 61~90=2, 91~120=3\uAC1C \uB77C\uC6B4\uB4DC
-    \uB300\uAE30. \uC0C1\uD0DC 3\uD134, \uAE30\uC808 1\uD134. \uC18D\uB3C4\uB294
-    \uAE30\uC874 \uC218\uCE58/10 \uC62C\uB9BC(\uCD5C\uB300 5), \uBCF4\uD638 25%,
-    \uC9D1\uC911 \uBA85\uC911 +10."
+  ConversionNotes: "프리팹 효과\xB7대상 기준.
+    쿨타임 1~30=0, 31~60=1, 61~90=2, 91~120=3개 라운드
+    대기. 상태 3턴, 기절 1턴. 명중 보정은 기존 수치/10 올림(최대 5)에 5%p를 곱한 값, 보호 25%,
+    집중 명중 +10."
   ForgeOptions: 0100000005000000
   Skill:
     Id: 303
@@ -26,8 +25,8 @@ MonoBehaviour:
     SelfOnly: 0
     BothTeams: 0
     AdditionalEffects: []
-    Name: "\uD68C\uBCF5"
-    Description: "\uC544\uAD70 \uD55C \uBA85: \uD68C\uBCF5 8~10"
+    Name: "회복"
+    Description: "아군 한 명: 회복 8~10"
     Effect: 4
     Friendly: 1
     All: 0

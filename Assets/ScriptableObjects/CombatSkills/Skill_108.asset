@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FailingQuest.Combat.CombatSkillDefinition
   Id: 108
   Icon: {fileID: 21300000, guid: af8b0739bedec469a96a8fc8ac72c0b6, type: 3}
-  ConversionNotes: "\uD504\uB9AC\uD339 \uD6A8\uACFC\xB7\uB300\uC0C1 \uAE30\uC900.
-    \uCFE8\uD0C0\uC784 1~30=0, 31~60=1, 61~90=2, 91~120=3\uAC1C \uB77C\uC6B4\uB4DC
-    \uB300\uAE30. \uC0C1\uD0DC 3\uD134, \uAE30\uC808 1\uD134. \uC18D\uB3C4\uB294
-    \uAE30\uC874 \uC218\uCE58/10 \uC62C\uB9BC(\uCD5C\uB300 5), \uBCF4\uD638 25%,
-    \uC9D1\uC911 \uBA85\uC911 +10. \uACF5\uACA9 \uD6C4 \uC720\uC775\uD55C \uBD80\uAC00
-    \uD6A8\uACFC\uB294 \uC2DC\uC804\uC790\uC5D0\uAC8C \uC801\uC6A9\uD558\uB3C4\uB85D
-    \uBCF4\uC815."
+  ConversionNotes: "프리팹 효과\xB7대상 기준.
+    쿨타임 1~30=0, 31~60=1, 61~90=2, 91~120=3개 라운드
+    대기. 상태 3턴, 기절 1턴. 명중 보정은 기존 수치/10 올림(최대 5)에 5%p를 곱한 값, 보호 25%,
+    집중 명중 +10. 공격 후 유익한 부가
+    효과는 시전자에게 적용하도록
+    보정."
   ForgeOptions: 010000000200000003000000
   Skill:
     Id: 108
@@ -28,13 +27,12 @@ MonoBehaviour:
     SelfOnly: 0
     BothTeams: 0
     AdditionalEffects:
-    - Effect: 12
+    - Effect: 14
       Target: 1
-      Potency: 1
+      Potency: 5
       Duration: 3
-    Name: "\uD654\uC5FC\uCE7C\uB0A0"
-    Description: "\uC801 \uD55C \uBA85: \uD53C\uD574 6~8 / \uC790\uC2E0: \uC18D\uB3C4
-      \uC99D\uAC00 1 \xB7 3\uD134"
+    Name: "화염칼날"
+    Description: "적 한 명: 피해 6~8 / 자신: 명중 증가 5%p \xB7 3턴"
     Effect: 0
     Friendly: 0
     All: 0

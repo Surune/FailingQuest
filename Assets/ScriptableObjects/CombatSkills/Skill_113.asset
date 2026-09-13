@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FailingQuest.Combat.CombatSkillDefinition
   Id: 113
   Icon: {fileID: 21300000, guid: 67b8fac849e4e4b52b13ab0dcbf87465, type: 3}
-  ConversionNotes: "\uD504\uB9AC\uD339 \uD6A8\uACFC\xB7\uB300\uC0C1 \uAE30\uC900.
-    \uCFE8\uD0C0\uC784 1~30=0, 31~60=1, 61~90=2, 91~120=3\uAC1C \uB77C\uC6B4\uB4DC
-    \uB300\uAE30. \uC0C1\uD0DC 3\uD134, \uAE30\uC808 1\uD134. \uC18D\uB3C4\uB294
-    \uAE30\uC874 \uC218\uCE58/10 \uC62C\uB9BC(\uCD5C\uB300 5), \uBCF4\uD638 25%,
-    \uC9D1\uC911 \uBA85\uC911 +10. \uB450 \uBC88\uC9F8 \uD6A8\uACFC\uC758 \uB204\uB77D\uB41C
-    \uCC38\uC870\uB97C buf1\uC758 \uC18D\uB3C4 \uC99D\uAC00\uC5D0\uC11C \uBCF5\uC6D0.
-    \uD6C4\uBC29 \uD55C \uCE78 \uC774\uB3D9."
+  ConversionNotes: "프리팹 효과\xB7대상 기준.
+    쿨타임 1~30=0, 31~60=1, 61~90=2, 91~120=3개 라운드
+    대기. 상태 3턴, 기절 1턴. 명중 보정은 기존 수치/10 올림(최대 5)에 5%p를 곱한 값, 보호 25%,
+    집중 명중 +10. 두 번째 효과의 누락된
+    참조를 buf1의 명중 증가에서 복원.
+    후방 한 칸 이동."
   ForgeOptions: 0100000003000000
   Skill:
     Id: 113
@@ -28,14 +27,14 @@ MonoBehaviour:
     SelfOnly: 1
     BothTeams: 0
     AdditionalEffects: []
-    Name: "\uD154\uB808\uD3EC\uD2B8"
-    Description: "\uC790\uC2E0: \uC18D\uB3C4 \uC99D\uAC00 1 \xB7 3\uD134"
-    Effect: 12
+    Name: "텔레포트"
+    Description: "자신: 명중 증가 5%p \xB7 3턴"
+    Effect: 14
     Friendly: 1
     All: 0
     Min: 0
     Max: 0
     Accuracy: 95
     Critical: 5
-    Potency: 1
+    Potency: 5
     Duration: 3

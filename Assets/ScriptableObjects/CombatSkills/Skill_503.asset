@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FailingQuest.Combat.CombatSkillDefinition
   Id: 503
   Icon: {fileID: 21300000, guid: 756966177ae59446c8aab470e2743259, type: 3}
-  ConversionNotes: "\uC2E0\uADDC \uCC3D\uC791: \uC544\uC774\uCF58\uC758 \uBB36\uC5B4
-    \uC870\uC774\uB294 \uC0AC\uC2AC\uC5D0\uC11C \uCC29\uC548. 5\uBC88 \uB3D9\uB8CC
-    / \uC554\uC220\uC0AC. \uD504\uB9AC\uD339 \uBCC0\uD658\uC774 \uC544\uB2CC \uC9C1\uC811
-    \uC815\uC758. \uD53C\uD574\xB7\uC0C1\uD0DC\xB7\uC0AC\uC6A9 \uC5F4\xB7\uCFE8\uD0C0\uC784\uC740
-    \uC9C4\uD615 \uC804\uD22C \uAE30\uC900."
+  ConversionNotes: "신규 창작: 아이콘의 묶어
+    조이는 사슬에서 착안. 5번 동료
+    / 암술사. 프리팹 변환이 아닌 직접
+    정의. 피해\xB7상태\xB7사용 열\xB7쿨타임은
+    진형 전투 기준."
   ForgeOptions: 0100000004000000
   Skill:
     Id: 503
@@ -30,9 +30,9 @@ MonoBehaviour:
       Target: 0
       Potency: 1
       Duration: 2
-    Name: "\uADF8\uB9BC\uC790 \uC0AC\uC2AC"
-    Description: "\uC801 \uD55C \uBA85: \uC18D\uB3C4 \uAC10\uC18C 3 \xB7 2\uD134
-      / \uC801 \uD55C \uBA85: \uACF5\uACA9\uB825 \uAC10\uC18C 1 \xB7 2\uD134"
+    Name: "그림자 사슬"
+    Description: "적 한 명: 명중 감소 15%p \xB7 2턴
+      / 적 한 명: 공격력 감소 1 \xB7 2턴"
     Effect: 13
     Friendly: 0
     All: 0
@@ -40,5 +40,5 @@ MonoBehaviour:
     Max: 0
     Accuracy: 95
     Critical: 5
-    Potency: 3
+    Potency: 15
     Duration: 2

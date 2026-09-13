@@ -75,7 +75,7 @@ public class ForgeManager : MonoBehaviour
         switch(forgeAvailable[randomIndex]) 
         {
             case ForgeType.COOLTIME:
-                btn.forgeText.text = "속도 +1";
+                btn.forgeText.text = "최대 체력 +5";
                 btn.forgeIcon.sprite = forgeIcons[0];
                 btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.COOLTIME));
                 break;

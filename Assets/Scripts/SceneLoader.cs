@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Newtonsoft.Json;
-using Map;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -10,21 +8,15 @@ public class SceneLoader : MonoBehaviour
         if (sceneName == "CharacterSelectScene")
         {
             GameManager.Instance.ResetRun();
-            PlayerPrefs.DeleteKey("Map");
-            PlayerPrefs.DeleteKey("RunCheckpoint");
         }
-        if (sceneName == "MapScene" && PlayerPrefs.HasKey("Map"))
+        if (sceneName == "MapScene")
         {
-            var map = JsonConvert.DeserializeObject<Map.Map>(PlayerPrefs.GetString("Map"));
-            map.hasSelectedNode = false;
-            PlayerPrefs.SetString("Map", JsonConvert.SerializeObject(map, new Newtonsoft.Json.JsonSerializerSettings { ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore }));
+            GameManager.Instance.currentMap.hasSelectedNode = false;
         }
         if (sceneName == "GameOverScene" || sceneName == "GameClearScene")
         {
-            PlayerPrefs.DeleteKey("Map");
-            PlayerPrefs.DeleteKey("RunCheckpoint");
+            GameManager.Instance.currentMap = new(new(), new());
         }
-        DataManager.instance.SaveData();
         SceneManager.LoadScene(sceneName);
     }
 }

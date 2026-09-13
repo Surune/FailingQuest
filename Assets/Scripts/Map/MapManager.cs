@@ -1,5 +1,4 @@
 using UnityEngine;
-using Newtonsoft.Json;
 
 namespace Map
 {
@@ -18,10 +17,9 @@ namespace Map
 
         private void Start()
         {
-            if (PlayerPrefs.HasKey("Map"))
+            if (GameManager.Instance.currentMap.nodes.Count > 0)
             {
-                var loadedMapJson = PlayerPrefs.GetString("Map");
-                map = JsonConvert.DeserializeObject<Map>(loadedMapJson);
+                map = GameManager.Instance.currentMap;
                 map.hasSelectedNode = false;
                 MapRenderer.instance.RenderMap(map);
             }
@@ -30,30 +28,13 @@ namespace Map
                 GenerateMap();
             }
             GameManager.Instance.userData.nodesVisited = map.userPath.Count;
-            SaveMap();
-            DataManager.instance.SaveCheckpoint();
         }
 
         public void GenerateMap()
         {
             map = mapGenerator.GetMap();
+            GameManager.Instance.currentMap = map;
             MapRenderer.instance.RenderMap(map);
-        }
-
-        public void SaveMap()
-        {
-            if (map == null) return;
-            
-            var mapJson = JsonConvert.SerializeObject(map, Formatting.Indented,
-                new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
-
-            PlayerPrefs.SetString("Map", mapJson);
-            PlayerPrefs.Save();
-        }
-
-        private void OnApplicationQuit()
-        {
-            SaveMap();
         }
     }
 }

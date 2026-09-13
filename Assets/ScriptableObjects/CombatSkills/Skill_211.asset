@@ -29,8 +29,6 @@ MonoBehaviour:
     AdditionalEffects: []
     Name: "\uCDA9\uACA9\uD30C"
     Description: "\uB300\uC0C1 \uC5F4\uC758 \uC801 \uC804\uCCB4: \uD53C\uD574 2~4"
-    From: 010000000200000003000000
-    To: 0100000002000000
     Effect: 0
     Friendly: 0
     All: 1
@@ -40,4 +38,3 @@ MonoBehaviour:
     Critical: 5
     Potency: 0
     Duration: 3
-    Advance: 0

@@ -66,7 +66,6 @@ namespace Map
                 MapManager.instance.map.hasSelectedNode = true;
 
                 MapManager.instance.map.userPath.Add(mapNode.node.point);
-                MapManager.instance.SaveMap();
 
                 MapRenderer.instance.UpdateNodeState();
                 MapRenderer.instance.UpdateEdgeState();

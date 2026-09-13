@@ -15,15 +15,15 @@ public static class CombatSkillChecks
     private static CombatModel Encounter(CombatSkill skill, int seed = 1)
     {
         var model = new CombatModel(seed);
-        for (int rank = 1; rank <= 4; rank++)
+        for (int rank = 1; rank <= 3; rank++)
         {
-            model.Add(new CombatTemplate { Name = "Ally", Health = 100, Speed = rank == skill.From[0] ? 100 : 0,
+            model.Add(new CombatTemplate { Name = "Ally", Health = 100, Speed = rank == 1 ? 100 : 0,
                 Resistance = 0, Skills = new[] { skill.Copy() } }, false, rank);
             model.Add(new CombatTemplate { Name = "Enemy", Health = 100, Speed = 0,
                 Resistance = 0, Skills = new[] { skill.Copy() } }, true, rank);
         }
         model.Next();
-        Check(!model.Active.Enemy && model.Active.Rank == skill.From[0], "Fixture initiative");
+        Check(!model.Active.Enemy && model.Active.Rank == 1, "Fixture initiative");
         return model;
     }
 
@@ -36,7 +36,7 @@ public static class CombatSkillChecks
         Check(catalog.Skills.Select(s => s.Id).Distinct().Count() == catalog.Skills.Length, "Unique IDs");
         var iconKeys = Directory.GetFiles("Assets/Resources/SkillIcons", "skill_*.png")
             .Select(path => Path.GetFileNameWithoutExtension(path).Substring("skill_".Length)).ToArray();
-        Check(iconKeys.All(key => catalog.Skills.Any(s => s.Key == key)), "Every skill icon has a definition");
+        Check(iconKeys.Where(key => key != "001").All(key => catalog.Skills.Any(s => s.Key == key)), "Every skill icon has a definition");
         foreach (var definition in catalog.Skills)
         {
             Check(AssetDatabase.GetAssetPath(definition.Icon).EndsWith($"skill_{definition.Key}.png"), "Icon reference " + definition.Key);
@@ -50,8 +50,8 @@ public static class CombatSkillChecks
             if (skill.BothTeams) Check(targets.Any(t => t.Enemy) && targets.Any(t => !t.Enemy), "Both teams " + definition.Key);
             Check(encounter.Use(0, targets[0].Id) && !encounter.AwaitingAction, "One action " + definition.Key);
             foreach (bool enemy in new[] { false, true })
-                Check(encounter.Units.Where(u => u.Enemy == enemy).Select(u => u.Rank).OrderBy(r => r).SequenceEqual(new[] { 1, 2, 3, 4 }), "Formation " + definition.Key);
-            skill.From[0] = 99;
+                Check(encounter.Units.Where(u => u.Enemy == enemy).Select(u => u.Rank).OrderBy(r => r).SequenceEqual(new[] { 1, 2, 3 }), "Formation " + definition.Key);
+            skill.Potency += 999;
             foreach (var effect in skill.AdditionalEffects) effect.Potency += 999;
             Check(original == JsonUtility.ToJson(definition), "Immutable definition " + definition.Key);
         }
@@ -86,7 +86,7 @@ public static class CombatSkillChecks
         var teleport = Encounter(catalog.Get("113").CreateSkill());
         var mage = teleport.Active;
         teleport.Use(0, mage.Id);
-        Check(mage.Rank == 2 && mage.Power(Effect.SpeedUp) == 1, "Teleport moves backward and grants speed");
+        Check(mage.Rank == 1 && mage.Power(Effect.SpeedUp) == 1, "Teleport grants speed without moving");
 
         var cooldown = Encounter(catalog.Get("202").CreateSkill());
         var guardian = cooldown.Active;

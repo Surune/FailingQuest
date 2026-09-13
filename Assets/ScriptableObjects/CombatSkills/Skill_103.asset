@@ -29,8 +29,6 @@ MonoBehaviour:
     AdditionalEffects: []
     Name: "\uB300\uC758"
     Description: "\uC591 \uC9C4\uC601 \uC804\uCCB4: \uD53C\uD574 2~4"
-    From: 01000000020000000300000004000000
-    To: 01000000020000000300000004000000
     Effect: 0
     Friendly: 0
     All: 1
@@ -40,4 +38,3 @@ MonoBehaviour:
     Critical: 5
     Potency: 0
     Duration: 3
-    Advance: 0

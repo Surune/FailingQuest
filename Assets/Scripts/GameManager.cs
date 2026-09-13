@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public UserData userData = CreateData();
+    public Map.Map currentMap = new(new(), new());
     public bool firstQuestLoaded;
     public GameObject[] charPrefabs;
     public TreasureCatalog treasureCatalog;
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     private static UserData CreateData() => new()
     {
-        characters = new() { CharacterType.character1, CharacterType.character2, CharacterType.character3 },
+        characters = new() { CharacterType.character1 },
         myTreasure = new(), myTreasureIndex = new(),
         currentQuest = new() { new() {-1,-1}, new() {-1,-1}, new() {-1,-1} },
         newQuest = new() { new() {-1,-1}, new() {-1,-1}, new() {-1,-1} },
@@ -23,9 +24,7 @@ public class GameManager : MonoBehaviour
         questList = new int[,] {{30,60,90,0},{3,5,7,0},{3,4,5,0},{1,2,3,0},{3,4,5,0},{3,4,5,0},{20,30,40,0},{100,125,150,0},{3,4,5,0},{5,7,10,0},{3,5,7,0}},
         currentSkills = new()
         {
-            new() {{"001",ForgeType.UNFORGED},{"002",ForgeType.UNFORGED}},
-            new() {{"001",ForgeType.UNFORGED},{"002",ForgeType.UNFORGED}},
-            new() {{"001",ForgeType.UNFORGED},{"002",ForgeType.UNFORGED}}
+            new() {{"002",ForgeType.UNFORGED}}
         }
     };
     private void Awake()
@@ -38,6 +37,7 @@ public class GameManager : MonoBehaviour
     public void ResetRun()
     {
         userData = CreateData();
+        currentMap = new(new(), new());
         firstQuestLoaded = false;
         treasurePosition.x = -616; treasurePosition.y = 174;
         var available = new List<int>();
@@ -51,9 +51,4 @@ public class GameManager : MonoBehaviour
             userData.questList[quest,3] = 1;
         }
     }
-    private void Start()
-    {
-        if (PlayerPrefs.HasKey("UserData")) DataManager.instance.LoadData();
-    }
-    private void OnApplicationQuit() => DataManager.instance.SaveData();
 }

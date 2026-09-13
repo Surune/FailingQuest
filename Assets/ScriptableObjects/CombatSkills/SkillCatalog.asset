@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: SkillCatalog
   m_EditorClassIdentifier: Assembly-CSharp::FailingQuest.Combat.CombatSkillCatalog
   Skills:
-  - {fileID: 11400000, guid: d08bde704ad1ace4999b88c01c7f5d91, type: 2}
   - {fileID: 11400000, guid: 7804741b0ea22fd42ad1def011db8ff0, type: 2}
   - {fileID: 11400000, guid: 8b3caf5ba0fb5fb4695879d1560fc1ec, type: 2}
   - {fileID: 11400000, guid: 593f2d7886627604e911bd9fb60726be, type: 2}

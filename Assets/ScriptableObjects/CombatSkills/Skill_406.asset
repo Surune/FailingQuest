@@ -27,10 +27,7 @@ MonoBehaviour:
     BothTeams: 0
     AdditionalEffects: []
     Name: "\uB3C4\uC57D \uC0AC\uACA9"
-    Description: "\uC801 \uD55C \uBA85: \uD53C\uD574 5~7 / \uC804\uBC29 \uD55C \uCE78
-      \uC774\uB3D9"
-    From: 020000000300000004000000
-    To: 0100000002000000
+    Description: "\uC801 \uD55C \uBA85: \uD53C\uD574 5~7"
     Effect: 0
     Friendly: 0
     All: 0
@@ -40,4 +37,3 @@ MonoBehaviour:
     Critical: 5
     Potency: 0
     Duration: 3
-    Advance: 1

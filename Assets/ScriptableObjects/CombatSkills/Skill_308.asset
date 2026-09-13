@@ -28,8 +28,6 @@ MonoBehaviour:
     AdditionalEffects: []
     Name: "\uC870\uC900"
     Description: "\uC790\uC2E0: \uC9D1\uC911 10 \xB7 3\uD134"
-    From: 01000000020000000300000004000000
-    To: 01000000020000000300000004000000
     Effect: 14
     Friendly: 1
     All: 0
@@ -39,4 +37,3 @@ MonoBehaviour:
     Critical: 5
     Potency: 10
     Duration: 3
-    Advance: 0

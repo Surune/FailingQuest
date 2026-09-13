@@ -15,22 +15,6 @@ public static class AuthorFlow
     }
     public static string Main()
     {
-        EditorSceneManager.OpenScene("Assets/Scenes/StartScene.unity");
-        var start = Object.FindObjectsByType<Button>(FindObjectsInactive.Include, FindObjectsSortMode.None)
-            .First(b => b.transform.parent.name == "Buttons" && b.GetComponentInChildren<TMP_Text>().text == "게임 시작");
-        var resume = Object.Instantiate(start, start.transform.parent);
-        resume.name = "ContinueRun";
-        Clear(resume);
-        resume.GetComponentInChildren<TMP_Text>().text = "이어하기";
-        var control = resume.gameObject.AddComponent<ContinueRunButton>();
-        control.button = resume;
-        resume.transform.SetSiblingIndex(1);
-        PrefabUtility.SaveAsPrefabAssetAndConnect(resume.gameObject, "Assets/Prefabs/ContinueRun.prefab", InteractionMode.AutomatedAction);
-        var layout = start.transform.parent.GetComponent<VerticalLayoutGroup>();
-        layout.spacing = 16;
-        layout.GetComponent<RectTransform>().sizeDelta = V(0, 410);
-        EditorSceneManager.SaveScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
-
         foreach (var scene in new[]{"GameClearScene", "GameOverScene"})
         {
             EditorSceneManager.OpenScene("Assets/Scenes/" + scene + ".unity");

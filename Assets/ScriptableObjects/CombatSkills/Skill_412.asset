@@ -28,8 +28,6 @@ MonoBehaviour:
     AdditionalEffects: []
     Name: "\uC12C\uAD11 \uC800\uACA9"
     Description: "\uC801 \uD55C \uBA85: \uD53C\uD574 7~10"
-    From: 020000000300000004000000
-    To: 0300000004000000
     Effect: 0
     Friendly: 0
     All: 0
@@ -39,4 +37,3 @@ MonoBehaviour:
     Critical: 12
     Potency: 0
     Duration: 3
-    Advance: 0

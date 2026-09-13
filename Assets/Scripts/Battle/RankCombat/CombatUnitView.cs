@@ -15,7 +15,6 @@ namespace FailingQuest.Combat
         public TMP_Text NameText;
         public TMP_Text HealthText;
         public TMP_Text StatusText;
-        public TMP_Text RankText;
         public TMP_Text FloatingText;
         public TMP_Text TargetMarker;
         public Button Button;

@@ -33,8 +33,6 @@ MonoBehaviour:
     Name: "\uD654\uC5FC\uAD6C"
     Description: "\uC801 \uD55C \uBA85: \uD53C\uD574 6~8 / \uC801 \uD55C \uBA85:
       \uD654\uC0C1 1 \xB7 3\uD134"
-    From: 020000000300000004000000
-    To: 01000000020000000300000004000000
     Effect: 0
     Friendly: 0
     All: 0
@@ -44,4 +42,3 @@ MonoBehaviour:
     Critical: 5
     Potency: 0
     Duration: 3
-    Advance: 0

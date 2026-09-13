@@ -25,23 +25,15 @@ MonoBehaviour:
     Cooldown: 1
     SelfOnly: 1
     BothTeams: 0
-    AdditionalEffects:
-    - Effect: 10
-      Target: 1
-      Potency: 1
-      Duration: 3
+    AdditionalEffects: []
     Name: "\uC9C0\uC6D0"
-    Description: "\uC804\uBC29 \uD55C \uCE78 \uC774\uB3D9 / \uC790\uC2E0: \uACF5\uACA9\uB825
-      \uC99D\uAC00 1 \xB7 3\uD134"
-    From: 020000000300000004000000
-    To: 01000000020000000300000004000000
-    Effect: 15
+    Description: "\uC790\uC2E0: \uACF5\uACA9\uB825 \uC99D\uAC00 1 \xB7 3\uD134"
+    Effect: 10
     Friendly: 1
     All: 0
     Min: 0
     Max: 0
     Accuracy: 95
     Critical: 5
-    Potency: 0
+    Potency: 1
     Duration: 3
-    Advance: 1

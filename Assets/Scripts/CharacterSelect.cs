@@ -8,7 +8,7 @@ public class CharacterSelect : MonoBehaviour
     public Button[] Characters;
     public Button[] Selects;
     public Button startButton;
-    private int max_selection = 3;
+    private const int max_selection = FailingQuest.Combat.RankBattleController.MaxPlayerCount;
     private int current_selection = 0;
     private int[] selectedIndices;
 

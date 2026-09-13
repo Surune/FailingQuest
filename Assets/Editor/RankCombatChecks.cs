@@ -36,42 +36,46 @@ public static class RankCombatChecks
 
         var target = Duel(); target.Next();
         Check(!target.Use(0, 0) && target.AwaitingAction, "Invalid team consumes no action");
-        target.Units[1].Rank = 4;
-        Check(!target.Use(0, 1) && target.AwaitingAction, "Invalid target rank consumes no action");
-        target.Units[1].Rank = 1;
-        target.Active.Rank = 4;
-        Check(!target.Use(0, 1) && target.AwaitingAction, "Invalid launch rank consumes no action");
-        target.Active.Rank = 1;
+        target.Units[1].Rank = 3;
+        target.Active.Rank = 3;
+        Check(target.CanUse(target.Active, target.Active.Template.Skills[0]), "Back slot can use melee skills");
+        int skillUses = 0;
+        target.QuestProgress = (quest, amount) => { if (quest == 5) skillUses += amount; };
         Check(target.Use(0, 1) && !target.Use(0, 1), "Double-click cannot execute twice");
-        passed.Add("team and rank targeting / duplicate submission");
+        Check(skillUses == 1, "Skill-use quest advances once per accepted action");
+        passed.Add("position-independent melee / team targeting / duplicate submission / skill-use quest");
 
-        var movement = Duel(); movement.Add(RankCombatTemplates.Hero(1), false, 2); movement.Next();
-        Check(!movement.Move(-1), "Cannot move beyond rank 1");
-        Check(movement.Move(1), "Move consumes action");
-        Check(movement.Units[0].Rank == 2 && movement.Units[2].Rank == 1 && !movement.AwaitingAction, "Same-team swap");
-        Check(movement.Units[1].Rank == 1, "Move must not touch other team");
-        passed.Add("formation movement and bounds");
+        for (int slot = 1; slot <= 3; slot++)
+            for (int role = 0; role < 5; role++)
+            {
+                var model = Duel();
+                model.Units[0].Template = RankCombatTemplates.Hero(role);
+                model.Units[0].Rank = slot;
+                foreach (var skill in model.Units[0].Template.Skills)
+                    Check(model.CanUse(model.Units[0], skill), $"Hero {role} skill {skill.Name} usable in slot {slot}");
+            }
+        passed.Add("all starting hero skills usable in every display slot");
 
         var door = Duel(); door.Next();
         door.Damage(door.Units[0], 999, false);
         Check(door.Units[0].AtDeathsDoor && !door.Units[0].Dead, "First lethal hit enters death's door");
         door.Active.Template.Skills[0] = RankCombatTemplates.Hero(3).Skills[0];
-        door.Active.Template.Skills[0].From = new[] { 1 };
         Check(door.Use(0, 0) && door.Units[0].Health > 0 && !door.Units[0].AtDeathsDoor, "Healing escapes death's door");
         passed.Add("death's door and healing");
 
         var corpse = Duel(); corpse.Add(RankCombatTemplates.Enemy(1), true, 2); corpse.Next();
         corpse.Damage(corpse.Units[1], 999, false);
-        Check(corpse.Units[1].Corpse && corpse.Units[2].Rank == 2, "Corpse retains formation slot");
-        Check(corpse.Use(0, 1) && !corpse.Units[1].Corpse && corpse.Units[2].Rank == 1, "Clearing corpse compacts ranks");
+        Check(corpse.Units[1].Dead && corpse.Units[2].Rank == 2, "Death leaves other display slots unchanged");
+        Check(!corpse.Use(0, 1) && corpse.AwaitingAction, "Dead enemy cannot be targeted");
+        Check(corpse.Use(0, 2), "Survivor immediately targetable without clearing a corpse");
         corpse.Next();
-        Check(corpse.Active.Id != 1, "Corpse cannot act");
-        passed.Add("corpse blocking / clearing / dead turn filtering");
+        Check(corpse.Active.Id != 1, "Dead enemy cannot act");
+        passed.Add("death removes targets and turns without blocking or repositioning");
 
         var dot = Duel(); dot.Add(RankCombatTemplates.Enemy(1), true, 2);
         dot.Damage(dot.Units[1], 999, true);
-        Check(!dot.Units[1].Corpse && dot.Units[2].Rank == 1, "DOT kill creates no corpse");
-        passed.Add("DOT corpse bypass");
+        Check(dot.Units[1].Dead && dot.Units[2].Rank == 2, "DOT kill leaves other display slots unchanged");
+        passed.Add("DOT death");
 
         var tick = Duel(); tick.Units[0].Ailments.Add(new Ailment { Effect = Effect.Bleed, Power = 2, Turns = 2 });
         int tickHealth = tick.Units[0].Health;
@@ -97,8 +101,8 @@ public static class RankCombatChecks
         passed.Add("resolve / heart attack / defeat");
 
         var victory = Duel(); victory.Damage(victory.Units[1], 999, false);
-        Check(!victory.Next() && victory.Outcome == Outcome.Victory, "Corpses do not block victory");
-        passed.Add("victory with remaining corpse");
+        Check(!victory.Next() && victory.Outcome == Outcome.Victory, "Final enemy death ends battle");
+        passed.Add("victory after final enemy death");
 
         var retreat = Duel(); retreat.Next();
         Check(retreat.Retreat() && !retreat.AwaitingAction, "Retreat consumes one action");
@@ -107,16 +111,16 @@ public static class RankCombatChecks
 
         var aoe = new CombatModel(10);
         aoe.Add(RankCombatTemplates.Hero(2), false, 3);
-        for (int i = 1; i <= 4; i++) aoe.Add(RankCombatTemplates.Enemy(i - 1), true, i);
-        Check(aoe.Targets(aoe.Units[0], aoe.Units[0].Template.Skills[0]).Select(u => u.Rank).SequenceEqual(new[] {3,4}), "AOE respects target ranks");
+        for (int i = 1; i <= 5; i++) aoe.Add(RankCombatTemplates.Enemy(i - 1), true, i);
+        Check(aoe.Targets(aoe.Units[0], aoe.Units[0].Template.Skills[0]).Select(u => u.Rank).SequenceEqual(new[] {1,2,3,4,5}), "AOE includes all five enemies");
         passed.Add("area targeting");
 
         int wins = 0, losses = 0;
         for (int seed = 0; seed < 10; seed++)
         {
             var model = new CombatModel(seed);
-            for (int i = 0; i < 4; i++) model.Add(RankCombatTemplates.Hero(i), false, i + 1);
-            for (int i = 0; i < 4; i++) model.Add(RankCombatTemplates.Enemy(i), true, i + 1);
+            model.Add(RankCombatTemplates.Hero(seed % 5), false, 1);
+            for (int i = 0; i < 5; i++) model.Add(RankCombatTemplates.Enemy(i), true, i + 1);
             int turns = 0;
             while (model.Next() && turns++ < 500)
             {
@@ -132,19 +136,19 @@ public static class RankCombatChecks
                         var targets = model.Targets(actor, actor.Template.Skills[index]);
                         model.Use(index, targets.OrderByDescending(u => u.Living).ThenBy(u => u.Health).First().Id);
                     }
-                    else if (!model.Move(-1)) model.Pass();
+                    else model.Pass();
                 }
                 Check(model.Units.All(u => u.Health >= 0 && u.Health <= u.Template.Health), "Health bounds in simulation");
                 foreach (bool enemy in new[] {false,true})
                 {
-                    var ranks = model.Units.Where(u => u.Enemy == enemy && (u.Living || u.Corpse)).Select(u => u.Rank).ToArray();
-                    Check(ranks.Distinct().Count() == ranks.Length, "Formation overlap in simulation");
+                    var ranks = model.Units.Where(u => u.Enemy == enemy).Select(u => u.Rank).ToArray();
+                    Check(ranks.SequenceEqual(enemy ? new[] {1,2,3,4,5} : new[] {1}), "Display slots never change during combat");
                 }
             }
             Check(model.Outcome != Outcome.Fighting, $"Battle failed to terminate: seed {seed}");
             if (model.Outcome == Outcome.Victory) wins++; else losses++;
         }
-        passed.Add($"10 seeded full battles: {wins} victories / {losses} defeats, no hangs or rank collisions");
+        passed.Add($"10 seeded 1v5 battles: {wins} victories / {losses} defeats, no hangs or position changes");
         return string.Join("\n", passed);
     }
 }

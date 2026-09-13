@@ -26,7 +26,7 @@ public class FirstQuestManager : MonoBehaviour
                 text = GameManager.Instance.userData.questList[questIdx, questLevel] + "개 획득";
                 break;
             case 5:
-                text = GameManager.Instance.userData.questList[questIdx, questLevel] + "회 전투 중 이동";
+                text = GameManager.Instance.userData.questList[questIdx, questLevel] + "회 전투 중 스킬 사용";
                 break;
             case 6:
                 text = "누적 " + GameManager.Instance.userData.questList[questIdx, questLevel] + "회복";

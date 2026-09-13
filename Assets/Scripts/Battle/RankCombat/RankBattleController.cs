@@ -10,7 +10,8 @@ namespace FailingQuest.Combat
 {
     public class RankBattleController : MonoBehaviour
     {
-        public const int MaxTeamSize = 3;
+        public const int MaxPlayerCount = 1;
+        public const int MaxEnemyCount = 5;
         public CombatAppearance[] Heroes;
         public CombatAppearance[] Enemies;
         public CombatUnitView[] Views;
@@ -33,8 +34,6 @@ namespace FailingQuest.Combat
         public TMP_Text ResultBody;
         public TMP_Text ContinueLabel;
         public Button ContinueButton;
-        public Button ForwardButton;
-        public Button BackButton;
         public Button PassButton;
         public Button RetreatButton;
         public Button CancelButton;
@@ -56,16 +55,16 @@ namespace FailingQuest.Combat
 
         private void Start()
         {
-            if (PlayerPrefs.HasKey("Map"))
-            {
-                var map = Newtonsoft.Json.JsonConvert.DeserializeObject<Map.Map>(PlayerPrefs.GetString("Map"));
-                if (map.userPath.Count > 0) encounterType = map.GetNode(map.userPath.Last()).nodeType;
-            }
             var managers = FindObjectsByType<GameManager>(FindObjectsSortMode.None);
             if (managers.Length > 0)
-                foreach (var type in managers[0].userData.characters.Take(MaxTeamSize)) party.Add(Heroes.First(h => h.CharacterType == type));
+            {
+                var map = managers[0].currentMap;
+                if (map.userPath.Count > 0) encounterType = map.GetNode(map.userPath.Last()).nodeType;
+            }
+            if (managers.Length > 0)
+                foreach (var type in managers[0].userData.characters.Take(MaxPlayerCount)) party.Add(Heroes.First(h => h.CharacterType == type));
             else
-                party.AddRange(Heroes.Take(MaxTeamSize));
+                party.AddRange(Heroes.Take(MaxPlayerCount));
             Model = new CombatModel(Seed == 0 ? System.Environment.TickCount : Seed);
             if (managers.Length > 0) Model.QuestProgress = RunEffects.Progress;
             for (int i = 0; i < party.Count; i++)
@@ -75,7 +74,7 @@ namespace FailingQuest.Combat
                     Model.Units[i].Health = Mathf.CeilToInt(Model.Units[i].Template.Health * managers[0].userData.partyHealth[party[i].CharacterType]);
                 appearance.Add(party[i]);
             }
-            for (int i = 0; i < Mathf.Min(MaxTeamSize, Enemies.Length); i++)
+            for (int i = 0; i < Mathf.Min(MaxEnemyCount, Enemies.Length); i++)
             {
                 var template = Newtonsoft.Json.JsonConvert.DeserializeObject<CombatTemplate>(Newtonsoft.Json.JsonConvert.SerializeObject(Enemies[i].Template));
                 if (encounterType == Map.NodeType.Elite || encounterType == Map.NodeType.Boss)
@@ -108,8 +107,6 @@ namespace FailingQuest.Combat
                 int index = i;
                 SkillButtons[i].onClick.AddListener(() => SelectSkill(index));
             }
-            ForwardButton.onClick.AddListener(() => Move(-1));
-            BackButton.onClick.AddListener(() => Move(1));
             PassButton.onClick.AddListener(Pass);
             RetreatButton.onClick.AddListener(Retreat);
             CancelButton.onClick.AddListener(Cancel);
@@ -131,8 +128,6 @@ namespace FailingQuest.Combat
             }
             if (HelpPanel.activeSelf || Busy || resultShown) return;
             for (int i = 0; i < 4; i++) if (Input.GetKeyDown(KeyCode.Alpha1 + i)) SelectSkill(i);
-            if (Input.GetKeyDown(KeyCode.Q)) Move(-1);
-            if (Input.GetKeyDown(KeyCode.E)) Move(1);
             if (Input.GetKeyDown(KeyCode.Space)) Pass();
         }
 
@@ -211,11 +206,6 @@ namespace FailingQuest.Combat
             foreach (var view in Views) view.FloatingText.text = "";
         }
 
-        public void Move(int direction)
-        {
-            if (PlayerTurn && Model.Move(direction)) Advance();
-        }
-
         public void Pass() { if (PlayerTurn && Model.Pass()) Advance(); }
         public void Retreat() { if (PlayerTurn && Model.Retreat()) Advance(); }
         public void Cancel() { SelectedSkill = -1; if (!resultShown) Refresh(); }
@@ -234,17 +224,15 @@ namespace FailingQuest.Combat
             foreach (var unit in Model.Units)
             {
                 var view = Views[unit.Id];
-                view.gameObject.SetActive(unit.Living || unit.Corpse);
-                float x = unit.Enemy ? 780 + (unit.Rank - 1) * 145 : 635 - (unit.Rank - 1) * 145;
+                view.gameObject.SetActive(unit.Living);
+                float x = unit.Enemy ? 590 + (unit.Rank - 1) * 155 : 260;
                 view.Rect.anchoredPosition = V2(x, 355);
-                view.NameText.text = unit.Corpse ? "시체" : unit.Name;
-                view.RankText.text = $"{unit.Rank}열";
+                view.NameText.text = unit.Name;
                 view.HealthFill.fillAmount = (float)unit.Health / unit.Template.Health;
                 view.StressFill.fillAmount = unit.Enemy ? 0 : unit.Stress / 200f;
-                view.HealthText.text = unit.Corpse ? "공격하여 제거" : unit.AtDeathsDoor ? "죽음의 문턱" : $"{unit.Health} / {unit.Template.Health}";
+                view.HealthText.text = unit.AtDeathsDoor ? "죽음의 문턱" : $"{unit.Health} / {unit.Template.Health}";
                 view.StatusText.text = Status(unit);
-                view.Portrait.color = unit.Corpse ? Tone(0.28f, 0.27f, 0.3f, 0.55f) : Color.white;
-                view.Portrait.rectTransform.localRotation = Quaternion.Euler(0, 0, unit.Corpse ? 75 : 0);
+                view.Portrait.color = Color.white;
                 view.Portrait.rectTransform.localScale = V3(unit.Enemy ? -1 : 1, 1, 1);
                 bool valid = targets.Contains(unit);
                 view.TargetMarker.text = valid ? "[ 대상 ]" : unit == actor ? "[ 행동 중 ]" : "";
@@ -258,28 +246,25 @@ namespace FailingQuest.Combat
                 if (!hasSkill) continue;
                 var skill = actor.Template.Skills[i];
                 int cooldown = Model.RemainingCooldown(actor, skill);
-                SkillLabels[i].text = $"{i + 1}  {skill.Name}\n<color=#B5A17B>{string.Join("·", skill.From)}열</color>"
+                SkillLabels[i].text = $"{i + 1}  {skill.Name}"
                     + (cooldown > 0 ? $" · 재사용 {cooldown}R" : "");
                 SkillButtons[i].interactable = PlayerTurn && Model.CanUse(actor, skill);
                 SkillButtons[i].GetComponent<Image>().color = SelectedSkill == i ? Tone(0.45f, 0.3f, 0.13f) : Tone(0.17f, 0.15f, 0.14f);
                 SkillIcons[i].sprite = skill.Id > 0 ? SkillCatalog.Get(skill.Id.ToString("000")).Icon
                     : AbilityIcons[((int)skill.Effect) % AbilityIcons.Length];
             }
-            int count = Model.Units.Count(u => u.Enemy == actor.Enemy && u.Living);
-            ForwardButton.interactable = PlayerTurn && actor.Rank > 1;
-            BackButton.interactable = PlayerTurn && actor.Rank < count;
             PassButton.interactable = PlayerTurn;
             RetreatButton.interactable = PlayerTurn;
             CancelButton.interactable = PlayerTurn && SelectedSkill >= 0;
             PromptText.text = Busy ? $"{actor.Name}의 행동…" : SelectedSkill >= 0 ? "밝게 표시된 대상을 클릭하세요  ·  ESC 선택 취소" : "스킬 선택 [1–4]  →  대상 클릭";
-            SkillText.text = SelectedSkill < 0 ? "진형이 전술을 결정합니다.\n스킬을 선택하면 사용 위치와 대상 위치가 표시됩니다.\n이동도 한 번의 행동을 소모합니다."
+            SkillText.text = SelectedSkill < 0 ? "스킬을 선택하고 강조된 대상을 클릭하세요.\n단일 대상과 전체 대상 스킬을 활용하세요.\n대기는 한 번의 행동을 소모합니다."
                 : Describe(actor.Template.Skills[SelectedSkill]);
             LogText.text = string.Join("\n", Model.Log.TakeLast(2));
             RefreshTarget();
         }
 
         private string Describe(CombatSkill skill)
-            => $"<color=#E8C781>{skill.Name}</color>\n{skill.Description}\n사용: {string.Join("·", skill.From)}열  →  {(skill.SelfOnly ? "자신" : skill.BothTeams ? "양 진영 전체" : skill.Friendly ? "아군" : "적")} {string.Join("·", skill.To)}열"
+            => $"<color=#E8C781>{skill.Name}</color>\n{skill.Description}\n대상: {(skill.SelfOnly ? "자신" : skill.BothTeams ? "양 진영" : skill.Friendly ? "아군" : "적")}{(skill.SelfOnly ? "" : skill.All ? " 전체" : " 한 명")}"
                 + (skill.Max > 0 ? skill.Effect == Effect.Heal ? $"\n회복 {skill.Min}~{skill.Max}"
                     : $"\n기본 피해 {CombatModel.ScaleDamage(skill.Min)}~{CombatModel.ScaleDamage(skill.Max)}" : "")
                 + (skill.Cooldown > 0 ? $"\n사용 후 {skill.Cooldown}개 라운드 동안 재사용 불가" : "");
@@ -292,7 +277,7 @@ namespace FailingQuest.Combat
                 return;
             }
             var unit = Model.Units[inspected];
-            TargetText.text = $"<color=#E8C781>{unit.Name} · {unit.Rank}열</color>\nHP {unit.Health}/{unit.Template.Health}  |  회피 {unit.Dodge}\n보호 {unit.Protection}%  |  저항 {unit.Template.Resistance}%";
+            TargetText.text = $"<color=#E8C781>{unit.Name}</color>\nHP {unit.Health}/{unit.Template.Health}  |  회피 {unit.Dodge}\n보호 {unit.Protection}%  |  저항 {unit.Template.Resistance}%";
             if (SelectedSkill >= 0)
             {
                 var skill = Model.Active.Template.Skills[SelectedSkill];
@@ -303,7 +288,6 @@ namespace FailingQuest.Combat
 
         private static string Status(Combatant unit)
         {
-            if (unit.Corpse) return "진형을 막고 있음";
             var parts = unit.Ailments.Select(a => $"{CombatModel.EffectName(a.Effect)} {a.Turns}").ToList();
             if (unit.Afflicted) parts.Add("붕괴");
             if (unit.Virtuous) parts.Add("각성");
@@ -327,12 +311,7 @@ namespace FailingQuest.Combat
                     session[0].userData.battlesWon++;
                     if (encounterType == Map.NodeType.Elite) session[0].userData.elitesWon++;
                     RunEffects.Progress(1, 1);
-                    if (PlayerPrefs.HasKey("Map"))
-                    {
-                        var map = Newtonsoft.Json.JsonConvert.DeserializeObject<Map.Map>(PlayerPrefs.GetString("Map"));
-                        if (map.userPath.Count > 0 && map.GetNode(map.userPath.Last()).nodeType == Map.NodeType.Elite)
-                            RunEffects.Progress(3, 1);
-                    }
+                    if (encounterType == Map.NodeType.Elite) RunEffects.Progress(3, 1);
                 }
             }
             Busy = false;
@@ -355,16 +334,12 @@ namespace FailingQuest.Combat
         {
             bool standalone = FindObjectsByType<GameManager>(FindObjectsSortMode.None).Length == 0;
             if (standalone) { SceneManager.LoadScene("StartScene"); return; }
-            if (PlayerPrefs.HasKey("Map"))
+            var map = GameManager.Instance.currentMap;
+            if (Model.Outcome == Outcome.Victory && map.userPath.Count > 0 && map.userPath.Last().Equals(map.GetBossNode().point))
+            { GameManager.Instance.userData.nodesVisited = map.userPath.Count; SceneLoader.LoadScene("GameClearScene"); return; }
+            if (Model.Outcome == Outcome.Retreated && map.userPath.Count > 0)
             {
-                var map = Newtonsoft.Json.JsonConvert.DeserializeObject<Map.Map>(PlayerPrefs.GetString("Map"));
-                if (Model.Outcome == Outcome.Victory && map.userPath.Count > 0 && map.userPath.Last().Equals(map.GetBossNode().point))
-                { GameManager.Instance.userData.nodesVisited = map.userPath.Count; SceneLoader.LoadScene("GameClearScene"); return; }
-                if (Model.Outcome == Outcome.Retreated && map.userPath.Count > 0)
-                {
-                    map.userPath.RemoveAt(map.userPath.Count - 1);
-                    PlayerPrefs.SetString("Map", Newtonsoft.Json.JsonConvert.SerializeObject(map, new Newtonsoft.Json.JsonSerializerSettings { ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore }));
-                }
+                map.userPath.RemoveAt(map.userPath.Count - 1);
             }
             SceneLoader.LoadScene(standalone ? "StartScene" : Model.Outcome == Outcome.Defeat ? "GameOverScene" : "MapScene");
         }

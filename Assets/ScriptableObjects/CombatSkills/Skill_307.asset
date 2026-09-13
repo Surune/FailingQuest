@@ -28,8 +28,6 @@ MonoBehaviour:
     AdditionalEffects: []
     Name: "\uC804\uCCB4 \uD68C\uBCF5"
     Description: "\uC544\uAD70 \uC804\uCCB4: \uD68C\uBCF5 3~5"
-    From: 01000000020000000300000004000000
-    To: 01000000020000000300000004000000
     Effect: 4
     Friendly: 1
     All: 1
@@ -39,4 +37,3 @@ MonoBehaviour:
     Critical: 5
     Potency: 0
     Duration: 3
-    Advance: 0

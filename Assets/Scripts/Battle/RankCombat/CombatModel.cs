@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace FailingQuest.Combat
 {
-    public enum Effect { Strike, Bleed, Blight, Stun, Heal, Rally, Guard, Mark, Stress, Burn, AttackUp, AttackDown, SpeedUp, SpeedDown, Focus, Move }
+    public enum Effect { Strike, Bleed, Blight, Stun, Heal, Rally, Guard, Mark, Stress, Burn, AttackUp, AttackDown, SpeedUp, SpeedDown, Focus }
     public enum EffectTarget { Selected, Self, Allies, Enemies, Everyone }
     [Serializable]
     public class CombatSkillEffect
@@ -27,8 +27,6 @@ namespace FailingQuest.Combat
         public CombatSkillEffect[] AdditionalEffects = Array.Empty<CombatSkillEffect>();
         public string Name;
         public string Description;
-        public int[] From = { 1, 2, 3, 4 };
-        public int[] To = { 1, 2, 3, 4 };
         public Effect Effect;
         public bool Friendly;
         public bool All;
@@ -38,12 +36,9 @@ namespace FailingQuest.Combat
         public int Critical = 5;
         public int Potency = 2;
         public int Duration = 3;
-        public int Advance;
         public CombatSkill Copy()
         {
             var result = (CombatSkill)MemberwiseClone();
-            result.From = (int[])From.Clone();
-            result.To = (int[])To.Clone();
             result.AdditionalEffects = AdditionalEffects.Select(e => e.Copy()).ToArray();
             return result;
         }
@@ -74,11 +69,10 @@ namespace FailingQuest.Combat
         public int Id;
         public CombatTemplate Template;
         public bool Enemy;
-        public int Rank;
+        public int Rank; // Display slot only; never affects combat rules.
         public int Health;
         public int Stress;
         public bool Dead;
-        public bool Corpse;
         public bool Afflicted;
         public bool Virtuous;
         public bool ResolveTested;
@@ -135,7 +129,7 @@ namespace FailingQuest.Combat
             if (Outcome != Outcome.Fighting) AwaitingAction = false;
         }
 
-        // Exactly one action per living combatant per round. Summoned corpses never get turns.
+        // Exactly one action per living combatant per round.
         public bool Next()
         {
             if (AwaitingAction) return true;
@@ -154,7 +148,7 @@ namespace FailingQuest.Combat
                     }
                     Order.Sort((a, b) => b.Initiative != a.Initiative ? b.Initiative.CompareTo(a.Initiative)
                         : b.Speed != a.Speed ? b.Speed.CompareTo(a.Speed)
-                        : a.Enemy != b.Enemy ? (a.Enemy ? 1 : -1) : a.Rank.CompareTo(b.Rank));
+                        : a.Enemy != b.Enemy ? (a.Enemy ? 1 : -1) : a.Id.CompareTo(b.Id));
                     Cursor = 0;
                     Record($"라운드 {Round}");
                 }
@@ -209,13 +203,12 @@ namespace FailingQuest.Combat
 
         public List<Combatant> Targets(Combatant actor, CombatSkill skill)
         {
-            return Units.Where(u => skill.To.Contains(u.Rank) && (!skill.SelfOnly || u == actor)
-                && (skill.BothTeams ? u.Living : skill.Friendly ? u.Enemy == actor.Enemy && u.Living
-                    : u.Enemy != actor.Enemy && (u.Living || u.Corpse && skill.Effect != Effect.Stress))).ToList();
+            return Units.Where(u => u.Living && (!skill.SelfOnly || u == actor)
+                && (skill.BothTeams || (skill.Friendly ? u.Enemy == actor.Enemy : u.Enemy != actor.Enemy))).ToList();
         }
 
         public bool CanUse(Combatant actor, CombatSkill skill)
-            => actor.Living && skill.From.Contains(actor.Rank) && RemainingCooldown(actor, skill) == 0 && Targets(actor, skill).Count > 0;
+            => actor.Living && RemainingCooldown(actor, skill) == 0 && Targets(actor, skill).Count > 0;
 
         public int RemainingCooldown(Combatant actor, CombatSkill skill)
             => actor.ReadyRound.ContainsKey(skill) ? Math.Max(0, actor.ReadyRound[skill] - Round) : 0;
@@ -251,8 +244,7 @@ namespace FailingQuest.Combat
                         Min = 0, Max = 0, Potency = effect.Potency, Duration = effect.Duration, Accuracy = skill.Accuracy }, target,
                         effect.Target == EffectTarget.Selected);
             }
-            if (skill.Advance != 0) Shift(actor, Math.Clamp(actor.Rank - skill.Advance, 1, 4));
-            if (skill.Advance != 0 && !actor.Enemy) QuestProgress(5, 1);
+            if (!actor.Enemy) QuestProgress(5, 1);
             actor.ReadyRound[skill] = Round + skill.Cooldown + 1;
             EndTurn(actor);
             CheckOutcome();
@@ -261,14 +253,6 @@ namespace FailingQuest.Combat
 
         private bool Resolve(Combatant actor, CombatSkill skill, Combatant target, bool hitConfirmed = false)
         {
-            if (skill.Effect == Effect.Move) return true;
-            if (target.Corpse)
-            {
-                target.Corpse = false;
-                Compact(target.Enemy);
-                Record("시체 제거 — 진형이 앞으로 당겨집니다.");
-                return false;
-            }
             if (!hitConfirmed && !skill.Friendly && random.Next(100) >= HitChance(actor, skill, target))
             {
                 Record($"{target.Name}: 회피");
@@ -335,8 +319,6 @@ namespace FailingQuest.Combat
             if (target.Enemy)
             {
                 target.Dead = true;
-                target.Corpse = !damageOverTime;
-                if (!target.Corpse) Compact(true);
                 return;
             }
             if (!atDoor)
@@ -352,7 +334,6 @@ namespace FailingQuest.Combat
             }
             target.Dead = true;
             Record($"{target.Name}: 사망");
-            Compact(false);
             foreach (var ally in Units.Where(u => !u.Enemy && u.Living).ToArray()) AddStress(ally, 15);
         }
 
@@ -384,42 +365,8 @@ namespace FailingQuest.Combat
                     unit.Dead = death;
                     unit.Stress = 170;
                     Record($"{unit.Name}: 심장마비{(death ? " — 사망" : " — 죽음의 문턱")}");
-                    if (death) Compact(false);
                 }
             }
-        }
-
-        public bool Move(int direction)
-        {
-            if (!AwaitingAction || Outcome != Outcome.Fighting) return false;
-            var actor = Active;
-            int rank = actor.Rank + direction;
-            int occupied = Units.Count(u => u.Enemy == actor.Enemy && (u.Living || u.Corpse));
-            if (Math.Abs(direction) != 1 || rank < 1 || rank > occupied) return false;
-            Shift(actor, rank);
-            if (!actor.Enemy) QuestProgress(5, 1);
-            Record($"{actor.Name}: {rank}열로 이동");
-            AwaitingAction = false;
-            EndTurn(actor);
-            return true;
-        }
-
-        private void Shift(Combatant actor, int rank)
-        {
-            int old = actor.Rank;
-            foreach (var unit in Units.Where(u => u.Enemy == actor.Enemy && (u.Living || u.Corpse) && u != actor))
-            {
-                if (rank < old && unit.Rank >= rank && unit.Rank < old) unit.Rank++;
-                if (rank > old && unit.Rank <= rank && unit.Rank > old) unit.Rank--;
-            }
-            actor.Rank = rank;
-            Compact(actor.Enemy);
-        }
-
-        private void Compact(bool enemy)
-        {
-            int rank = 1;
-            foreach (var unit in Units.Where(u => u.Enemy == enemy && (u.Living || u.Corpse)).OrderBy(u => u.Rank)) unit.Rank = rank++;
         }
 
         public bool Pass()
@@ -465,7 +412,7 @@ namespace FailingQuest.Combat
         public static string EffectName(Effect effect) => effect switch
         {
             Effect.Burn => "화상", Effect.AttackUp => "공격력 증가", Effect.AttackDown => "공격력 감소",
-            Effect.SpeedUp => "속도 증가", Effect.SpeedDown => "속도 감소", Effect.Focus => "집중", Effect.Move => "이동",
+            Effect.SpeedUp => "속도 증가", Effect.SpeedDown => "속도 감소", Effect.Focus => "집중",
             Effect.Bleed => "출혈", Effect.Blight => "중독", Effect.Stun => "기절", Effect.Guard => "보호",
             Effect.Mark => "표식", Effect.Rally => "격려", Effect.Heal => "치유", Effect.Stress => "공포", _ => "공격"
         };

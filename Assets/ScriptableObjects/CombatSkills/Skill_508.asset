@@ -28,8 +28,6 @@ MonoBehaviour:
     AdditionalEffects: []
     Name: "\uCD08\uC2B9\uB2EC \uBCA0\uAE30"
     Description: "\uC801 \uD55C \uBA85: \uD53C\uD574 4~6 + \uCD9C\uD608 2 \xB7 2\uD134"
-    From: 010000000200000003000000
-    To: 0100000002000000
     Effect: 1
     Friendly: 0
     All: 0
@@ -39,4 +37,3 @@ MonoBehaviour:
     Critical: 5
     Potency: 2
     Duration: 2
-    Advance: 0

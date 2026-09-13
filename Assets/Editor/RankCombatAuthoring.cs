@@ -54,11 +54,11 @@ public static class RankCombatAuthoring
         Text("Chapter", stage, 40, 839, 400, 32, "FAILING QUEST  /  잊힌 지하묘지", 18, Gold);
         controller.RoundText = Text("Round", stage, 560, 806, 320, 60, "ROUND  01", 34, Gold, TextAlignmentOptions.Center);
         controller.TurnText = Text("Initiative", stage, 150, 746, 1140, 35, "행동 순서", 17, Tone(0.82f, 0.79f, 0.72f), TextAlignmentOptions.Center);
-        Text("Party", stage, 110, 667, 500, 24, "원 정 대     /     후열  ←  전열", 17, Gold);
-        Text("Enemy", stage, 815, 667, 520, 24, "전열  →  후열     /     폐 허 의 주 인", 17, Tone(0.72f, 0.38f, 0.32f));
-        Text("Divider", stage, 689, 456, 62, 80, "/", 27, Gold, TextAlignmentOptions.Center);
-        controller.Views = new CombatUnitView[MaxTeamSize * 2];
-        for (int i = 0; i < MaxTeamSize * 2; i++) controller.Views[i] = Unit(stage, i, controller);
+        Text("Party", stage, 260, 667, 500, 24, "원 정 대", 17, Gold);
+        Text("Enemy", stage, 800, 667, 520, 24, "폐 허 의 주 인", 17, Tone(0.72f, 0.38f, 0.32f));
+        Text("Divider", stage, 460, 456, 62, 80, "/", 27, Gold, TextAlignmentOptions.Center);
+        controller.Views = new CombatUnitView[MaxPlayerCount + MaxEnemyCount];
+        for (int i = 0; i < MaxPlayerCount + MaxEnemyCount; i++) controller.Views[i] = Unit(stage, i, controller);
 
         Panel("HUD", stage, 0, 0, 1440, 276, Ink);
         Panel("Gold divider", stage, 28, 274, 1384, 2, Gold);
@@ -84,8 +84,6 @@ public static class RankCombatAuthoring
         Panel("HUD divider 1", stage, 653, 48, 1, 200, Tone(0.35f, 0.28f, 0.2f));
         controller.SkillText = Text("Skill description", stage, 678, 128, 410, 123, "", 18, Tone(0.87f, 0.84f, 0.78f));
         controller.TargetText = Text("Target", stage, 1110, 123, 305, 125, "", 17, Tone(0.8f, 0.77f, 0.7f));
-        controller.ForwardButton = MakeButton("Forward", stage, 680, 65, 102, 41, "전진 [Q]", 16);
-        controller.BackButton = MakeButton("Back", stage, 791, 65, 102, 41, "후퇴 [E]", 16);
         controller.PassButton = MakeButton("Pass", stage, 902, 65, 93, 41, "대기", 16);
         controller.CancelButton = MakeButton("Cancel", stage, 1004, 65, 88, 41, "취소", 16);
         controller.PromptText = Text("Prompt", stage, 180, 7, 1110, 29, "", 17, Gold, TextAlignmentOptions.Center);
@@ -98,9 +96,9 @@ public static class RankCombatAuthoring
         controller.HelpPanel.GetComponent<Image>().raycastTarget = true;
         Text("Help heading", controller.HelpPanel.transform, 260, 740, 920, 60, "폐허에서 살아남는 법", 35, Gold);
         Text("Help body", controller.HelpPanel.transform, 260, 245, 930, 480,
-            "01  진형과 차례\n각 진영은 최대 3명, 3열. 가운데에 가까울수록 1열입니다. 매 라운드 속도 + 1~8로 순서를 정합니다.\n\n" +
-            "02  스킬 → 대상\n[1–4] 또는 스킬 클릭 후, 강조된 대상을 클릭하세요. 스킬 아래 숫자는 사용 가능한 열입니다.\n[Q/E]로 한 칸 이동, [Space]로 대기, [ESC]로 선택을 취소합니다. 대기는 스트레스 +5.\n\n" +
-            "03  상태와 시체\n출혈·중독은 자기 차례 시작에 피해를 줍니다. 기절은 행동을 소모합니다.\n죽은 적은 자리를 막습니다. 시체를 공격하거나 지속 피해로 처치해 적을 앞으로 끌어내세요.\n\n" +
+            "01  참가자와 차례\n플레이어 1명과 적 최대 5명이 참가합니다. 매 라운드 속도 + 1~8로 순서를 정합니다.\n\n" +
+            "02  스킬 → 대상\n[1–4] 또는 스킬 클릭 후, 강조된 대상을 클릭하세요. 위치에 관계없이 스킬을 사용할 수 있습니다.\n[Space]로 대기, [ESC]로 선택을 취소합니다. 대기는 스트레스 +5.\n\n" +
+            "03  상태와 처치\n출혈·중독은 자기 차례 시작에 피해를 줍니다. 기절은 행동을 소모합니다.\n쓰러진 적은 전투에서 제외됩니다. 전체 공격은 살아 있는 대상 모두에게 적용됩니다.\n\n" +
             "04  스트레스와 죽음\n스트레스 100에서 붕괴/각성을 판정하고, 200에서 심장마비가 발생합니다.\n영웅은 체력 0에서 죽음의 문턱에 들어갑니다. 추가 피해는 사망 위험! 치유로 벗어나세요.\n\n" +
             "05  귀환\n적을 모두 쓰러뜨리면 승리합니다. 전투 이탈은 75% 확률이며 실패하면 행동을 잃습니다.",
             21, Tone(0.87f, 0.84f, 0.77f));
@@ -122,7 +120,7 @@ public static class RankCombatAuthoring
             new CombatAppearance { CharacterType = CharacterType.character4, Template = RankCombatTemplates.Hero(3), Sprite = SpriteAt("Assets/Sprites/Characters/char4.png") },
             new CombatAppearance { CharacterType = CharacterType.caharcter5, Template = RankCombatTemplates.Hero(3), Sprite = SpriteAt("Assets/Sprites/Characters/char5.png") }
         };
-        string[] enemies = { "Ghoul", "RatfolkAxe", "RatfolkMage", "Witch" };
+        string[] enemies = { "Ghoul", "RatfolkAxe", "RatfolkMage", "Witch", "Ghoul" };
         controller.Enemies = enemies.Select((name, index) => new CombatAppearance {
             Template = RankCombatTemplates.Enemy(index), Sprite = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/02_Prefabs/Battle/Enemies/Monster/" + name + ".prefab")
                 .GetComponentsInChildren<SpriteRenderer>(true).First(s => s.gameObject.name == "Body").sprite }).ToArray();
@@ -130,15 +128,14 @@ public static class RankCombatAuthoring
             controller.Enemies[i].Sprite = TrimSprite(controller.Enemies[i].Sprite, i);
         int[] icons = { 2, 203, 102, 205, 105, 103, 101, 202, 104 };
         controller.AbilityIcons = icons.Select(i => SpriteAt($"Assets/Resources/SkillIcons/skill_{i:000}.png")).ToArray();
-        for (int i = 0; i < MaxTeamSize * 2; i++)
+        for (int i = 0; i < MaxPlayerCount + MaxEnemyCount; i++)
         {
             var view = controller.Views[i];
-            var look = i < MaxTeamSize ? controller.Heroes[i] : controller.Enemies[i - MaxTeamSize];
+            var look = i < MaxPlayerCount ? controller.Heroes[i] : controller.Enemies[i - MaxPlayerCount];
             view.Portrait.sprite = look.Sprite;
             view.NameText.text = look.Template.Name;
             view.HealthText.text = $"{look.Template.Health} / {look.Template.Health}";
-            view.RankText.text = $"{i % MaxTeamSize + 1}열";
-            view.Rect.anchoredPosition = V2(i < MaxTeamSize ? 635 - i * 145 : 780 + (i - MaxTeamSize) * 145, 355);
+            view.Rect.anchoredPosition = V2(i < MaxPlayerCount ? 260 : 590 + (i - MaxPlayerCount) * 155, 355);
         }
 
         var events = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
@@ -181,7 +178,6 @@ public static class RankCombatAuthoring
         view.Button = view.Portrait.gameObject.AddComponent<Button>();
         view.Button.transition = Selectable.Transition.None;
         view.NameText = Text("Name", rect, -5, 256, 146, 30, "", 17, Tone(0.88f, 0.83f, 0.74f), TextAlignmentOptions.Center);
-        view.RankText = Text("Rank", rect, 40, 68, 56, 23, "1열", 14, Gold, TextAlignmentOptions.Center);
         Panel("HP track", rect, 12, 42, 112, 10, Tone(0.15f, 0.1f, 0.1f));
         view.HealthFill = Panel("HP fill", rect, 12, 42, 112, 10, Tone(0.72f, 0.17f, 0.15f));
         Fill(view.HealthFill);

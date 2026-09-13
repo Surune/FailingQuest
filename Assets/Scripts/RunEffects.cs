@@ -45,17 +45,13 @@ public static class RunEffects
     }
     public static void GainRandomSkill()
     {
-        var offers = AvailableSkills();
-        int number = offers[Random.Range(0, offers.Count)].Id;
-        var data = GameManager.Instance.userData;
-        int owner = data.characters.FindIndex(c => (int)c == number / 100);
-        data.currentSkills[owner].Add(number.ToString("000"), ForgeType.UNFORGED);
+        GameManager.Instance.userData.deck.Add(new FailingQuest.Cards.Card { Id = Random.Range(2, FailingQuest.Cards.Card.Names.Length) });
     }
-    public static bool CanRemoveSkill => GameManager.Instance.userData.currentSkills.Any(s => s.Keys.Any(k => int.Parse(k) >= 100));
+    public static bool CanRemoveSkill => GameManager.Instance.userData.deck.Count > 5;
     public static void RemoveSkill()
     {
-        var skills = GameManager.Instance.userData.currentSkills.First(s => s.Keys.Any(k => int.Parse(k) >= 100));
-        skills.Remove(skills.Keys.Last(k => int.Parse(k) >= 100));
+        var deck = GameManager.Instance.userData.deck;
+        deck.RemoveAt(deck.Count - 1);
     }
 
     public static CombatTemplate Prepare(CombatAppearance appearance)

@@ -11,9 +11,9 @@ public class Shop : MonoBehaviour
     void Start() { button = GetComponentInParent<Button>(); button.transform.Find("Price").GetComponent<TMP_Text>().text = price.ToString(); }
     void Update()
     {
-        bool available = price == 50 ? RunEffects.AvailableSkills().Count > 0 : price == 90 ? RunEffects.CanGainTreasure : true;
+        bool available = price != 90 || RunEffects.CanGainTreasure;
         button.interactable = !sold && available && GameManager.Instance.userData.money >= price;
-        itemText.text = sold ? "구매 완료" : price == 50 ? "무작위 새 스킬" : price == 90 ? "무작위 유물" : "파티 체력 30% 회복";
+        itemText.text = sold ? "구매 완료" : price == 50 ? "무작위 카드 1장" : price == 90 ? "무작위 유물" : "생명력 30% 회복";
     }
     public void Onclick()
     {

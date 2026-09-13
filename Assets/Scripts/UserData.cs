@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class UserData
 {
+    public List<FailingQuest.Cards.Card> deck = FailingQuest.Cards.Card.Starter();
+    public List<FailingQuest.Cards.CardPhrase> cardPhrases = new();
     public int money;
     public int battlesWon;
     public int elitesWon;

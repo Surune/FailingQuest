@@ -19,7 +19,7 @@ public class Event : MonoBehaviour
         {"제물을 바쳐야 하는 제단을 발견했다.", "4562"},
         {"잠시 휴식을 취할 수 있는 안전한 장소다.", "92"}
     };
-    private readonly string[] labels = {"보물 획득", "전투", "지나가기", "30 코인 획득", "체력 20%를 바치고 50 코인 획득", "30 코인으로 보물 구입", "습득 스킬 하나를 잃고 50 코인 획득", "스킬 획득", "스킬 강화", "파티 체력 30% 회복"};
+    private readonly string[] labels = {"보물 획득", "전투", "지나가기", "30 코인 획득", "체력 20%를 바치고 50 코인 획득", "30 코인으로 보물 구입", "덱의 마지막 카드 1장을 잃고 50 코인 획득", "카드 획득", "카드 강화", "생명력 30% 회복"};
     void Start()
     {
         int index = Random.Range(0, events.GetLength(0));
@@ -37,7 +37,7 @@ public class Event : MonoBehaviour
                 0 => RunEffects.CanGainTreasure,
                 5 => RunEffects.CanGainTreasure && GameManager.Instance.userData.money >= 30,
                 6 => RunEffects.CanRemoveSkill,
-                7 => RunEffects.AvailableSkills().Count > 0,
+                7 => true,
                 _ => true
             };
             button.onClick.AddListener(() => Choose(action));

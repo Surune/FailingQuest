@@ -1,116 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ForgeManager : MonoBehaviour
 {
     [SerializeField] private ForgeButton[] buttons;
     [SerializeField] private Sprite[] forgeIcons;
-    
-
-    // Start is called before the first frame update
-    void Start()
+    private bool chosen;
+    private void Start()
     {
-        List<string> concatenatedList = new List<string>();
-        foreach (var skillSet in GameManager.Instance.userData.currentSkills)
+        var offers = GameManager.Instance.userData.deck.Where(c => !c.Upgraded)
+            .GroupBy(c => c.Name + c.Description).Select(g => g.First()).OrderBy(_ => Random.value).Take(buttons.Length).ToArray();
+        for (int i = 0; i < buttons.Length; i++)
         {
-            foreach (KeyValuePair<string, ForgeType> kvp in skillSet)
+            var view = buttons[i];
+            view.gameObject.SetActive(i < offers.Length);
+            if (i >= offers.Length) continue;
+            var card = offers[i];
+            var upgraded = card.Copy(); upgraded.Upgraded = true;
+            view.skillIcon.gameObject.SetActive(false);
+            view.forgeIcon.gameObject.SetActive(false);
+            view.skillNameText.text = card.Name + " → " + upgraded.Name;
+            view.skillDescriptionText.text = card.Description + "\n↓\n" + upgraded.Description;
+            view.forgeText.text = "카드 1장 영구 강화";
+            view.button.onClick.AddListener(() =>
             {
-                if (kvp.Value == ForgeType.UNFORGED && !concatenatedList.Contains(kvp.Key))
-                {
-                    concatenatedList.Add(kvp.Key);
-                }
-            }
+                if (chosen) return;
+                chosen = true; card.Upgraded = true;
+                SceneLoader.LoadScene("MapScene");
+            });
         }
-
-        ShuffleList(concatenatedList); // Shuffle the concatenated list
-        List<string> pickedNumbers = concatenatedList.GetRange(0, Mathf.Min(buttons.Length, concatenatedList.Count));
-
-        for(int i = 0; i < buttons.Length; i++) 
-        {
-            buttons[i].gameObject.SetActive(i < pickedNumbers.Count);
-            if (i < pickedNumbers.Count) SetForgeButton(buttons[i], pickedNumbers[i]);
-        }
-    }
-
-    private List<string> FindKeysWithValue(Dictionary<string, int> dict, int value)
-    {
-        List<string> keysWithDesiredValue = new List<string>();
-
-        foreach (KeyValuePair<string, int> kvp in dict)
-        {
-            if (kvp.Value == value)
-            {
-                keysWithDesiredValue.Add(kvp.Key);
-            }
-        }
-
-        return keysWithDesiredValue;
-    }
-
-    // Fisher-Yates shuffle algorithm
-    private void ShuffleList<T>(List<T> list)
-    {
-        int n = list.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = Random.Range(0, n + 1);
-            T value = list[k];
-            list[k] = list[n];
-            list[n] = value;
-        }
-    }
-
-    private void SetForgeButton(ForgeButton btn, string skillNum) 
-    {
-        var definition = GameManager.Instance.skillCatalog.Get(skillNum);
-        btn.skillIcon.sprite = definition.Icon;
-        btn.skillNameText.text = definition.Skill.Name;
-        btn.skillDescriptionText.text = "이 스킬을 보유한 동료에게 강화가 적용됩니다.";
-
-        var forgeAvailable = definition.ForgeOptions;
-        var randomIndex = Random.Range(0, forgeAvailable.Length);
-
-        switch(forgeAvailable[randomIndex]) 
-        {
-            case ForgeType.COOLTIME:
-                btn.forgeText.text = "최대 체력 +5";
-                btn.forgeIcon.sprite = forgeIcons[0];
-                btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.COOLTIME));
-                break;
-            case ForgeType.DAMAGE:
-                btn.forgeText.text = "공격 피해 +1";
-                btn.forgeIcon.sprite = forgeIcons[1];
-                btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.DAMAGE));
-                break;
-            case ForgeType.BUFF:
-                btn.forgeText.text = "버프 강도·지속 +1";
-                btn.forgeIcon.sprite = forgeIcons[2];
-                btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.BUFF));
-                break;
-            case ForgeType.DEBUFF:
-                btn.forgeText.text = "디버프 강도·지속 +1";
-                btn.forgeIcon.sprite = forgeIcons[3];
-                btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.DEBUFF));
-                break;
-            case ForgeType.HEAL:
-                btn.forgeText.text = "회복량 +1";
-                btn.forgeIcon.sprite = forgeIcons[4];
-                btn.button.onClick.AddListener(() => ForgeSelected(skillNum, ForgeType.HEAL));
-                break;
-            default:
-                break;
-        }
-    }
-
-    public void ForgeSelected(string skillNum, ForgeType type)
-    {
-        foreach (var skillset in GameManager.Instance.userData.currentSkills)
-        {
-            if (skillset.ContainsKey(skillNum) && skillset[skillNum] == ForgeType.UNFORGED)
-                skillset[skillNum] = type;
-        }
-        SceneLoader.LoadScene("MapScene");
     }
 }

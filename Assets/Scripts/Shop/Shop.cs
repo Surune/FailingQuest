@@ -33,7 +33,6 @@ public class Shop : MonoBehaviour
         else if (price == 90) RunEffects.GainRandomTreasure();
         else RunEffects.HealParty(0.3f);
         GameManager.Instance.userData.money -= price;
-        RunEffects.Progress(0, price);
         sold = true;
         itemText.text = "구매 완료";
         button.interactable = false;

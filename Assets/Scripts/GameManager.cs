@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 [DefaultExecutionOrder(-100)]
@@ -7,7 +6,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public UserData userData = CreateData();
     public Map.Map currentMap = new(new(), new());
-    public bool firstQuestLoaded;
     public GameObject[] charPrefabs;
     public TreasureCatalog treasureCatalog;
     public FailingQuest.Cards.CardCatalog cardCatalog;
@@ -18,10 +16,6 @@ public class GameManager : MonoBehaviour
     {
         characters = new() { CharacterType.character1 },
         myTreasure = new(), myTreasureIndex = new(),
-        currentQuest = new() { new() {-1,-1}, new() {-1,-1}, new() {-1,-1} },
-        newQuest = new() { new() {-1,-1}, new() {-1,-1}, new() {-1,-1} },
-        questManage = new() {0,0,0},
-        questList = new int[,] {{30,60,90,0},{3,5,7,0},{3,4,5,0},{1,2,3,0},{3,4,5,0},{3,4,5,0},{20,30,40,0},{100,125,150,0},{3,4,5,0},{5,7,10,0},{3,5,7,0}},
         currentSkills = new()
         {
             new() {{"002",ForgeType.UNFORGED}}
@@ -38,17 +32,6 @@ public class GameManager : MonoBehaviour
     {
         userData = CreateData();
         currentMap = new(new(), new());
-        firstQuestLoaded = false;
         treasurePosition.x = -616; treasurePosition.y = 174;
-        var available = new List<int>();
-        for (int i=0;i<11;i++) available.Add(i);
-        for (int i=0;i<3;i++)
-        {
-            int index = Random.Range(0, available.Count);
-            int quest = available[index]; available.RemoveAt(index);
-            userData.currentQuest[i][0] = quest;
-            userData.currentQuest[i][1] = Random.Range(0,3);
-            userData.questList[quest,3] = 1;
-        }
     }
 }

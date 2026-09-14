@@ -41,10 +41,6 @@ public static class InteractionChecks {
  }
  SceneManager.LoadScene("TreasureScene");yield return new WaitForSeconds(0.3f);
  var exhausted=UnityEngine.Object.FindObjectsByType<Treasure>(FindObjectsInactive.Include,FindObjectsSortMode.None).Single();Check(!exhausted.openButton.activeSelf&&exhausted.sceneloadButton.activeSelf,"All relics collected leaves exit available");Check(GameManager.Instance.userData.myTreasureIndex.Distinct().Count()==4,"Relics unique");
- SceneManager.LoadScene("QuestScene");yield return new WaitForSeconds(0.3f);
- var data=GameManager.Instance.userData;var current=UnityEngine.Object.FindObjectsByType<CurrentQuestBtn>(FindObjectsSortMode.None).First(); int slot=current.i; data.questManage[slot]=data.questList[data.currentQuest[slot][0],data.currentQuest[slot][1]];current.Onclick();yield return null;
- var offer=UnityEngine.Object.FindObjectsByType<NewQuestBtn>(FindObjectsSortMode.None).First(); offer.Onclick();yield return null;
- Check(data.currentQuest[slot][0]>=0&&data.questManage[slot]==0,"Completed quest replaced and progress reset");
  SceneManager.LoadScene("EventScene");yield return new WaitForSeconds(0.3f);UnityEngine.Object.FindFirstObjectByType<Event>().Choose(9);yield return new WaitForSeconds(0.3f);Check(SceneManager.GetActiveScene().name=="MapScene","Event effect returns to map");
  SceneManager.LoadScene("BattleScene");yield return new WaitForSeconds(0.3f);
  var battle=UnityEngine.Object.FindFirstObjectByType<RankBattleController>();Check(battle.Model.Units.Count==6,"Battle initializes party and enemies"); Check(battle.Model.Units[0].Health<=battle.Model.Units[0].Template.Health,"Current party health applied");

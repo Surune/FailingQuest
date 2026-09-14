@@ -5,13 +5,6 @@ using FailingQuest.Combat;
 
 public static class RunEffects
 {
-    public static void Progress(int quest, int amount)
-    {
-        var data = GameManager.Instance.userData;
-        for (int i = 0; i < data.currentQuest.Count; i++)
-            if (data.currentQuest[i][0] == quest) data.questManage[i] += amount;
-    }
-
     public static void HealParty(float fraction)
     {
         var health = GameManager.Instance.userData.partyHealth;
@@ -25,7 +18,6 @@ public static class RunEffects
         data.myTreasureIndex.Add(index);
         data.myTreasureCount = data.myTreasureIndex.Count;
         data.money += GameManager.Instance.treasureCatalog.treasures[index].coins;
-        Progress(4, 1);
     }
     public static void GainRandomTreasure()
     {

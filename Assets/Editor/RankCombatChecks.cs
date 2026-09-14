@@ -63,11 +63,8 @@ public static class RankCombatChecks
         target.Units[1].Rank = 3;
         target.Active.Rank = 3;
         Check(target.CanUse(target.Active, target.Active.Template.Skills[0]), "Back slot can use melee skills");
-        int skillUses = 0;
-        target.QuestProgress = (quest, amount) => { if (quest == 5) skillUses += amount; };
         Check(target.Use(0, 1) && !target.Use(0, 1), "Double-click cannot execute twice");
-        Check(skillUses == 1, "Skill-use quest advances once per accepted action");
-        passed.Add("position-independent melee / team targeting / duplicate submission / skill-use quest");
+        passed.Add("position-independent melee / team targeting / duplicate submission");
 
         for (int slot = 1; slot <= 3; slot++)
             for (int role = 0; role < 5; role++)

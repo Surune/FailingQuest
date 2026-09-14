@@ -27,14 +27,8 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOverScene.unity
     guid: 805bef91f90a844ef871c288c2cf6337
   - enabled: 1
-    path: Assets/Scenes/FirstQuestScene.unity
-    guid: de3cfbee0b3934415b064b5156cf5277
-  - enabled: 1
     path: Assets/Scenes/ForgeScene.unity
     guid: 1689c1732884643e6a3d305af42cef8b
-  - enabled: 1
-    path: Assets/Scenes/QuestScene.unity
-    guid: 80d96c41c14834298a84c4cc081fbc13
   - enabled: 1
     path: Assets/Scenes/TreasureScene.unity
     guid: 1c2b714bea6074275bda5e45874470bc

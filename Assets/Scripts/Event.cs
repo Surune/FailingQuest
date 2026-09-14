@@ -25,7 +25,6 @@ public class Event : MonoBehaviour
         int index = Random.Range(0, events.GetLength(0));
         typeText.text = "이벤트";
         eventText.text = events[index, 0];
-        RunEffects.Progress(2, 1);
         foreach (char choice in events[index, 1])
         {
             int action = choice - '0';
@@ -54,7 +53,6 @@ public class Event : MonoBehaviour
             case 5:
                 if (GameManager.Instance.userData.money < 30) return;
                 GameManager.Instance.userData.money -= 30;
-                RunEffects.Progress(0, 30);
                 SceneLoader.LoadScene("TreasureScene"); break;
             case 6: RunEffects.RemoveSkill(); GameManager.Instance.userData.money += 50; SceneLoader.LoadScene("MapScene"); break;
             case 7: SceneLoader.LoadScene("SkillScene"); break;

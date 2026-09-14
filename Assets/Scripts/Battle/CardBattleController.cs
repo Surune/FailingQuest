@@ -172,7 +172,6 @@ namespace FailingQuest.Cards
                 int gold = encounter == Map.NodeType.Boss ? 150 : encounter == Map.NodeType.Elite ? 60 : 30;
                 data.money += gold; data.battlesWon++;
                 if (encounter == Map.NodeType.Elite) data.elitesWon++;
-                if (!standalone) { RunEffects.Progress(1, 1); if (encounter == Map.NodeType.Elite) RunEffects.Progress(3, 1); }
                 ResultText.text = $"전투 승리 / {gold} 골드 획득\n덱에 추가할 카드 한 장을 선택하세요.";
                 rewards = Catalog.CreateRewardPool().OrderBy(_ => Random.value).Take(3).ToArray();
                 for (int i = 0; i < 3; i++) RewardLabels[i].text = $"{rewards[i].Cost} 마나\n\n{rewards[i].Name}\n\n{rewards[i].Description}";

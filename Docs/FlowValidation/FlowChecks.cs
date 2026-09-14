@@ -35,10 +35,7 @@ public static class FlowChecks
             var select = UnityEngine.Object.FindFirstObjectByType<CharacterSelect>();
             select.Select(5); select.startButton.onClick.Invoke();
             yield return new WaitForSeconds(0.4f);
-            Check(SceneManager.GetActiveScene().name == "FirstQuestScene", "Actual character start button reaches first quest");
-            UnityEngine.Object.FindObjectsByType<Button>(FindObjectsSortMode.None).First(b => b.onClick.GetPersistentEventCount() > 0 && b.onClick.GetPersistentMethodName(0) == "LoadScene").onClick.Invoke();
-            yield return new WaitForSeconds(0.4f);
-            Check(SceneManager.GetActiveScene().name == "MapScene", "First quest reaches map");
+            Check(SceneManager.GetActiveScene().name == "MapScene", "Actual character start button reaches map");
             var originalMap = GameManager.Instance.currentMap;
             Check(ReferenceEquals(originalMap, Map.MapManager.instance.map) && originalMap.nodes.Count > 0, "Session owns live map");
             originalMap.userPath.Add(originalMap.nodes.First(n => n.point.x == 0).point);

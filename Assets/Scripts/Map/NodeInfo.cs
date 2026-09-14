@@ -13,8 +13,7 @@ namespace Map
         Shop,
         Forge,
 
-        Quest,
-        Mystery,
+        Mystery = 7,
         Skill
     }
 }

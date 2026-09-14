@@ -13,7 +13,7 @@ public static class SmokeScenes {
  Application.logMessageReceived+=handler;
  try {
  GameManager.Instance.ResetRun();
- foreach(var scene in new[]{"CharacterSelectScene","FirstQuestScene","MapScene","QuestScene","ForgeScene","SkillScene","ShopScene","EventScene","TreasureScene","BattleScene","GameClearScene","GameOverScene","StartScene"}) {
+ foreach(var scene in new[]{"CharacterSelectScene","MapScene","ForgeScene","SkillScene","ShopScene","EventScene","TreasureScene","BattleScene","GameClearScene","GameOverScene","StartScene"}) {
  errors.Clear(); SceneManager.LoadScene(scene); yield return new WaitForSeconds(0.5f);
  results.Add(new{scene,errors=errors.ToArray(),gameManagers=UnityEngine.Object.FindObjectsByType<GameManager>(FindObjectsSortMode.None).Length});
  }

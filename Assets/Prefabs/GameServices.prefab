@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1a167af7e74274e838c50af3646771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstQuestLoaded: 1
   charPrefabs:
   - {fileID: 7716889244273323526, guid: dd5d3de6aeae64e40a9907402bf61df0, type: 3}
   - {fileID: 7716889244273323526, guid: fdfebdb2a15a342efaa66df076e4d0c5, type: 3}

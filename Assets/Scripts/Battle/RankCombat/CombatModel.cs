@@ -95,7 +95,6 @@ namespace FailingQuest.Combat
         public const double DamageScale = 1.25;
         public const double HealthScale = 0.85;
         public static int ScaleDamage(int amount) => (int)Math.Ceiling(amount * DamageScale);
-        public Action<int, int> QuestProgress = delegate { };
         private readonly Random random;
         public readonly List<Combatant> Units = new();
         public readonly List<Combatant> Order = new();
@@ -233,7 +232,6 @@ namespace FailingQuest.Combat
                     Resolve(actor, new CombatSkill { Effect = effect.Effect, Friendly = target.Enemy == actor.Enemy,
                         Min = 0, Max = 0, Potency = effect.Potency, Duration = effect.Duration }, target);
             }
-            if (!actor.Enemy) QuestProgress(5, 1);
             actor.ReadyRound[skill] = Round + skill.Cooldown + 1;
             EndTurn(actor);
             CheckOutcome();
@@ -245,7 +243,6 @@ namespace FailingQuest.Combat
             if (skill.Effect == Effect.Heal)
             {
                 int heal = random.Next(skill.Min, skill.Max + 1);
-                if (!target.Enemy) QuestProgress(6, Math.Min(heal, target.Template.Health - target.Health));
                 target.Health = Math.Min(target.Template.Health, target.Health + heal);
                 Record($"{target.Name}: 회복 +{heal}");
                 return;
@@ -286,9 +283,6 @@ namespace FailingQuest.Combat
                 return;
             }
             target.Ailments.Add(new Ailment { Effect = skill.Effect, Power = skill.Potency, Turns = skill.Duration });
-            if (!actor.Enemy && skill.Effect == Effect.Guard) QuestProgress(8, 1);
-            if (!actor.Enemy && (skill.Effect == Effect.Blight || skill.Effect == Effect.Burn)) QuestProgress(9, skill.Potency);
-            if (!actor.Enemy && skill.Effect == Effect.Mark) QuestProgress(10, 1);
             Record($"{target.Name}: {EffectName(skill.Effect)} {skill.Duration}턴");
         }
 
@@ -296,7 +290,6 @@ namespace FailingQuest.Combat
         {
             if (target.Dead) return;
             bool atDoor = target.AtDeathsDoor;
-            if (target.Enemy) QuestProgress(7, Math.Min(target.Health, amount));
             target.Health = Math.Max(0, target.Health - amount);
             if (target.Health > 0) return;
             if (target.Enemy)

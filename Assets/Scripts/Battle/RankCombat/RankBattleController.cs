@@ -65,7 +65,6 @@ namespace FailingQuest.Combat
             else
                 party.AddRange(Heroes.Take(MaxPlayerCount));
             Model = new CombatModel(Seed == 0 ? System.Environment.TickCount : Seed);
-            if (managers.Length > 0) Model.QuestProgress = RunEffects.Progress;
             for (int i = 0; i < party.Count; i++)
             {
                 Model.Add(managers.Length > 0 ? RunEffects.Prepare(party[i]) : party[i].Template, false, i + 1);
@@ -307,8 +306,6 @@ namespace FailingQuest.Combat
                 {
                     session[0].userData.battlesWon++;
                     if (encounterType == Map.NodeType.Elite) session[0].userData.elitesWon++;
-                    RunEffects.Progress(1, 1);
-                    if (encounterType == Map.NodeType.Elite) RunEffects.Progress(3, 1);
                 }
             }
             Busy = false;

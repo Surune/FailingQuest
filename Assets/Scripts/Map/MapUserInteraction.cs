@@ -98,10 +98,6 @@ namespace Map
                 case NodeType.Forge:
                     SceneLoader.LoadScene("ForgeScene");
                     break;
-                case NodeType.Quest:
-                    SceneLoader.LoadScene("QuestScene");
-
-                    break;
                 case NodeType.Mystery:
                     SceneLoader.LoadScene("EventScene");
 

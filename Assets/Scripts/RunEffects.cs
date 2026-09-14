@@ -87,13 +87,12 @@ public static class RunEffects
                 skill.Max += treasure.attackBonus;
             }
             template.Health += treasure.healthBonus;
-            template.AccuracyBonus += treasure.accuracyBonus;
         }
         return template;
     }
 
     private static bool MatchesForge(Effect effect, ForgeType forge)
-        => forge == ForgeType.BUFF && (effect == Effect.Guard || effect == Effect.AttackUp || effect == Effect.Focus)
+        => forge == ForgeType.BUFF && (effect == Effect.Guard || effect == Effect.AttackUp)
             || forge == ForgeType.DEBUFF && (effect == Effect.Bleed || effect == Effect.Blight || effect == Effect.Burn
-                || effect == Effect.Stun || effect == Effect.Mark || effect == Effect.AttackDown || effect == Effect.AccuracyDown);
+                || effect == Effect.Stun || effect == Effect.Mark || effect == Effect.AttackDown);
 }

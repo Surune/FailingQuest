@@ -8,5 +8,4 @@ public class TreasureData : ScriptableObject
     public int coins;
     public int attackBonus;
     public int healthBonus;
-    public int accuracyBonus;
 }

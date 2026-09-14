@@ -31,14 +31,13 @@ MonoBehaviour:
       Potency: 1
       Duration: 2
     Name: "그림자 사슬"
-    Description: "적 한 명: 명중 감소 15%p \xB7 2턴
+    Description: "적 한 명: 공격력 감소 3 \xB7 2턴
       / 적 한 명: 공격력 감소 1 \xB7 2턴"
-    Effect: 13
+    Effect: 11
     Friendly: 0
     All: 0
     Min: 0
     Max: 0
-    Accuracy: 95
     Critical: 5
-    Potency: 15
+    Potency: 3
     Duration: 2

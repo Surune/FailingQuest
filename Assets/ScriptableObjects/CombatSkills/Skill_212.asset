@@ -16,9 +16,8 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: a2313e82bfb45449898a3fdd04e0ce22, type: 3}
   ConversionNotes: "프리팹 효과\xB7대상 기준.
     쿨타임 1~30=0, 31~60=1, 61~90=2, 91~120=3개 라운드
-    대기. 상태 3턴, 기절 1턴. 명중 보정은 기존 수치/10 올림(최대 5)에 5%p를 곱한 값, 보호 25%,
-    집중 명중 +10. 이동 타입을 아군 전체
-    명중 증가로 보정."
+    대기. 상태 3턴, 기절 1턴. 공격력 증감은 고정 수치, 보호 25%, 집중 공격력 +2. 이동 타입을 아군 전체
+    공격력 증가로 보정."
   ForgeOptions: 010000000300000004000000
   Skill:
     Id: 212
@@ -26,19 +25,18 @@ MonoBehaviour:
     SelfOnly: 0
     BothTeams: 0
     AdditionalEffects:
-    - Effect: 13
+    - Effect: 11
       Target: 3
-      Potency: 5
+      Potency: 1
       Duration: 3
     Name: "도움닫기"
-    Description: "아군 전체: 명중 증가 5%p \xB7 3턴
-      / 적 전체: 명중 감소 5%p \xB7 3턴"
-    Effect: 14
+    Description: "아군 전체: 공격력 증가 1 \xB7 3턴
+      / 적 전체: 공격력 감소 1 \xB7 3턴"
+    Effect: 10
     Friendly: 1
     All: 1
     Min: 0
     Max: 0
-    Accuracy: 95
     Critical: 5
-    Potency: 5
+    Potency: 1
     Duration: 3

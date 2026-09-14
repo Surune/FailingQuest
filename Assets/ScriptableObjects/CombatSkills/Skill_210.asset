@@ -16,8 +16,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: ab806f97622fb4d61a8ab2a77f893a8f, type: 3}
   ConversionNotes: "프리팹 효과\xB7대상 기준.
     쿨타임 1~30=0, 31~60=1, 61~90=2, 91~120=3개 라운드
-    대기. 상태 3턴, 기절 1턴. 명중 보정은 기존 수치/10 올림(최대 5)에 5%p를 곱한 값, 보호 25%,
-    집중 명중 +10."
+    대기. 상태 3턴, 기절 1턴. 공격력 증감은 고정 수치, 보호 25%, 집중 공격력 +2."
   ForgeOptions: 0100000003000000
   Skill:
     Id: 210
@@ -32,7 +31,6 @@ MonoBehaviour:
     All: 0
     Min: 0
     Max: 0
-    Accuracy: 95
     Critical: 5
     Potency: 1
     Duration: 3

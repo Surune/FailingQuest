@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: star
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f56c814c8ea0c4892b1ab76a53d04135, type: 3}
-  description: "별빛 조각: 공격 피해 +1, 명중 +5%p"
+  description: "별빛 조각: 공격 피해 +2"
   coins: 0
-  attackBonus: 1
+  attackBonus: 2
   healthBonus: 0
-  accuracyBonus: 5
 

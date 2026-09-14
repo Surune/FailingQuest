@@ -16,8 +16,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: af8b0739bedec469a96a8fc8ac72c0b6, type: 3}
   ConversionNotes: "프리팹 효과\xB7대상 기준.
     쿨타임 1~30=0, 31~60=1, 61~90=2, 91~120=3개 라운드
-    대기. 상태 3턴, 기절 1턴. 명중 보정은 기존 수치/10 올림(최대 5)에 5%p를 곱한 값, 보호 25%,
-    집중 명중 +10. 공격 후 유익한 부가
+    대기. 상태 3턴, 기절 1턴. 공격력 증감은 고정 수치, 보호 25%, 집중 공격력 +2. 공격 후 유익한 부가
     효과는 시전자에게 적용하도록
     보정."
   ForgeOptions: 010000000200000003000000
@@ -27,18 +26,17 @@ MonoBehaviour:
     SelfOnly: 0
     BothTeams: 0
     AdditionalEffects:
-    - Effect: 14
+    - Effect: 10
       Target: 1
-      Potency: 5
+      Potency: 1
       Duration: 3
     Name: "화염칼날"
-    Description: "적 한 명: 피해 6~8 / 자신: 명중 증가 5%p \xB7 3턴"
+    Description: "적 한 명: 피해 6~8 / 자신: 공격력 증가 1 \xB7 3턴"
     Effect: 0
     Friendly: 0
     All: 0
     Min: 6
     Max: 8
-    Accuracy: 95
     Critical: 5
     Potency: 0
     Duration: 3

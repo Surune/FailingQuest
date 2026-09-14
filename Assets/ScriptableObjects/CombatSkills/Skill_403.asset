@@ -27,12 +27,11 @@ MonoBehaviour:
     AdditionalEffects: []
     Name: "\uB9E4\uC758 \uB208"
     Description: "\uC790\uC2E0: \uC9D1\uC911 15 \xB7 2\uD134"
-    Effect: 14
+    Effect: 10
     Friendly: 1
     All: 0
     Min: 0
     Max: 0
-    Accuracy: 95
     Critical: 5
-    Potency: 15
+    Potency: 3
     Duration: 2

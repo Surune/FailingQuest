@@ -25,9 +25,9 @@ MonoBehaviour:
     SelfOnly: 0
     BothTeams: 0
     AdditionalEffects:
-    - Effect: 14
+    - Effect: 10
       Target: 1
-      Potency: 10
+      Potency: 2
       Duration: 2
     Name: "\uC2EC\uC5F0\uC758 \uB208"
     Description: "\uC801 \uD55C \uBA85: \uD45C\uC2DD(\uBC1B\uB294 \uACF5\uACA9 \uD53C\uD574
@@ -37,7 +37,6 @@ MonoBehaviour:
     All: 0
     Min: 0
     Max: 0
-    Accuracy: 95
     Critical: 5
     Potency: 3
     Duration: 3

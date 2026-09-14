@@ -33,7 +33,6 @@ MonoBehaviour:
     All: 1
     Min: 2
     Max: 4
-    Accuracy: 85
     Critical: 5
     Potency: 0
     Duration: 3

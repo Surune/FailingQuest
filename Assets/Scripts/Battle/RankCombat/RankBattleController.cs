@@ -218,7 +218,7 @@ namespace FailingQuest.Combat
             var actor = Model.Active;
             HeroPortrait.sprite = appearance[actor.Id].Sprite;
             HeroText.text = actor.Name + (actor.Enemy ? "  /  적의 차례" : "  /  행동 선택");
-            StatsText.text = $"체력  {actor.Health}/{actor.Template.Health}     스트레스  {actor.Stress}/200\n명중 보정  {actor.Template.AccuracyBonus + actor.Power(Effect.Focus) - actor.Power(Effect.AccuracyDown):+0;-0;0}%p     회피  {actor.Dodge}     보호  {actor.Protection}%";
+            StatsText.text = $"체력  {actor.Health}/{actor.Template.Health}     스트레스  {actor.Stress}/200\n공격력 보정  {actor.Power(Effect.AttackUp) - actor.Power(Effect.AttackDown):+0;-0;0}     보호  {actor.Protection}%";
             var targets = SelectedSkill >= 0 ? Model.Targets(actor, actor.Template.Skills[SelectedSkill]) : new List<Combatant>();
             foreach (var unit in Model.Units)
             {
@@ -272,16 +272,16 @@ namespace FailingQuest.Combat
         {
             if (inspected < 0)
             {
-                TargetText.text = "대상 정보\n캐릭터 위에 마우스를 올려\n능력치와 명중률을 확인하세요.";
+                TargetText.text = "대상 정보\n캐릭터 위에 마우스를 올려\n능력치를 확인하세요.";
                 return;
             }
             var unit = Model.Units[inspected];
-            TargetText.text = $"<color=#E8C781>{unit.Name}</color>\nHP {unit.Health}/{unit.Template.Health}  |  회피 {unit.Dodge}\n보호 {unit.Protection}%  |  저항 {unit.Template.Resistance}%";
+            TargetText.text = $"<color=#E8C781>{unit.Name}</color>\nHP {unit.Health}/{unit.Template.Health}\n보호 {unit.Protection}%  |  저항 {unit.Template.Resistance}%";
             if (SelectedSkill >= 0)
             {
                 var skill = Model.Active.Template.Skills[SelectedSkill];
                 bool valid = Model.Targets(Model.Active, skill).Contains(unit);
-                TargetText.text += valid ? skill.Friendly ? "\n아군 지원 대상" : $"\n명중 {Model.HitChance(Model.Active, skill, unit)}%  |  치명타 {skill.Critical}%" : "\n대상 지정 불가";
+                TargetText.text += valid ? skill.Friendly ? "\n아군 지원 대상" : $"\n치명타 {skill.Critical}%" : "\n대상 지정 불가";
             }
         }
 

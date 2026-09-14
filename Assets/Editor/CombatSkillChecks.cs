@@ -56,50 +56,60 @@ public static class CombatSkillChecks
             Check(original == JsonUtility.ToJson(definition), "Immutable definition " + definition.Key);
         }
 
-        // A secondary selected-target effect must not apply when the primary attack misses.
-        int misses = 0, burns = 0;
+        // Attacks always deal damage; secondary effects still respect status resistance.
+
         for (int seed = 0; seed < 10; seed++)
         {
             var skill = catalog.Get("102").CreateSkill();
-            skill.Accuracy = 50;
+
             var model = Encounter(skill, seed);
             var victim = model.Units.First(u => u.Enemy);
             int healthBefore = victim.Health;
             model.Use(0, victim.Id);
-            if (victim.Health == healthBefore) { misses++; Check(victim.Power(Effect.Burn) == 0, "Miss must not burn"); }
-            if (victim.Power(Effect.Burn) > 0) burns++;
+            Check(victim.Health < healthBefore && victim.Power(Effect.Burn) > 0, "Attack and burn apply for every seed");
         }
-        Check(misses > 0 && burns > 0, $"Hit and miss paths exercised: misses={misses}, burns={burns}");
+
+        var resisted = Encounter(catalog.Get("102").CreateSkill());
+        var resistantTarget = resisted.Units.First(u => u.Enemy);
+        resistantTarget.Template.Resistance = 100;
+        int resistantHealth = resistantTarget.Health;
+        resisted.Use(0, resistantTarget.Id);
+        Check(resistantTarget.Health < resistantHealth && resistantTarget.Power(Effect.Burn) == 0,
+            "Status resistance prevents burn without preventing attack damage");
+
+        foreach (int modifier in new[] { -3, 0, 3 })
+        {
+            var damage = Encounter(new CombatSkill { Effect = Effect.Strike, Min = 10, Max = 10, Critical = 0 });
+            damage.Active.Ailments.Add(new Ailment { Effect = modifier < 0 ? Effect.AttackDown : Effect.AttackUp,
+                Power = Math.Abs(modifier), Turns = 2 });
+            var enemy = damage.Units.First(u => u.Enemy);
+            int health = enemy.Health;
+            damage.Use(0, enemy.Id);
+            Check(health - enemy.Health == CombatModel.ScaleDamage(10 + modifier), "Attack modifiers change actual damage");
+        }
 
         var hybrid = Encounter(catalog.Get("212").CreateSkill());
         hybrid.Use(0, hybrid.Active.Id);
-        Check(hybrid.Units.Where(u => !u.Enemy).All(u => u.Power(Effect.Focus) == 5), "Team accuracy buff");
-        Check(hybrid.Units.Any(u => u.Enemy && u.Power(Effect.AccuracyDown) == 5), "Opposing accuracy debuff");
-        Check(hybrid.Units.Where(u => !u.Enemy).All(u => u.Power(Effect.AccuracyDown) == 0), "Debuff does not hit allies");
+        Check(hybrid.Units.Where(u => !u.Enemy).All(u => u.Power(Effect.AttackUp) == 1), "Team attack power buff");
+        Check(hybrid.Units.Where(u => u.Enemy).All(u => u.Power(Effect.AttackDown) == 1), "Opposing attack power debuff");
+        Check(hybrid.Units.Where(u => !u.Enemy).All(u => u.Power(Effect.AttackDown) == 0), "Debuff does not hit allies");
 
         var recoil = Encounter(catalog.Get("312").CreateSkill());
         var shooter = recoil.Active;
-        var accuracyProbe = new CombatSkill { Accuracy = 60 };
-        var recoilTarget = recoil.Units.First(u => u.Enemy);
-        int accuracyBeforeRecoil = recoil.HitChance(shooter, accuracyProbe, recoilTarget);
         recoil.Use(0, recoil.Units.First(u => u.Enemy).Id);
-        Check(shooter.Power(Effect.AccuracyDown) == 15, "Self penalty occurs once per area cast");
-        Check(recoil.HitChance(shooter, accuracyProbe, recoilTarget) == accuracyBeforeRecoil - 15,
-            "Recoil penalty lowers actual hit chance");
-        Check(recoil.Units.Where(u => u.Enemy).All(u => u.Power(Effect.AccuracyDown) == 0), "Self penalty stays on caster");
+        Check(shooter.Power(Effect.AttackDown) == 3, "Self penalty occurs once per area cast");
+
+        Check(recoil.Units.Where(u => u.Enemy).All(u => u.Power(Effect.AttackDown) == 0), "Self penalty stays on caster");
 
         var teleport = Encounter(catalog.Get("113").CreateSkill());
         var mage = teleport.Active;
         teleport.Use(0, mage.Id);
-        Check(mage.Rank == 1 && mage.Power(Effect.Focus) == 5, "Teleport grants accuracy without moving");
+        Check(mage.Rank == 1 && mage.Power(Effect.AttackUp) == 1, "Teleport grants attack power without moving");
 
         var precision = Encounter(catalog.Get("409").CreateSkill());
         var hunter = precision.Active;
-        var precisionTarget = precision.Units.First(u => u.Enemy);
-        int accuracyBeforePrecision = precision.HitChance(hunter, accuracyProbe, precisionTarget);
         precision.Use(0, hunter.Id);
-        Check(precision.HitChance(hunter, accuracyProbe, precisionTarget) == accuracyBeforePrecision + 15,
-            "Standalone accuracy skill improves actual hit chance");
+        Check(hunter.Power(Effect.AttackUp) == 3, "Standalone buff grants attack power");
 
         var cooldown = Encounter(catalog.Get("202").CreateSkill());
         var guardian = cooldown.Active;
@@ -119,11 +129,8 @@ public static class CombatSkillChecks
 
         var focus = Encounter(catalog.Get("308").CreateSkill());
         var archer = focus.Active;
-        var enemyTarget = focus.Units.First(u => u.Enemy);
-        var attack = new CombatSkill { Accuracy = 60 };
-        int before = focus.HitChance(archer, attack, enemyTarget);
         focus.Use(0, archer.Id);
-        Check(focus.HitChance(archer, attack, enemyTarget) == before + 10, "Focus affects accuracy");
+        Check(archer.Power(Effect.AttackUp) == 2, "Focus grants attack power");
 
         Check(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/GameServices.prefab").GetComponent<GameManager>().skillCatalog == catalog, "GameServices catalog reference");
         Check(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Battle/RankBattle.prefab").GetComponent<RankBattleController>().SkillCatalog == catalog, "Battle catalog reference");
@@ -142,21 +149,15 @@ public static class CombatSkillChecks
             manager.userData.currentSkills[0]["102"] = ForgeType.COOLTIME;
             var fortified = RunEffects.Prepare(appearance);
             Check(fortified.Health == prepared.Health + 5, "Former cooldown forge adds maximum health");
-            Check(fortified.AccuracyBonus == prepared.AccuracyBonus, "Health forge does not change accuracy");
             foreach (string treasureName in new[] { "green_book", "feather", "candy", "fish", "star" })
             {
                 var relic = AssetDatabase.LoadAssetAtPath<TreasureData>($"Assets/ScriptableObjects/Treasures/{treasureName}.asset");
-                Check(relic.accuracyBonus == 5, "Relic grants accuracy: " + treasureName);
+                Check(relic.attackBonus == (treasureName == "star" ? 2 : 1), "Relic grants attack damage: " + treasureName);
                 manager.userData.myTreasureIndex.Add(Array.IndexOf(manager.treasureCatalog.treasures, relic));
             }
             var equipped = RunEffects.Prepare(appearance);
-            Check(equipped.AccuracyBonus == fortified.AccuracyBonus + 25, "Relic accuracy bonuses stack during preparation");
+            Check(equipped.Skills[0].Min == fortified.Skills[0].Min + 6 && equipped.Skills[0].Max == fortified.Skills[0].Max + 6, "Relic attack bonuses stack during preparation");
             Check(equipped.Health == fortified.Health + 5, "Mixed relics retain their health bonuses");
-            var relicBattle = new CombatModel(1);
-            relicBattle.Add(equipped, false, 1);
-            relicBattle.Add(new CombatTemplate { Name = "Target", Health = 100, Skills = Array.Empty<CombatSkill>() }, true, 1);
-            Check(relicBattle.HitChance(relicBattle.Units[0], accuracyProbe, relicBattle.Units[1])
-                == 60 + equipped.AccuracyBonus - relicBattle.Units[1].Dodge, "Relic bonus affects actual hit chance");
             manager.userData.characters = new() { CharacterType.character4, CharacterType.caharcter5 };
             manager.userData.currentSkills = new() { new(), new() };
             Check(RunEffects.AvailableSkills().Count == 26, "Fourth and fifth companions offer all 26 new skills");
@@ -171,7 +172,7 @@ public static class CombatSkillChecks
         }
         finally { GameManager.Instance = previousManager; PrefabUtility.UnloadPrefabContents(services); }
         return $"{catalog.Skills.Length} assets: coverage, icon references, targeting, execution, immutable copies PASS\n"
-            + "Composite effects, attack miss, opposite teams, self penalty, teleport, cooldown, buff duration, accuracy, relics, health forge, equip/rewards PASS\n"
+            + "Composite effects, guaranteed damage, opposite teams, self penalty, teleport, cooldown, buff duration, attack power, relics, health forge, equip/rewards PASS\n"
             + RankCombatChecks.Run();
     }
 }

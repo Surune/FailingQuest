@@ -16,8 +16,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 883485614f83c411fa1278c0b6a1e309, type: 3}
   ConversionNotes: "프리팹 효과\xB7대상 기준.
     쿨타임 1~30=0, 31~60=1, 61~90=2, 91~120=3개 라운드
-    대기. 상태 3턴, 기절 1턴. 명중 보정은 기존 수치/10 올림(최대 5)에 5%p를 곱한 값, 보호 25%,
-    집중 명중 +10."
+    대기. 상태 3턴, 기절 1턴. 공격력 증감은 고정 수치, 보호 25%, 집중 공격력 +2."
   ForgeOptions: 0100000003000000
   Skill:
     Id: 109
@@ -26,13 +25,12 @@ MonoBehaviour:
     BothTeams: 0
     AdditionalEffects: []
     Name: "주문"
-    Description: "자신: 명중 증가 15%p \xB7 3턴"
-    Effect: 14
+    Description: "자신: 공격력 증가 3 \xB7 3턴"
+    Effect: 10
     Friendly: 1
     All: 0
     Min: 0
     Max: 0
-    Accuracy: 95
     Critical: 5
-    Potency: 15
+    Potency: 3
     Duration: 3

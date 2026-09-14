@@ -8,8 +8,7 @@ namespace FailingQuest.Combat
     public enum Effect
     {
         Strike = 0, Bleed = 1, Blight = 2, Stun = 3, Heal = 4, Rally = 5,
-        Guard = 6, Mark = 7, Stress = 8, Burn = 9, AttackUp = 10, AttackDown = 11,
-        AccuracyDown = 13, Focus = 14
+        Guard = 6, Mark = 7, Stress = 8, Burn = 9, AttackUp = 10, AttackDown = 11
     }
     public enum EffectTarget { Selected, Self, Allies, Enemies, Everyone }
     [Serializable]
@@ -38,7 +37,6 @@ namespace FailingQuest.Combat
         public bool All;
         public int Min = 4;
         public int Max = 8;
-        public int Accuracy = 95;
         public int Critical = 5;
         public int Potency = 2;
         public int Duration = 3;
@@ -55,8 +53,6 @@ namespace FailingQuest.Combat
     {
         public string Name;
         public int Health = 30;
-        public int AccuracyBonus;
-        public int Dodge = 5;
         public int Protection;
         public int Resistance = 20;
         public CombatSkill[] Skills;
@@ -90,7 +86,6 @@ namespace FailingQuest.Combat
         public bool Living => !Dead;
         public bool AtDeathsDoor => !Enemy && Living && Health == 0;
         public string Name => Template.Name;
-        public int Dodge => Math.Max(0, Template.Dodge - (AtDeathsDoor ? 5 : 0));
         public int Protection => Math.Min(80, Template.Protection + Power(Effect.Guard));
     }
 
@@ -196,10 +191,6 @@ namespace FailingQuest.Combat
             return false;
         }
 
-        public int HitChance(Combatant actor, CombatSkill skill, Combatant target)
-            => Math.Clamp(skill.Accuracy + actor.Template.AccuracyBonus + actor.Power(Effect.Focus)
-                - actor.Power(Effect.AccuracyDown) - target.Dodge - (actor.AtDeathsDoor ? 10 : 0), 5, 95);
-
         public List<Combatant> Targets(Combatant actor, CombatSkill skill)
         {
             return Units.Where(u => u.Living && (!skill.SelfOnly || u == actor)
@@ -231,17 +222,16 @@ namespace FailingQuest.Combat
             AwaitingAction = false;
             if (!skill.All) targets.RemoveAll(u => u.Id != targetId);
             Record($"{actor.Name} — {skill.Name}");
-            var hitTargets = targets.Where(target => Resolve(actor, skill, target)).ToArray();
+            foreach (var target in targets) Resolve(actor, skill, target);
             foreach (var effect in skill.AdditionalEffects)
             {
-                var affected = effect.Target == EffectTarget.Selected ? hitTargets.Where(t => t.Living)
+                var affected = effect.Target == EffectTarget.Selected ? targets.Where(t => t.Living)
                     : Units.Where(u => u.Living && (effect.Target == EffectTarget.Self ? u == actor
                         : effect.Target == EffectTarget.Allies ? u.Enemy == actor.Enemy
                         : effect.Target == EffectTarget.Enemies ? u.Enemy != actor.Enemy : true));
                 foreach (var target in affected.ToArray())
                     Resolve(actor, new CombatSkill { Effect = effect.Effect, Friendly = target.Enemy == actor.Enemy,
-                        Min = 0, Max = 0, Potency = effect.Potency, Duration = effect.Duration, Accuracy = skill.Accuracy }, target,
-                        effect.Target == EffectTarget.Selected);
+                        Min = 0, Max = 0, Potency = effect.Potency, Duration = effect.Duration }, target);
             }
             if (!actor.Enemy) QuestProgress(5, 1);
             actor.ReadyRound[skill] = Round + skill.Cooldown + 1;
@@ -250,31 +240,26 @@ namespace FailingQuest.Combat
             return true;
         }
 
-        private bool Resolve(Combatant actor, CombatSkill skill, Combatant target, bool hitConfirmed = false)
+        private void Resolve(Combatant actor, CombatSkill skill, Combatant target)
         {
-            if (!hitConfirmed && !skill.Friendly && random.Next(100) >= HitChance(actor, skill, target))
-            {
-                Record($"{target.Name}: 회피");
-                return false;
-            }
             if (skill.Effect == Effect.Heal)
             {
                 int heal = random.Next(skill.Min, skill.Max + 1);
                 if (!target.Enemy) QuestProgress(6, Math.Min(heal, target.Template.Health - target.Health));
                 target.Health = Math.Min(target.Template.Health, target.Health + heal);
                 Record($"{target.Name}: 회복 +{heal}");
-                return true;
+                return;
             }
             if (skill.Effect == Effect.Rally)
             {
                 target.Stress = Math.Max(0, target.Stress - skill.Potency);
                 Record($"{target.Name}: 스트레스 -{skill.Potency}");
-                return true;
+                return;
             }
             if (skill.Effect == Effect.Stress)
             {
                 AddStress(target, skill.Potency);
-                return true;
+                return;
             }
             if (skill.Max > 0)
             {
@@ -293,19 +278,18 @@ namespace FailingQuest.Combat
                     else actor.Stress = Math.Max(0, actor.Stress - 6);
                 }
             }
-            if (target.Dead || skill.Effect == Effect.Strike) return true;
+            if (target.Dead || skill.Effect == Effect.Strike) return;
             int resistance = target.Template.Resistance + (skill.Effect == Effect.Stun && target.StunRecovery > 0 ? 50 : 0);
             if (!skill.Friendly && random.Next(100) < resistance)
             {
                 Record($"{target.Name}: 상태이상 저항");
-                return true;
+                return;
             }
             target.Ailments.Add(new Ailment { Effect = skill.Effect, Power = skill.Potency, Turns = skill.Duration });
             if (!actor.Enemy && skill.Effect == Effect.Guard) QuestProgress(8, 1);
             if (!actor.Enemy && (skill.Effect == Effect.Blight || skill.Effect == Effect.Burn)) QuestProgress(9, skill.Potency);
             if (!actor.Enemy && skill.Effect == Effect.Mark) QuestProgress(10, 1);
             Record($"{target.Name}: {EffectName(skill.Effect)} {skill.Duration}턴");
-            return true;
         }
 
         public void Damage(Combatant target, int amount, bool damageOverTime)
@@ -411,7 +395,6 @@ namespace FailingQuest.Combat
         public static string EffectName(Effect effect) => effect switch
         {
             Effect.Burn => "화상", Effect.AttackUp => "공격력 증가", Effect.AttackDown => "공격력 감소",
-            Effect.AccuracyDown => "명중 감소", Effect.Focus => "명중 증가",
             Effect.Bleed => "출혈", Effect.Blight => "중독", Effect.Stun => "기절", Effect.Guard => "보호",
             Effect.Mark => "표식", Effect.Rally => "격려", Effect.Heal => "치유", Effect.Stress => "공포", _ => "공격"
         };

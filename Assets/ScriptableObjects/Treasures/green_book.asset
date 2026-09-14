@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: green_book
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 4c38197f9b1da4e678bf7e31d3abc8bd, type: 3}
-  description: 명중 +5%p
+  description: 공격 피해 +1
   coins: 0
-  attackBonus: 0
+  attackBonus: 1
   healthBonus: 0
-  accuracyBonus: 5
 

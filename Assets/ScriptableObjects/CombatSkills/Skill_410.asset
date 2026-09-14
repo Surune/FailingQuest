@@ -26,19 +26,18 @@ MonoBehaviour:
     SelfOnly: 0
     BothTeams: 0
     AdditionalEffects:
-    - Effect: 13
+    - Effect: 11
       Target: 0
-      Potency: 5
+      Potency: 1
       Duration: 2
     Name: "포위 표식"
     Description: "적 한 명: 표식(받는 공격 피해
-      +3) \xB7 3턴 / 적 한 명: 명중 감소 5%p \xB7 2턴"
+      +3) \xB7 3턴 / 적 한 명: 공격력 감소 1 \xB7 2턴"
     Effect: 7
     Friendly: 0
     All: 0
     Min: 0
     Max: 0
-    Accuracy: 95
     Critical: 5
     Potency: 3
     Duration: 3

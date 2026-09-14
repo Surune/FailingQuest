@@ -2485,7 +2485,6 @@ MonoBehaviour:
     Template:
       Name: "\uC218\uD638\uC790"
       Health: 38
-      Dodge: 5
       Protection: 15
       Resistance: 20
       Skills:
@@ -2501,7 +2500,6 @@ MonoBehaviour:
         All: 0
         Min: 7
         Max: 12
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2517,7 +2515,6 @@ MonoBehaviour:
         All: 0
         Min: 2
         Max: 4
-        Accuracy: 95
         Critical: 5
         Potency: 1
         Duration: 1
@@ -2533,7 +2530,6 @@ MonoBehaviour:
         All: 0
         Min: 0
         Max: 0
-        Accuracy: 95
         Critical: 5
         Potency: 25
         Duration: 3
@@ -2549,7 +2545,6 @@ MonoBehaviour:
         All: 0
         Min: 0
         Max: 0
-        Accuracy: 95
         Critical: 5
         Potency: 12
         Duration: 3
@@ -2558,7 +2553,6 @@ MonoBehaviour:
     Template:
       Name: "\uCD94\uC801\uC790"
       Health: 29
-      Dodge: 15
       Protection: 0
       Resistance: 20
       Skills:
@@ -2574,7 +2568,6 @@ MonoBehaviour:
         All: 0
         Min: 4
         Max: 7
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2590,7 +2583,6 @@ MonoBehaviour:
         All: 0
         Min: 5
         Max: 9
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2607,7 +2599,6 @@ MonoBehaviour:
         All: 0
         Min: 0
         Max: 0
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2623,7 +2614,6 @@ MonoBehaviour:
         All: 0
         Min: 6
         Max: 10
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2632,7 +2622,6 @@ MonoBehaviour:
     Template:
       Name: "\uC5F0\uAE08\uC220\uC0AC"
       Health: 25
-      Dodge: 10
       Protection: 0
       Resistance: 20
       Skills:
@@ -2648,7 +2637,6 @@ MonoBehaviour:
         All: 1
         Min: 2
         Max: 4
-        Accuracy: 95
         Critical: 5
         Potency: 3
         Duration: 3
@@ -2664,7 +2652,6 @@ MonoBehaviour:
         All: 0
         Min: 0
         Max: 0
-        Accuracy: 95
         Critical: 5
         Potency: 1
         Duration: 1
@@ -2680,7 +2667,6 @@ MonoBehaviour:
         All: 0
         Min: 3
         Max: 6
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2696,7 +2682,6 @@ MonoBehaviour:
         All: 0
         Min: 3
         Max: 6
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2705,7 +2690,6 @@ MonoBehaviour:
     Template:
       Name: "\uCE58\uC720\uC0AC"
       Health: 28
-      Dodge: 5
       Protection: 0
       Resistance: 20
       Skills:
@@ -2722,7 +2706,6 @@ MonoBehaviour:
         All: 0
         Min: 5
         Max: 9
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2738,7 +2721,6 @@ MonoBehaviour:
         All: 0
         Min: 4
         Max: 7
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2754,7 +2736,6 @@ MonoBehaviour:
         All: 0
         Min: 0
         Max: 0
-        Accuracy: 95
         Critical: 5
         Potency: 18
         Duration: 3
@@ -2770,7 +2751,6 @@ MonoBehaviour:
         All: 0
         Min: 4
         Max: 8
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2779,7 +2759,6 @@ MonoBehaviour:
     Template:
       Name: "\uCE58\uC720\uC0AC"
       Health: 28
-      Dodge: 5
       Protection: 0
       Resistance: 20
       Skills:
@@ -2796,7 +2775,6 @@ MonoBehaviour:
         All: 0
         Min: 5
         Max: 9
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2812,7 +2790,6 @@ MonoBehaviour:
         All: 0
         Min: 4
         Max: 7
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2828,7 +2805,6 @@ MonoBehaviour:
         All: 0
         Min: 0
         Max: 0
-        Accuracy: 95
         Critical: 5
         Potency: 18
         Duration: 3
@@ -2844,7 +2820,6 @@ MonoBehaviour:
         All: 0
         Min: 4
         Max: 8
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2854,7 +2829,6 @@ MonoBehaviour:
     Template:
       Name: "\uBB34\uB364 \uD30C\uC218\uAFBC"
       Health: 35
-      Dodge: 5
       Protection: 20
       Resistance: 20
       Skills:
@@ -2870,7 +2844,6 @@ MonoBehaviour:
         All: 0
         Min: 5
         Max: 10
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2886,7 +2859,6 @@ MonoBehaviour:
         All: 0
         Min: 2
         Max: 4
-        Accuracy: 95
         Critical: 5
         Potency: 1
         Duration: 1
@@ -2895,7 +2867,6 @@ MonoBehaviour:
     Template:
       Name: "\uAC08\uD034 \uC0AC\uB0E5\uAFBC"
       Health: 29
-      Dodge: 10
       Protection: 0
       Resistance: 20
       Skills:
@@ -2911,7 +2882,6 @@ MonoBehaviour:
         All: 0
         Min: 4
         Max: 7
-        Accuracy: 95
         Critical: 5
         Potency: 3
         Duration: 3
@@ -2927,7 +2897,6 @@ MonoBehaviour:
         All: 0
         Min: 5
         Max: 9
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2936,7 +2905,6 @@ MonoBehaviour:
     Template:
       Name: "\uC5ED\uBCD1 \uC8FC\uC220\uC0AC"
       Health: 25
-      Dodge: 5
       Protection: 0
       Resistance: 20
       Skills:
@@ -2952,7 +2920,6 @@ MonoBehaviour:
         All: 0
         Min: 3
         Max: 5
-        Accuracy: 95
         Critical: 5
         Potency: 3
         Duration: 3
@@ -2968,7 +2935,6 @@ MonoBehaviour:
         All: 0
         Min: 2
         Max: 5
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -2977,7 +2943,6 @@ MonoBehaviour:
     Template:
       Name: "\uC6B8\uBD80\uC9D6\uB294 \uC790"
       Health: 24
-      Dodge: 5
       Protection: 0
       Resistance: 20
       Skills:
@@ -2993,7 +2958,6 @@ MonoBehaviour:
         All: 0
         Min: 0
         Max: 0
-        Accuracy: 95
         Critical: 5
         Potency: 18
         Duration: 3
@@ -3009,7 +2973,6 @@ MonoBehaviour:
         All: 0
         Min: 3
         Max: 6
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -3018,7 +2981,6 @@ MonoBehaviour:
     Template:
       Name: "\uBB34\uB364 \uD30C\uC218\uAFBC"
       Health: 35
-      Dodge: 5
       Protection: 20
       Resistance: 20
       Skills:
@@ -3034,7 +2996,6 @@ MonoBehaviour:
         All: 0
         Min: 5
         Max: 10
-        Accuracy: 95
         Critical: 5
         Potency: 2
         Duration: 3
@@ -3050,7 +3011,6 @@ MonoBehaviour:
         All: 0
         Min: 2
         Max: 4
-        Accuracy: 95
         Critical: 5
         Potency: 1
         Duration: 1

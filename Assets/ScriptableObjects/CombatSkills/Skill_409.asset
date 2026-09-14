@@ -27,13 +27,12 @@ MonoBehaviour:
     BothTeams: 0
     AdditionalEffects: []
     Name: "질주 본능"
-    Description: "자신: 명중 증가 15%p \xB7 2턴"
-    Effect: 14
+    Description: "자신: 공격력 증가 3 \xB7 2턴"
+    Effect: 10
     Friendly: 1
     All: 0
     Min: 0
     Max: 0
-    Accuracy: 95
     Critical: 5
-    Potency: 15
+    Potency: 3
     Duration: 2

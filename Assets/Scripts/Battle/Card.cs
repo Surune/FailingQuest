@@ -10,27 +10,31 @@ namespace FailingQuest.Cards
         public int Id;
         public bool Upgraded;
         public bool Crafted;
+        public bool Defined;
+        public string DisplayName;
+        public UnityEngine.Sprite Icon;
         public List<CardPhrase> Phrases = new();
-        public string Name => Crafted ? "조합 카드" + (Upgraded ? "+" : "") : Names[Id] + (Upgraded ? "+" : "");
+        public string Name => (Crafted ? "조합 카드" : Defined ? DisplayName : Names[Id]) + (Upgraded ? "+" : "");
         public int Cost => GetPhrases().Sum(p => p.ManaCost);
         public int ManaRecovery => Total(PhraseEffect.Mana);
         public int Damage => Total(PhraseEffect.Attack);
         public int Block => Total(PhraseEffect.Block);
-        public bool IsAttack => GetPhrases().Any(p => p.Effect == PhraseEffect.Attack || p.Effect == PhraseEffect.Vulnerable);
-        public bool RequiresTarget => GetPhrases().Any(p => (p.Effect == PhraseEffect.Attack || p.Effect == PhraseEffect.Vulnerable) && !p.AllEnemies);
+        public bool IsAttack => GetPhrases().Any(p => p.Effect == PhraseEffect.Attack || p.Effect == PhraseEffect.Vulnerable || p.Effect == PhraseEffect.Weaken);
+        public bool RequiresTarget => GetPhrases().Any(p => (p.Effect == PhraseEffect.Attack || p.Effect == PhraseEffect.Vulnerable || p.Effect == PhraseEffect.Weaken) && !p.AllEnemies);
         public bool Exhausts => GetPhrases().Any(p => p.Effect == PhraseEffect.Exhaust);
         public string Description => string.Join("\n", GetPhrases().Select(p => p.Text));
         private int Total(PhraseEffect effect) => GetPhrases().Where(p => p.Effect == effect).Sum(p => p.Amount);
-        public Card Copy() => new() { Id = Id, Upgraded = Upgraded, Crafted = Crafted, Phrases = Phrases.Select(p => p.Copy()).ToList() };
+        public Card Copy() => new() { Id = Id, Upgraded = Upgraded, Crafted = Crafted, Defined = Defined, DisplayName = DisplayName, Icon = Icon, Phrases = Phrases.Select(p => p.Copy()).ToList() };
 
         public List<CardPhrase> GetPhrases()
         {
-            if (Crafted)
+            if (Crafted || Defined)
             {
                 var result = Phrases.Select(p => p.Copy()).ToList();
                 if (Upgraded)
                     foreach (var part in result)
-                        if (part.Effect == PhraseEffect.Attack || part.Effect == PhraseEffect.Block) part.Amount += 3;
+                        if (part.Effect == PhraseEffect.Attack || part.Effect == PhraseEffect.Block || part.Effect == PhraseEffect.Heal) part.Amount += 3;
+                        else if (Defined && part.Amount > 0 && (part.Effect == PhraseEffect.Strength || part.Effect == PhraseEffect.Draw || part.Effect == PhraseEffect.Vulnerable || part.Effect == PhraseEffect.Weaken)) part.Amount++;
                 return result;
             }
             var parts = new List<CardPhrase>();

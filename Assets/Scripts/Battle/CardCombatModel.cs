@@ -80,15 +80,19 @@ namespace FailingQuest.Cards
                 {
                     case PhraseEffect.Attack:
                     case PhraseEffect.Vulnerable:
+                    case PhraseEffect.Weaken:
                         foreach (var enemy in phrase.AllEnemies ? Enemies.Where(e => e.Alive) : new[] { Enemies[target] }.AsEnumerable())
                         {
                             if (phrase.Effect == PhraseEffect.Vulnerable) { enemy.Vulnerable += phrase.Amount; continue; }
-                            int damage = (int)((phrase.Amount + Strength) * (enemy.Vulnerable > 0 ? 1.5f : 1f));
+                            if (phrase.Effect == PhraseEffect.Weaken) { enemy.Power = Math.Max(0, enemy.Power - phrase.Amount); continue; }
+                            int damage = Math.Max(0, (int)((phrase.Amount + Strength) * (enemy.Vulnerable > 0 ? 1.5f : 1f)));
                             enemy.Health = Math.Max(0, enemy.Health - Math.Max(0, damage - enemy.Block));
                             enemy.Block = Math.Max(0, enemy.Block - damage);
                         }
                         break;
                     case PhraseEffect.Block: Block += phrase.Amount; break;
+                    case PhraseEffect.Heal: Health = Math.Min(MaxHealth, Health + phrase.Amount); break;
+                    case PhraseEffect.SelfDamage: Health = Math.Max(0, Health - phrase.Amount); break;
                     case PhraseEffect.Draw: Draw(phrase.Amount); break;
                     case PhraseEffect.Strength: Strength += phrase.Amount; break;
                     case PhraseEffect.Mana: Mana += phrase.Amount; break;

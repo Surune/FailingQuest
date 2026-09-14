@@ -18,7 +18,6 @@ namespace FailingQuest.Combat
         public Button[] SkillButtons;
         public Image[] SkillIcons;
         public Sprite[] AbilityIcons;
-        public CombatSkillCatalog SkillCatalog;
         public TMP_Text[] SkillLabels;
         public TMP_Text RoundText;
         public TMP_Text TurnText;
@@ -249,8 +248,7 @@ namespace FailingQuest.Combat
                     + (cooldown > 0 ? $" · 재사용 {cooldown}R" : "");
                 SkillButtons[i].interactable = PlayerTurn && Model.CanUse(actor, skill);
                 SkillButtons[i].GetComponent<Image>().color = SelectedSkill == i ? Tone(0.45f, 0.3f, 0.13f) : Tone(0.17f, 0.15f, 0.14f);
-                SkillIcons[i].sprite = skill.Id > 0 ? SkillCatalog.Get(skill.Id.ToString("000")).Icon
-                    : AbilityIcons[((int)skill.Effect) % AbilityIcons.Length];
+                SkillIcons[i].sprite = AbilityIcons[((int)skill.Effect) % AbilityIcons.Length];
             }
             PassButton.interactable = PlayerTurn;
             RetreatButton.interactable = PlayerTurn;

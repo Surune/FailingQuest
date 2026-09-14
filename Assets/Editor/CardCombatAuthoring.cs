@@ -63,6 +63,7 @@ public static class CardCombatAuthoring
         scaler.referenceResolution = V2(1440,900);
         scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
         var c = root.AddComponent<CardBattleController>();
+        c.Catalog = AssetDatabase.LoadAssetAtPath<CardCatalog>("Assets/ScriptableObjects/Cards/CardCatalog.asset");
         c.Heroes = source.Heroes; c.EnemyArt = source.Enemies.Take(3).ToArray();
         c.AbilityIcons = source.AbilityIcons;
         var stage = Rect("Composition",root.transform,0,0,1440,900);

@@ -8,12 +8,13 @@ public class SkillRewardManager : MonoBehaviour
     private bool chosen;
     private void Start()
     {
-        var offers = Enumerable.Range(2, Card.Names.Length - 2).OrderBy(_ => Random.value).Take(buttons.Length).ToArray();
+        var offers = GameManager.Instance.cardCatalog.CreateRewardPool().OrderBy(_ => Random.value).Take(buttons.Length).ToArray();
         for (int i = 0; i < buttons.Length; i++)
         {
-            var card = new Card { Id = offers[i] };
+            var card = offers[i];
             var view = buttons[i];
-            view.skillIcon.gameObject.SetActive(false);
+            view.skillIcon.gameObject.SetActive(card.Defined);
+            view.skillIcon.sprite = card.Icon;
             view.skillNameText.text = card.Name;
             view.skillDescriptionText.text = $"마나 {card.Cost}\n{card.Description}";
             view.button.onClick.AddListener(() =>

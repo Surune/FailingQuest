@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace FailingQuest.Cards
 {
-    public enum PhraseEffect { Attack, Block, Draw, Vulnerable, Strength, Mana, Exhaust, Word }
+    public enum PhraseEffect { Attack, Block, Draw, Vulnerable, Strength, Mana, Exhaust, Word, Heal, Weaken, SelfDamage }
 
     [Serializable]
     public class CardPhrase
@@ -19,7 +19,10 @@ namespace FailingQuest.Cards
             PhraseEffect.Attack => $"{(AllEnemies ? "모든 적에게" : "선택한 적에게")} 피해 {Amount}",
             PhraseEffect.Block => $"방어도 {Amount}",
             PhraseEffect.Draw => $"카드 {Amount}장 뽑기",
-            PhraseEffect.Vulnerable => $"선택한 적에게 취약 {Amount}턴",
+            PhraseEffect.Vulnerable => $"{(AllEnemies ? "모든 적에게" : "선택한 적에게")} 취약 {Amount}턴",
+            PhraseEffect.Heal => $"생명력 {Amount} 회복",
+            PhraseEffect.Weaken => $"{(AllEnemies ? "모든 적의" : "선택한 적의")} 공격력 {Amount} 감소",
+            PhraseEffect.SelfDamage => $"자신에게 피해 {Amount}",
             PhraseEffect.Strength => $"이번 전투 힘 +{Amount}",
             PhraseEffect.Mana => $"마나 {Amount} 회복",
             PhraseEffect.Exhaust => "소멸",

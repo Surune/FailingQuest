@@ -40,7 +40,6 @@ public static class RankCombatAuthoring
         scaler.referenceResolution = V2(1440, 900);
         scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
         var controller = rootObject.AddComponent<RankBattleController>();
-        controller.SkillCatalog = AssetDatabase.LoadAssetAtPath<CombatSkillCatalog>("Assets/ScriptableObjects/CombatSkills/SkillCatalog.asset");
         var stage = Rect("Composition", rootObject.transform, 0, 0, 1440, 900);
         stage.anchorMin = stage.anchorMax = V2(0.5f, 0.5f);
         stage.pivot = V2(0.5f, 0.5f);

@@ -9,6 +9,7 @@ namespace FailingQuest.Cards
 {
     public class CardBattleController : MonoBehaviour
     {
+        public CardCatalog Catalog;
         public int StartingMana = CardCombatModel.DefaultStartingMana;
         public CombatAppearance[] Heroes, EnemyArt;
         public TMP_Text Heading, Status, HeroStatus, Hint, Log, Piles;
@@ -148,7 +149,7 @@ namespace FailingQuest.Cards
                 CardNames[i].text = card.Name;
                 CardNames[i].fontSize = width < 140 ? 14 : 19;
                 CardCosts[i].text = card.Cost + "";
-                CardIcons[i].sprite = AbilityIcons[card.Id % AbilityIcons.Length];
+                CardIcons[i].sprite = card.Defined ? card.Icon : AbilityIcons[card.Id % AbilityIcons.Length];
                 CardLabels[i].text = card.Description;
                 CardLabels[i].enableAutoSizing = true;
                 CardLabels[i].fontSizeMin = 7;
@@ -173,7 +174,7 @@ namespace FailingQuest.Cards
                 if (encounter == Map.NodeType.Elite) data.elitesWon++;
                 if (!standalone) { RunEffects.Progress(1, 1); if (encounter == Map.NodeType.Elite) RunEffects.Progress(3, 1); }
                 ResultText.text = $"전투 승리 / {gold} 골드 획득\n덱에 추가할 카드 한 장을 선택하세요.";
-                rewards = Enumerable.Range(2, Card.Names.Length - 2).OrderBy(_ => Random.value).Take(3).Select(id => new Card { Id = id }).ToArray();
+                rewards = Catalog.CreateRewardPool().OrderBy(_ => Random.value).Take(3).ToArray();
                 for (int i = 0; i < 3; i++) RewardLabels[i].text = $"{rewards[i].Cost} 마나\n\n{rewards[i].Name}\n\n{rewards[i].Description}";
                 ContinueText.text = "카드 보상 건너뛰기";
             }
@@ -189,7 +190,7 @@ namespace FailingQuest.Cards
         public void ChooseReward(int index)
         {
             if (!resolved || !Model.Victory || chosen) return;
-            chosen = true; data.deck.Add(new Card { Id = rewards[index].Id });
+            chosen = true; data.deck.Add(rewards[index].Copy());
             ResultText.text = rewards[index].Name + " 카드를 덱에 추가했습니다.";
             foreach (var button in RewardButtons) button.interactable = false;
             ContinueText.text = "계속하기";

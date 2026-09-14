@@ -1,3 +1,5 @@
+> 과거 진형 전투의 설계 기록입니다. 원본 스킬 에셋과 전용 편집·검증 도구는 카드 전환 완료 후 삭제했습니다. 현재 편집 및 검증 방법은 [SkillCards.md](SkillCards.md)를 참고하세요.
+
 # 진형 전투 스킬 정의
 
 `Assets/ScriptableObjects/CombatSkills`에 총 67개 스킬 정의가 있다.

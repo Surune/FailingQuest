@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -19,16 +18,6 @@ public static class RunEffects
         foreach (var key in health.Keys.ToArray()) health[key] = Mathf.Clamp01(health[key] + fraction);
     }
 
-    public static List<CombatSkillDefinition> AvailableSkills()
-    {
-        var data = GameManager.Instance.userData;
-        return GameManager.Instance.skillCatalog.Skills.Where(skill =>
-        {
-            int owner = data.characters.FindIndex(c => (int)c == skill.Owner);
-            return skill.Id >= 100 && owner >= 0 && !data.currentSkills[owner].ContainsKey(skill.Key);
-        }).ToList();
-    }
-
     public static bool CanGainTreasure => GameManager.Instance.userData.myTreasureIndex.Count < GameManager.Instance.treasureCatalog.treasures.Length;
     public static void GainTreasure(int index)
     {
@@ -45,7 +34,8 @@ public static class RunEffects
     }
     public static void GainRandomSkill()
     {
-        GameManager.Instance.userData.deck.Add(new FailingQuest.Cards.Card { Id = Random.Range(2, FailingQuest.Cards.Card.Names.Length) });
+        var cards = GameManager.Instance.cardCatalog.CreateRewardPool();
+        GameManager.Instance.userData.deck.Add(cards[Random.Range(0, cards.Length)]);
     }
     public static bool CanRemoveSkill => GameManager.Instance.userData.deck.Count > 5;
     public static void RemoveSkill()
@@ -62,11 +52,6 @@ public static class RunEffects
         if (owner >= 0)
         {
             var skills = data.currentSkills[owner];
-            var acquired = skills.Keys.Where(k => int.Parse(k) >= 100).ToArray();
-            if (acquired.Length > 0)
-            {
-                template.Skills[3] = GameManager.Instance.skillCatalog.Get(acquired.Last()).CreateSkill();
-            }
             foreach (var forge in skills.Values.Where(f => f != ForgeType.UNFORGED))
             {
                 if (forge == ForgeType.COOLTIME) template.Health += 5;

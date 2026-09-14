@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133f4467ca71e8748be94194cd10e561, type: 3}
+  m_Name: Card_502
+  m_EditorClassIdentifier: Assembly-CSharp::FailingQuest.Cards.CardDefinition
+  SourceSkillId: 502
+  DisplayName: "\uB3C5\uC548\uAC1C"
+  Icon: {fileID: 21300000, guid: 41ed362cc85834f888743f6e4e65a00e, type: 3}
+  ConversionNotes: "\uC6D0\uBCF8 \uC2A4\uD0AC 502: \uB300\uC0C1 \uC5F4\uC758 \uC801
+    \uC804\uCCB4: \uD53C\uD574 2~3 + \uC911\uB3C5 2 \xB7 3\uD134\n\uCE74\uB4DC \uBCC0\uD658:
+    \uD53C\uD574/\uD68C\uBCF5 \uBC94\uC704\uB294 \uD3C9\uADE0. \uC9C0\uC18D \uD53C\uD574\uB294
+    \uC704\uB825\xD7\uC9C0\uC18D\uC2DC\uAC04\uC758 \uC989\uC2DC \uD53C\uD574. \uAE30\uC808\uC740
+    \uACF5\uACA9\uB825 \uAC10\uC18C, \uBCF4\uD638\uB294 \uBC29\uC5B4\uB3C4, \uC9D1\uC911\uC740
+    \uD798, \uC2A4\uD2B8\uB808\uC2A4\uB294 \uB4DC\uB85C\uC6B0/\uCDE8\uC57D. \uC544\uAD70
+    \uB300\uC0C1\uC740 \uD50C\uB808\uC774\uC5B4. \uC0C1\uD0DC \uC9C0\uC18D \uC81C\uD55C\uC740
+    \uCE74\uB4DC \uC804\uD22C \uADDC\uCE59. \uBB38\uC7A5\uB2F9 \uB9C8\uB098 5, \uCCAB
+    \uBB38\uC7A5\uC5D0 \uCFE8\uD0C0\uC784\xD75 \uCD94\uAC00. \uD6A8\uACFC \uC5C6\uB294
+    \uC774\uB3D9\uC740 \uB4DC\uB85C\uC6B0 1."
+  Phrases:
+  - Effect: 0
+    Amount: 2
+    ManaCost: 15
+    AllEnemies: 1
+    Word: 
+  - Effect: 0
+    Amount: 6
+    ManaCost: 5
+    AllEnemies: 1
+    Word: 

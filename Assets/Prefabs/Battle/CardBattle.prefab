@@ -3553,6 +3553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ade82931d0b9348bfb890bd9941d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FailingQuest.Cards.CardBattleController
+  Catalog: {fileID: 11400000, guid: 024693f55dcbb4d46ae83d1398fa4957, type: 2}
   StartingMana: 100
   Heroes:
   - CharacterType: 1
